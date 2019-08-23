@@ -94,7 +94,7 @@ public class ServiceMilkApplication {
 		return args -> {
 
 			// Administrador
-			/*
+			
 			Usuario a = new Administrador();
 			a.setEmail("admin@email.com");
 			a.setCodigoTipoPerfilUsuario(EnumTipoPerfilUsuario.ROLE_ADMINISTRADOR);
@@ -104,11 +104,11 @@ public class ServiceMilkApplication {
 			cA.setUsername("admin");
 			cA.setSenha(PasswordUtils.gerarBCrypt("admin"));
 			cA.setUsuario(a);
+		
 			
-			if(!this.credencialRepository.existsById(cA.getId()))
+//			if(!this.credencialRepository.existsById(cA.getId()))
 			this.credencialRepository.save(cA);
-			*/
-			/*
+
 			// Cliente
 			Usuario usuario = new Cliente();
 			usuario.setEmail("pedro@email.com");
@@ -139,7 +139,7 @@ public class ServiceMilkApplication {
 
 			// Fazenda
 			Fazenda fazenda = new Fazenda();
-			fazenda.setNome("Fazenda Monte Alegre");
+			fazenda.setNomeFazenda("Fazenda Monte Alegre");
 			fazenda.setBairro("Iguaçu");
 			fazenda.setCep("64965970");
 			fazenda.setCidade("Avelino Lopes");
@@ -148,10 +148,11 @@ public class ServiceMilkApplication {
 			fazenda.setNumero(211);
 			fazenda.setImagem("imagem");
 			fazenda.setEstado("Piauí");
+			fazenda.setCliente((Cliente) usuario);
 			this.fazendaRepository.save(fazenda);
 
 			Fazenda fazenda1 = new Fazenda();
-			fazenda1.setNome("Chácara Pedacinho do Céu");
+			fazenda1.setNomeFazenda("Chácara Pedacinho do Céu");
 			fazenda1.setBairro("Aracuí");
 			fazenda1.setCep("29365984");
 			fazenda1.setCidade("Aracui");
@@ -160,14 +161,10 @@ public class ServiceMilkApplication {
 			fazenda1.setNumero(2112);
 			fazenda1.setImagem("imagem2");
 			fazenda1.setEstado("Minas Gerais");
+			fazenda1.setCliente((Cliente) usuario);
 			this.fazendaRepository.save(fazenda1);
-
-			// Adicionar id de cliente em uma fazenda
-			Optional<Usuario> cliente = this.usuarioRepository.findById(1);
-			((Cliente) cliente.get()).addFazenda(fazenda);
-			((Cliente) cliente.get()).addFazenda(fazenda1);
-			this.clienteRepository.save((Cliente) cliente.get());
-
+			
+			
 			// Solicitação
 			Solicitacao s = new Solicitacao();
 			s.setCliente((Cliente) usuario);
@@ -254,7 +251,9 @@ public class ServiceMilkApplication {
 			// solicitacao.get().addAnalise(analise);
 			// solicitacao.get().addAnalise(analise2);
 			this.solicitacaoRepository.save(solicitacao.get());
-			*/
+			
+		};
+	}
 
 //-------------------------------------------------------------(NAO FUNCIONA)---------------------------------------------
 			// Cadastro de uma amostra em um analise de uma solicitação
@@ -274,7 +273,5 @@ public class ServiceMilkApplication {
 
 //			enviar.sendEmail();
 
-		};
-	}
 
 }

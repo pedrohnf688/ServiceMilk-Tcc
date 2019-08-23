@@ -18,7 +18,7 @@ public class Fazenda extends AbstractModel<Integer> {
 	private Integer id;
 
 	@NotBlank(message = "O campo nome não pode ser nulo.")
-	private String nome;
+	private String nomeFazenda;
 
 	@NotBlank(message = "O campo imagem não pode ser nulo.")
 	private String imagem;
@@ -52,7 +52,7 @@ public class Fazenda extends AbstractModel<Integer> {
 	public Fazenda() {
 	}
 
-	public Fazenda(@NotBlank(message = "O campo nome não pode ser nulo.") String nome,
+	public Fazenda(@NotBlank(message = "O campo nome não pode ser nulo.") String nomeFazenda,
 			@NotBlank(message = "O campo imagem não pode ser nulo.") String imagem,
 			@NotBlank(message = "O campo CNPJ não pode ser nulo.") String cpfcnpj,
 			@NotBlank(message = "O campo cep não pode ser nulo.") String cep,
@@ -61,7 +61,7 @@ public class Fazenda extends AbstractModel<Integer> {
 			@NotBlank(message = "O campo bairro não pode ser nulo.") String bairro,
 			@NotBlank(message = "O campo cidade não pode ser nulo.") String cidade,
 			@NotBlank(message = "O campo estado não pode ser nulo.") String estado, Cliente cliente) {
-		this.nome = nome;
+		this.nomeFazenda = nomeFazenda;
 		this.imagem = imagem;
 		this.cpfcnpj = cpfcnpj;
 		this.cep = cep;
@@ -81,10 +81,6 @@ public class Fazenda extends AbstractModel<Integer> {
 	@Override
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
 	}
 
 	public String getImagem() {
@@ -151,10 +147,6 @@ public class Fazenda extends AbstractModel<Integer> {
 		this.estado = estado;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -163,4 +155,14 @@ public class Fazenda extends AbstractModel<Integer> {
 		this.cliente = cliente;
 	}
 
+	public String getNomeFazenda() {
+		return nomeFazenda;
+	}
+
+	public void setNomeFazenda(String nomeFazenda) {
+		this.nomeFazenda = nomeFazenda;
+	}
+
+	
+	
 }

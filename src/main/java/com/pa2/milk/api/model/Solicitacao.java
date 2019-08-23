@@ -17,7 +17,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
@@ -54,11 +53,16 @@ public class Solicitacao extends AbstractModel<Integer> {
 	private EnumStatusSolicitacao status;
 
 	@Column(name = "dataCriada", nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Brazil/East")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Brazil/East")
 	private Date dataCriada;
 
 	@Column(length = 2047)
 	private String observacao;
+
+	@OneToMany(mappedBy = "solicitacao", fetch = FetchType.EAGER, orphanRemoval = true)
+	@Fetch(FetchMode.SUBSELECT)
+	@Cascade({ org.hibernate.annotations.CascadeType.ALL })
+	private List<LaudoMedia> listaLaudoMedia;
 
 	public Solicitacao() {
 		listaAnalise = new ArrayList<>();
@@ -130,6 +134,14 @@ public class Solicitacao extends AbstractModel<Integer> {
 	public void removeAnalise(Analise removeAnalise) {
 		listaAnalise.remove(removeAnalise);
 		removeAnalise.setSolicitacao(null);
+	}
+
+	public List<LaudoMedia> getListaLaudoMedia() {
+		return listaLaudoMedia;
+	}
+
+	public void setListaLaudoMedia(List<LaudoMedia> listaLaudoMedia) {
+		this.listaLaudoMedia = listaLaudoMedia;
 	}
 
 }

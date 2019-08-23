@@ -171,10 +171,10 @@ public class FazendaController {
 			farm.setCpfcnpj(fazenda.getCpfcnpj());
 		}
 
-		if (fazenda.getNome() != null) {
-			farm.setNome(fazenda.getNome());
+		if (fazenda.getNomeFazenda() != null) {
+			farm.setNomeFazenda(fazenda.getNomeFazenda());
 		}else {
-			farm.setNome(farm.getNome());
+			farm.setNomeFazenda(farm.getNomeFazenda());
 		}
 		
 		if (fazenda.getBairro() != null) {
