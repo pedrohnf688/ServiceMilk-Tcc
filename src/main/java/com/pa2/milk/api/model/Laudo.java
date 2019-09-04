@@ -68,7 +68,13 @@ public class Laudo {
 	private String cbt;
 
 	private String cmt;
-
+	
+	private String gord;
+	private String prot;
+	private String lact;
+	private String esd;
+	private String pc;
+	
 	public Laudo() {
 	}
 
@@ -236,12 +242,54 @@ public class Laudo {
 		this.date = date;
 	}
 
+	public String getGord() {
+		return gord;
+	}
+
+	public void setGord(String gord) {
+		this.gord = gord;
+	}
+
+	public String getProt() {
+		return prot;
+	}
+
+	public void setProt(String prot) {
+		this.prot = prot;
+	}
+
+	public String getLact() {
+		return lact;
+	}
+
+	public void setLact(String lact) {
+		this.lact = lact;
+	}
+
+	public String getEsd() {
+		return esd;
+	}
+
+	public void setEsd(String esd) {
+		this.esd = esd;
+	}
+
+	public String getPc() {
+		return pc;
+	}
+
+	public void setPc(String pc) {
+		this.pc = pc;
+	}
+
+	
 	@Override
 	public String toString() {
-		return "Laudo [id=" + laudo_id + ", batchId=" + batchId + ", sequence=" + sequence + ", date=" + date + ", sampleid="
-				+ sampleid + ", fat=" + fat + ", trupro=" + trupro + ", totpro=" + totpro + ", casein=" + casein
-				+ ", solids=" + solids + ", snf=" + snf + ", fpd=" + fpd + ", urea=" + urea + ", ccs=" + ccs + ", cel="
-				+ cel + ", ph=" + ph + ", den=" + den + ", rant=" + rant + ", cbt=" + cbt + ", cmt=" + cmt + "]";
+		return "Laudo [laudo_id=" + laudo_id + ", batchId=" + batchId + ", sequence=" + sequence + ", date=" + date
+				+ ", sampleid=" + sampleid + ", fat=" + fat + ", trupro=" + trupro + ", totpro=" + totpro + ", casein="
+				+ casein + ", solids=" + solids + ", snf=" + snf + ", fpd=" + fpd + ", urea=" + urea + ", ccs=" + ccs
+				+ ", cel=" + cel + ", ph=" + ph + ", den=" + den + ", rant=" + rant + ", cbt=" + cbt + ", cmt=" + cmt
+				+ ", gord=" + gord + ", prot=" + prot + ", lact=" + lact + ", esd=" + esd + ", pc=" + pc + "]";
 	}
 
 	public LocalDate conversao(String dataRecebida) throws ParseException {

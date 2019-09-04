@@ -53,11 +53,13 @@ public class LaudoController {
 		return laudos;
 	}
 
+//  OK
 //	@PostMapping(value = "/upload", consumes = "text/csv")
 //	public void uploadSimple(@RequestBody InputStream body) throws IOException {
 //		laudoRepositorio.saveAll(CsvUtils.read(Laudo.class, body));
 //	}
 
+//  OK
 	@PostMapping(value = "/upload", consumes = "multipart/form-data")
 	public void uploadMultipart(@RequestParam("file") MultipartFile file) throws IOException {
 		log.info("Fazendo Upload do Arquivo Csv do Laudo");
@@ -72,6 +74,7 @@ public class LaudoController {
 
 	}
 
+//  OK	
 	@PostMapping
 	public ResponseEntity<Response<Laudo>> cadastrarLaudo(@Valid @RequestBody Laudo laudo, BindingResult result)
 			throws NoSuchAlgorithmException {
@@ -93,6 +96,7 @@ public class LaudoController {
 		return ResponseEntity.ok(response);
 	}
 
+//  OK	
 	@GetMapping(value = "{id}")
 	public ResponseEntity<Response<Laudo>> buscarLaudoPorId(@PathVariable("id") Integer id) {
 		log.info("Buscar Laudo por Id");
@@ -112,7 +116,7 @@ public class LaudoController {
 		return ResponseEntity.ok(response);
 
 	}
-
+//  OK
 	@GetMapping(value = "/batch")
 	public List<Laudo> buscarLaudoPorBatchId(@RequestParam("batchId") String batchId) {
 		log.info("Buscar Laudo por BatchId");
@@ -121,6 +125,7 @@ public class LaudoController {
 		return laudos;
 	}
 
+//  OK
 	@GetMapping(value = "/dataSolicitada")
 	public List<Laudo> buscarLaudoPorData(@RequestParam("dataSolicitada") String dataSolicitada) throws ParseException {
 		log.info("Buscar Laudo por BatchId");
@@ -129,6 +134,7 @@ public class LaudoController {
 		return laudos;
 	}
 
+//  OK	
 	@PutMapping(value = "{id}")
 	public ResponseEntity<Response<Laudo>> atualizarLaudo(@PathVariable("id") Integer id,
 			@Valid @RequestBody Laudo laudo, BindingResult result) throws NoSuchAlgorithmException {
@@ -159,11 +165,13 @@ public class LaudoController {
 
 	}
 
+//  OK	
 	@DeleteMapping
 	public void deletarTodoLaudo() {
 		this.laudoService.deletarTodoLaudo();
 	}
 
+//  OK 	
 	@DeleteMapping(value = "{id}")
 	public ResponseEntity<Response<Laudo>> deletarCliente(@PathVariable("id") Integer id) {
 		log.info("Removendo Laudo por Id: {}", id);
@@ -194,6 +202,11 @@ public class LaudoController {
 		laudoId.setDen(laudo.getDen());
 		laudoId.setPh(laudo.getPh());
 		laudoId.setRant(laudo.getRant());
+		laudoId.setGord(laudo.getGord());
+		laudoId.setProt(laudo.getProt());
+		laudoId.setLact(laudo.getLact());
+	    laudoId.setEsd(laudo.getEsd());
+		laudoId.setPc(laudo.getPc());
 
 		laudoId = laudo;
 
@@ -227,24 +240,24 @@ public class LaudoController {
 		Laudo la = new Laudo();
 		int contRepetidos[] = new int[laudo.size()];
 
-		int somaCasein[] = new int[laudo.size()];
-		int somaCbt[] = new int[laudo.size()];
-		int somaCcs[] = new int[laudo.size()];
-		int somaCel[] = new int[laudo.size()];
-		int somaCmt[] = new int[laudo.size()];
+		float somaCasein[] = new float[laudo.size()];
+		float somaCbt[] = new float[laudo.size()];
+		float somaCcs[] = new float[laudo.size()];
+		float somaCel[] = new float[laudo.size()];
+		float somaCmt[] = new float[laudo.size()];
 
-		int somaDen[] = new int[laudo.size()];
-		int somaFat[] = new int[laudo.size()];
-		int somaFpd[] = new int[laudo.size()];
-		int somaPh[] = new int[laudo.size()];
-		int somaRant[] = new int[laudo.size()];
+		float somaDen[] = new float[laudo.size()];
+		float somaFat[] = new float[laudo.size()];
+		float somaFpd[] = new float[laudo.size()];
+		float somaPh[] = new float[laudo.size()];
+		float somaRant[] = new float[laudo.size()];
 
-		int somaSnf[] = new int[laudo.size()];
-		int somaSolids[] = new int[laudo.size()];
-		int somaTotpro[] = new int[laudo.size()];
-		int somaTrupro[] = new int[laudo.size()];
-		int somaUrea[] = new int[laudo.size()];
-
+		float somaSnf[] = new float[laudo.size()];
+		float somaSolids[] = new float[laudo.size()];
+		float somaTotpro[] = new float[laudo.size()];
+		float somaTrupro[] = new float[laudo.size()];
+		float somaUrea[] = new float[laudo.size()];
+				
 		String regex = "[+-]?[0-9]+(\\.[0-9]+)?([Ee][+-]?[0-9]+)?";
 		// compiling regex
 		Pattern p = Pattern.compile(regex);
@@ -280,64 +293,78 @@ public class LaudoController {
 					Matcher m13 = p.matcher(laudo.get(z).getTotpro() != null ? laudo.get(z).getTotpro() : "0");
 					Matcher m14 = p.matcher(laudo.get(z).getTrupro() != null ? laudo.get(z).getTrupro() : "0");
 					Matcher m15 = p.matcher(laudo.get(z).getUrea() != null ? laudo.get(z).getUrea() : "0");
-
-					somaCasein[y] += (m1.find() && m1.group().equals(laudo.get(z).getCasein()))
-							? Double.parseDouble(laudo.get(z).getCasein())
+	
+					
+					somaCasein[z] += (m1.find() && m1.group().equals(laudo.get(z).getCasein()))
+							? Float.parseFloat(laudo.get(z).getCasein())
 							: 0;
-					somaCbt[y] += (m2.find() && m2.group().equals(laudo.get(z).getCbt()))
-							? Double.parseDouble(laudo.get(z).getCbt())
+						
+					System.out.println("SomaCasein:"+somaCasein[y]+"\n");		
+					somaCbt[z] += (m2.find() && m2.group().equals(laudo.get(z).getCbt()))
+							? Float.parseFloat(laudo.get(z).getCbt())
 							: 0;
-					somaCcs[y] += (m3.find() && m3.group().equals(laudo.get(z).getCcs()))
-							? Double.parseDouble(laudo.get(z).getCcs())
+					somaCcs[z] += (m3.find() && m3.group().equals(laudo.get(z).getCcs()))
+							? Float.parseFloat(laudo.get(z).getCcs())
 							: 0;
-					somaCel[y] += (m4.find() && m4.group().equals(laudo.get(z).getCel()))
-							? Double.parseDouble(laudo.get(z).getCel())
+					somaCel[z] += (m4.find() && m4.group().equals(laudo.get(z).getCel()))
+							? Float.parseFloat(laudo.get(z).getCel())
 							: 0;
-					somaCmt[y] += (m5.find() && m5.group().equals(laudo.get(z).getCmt()))
-							? Double.parseDouble(laudo.get(z).getCmt())
-							: 0;
-
-					somaDen[y] += (m6.find() && m6.group().equals(laudo.get(z).getDen()))
-							? Double.parseDouble(laudo.get(z).getDen())
-							: 0;
-					somaFat[y] += (m7.find() && m7.group().equals(laudo.get(z).getFat()))
-							? Double.parseDouble(laudo.get(z).getFat())
-							: 0;
-					somaFpd[y] += (m8.find() && m8.group().equals(laudo.get(z).getFpd()))
-							? Double.parseDouble(laudo.get(z).getFpd())
-							: 0;
-					somaPh[y] += (m9.find() && m9.group().equals(laudo.get(z).getPh()))
-							? Double.parseDouble(laudo.get(z).getPh())
-							: 0;
-					somaRant[y] += (m10.find() && m10.group().equals(laudo.get(z).getRant()))
-							? Double.parseDouble(laudo.get(z).getRant())
+					somaCmt[z] += (m5.find() && m5.group().equals(laudo.get(z).getCmt()))
+							? Float.parseFloat(laudo.get(z).getCmt())
 							: 0;
 
-					somaSnf[y] += (m11.find() && m11.group().equals(laudo.get(z).getSnf()))
-							? Double.parseDouble(laudo.get(z).getSnf())
+					somaDen[z] += (m6.find() && m6.group().equals(laudo.get(z).getDen()))
+							? Float.parseFloat(laudo.get(z).getDen())
 							: 0;
-					somaSolids[y] += (m12.find() && m12.group().equals(laudo.get(z).getSolids()))
-							? Double.parseDouble(laudo.get(z).getSolids())
+					somaFat[z] += (m7.find() && m7.group().equals(laudo.get(z).getFat()))
+							? Float.parseFloat(laudo.get(z).getFat())
 							: 0;
-					somaTotpro[y] += (m13.find() && m13.group().equals(laudo.get(z).getTotpro()))
-							? Double.parseDouble(laudo.get(z).getTotpro())
+					somaFpd[z] += (m8.find() && m8.group().equals(laudo.get(z).getFpd()))
+							? Float.parseFloat(laudo.get(z).getFpd())
 							: 0;
-					somaTrupro[y] += (m14.find() && m14.group().equals(laudo.get(z).getTrupro()))
-							? Double.parseDouble(laudo.get(z).getTrupro())
+					somaPh[z] += (m9.find() && m9.group().equals(laudo.get(z).getPh()))
+							? Float.parseFloat(laudo.get(z).getPh())
 							: 0;
-					somaUrea[y] += (m15.find() && m15.group().equals(laudo.get(z).getUrea()))
-							? Double.parseDouble(laudo.get(z).getUrea())
+					somaRant[z] += (m10.find() && m10.group().equals(laudo.get(z).getRant()))
+							? Float.parseFloat(laudo.get(z).getRant())
 							: 0;
 
-				}
+					somaSnf[z] += (m11.find() && m11.group().equals(laudo.get(z).getSnf()))
+							? Float.parseFloat(laudo.get(z).getSnf())
+							: 0;
+					somaSolids[z] += (m12.find() && m12.group().equals(laudo.get(z).getSolids()))
+							? Float.parseFloat(laudo.get(z).getSolids())
+							: 0;
+					somaTotpro[z] += (m13.find() && m13.group().equals(laudo.get(z).getTotpro()))
+							? Float.parseFloat(laudo.get(z).getTotpro())
+							: 0;
+					somaTrupro[z] += (m14.find() && m14.group().equals(laudo.get(z).getTrupro()))
+							? Float.parseFloat(laudo.get(z).getTrupro())
+							: 0;
+					somaUrea[z] += (m15.find() && m15.group().equals(laudo.get(z).getUrea()))
+							? Float.parseFloat(laudo.get(z).getUrea())
+							: 0;
+				
 			}
+				
+			
+	      }
 
-			System.out.println("Vetor de Casein Soma:" + somaCasein[y] + "\nCont:" + contRepetidos[y]);
+			//System.out.println("Vetor de Casein Soma:" + somaCasein[y] + "\nCont:" + contRepetidos[y]);
 
 		}
+		
+///OBS: DESCOBRIR COMO SOMAR		
+		for (int i = 0; i < somaCasein.length; i++) {
+			System.out.println("Ordem:"+i+" -->" +somaCasein[i]);
+		
+		}
+		
 
 		for (int s = 0; s < contRepetidos.length; s++) {
-
+			
+			System.out.println("Contador" + contRepetidos[s]);
+			
 			somaCasein[s] /= contRepetidos[s];
 			somaCbt[s] /= contRepetidos[s];
 			somaCcs[s] /= contRepetidos[s];
@@ -356,7 +383,6 @@ public class LaudoController {
 			somaTrupro[s] /= contRepetidos[s];
 			somaUrea[s] /= contRepetidos[s];
 
-			System.out.println("Media Casein:" + somaCasein[s] + "Contador" + contRepetidos[s]);
 
 		}
 

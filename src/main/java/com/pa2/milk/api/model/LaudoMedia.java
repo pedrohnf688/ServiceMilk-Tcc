@@ -36,6 +36,13 @@ public class LaudoMedia {
 	private double rantMedia;
 	private double cbtMedia;
 	private double cmtMedia;
+	
+	private double gordMedia;
+	private double protMedia;
+	private double lactMedia;
+	private double esdMedia;
+	private double pcMedia;
+
 
 	@OneToMany(orphanRemoval = true)
 	@Cascade({ CascadeType.ALL })
@@ -194,14 +201,59 @@ public class LaudoMedia {
 		this.solicitacao = solicitacao;
 	}
 
+	public double getGordMedia() {
+		return gordMedia;
+	}
+
+	public void setGordMedia(double gordMedia) {
+		this.gordMedia = gordMedia;
+	}
+
+	public double getProtMedia() {
+		return protMedia;
+	}
+
+	public void setProtMedia(double protMedia) {
+		this.protMedia = protMedia;
+	}
+
+	public double getLactMedia() {
+		return lactMedia;
+	}
+
+	public void setLactMedia(double lactMedia) {
+		this.lactMedia = lactMedia;
+	}
+
+	public double getEsdMedia() {
+		return esdMedia;
+	}
+
+	public void setEsdMedia(double esdMedia) {
+		this.esdMedia = esdMedia;
+	}
+
+	public double getPcMedia() {
+		return pcMedia;
+	}
+
+	public void setPcMedia(double pcMedia) {
+		this.pcMedia = pcMedia;
+	}
+
 	@Override
 	public String toString() {
 		return "LaudoMedia [idMedia=" + idMedia + ", fatMedia=" + fatMedia + ", truproMedia=" + truproMedia
 				+ ", totproMedia=" + totproMedia + ", caseinMedia=" + caseinMedia + ", solidsMedia=" + solidsMedia
 				+ ", snfMedia=" + snfMedia + ", fpdMedia=" + fpdMedia + ", ureaMedia=" + ureaMedia + ", ccsMedia="
 				+ ccsMedia + ", celMedia=" + celMedia + ", phMedia=" + phMedia + ", denMedia=" + denMedia
-				+ ", rantMedia=" + rantMedia + ", cbtMedia=" + cbtMedia + ", cmtMedia=" + cmtMedia + ", listaLaudos="
-				+ listaLaudos + "]";
+				+ ", rantMedia=" + rantMedia + ", cbtMedia=" + cbtMedia + ", cmtMedia=" + cmtMedia + ", gordMedia="
+				+ gordMedia + ", protMedia=" + protMedia + ", lactMedia=" + lactMedia + ", esdMedia=" + esdMedia
+				+ ", pcMedia=" + pcMedia + ", listaLaudos=" + listaLaudos + ", solicitacao=" + solicitacao + "]";
 	}
+
+	
+	
+	
 
 }

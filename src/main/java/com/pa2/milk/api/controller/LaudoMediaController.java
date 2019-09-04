@@ -64,6 +64,7 @@ public class LaudoMediaController {
 	public LaudoMedia mediaAritmeticaLaudo(String batchId) {
 		log.info("Metodo para gerar a media dos atributos do laudo por solicitação:");
 
+		
 		List<Laudo> laudos = this.laudoService.buscarPorBatchId(batchId);
 
 		String regex = "[+-]?[0-9]+(\\.[0-9]+)?([Ee][+-]?[0-9]+)?";
@@ -86,6 +87,12 @@ public class LaudoMediaController {
 		double media13 = 0;
 		double media14 = 0;
 		double media15 = 0;
+		double media16 = 0;
+		double media17 = 0;
+		double media18 = 0;
+		double media19 = 0;
+		double media20 = 0;
+	
 
 		int cont = 0;
 
@@ -108,10 +115,18 @@ public class LaudoMediaController {
 			Matcher m13 = p.matcher(laudos.get(i).getTotpro() != null ? laudos.get(i).getTotpro() : "0");
 			Matcher m14 = p.matcher(laudos.get(i).getTrupro() != null ? laudos.get(i).getTrupro() : "0");
 			Matcher m15 = p.matcher(laudos.get(i).getUrea() != null ? laudos.get(i).getUrea() : "0");
+			
+			Matcher m16 = p.matcher(laudos.get(i).getGord() != null ? laudos.get(i).getGord() : "0");
+			Matcher m17 = p.matcher(laudos.get(i).getProt() != null ? laudos.get(i).getProt() : "0");
+			Matcher m18 = p.matcher(laudos.get(i).getLact() != null ? laudos.get(i).getLact() : "0");
+			Matcher m19 = p.matcher(laudos.get(i).getEsd() != null ? laudos.get(i).getEsd() : "0");
+			Matcher m20 = p.matcher(laudos.get(i).getPc() != null ? laudos.get(i).getPc() : "0");
 
+			
 			media1 += (m1.find() && m1.group().equals(laudos.get(i).getCasein()))
 					? Double.parseDouble(laudos.get(i).getCasein())
 					: 0;
+					
 			media2 += (m2.find() && m2.group().equals(laudos.get(i).getCbt()))
 					? Double.parseDouble(laudos.get(i).getCbt())
 					: 0;
@@ -156,7 +171,23 @@ public class LaudoMediaController {
 			media15 += (m15.find() && m15.group().equals(laudos.get(i).getUrea()))
 					? Double.parseDouble(laudos.get(i).getUrea())
 					: 0;
+			media16 += (m16.find() && m16.group().equals(laudos.get(i).getGord()))
+					? Double.parseDouble(laudos.get(i).getGord())
+					: 0;
+			media17 += (m17.find() && m17.group().equals(laudos.get(i).getProt()))
+					? Double.parseDouble(laudos.get(i).getProt())
+					: 0;
+			media18 += (m18.find() && m18.group().equals(laudos.get(i).getLact()))
+					? Double.parseDouble(laudos.get(i).getLact())
+					: 0;						
+			media19 += (m19.find() && m19.group().equals(laudos.get(i).getEsd()))
+					? Double.parseDouble(laudos.get(i).getEsd())
+					: 0;												
+			media20 += (m20.find() && m20.group().equals(laudos.get(i).getPc()))
+					? Double.parseDouble(laudos.get(i).getPc())
+					: 0;						
 
+					
 			cont++;
 		}
 
@@ -178,6 +209,14 @@ public class LaudoMediaController {
 		media14 /= cont;
 		media15 /= cont;
 
+		media16 /= cont;
+		media17 /= cont;
+		media18 /= cont;
+		media19 /= cont;
+		media20 /= cont;
+
+		
+		
 		LaudoMedia l = new LaudoMedia();
 
 		l.setCaseinMedia(media1);
@@ -195,7 +234,13 @@ public class LaudoMediaController {
 		l.setTotproMedia(media13);
 		l.setTruproMedia(media14);
 		l.setUreaMedia(media15);
-
+		l.setGordMedia(media16);
+		l.setProtMedia(media17);
+		l.setLactMedia(media18);
+		l.setEsdMedia(media19);
+		l.setPcMedia(media20);
+		
+		
 		l.setListaLaudos(laudos);
 		this.laudoMediaService.salvar(l);
 
@@ -212,6 +257,17 @@ public class LaudoMediaController {
 		Map<String, Object> parametros = new HashMap<>();
 
 		parametros.put("Id_LaudoMedia", id);
+		parametros.put("imagem1","/relatorios/imgReport/image1.png");
+		parametros.put("imagem3","/relatorios/imgReport/image3.png");
+		parametros.put("imagem4","/relatorios/imgReport/image4.png");
+		parametros.put("imagem5","/relatorios/imgReport/image5.png");
+		parametros.put("imagem6","/relatorios/imgReport/image6.png");
+		parametros.put("imagem7","/relatorios/imgReport/image7.png");
+		parametros.put("imagem9","/relatorios/imgReport/image9.png");
+		parametros.put("imagem10","/relatorios/imgReport/image10.png");
+		parametros.put("imagem11","/relatorios/imgReport/image11.png");
+		parametros.put("imagem12","/relatorios/imgReport/image12.png");
+		
 
 		// Pega o arquivo .jasper localizado em resources
 		InputStream jasperStream = this.getClass().getResourceAsStream("/relatorios/report2.jasper");
