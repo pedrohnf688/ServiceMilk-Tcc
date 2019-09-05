@@ -1,5 +1,6 @@
 package com.pa2.milk.api.controller;
 
+import java.awt.Image;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -12,6 +13,7 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+import javax.swing.ImageIcon;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -256,17 +258,30 @@ public class LaudoMediaController {
 
 		Map<String, Object> parametros = new HashMap<>();
 
+		
 		parametros.put("Id_LaudoMedia", id);
-		parametros.put("imagem1","/relatorios/imgReport/image1.png");
-		parametros.put("imagem3","/relatorios/imgReport/image3.png");
-		parametros.put("imagem4","/relatorios/imgReport/image4.png");
-		parametros.put("imagem5","/relatorios/imgReport/image5.png");
-		parametros.put("imagem6","/relatorios/imgReport/image6.png");
-		parametros.put("imagem7","/relatorios/imgReport/image7.png");
-		parametros.put("imagem9","/relatorios/imgReport/image9.png");
-		parametros.put("imagem10","/relatorios/imgReport/image10.png");
-		parametros.put("imagem11","/relatorios/imgReport/image11.png");
-		parametros.put("imagem12","/relatorios/imgReport/image12.png");
+		
+		InputStream gto1= this.getClass().getResourceAsStream("/relatorios/imgReport/image1.png");
+		InputStream gto3 = this.getClass().getResourceAsStream("/relatorios/imgReport/image3.png");
+		InputStream gto4 = this.getClass().getResourceAsStream("/relatorios/imgReport/image4.png");
+		InputStream gto5 = this.getClass().getResourceAsStream("/relatorios/imgReport/image5.png");
+		InputStream gto6 = this.getClass().getResourceAsStream("/relatorios/imgReport/image6.png");
+		InputStream gto7 = this.getClass().getResourceAsStream("/relatorios/imgReport/image7.png");
+		InputStream gto9 = this.getClass().getResourceAsStream("/relatorios/imgReport/image9.png");
+		InputStream gto10 = this.getClass().getResourceAsStream("/relatorios/imgReport/image10.png");
+		InputStream gto11 = this.getClass().getResourceAsStream("/relatorios/imgReport/image11.png");
+		InputStream gto12 = this.getClass().getResourceAsStream("/relatorios/imgReport/image12.png");
+		
+		parametros.put("imagem1", gto1);
+		parametros.put("imagem3", gto3);
+		parametros.put("imagem4", gto4);
+		parametros.put("imagem5", gto5);
+		parametros.put("imagem6", gto6);
+		parametros.put("imagem7", gto7);
+		parametros.put("imagem9", gto9);
+		parametros.put("imagem10", gto10);
+		parametros.put("imagem11", gto11);
+		parametros.put("imagem12", gto12);
 		
 
 		// Pega o arquivo .jasper localizado em resources
