@@ -1,55 +1,36 @@
 package com.pa2.milk.api.model.dto;
 
-import java.util.Date;
+import com.pa2.milk.api.model.Amostra;
+import com.pa2.milk.api.model.Analise;
 
 public class AmostraDto {
-	private Date dataColeta;
 
-	private int numeroAmostra;
+	private Amostra amostra;
+	private Analise analise;
 
-	private String qrCode;
-
-	private String observacao;
-		
-//	private Analise analise;
-
-	public Date getDataColeta() {
-		return dataColeta;
+	public AmostraDto() {
+		super();
 	}
 
-	public void setDataColeta(Date dataColeta) {
-		this.dataColeta = dataColeta;
+	public Amostra getAmostra() {
+		return amostra;
 	}
 
-	public int getNumeroAmostra() {
-		return numeroAmostra;
+	public void setAmostra(Amostra amostra) {
+		this.amostra = amostra;
 	}
 
-	public void setNumeroAmostra(int numeroAmostra) {
-		this.numeroAmostra = numeroAmostra;
+	public Analise getAnalise() {
+		return analise;
 	}
 
-	public String getQrCode() {
-		return qrCode;
+	public void setAnalise(Analise analise) {
+		this.analise = analise;
 	}
 
-	public void setQrCode(String qrCode) {
-		this.qrCode = qrCode;
+	@Override
+	public String toString() {
+		return "AmostraDto [amostra=" + amostra + ", analise=" + analise + "]";
 	}
 
-	public String getObservacao() {
-		return observacao;
-	}
-
-	public void setObservacao(String observacao) {
-		this.observacao = observacao;
-	}
-
-//	public Analise getAnalise() {
-//		return analise;
-//	}
-//
-//	public void setAnalise(Analise analise) {
-//		this.analise = analise;
-//	}
 }

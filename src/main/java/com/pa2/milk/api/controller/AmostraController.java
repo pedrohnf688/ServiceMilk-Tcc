@@ -35,6 +35,7 @@ import com.google.zxing.WriterException;
 import com.pa2.milk.api.helper.Response;
 import com.pa2.milk.api.model.Amostra;
 import com.pa2.milk.api.model.Analise;
+import com.pa2.milk.api.model.dto.AmostraDto;
 import com.pa2.milk.api.repository.AmostraRepository;
 import com.pa2.milk.api.repository.AnaliseRepository;
 import com.pa2.milk.api.service.AmostraService;
@@ -60,19 +61,17 @@ public class AmostraController {
 	private AnaliseRepository analiseRepository;
 
 	@GetMapping(value = "buscarAmostra/{identifAmostra}")
-	public ResponseEntity<Response<Amostra>> buscarAmostra(@PathVariable("identifAmostra") String identifAmostra) {
+	public ResponseEntity<Response<AmostraDto>> buscarAmostra(@PathVariable("identifAmostra") String identifAmostra) {
 
-		Response<Amostra> response = new Response<Amostra>();
+		Response<AmostraDto> response = new Response<AmostraDto>();
 
-		Optional<Amostra> a = this.amostraService.buscarIdentificadorAmostra(identifAmostra);
+		Amostra a = this.amostraService.buscarIdentificadorAmostra(identifAmostra);
 
-		if (!a.isPresent()) {
-			log.info("Amostra não encontrada: {}", a.get());
-			response.getErros().add("Amostra não encontrada");
-			return ResponseEntity.badRequest().body(response);
-		}
-
-		response.setData(a.get());
+		AmostraDto am = new AmostraDto();
+	
+		am.setAmostra(a);
+		am.setAnalise(a.getAnalise());
+		response.setData(am);
 
 		return ResponseEntity.ok(response);
 	}
