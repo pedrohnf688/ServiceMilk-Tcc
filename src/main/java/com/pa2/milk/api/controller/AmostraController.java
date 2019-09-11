@@ -15,6 +15,10 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
@@ -74,7 +78,8 @@ public class AmostraController {
 	}
 
 	@GetMapping(value = "qrCode/{amostraId}")
-	public void getQRCodeImage(@PathVariable("amostraId") Integer amostraId) throws WriterException, IOException {
+	public ResponseEntity<Resource> getQRCodeImage(@PathVariable("amostraId") Integer amostraId)
+			throws WriterException, IOException {
 
 		Optional<Amostra> a = this.amostraRepositorio.findById(amostraId);
 
@@ -92,7 +97,7 @@ public class AmostraController {
 		ByteArrayOutputStream bout = QRCode.from(texto).withSize(250, 250).to(ImageType.PNG).stream();
 
 		try {
-			File file = new File("C:\\Users\\phnf2\\Pictures\\teste\\qr_code.png");
+			File file = new File("qr_code.png");
 			OutputStream out = new FileOutputStream(file);
 			bout.writeTo(out);
 
@@ -104,6 +109,13 @@ public class AmostraController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		byte[] pngData = bout.toByteArray();
+
+		return ResponseEntity.ok().contentType(MediaType.parseMediaType("image/png"))
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + "QRCODE1" + "\"")
+				.body(new ByteArrayResource(pngData));
+
 	}
 
 	@PreAuthorize("hasAnyRole('ADMINISTRADOR','CLIENTE','BOLSISTA')")
