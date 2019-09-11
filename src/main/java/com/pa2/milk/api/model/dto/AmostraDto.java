@@ -1,36 +1,83 @@
 package com.pa2.milk.api.model.dto;
 
-import com.pa2.milk.api.model.Amostra;
-import com.pa2.milk.api.model.Analise;
+import java.util.Collection;
+import java.util.Date;
+
+import com.pa2.milk.api.model.enums.EnumAnalisesSolicitadas;
+import com.pa2.milk.api.model.enums.EnumEspecie;
+import com.pa2.milk.api.model.enums.EnumOrigemLeite;
+import com.pa2.milk.api.model.enums.EnumProdutos;
 
 public class AmostraDto {
 
-	private Amostra amostra;
-	private Analise analise;
+	private Date dataColeta;
 
-	public AmostraDto() {
-		super();
+	private int numeroAmostra;
+
+	private String qrCode;
+
+	private String observacao;
+
+	private EnumOrigemLeite origemLeite;
+
+	private Collection<EnumProdutos> produtos;
+
+	private EnumEspecie especie;
+
+	public Date getDataColeta() {
+		return dataColeta;
 	}
 
-	public Amostra getAmostra() {
-		return amostra;
+	public void setDataColeta(Date dataColeta) {
+		this.dataColeta = dataColeta;
 	}
 
-	public void setAmostra(Amostra amostra) {
-		this.amostra = amostra;
+	public int getNumeroAmostra() {
+		return numeroAmostra;
 	}
 
-	public Analise getAnalise() {
-		return analise;
+	public void setNumeroAmostra(int numeroAmostra) {
+		this.numeroAmostra = numeroAmostra;
 	}
 
-	public void setAnalise(Analise analise) {
-		this.analise = analise;
+	public String getQrCode() {
+		return qrCode;
 	}
 
-	@Override
-	public String toString() {
-		return "AmostraDto [amostra=" + amostra + ", analise=" + analise + "]";
+	public void setQrCode(String qrCode) {
+		this.qrCode = qrCode;
+	}
+
+	public String getObservacao() {
+		return observacao;
+	}
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
+
+	public EnumOrigemLeite getOrigemLeite() {
+		return origemLeite;
+	}
+
+	public void setOrigemLeite(EnumOrigemLeite origemLeite) {
+		this.origemLeite = origemLeite;
+	}
+
+	public Collection<EnumProdutos> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(Collection<EnumProdutos> produtos) {
+		this.produtos = produtos;
+	}
+
+	public EnumEspecie getEspecie() {
+		return especie;
+	}
+
+	public void setEspecie(EnumEspecie especie) {
+		this.especie = especie;
 	}
 
 }

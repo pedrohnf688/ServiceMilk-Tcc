@@ -68,9 +68,15 @@ public class AmostraController {
 		Amostra a = this.amostraService.buscarIdentificadorAmostra(identifAmostra);
 
 		AmostraDto am = new AmostraDto();
-	
-		am.setAmostra(a);
-		am.setAnalise(a.getAnalise());
+
+		am.setDataColeta(a.getDataColeta());
+		am.setNumeroAmostra(a.getNumeroAmostra());
+		am.setQrCode(a.getQrCode());
+		am.setEspecie(a.getAnalise().getEspecie());
+		am.setOrigemLeite(a.getAnalise().getOrigemLeite());
+		am.setProdutos(a.getAnalise().getProdutos());
+		am.setObservacao(a.getObservacao());
+
 		response.setData(am);
 
 		return ResponseEntity.ok(response);
