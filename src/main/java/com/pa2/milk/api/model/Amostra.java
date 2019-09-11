@@ -1,6 +1,7 @@
 package com.pa2.milk.api.model;
 
 import java.util.Date;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +14,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -44,19 +46,30 @@ public class Amostra extends AbstractModel<Integer> {
 	@JsonIgnore
 	private Analise analise;
 
+	private String identificadorAmostra = UUID.randomUUID().toString();
+
 	public Amostra() {
 	}
 
 	public Amostra(Date dataColeta,
 			@NotNull(message = "O campo número de Amostra não pode ser nulo.") int numeroAmostra,
-			@NotBlank(message = "O campo qrCode não pode ser nulo.") String qrCode, String observacao,
-			Analise analise) {
+			@NotBlank(message = "O campo qrCode não pode ser nulo.") String qrCode, String observacao, Analise analise,
+			String identificadorAmostra) {
 		super();
 		this.dataColeta = dataColeta;
 		this.numeroAmostra = numeroAmostra;
 		this.qrCode = qrCode;
 		this.observacao = observacao;
 		this.analise = analise;
+		this.identificadorAmostra = identificadorAmostra;
+	}
+
+	public String getIdentificadorAmostra() {
+		return identificadorAmostra;
+	}
+
+	public void setIdentificadorAmostra(String identificadorAmostra) {
+		this.identificadorAmostra = identificadorAmostra;
 	}
 
 	@Override
@@ -107,6 +120,13 @@ public class Amostra extends AbstractModel<Integer> {
 
 	public void setAnalise(Analise analise) {
 		this.analise = analise;
+	}
+
+	@Override
+	public String toString() {
+		return "Amostra [id=" + id + ", dataColeta=" + dataColeta + ", numeroAmostra=" + numeroAmostra + ", qrCode="
+				+ qrCode + ", observacao=" + observacao + ", analise=" + analise + ", identificadorAmostra="
+				+ identificadorAmostra + "]";
 	}
 
 }

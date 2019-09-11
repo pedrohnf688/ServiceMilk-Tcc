@@ -16,5 +16,6 @@ public interface AmostraRepository extends GenericRepository<Amostra, Integer> {
 
 	List<Amostra> findByAnaliseId(@Param("analiseId") Integer analiseId);
 	List<Amostra> deleteByAnaliseId(@Param("analiseId") Integer analiseId);
+	Amostra findByIdentificadorAmostra(@Param("identifAmostra") String identifAmostra);
 
 }

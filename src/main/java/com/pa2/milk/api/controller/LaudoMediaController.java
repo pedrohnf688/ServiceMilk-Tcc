@@ -1,6 +1,5 @@
 package com.pa2.milk.api.controller;
 
-import java.awt.Image;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -8,6 +7,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,15 +21,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pa2.milk.api.model.Laudo;
 import com.pa2.milk.api.model.LaudoMedia;
+import com.pa2.milk.api.model.Solicitacao;
 import com.pa2.milk.api.service.LaudoMediaService;
 import com.pa2.milk.api.service.LaudoService;
+import com.pa2.milk.api.service.SolicitacaoService;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -56,19 +58,27 @@ public class LaudoMediaController {
 	private LaudoService laudoService;
 
 	@Autowired
+	private SolicitacaoService solicitacaoService;
+	
+	@Autowired
 	private LaudoMediaService laudoMediaService;
 
-	@PutMapping("/batchId")
-	public LaudoMedia MedidaLaudos(@RequestParam("batchId") String batchId) {
-		return this.laudoMediaService.salvar(mediaAritmeticaLaudo(batchId));
-	}
+	@PostMapping("/batchId/{solicitacaoId}")
+	public LaudoMedia MedidaLaudos(@RequestParam("batchId") String batchId, @PathVariable("solicitacaoId") Integer solicitacaoId) {
+		//return this.laudoMediaService.salvar(mediaAritmeticaLaudo(batchId, solicitacaoId));
+	//}
 
-	public LaudoMedia mediaAritmeticaLaudo(String batchId) {
+	//public LaudoMedia mediaAritmeticaLaudo(String batchId, int solicitacaoId) {
 		log.info("Metodo para gerar a media dos atributos do laudo por solicitação:");
 
 		
 		List<Laudo> laudos = this.laudoService.buscarPorBatchId(batchId);
 
+		Optional<Solicitacao> s = this.solicitacaoService.buscarSolicitacaoPorId(solicitacaoId);
+	
+
+		
+		
 		String regex = "[+-]?[0-9]+(\\.[0-9]+)?([Ee][+-]?[0-9]+)?";
 		// compiling regex
 		Pattern p = Pattern.compile(regex);
@@ -242,6 +252,7 @@ public class LaudoMediaController {
 		l.setEsdMedia(media19);
 		l.setPcMedia(media20);
 		
+		l.setSolicitacao(s.get());
 		
 		l.setListaLaudos(laudos);
 		this.laudoMediaService.salvar(l);
@@ -261,6 +272,19 @@ public class LaudoMediaController {
 		
 		parametros.put("Id_LaudoMedia", id);
 		
+		
+//		ImageIcon gto1 = new ImageIcon(getClass().getResource("/relatorios/imgReport/image1.png"));
+//		ImageIcon gto3 = new ImageIcon(getClass().getResource("/relatorios/imgReport/image3.png"));
+//		ImageIcon gto4 = new ImageIcon(getClass().getResource("/relatorios/imgReport/image4.png"));
+//		ImageIcon gto5 = new ImageIcon(getClass().getResource("/relatorios/imgReport/image5.png"));
+//		ImageIcon gto6 = new ImageIcon(getClass().getResource("/relatorios/imgReport/image6.png"));
+//		ImageIcon gto7 = new ImageIcon(getClass().getResource("/relatorios/imgReport/image7.png"));
+//		ImageIcon gto9 = new ImageIcon(getClass().getResource("/relatorios/imgReport/image9.png"));
+//		ImageIcon gto10 = new ImageIcon(getClass().getResource("/relatorios/imgReport/image10.png"));
+//		ImageIcon gto11 = new ImageIcon(getClass().getResource("/relatorios/imgReport/image11.png"));
+//		ImageIcon gto12 = new ImageIcon(getClass().getResource("/relatorios/imgReport/image12.png"));
+//		
+		
 		InputStream gto1= this.getClass().getResourceAsStream("/relatorios/imgReport/image1.png");
 		InputStream gto3 = this.getClass().getResourceAsStream("/relatorios/imgReport/image3.png");
 		InputStream gto4 = this.getClass().getResourceAsStream("/relatorios/imgReport/image4.png");
@@ -271,6 +295,7 @@ public class LaudoMediaController {
 		InputStream gto10 = this.getClass().getResourceAsStream("/relatorios/imgReport/image10.png");
 		InputStream gto11 = this.getClass().getResourceAsStream("/relatorios/imgReport/image11.png");
 		InputStream gto12 = this.getClass().getResourceAsStream("/relatorios/imgReport/image12.png");
+		InputStream gto13 = this.getClass().getResourceAsStream("/relatorios/imgReport/legenda.png");
 		
 		parametros.put("imagem1", gto1);
 		parametros.put("imagem3", gto3);
@@ -282,6 +307,9 @@ public class LaudoMediaController {
 		parametros.put("imagem10", gto10);
 		parametros.put("imagem11", gto11);
 		parametros.put("imagem12", gto12);
+		parametros.put("imagem13", gto13);
+		
+		
 		
 
 		// Pega o arquivo .jasper localizado em resources
@@ -293,6 +321,7 @@ public class LaudoMediaController {
 		// caso uma conexão ao banco de dados
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, dataSource.getConnection());
 
+		
 		// Configura a respota para o tipo PDF
 		response.setContentType("application/pdf");
 		// Define que o arquivo pode ser visualizado no navegador e também nome final do

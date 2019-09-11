@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report2" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2bfe2fbb-4459-4998-a786-f98d8e6cba54">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="1313"/>
+	<property name="ireport.y" value="598"/>
 	<subDataset name="dataset1" uuid="11cc3208-3236-4cc7-9069-7e4d5aee40d8">
 		<parameter name="Id_lista" class="java.lang.Integer">
 			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -84,6 +84,9 @@ INNER JOIN analise ON $P{Id_lista} = analise.solicitacao_id]]>
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="imagem12" class="java.io.InputStream">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="imagem13" class="java.io.InputStream">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
@@ -235,19 +238,19 @@ and laudo_media_lista_laudos.laudo_media_id_media = laudo_media.id_media and lau
 Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – feira (8:00 às 13:00))]]></text>
 			</staticText>
 			<image>
-				<reportElement x="482" y="744" width="73" height="58" uuid="1a23fe47-ecc9-4a0b-aad8-4bf09c13ceaf"/>
+				<reportElement x="494" y="745" width="61" height="57" uuid="1a23fe47-ecc9-4a0b-aad8-4bf09c13ceaf"/>
 				<imageExpression><![CDATA[$P{imagem9}]]></imageExpression>
 			</image>
 			<image>
-				<reportElement x="0" y="734" width="57" height="68" uuid="77e49db9-a235-428b-8894-511269ef5412"/>
+				<reportElement x="0" y="745" width="57" height="57" uuid="77e49db9-a235-428b-8894-511269ef5412"/>
 				<imageExpression><![CDATA[$P{imagem7}]]></imageExpression>
 			</image>
 		</band>
 	</background>
 	<title>
-		<band height="409" splitType="Stretch">
+		<band height="406" splitType="Stretch">
 			<image>
-				<reportElement x="0" y="0" width="57" height="68" uuid="7dbf6631-04f5-4e20-8e25-03eb5578dd8c"/>
+				<reportElement x="1" y="1" width="57" height="68" uuid="7dbf6631-04f5-4e20-8e25-03eb5578dd8c"/>
 				<imageExpression><![CDATA[$P{imagem3}]]></imageExpression>
 			</image>
 			<image>
@@ -294,7 +297,7 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 				<text><![CDATA[CIDADE:]]></text>
 			</staticText>
 			<image>
-				<reportElement x="-1" y="229" width="385" height="180" uuid="ab864041-ee28-44ec-a241-6843c53378a9"/>
+				<reportElement x="2" y="226" width="385" height="180" uuid="ab864041-ee28-44ec-a241-6843c53378a9"/>
 				<imageExpression><![CDATA[$P{imagem4}]]></imageExpression>
 			</image>
 			<staticText>
@@ -818,13 +821,13 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="104"/>
+		<band height="82"/>
 	</columnFooter>
 	<lastPageFooter>
 		<band height="63"/>
 	</lastPageFooter>
 	<summary>
-		<band height="317">
+		<band height="284">
 			<staticText>
 				<reportElement x="219" y="13" width="100" height="20" uuid="7f491ff0-afcd-4229-9d8e-1ec942d173ad"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -1224,7 +1227,7 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 			</textField>
 			<image>
 				<reportElement x="38" y="107" width="470" height="153" uuid="4495bd62-7a8a-4959-9200-81a5db508132"/>
-				<imageExpression><![CDATA["C:\\Users\\phnf2\\Desktop\\LaboLeiteCsv\\PaginasSobreIreportDesign\\legenda.PNG"]]></imageExpression>
+				<imageExpression><![CDATA[$P{imagem13}]]></imageExpression>
 			</image>
 		</band>
 	</summary>
