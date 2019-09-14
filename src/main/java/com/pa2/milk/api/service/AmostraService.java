@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pa2.milk.api.model.Amostra;
-import com.pa2.milk.api.model.Fazenda;
 import com.pa2.milk.api.repository.AmostraRepository;
 
 @Service
@@ -25,6 +24,12 @@ public class AmostraService {
 		amostraRepository.save(amostra);
 	}
 
+
+	public List<Amostra> salvarListaAmostras(List<Amostra> amostras){
+		return this.amostraRepository.saveAll(amostras);
+	}
+	
+	
 	public Optional<Amostra> buscarPorId(Integer id) {
 		log.info("Buscando Amostra por ID ");
 		return this.amostraRepository.findById(id);

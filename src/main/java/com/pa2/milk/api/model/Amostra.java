@@ -1,5 +1,6 @@
 package com.pa2.milk.api.model;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.UUID;
 
@@ -14,32 +15,41 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.pa2.milk.api.model.Analise.Builder;
+import com.pa2.milk.api.model.enums.EnumAnalisesSolicitadas;
+import com.pa2.milk.api.model.enums.EnumEspecie;
+import com.pa2.milk.api.model.enums.EnumLeite;
+import com.pa2.milk.api.model.enums.EnumOrigemLeite;
+import com.pa2.milk.api.model.enums.EnumProdutos;
 
 @Entity(name = "amostra")
 @Table
 public class Amostra extends AbstractModel<Integer> {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
 	@Column(nullable = true)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dataColeta;
 
-	@NotNull(message = "O campo número de Amostra não pode ser nulo.")
+	// @NotNull(message = "O campo número de Amostra não pode ser nulo.")
 	private int numeroAmostra;
 
-	@NotBlank(message = "O campo qrCode não pode ser nulo.")
+	// @NotBlank(message = "O campo qrCode não pode ser nulo.")
 	@Column(unique = true)
 	private String qrCode;
 
 	@Column(length = 2047)
 	private String observacao;
+
+	private static int cont = 0;
 
 	@ManyToOne
 	@JoinColumn(name = "analise_id")
@@ -48,20 +58,20 @@ public class Amostra extends AbstractModel<Integer> {
 
 	private String identificadorAmostra = UUID.randomUUID().toString();
 
-	public Amostra() {
-	}
-
-	public Amostra(Date dataColeta,
-			@NotNull(message = "O campo número de Amostra não pode ser nulo.") int numeroAmostra,
-			@NotBlank(message = "O campo qrCode não pode ser nulo.") String qrCode, String observacao, Analise analise,
-			String identificadorAmostra) {
+	public Amostra(Date dataColeta, String qrCode, String observacao, Analise analise, String identificadorAmostra) {
 		super();
+
 		this.dataColeta = dataColeta;
-		this.numeroAmostra = numeroAmostra;
+		this.numeroAmostra = cont++;
 		this.qrCode = qrCode;
 		this.observacao = observacao;
 		this.analise = analise;
 		this.identificadorAmostra = identificadorAmostra;
+	}
+
+	public Amostra() {
+		super();
+		this.numeroAmostra = cont++;
 	}
 
 	public String getIdentificadorAmostra() {

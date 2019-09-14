@@ -88,15 +88,6 @@ public class AmostraController {
 
 		Optional<Amostra> a = this.amostraRepositorio.findById(amostraId);
 
-		/*
-		 * String texto = "Coleta:"+a.get().getDataColeta()+
-		 * ";\nNumeroAmostra:"+a.get().getNumeroAmostra()+
-		 * ";\nObservacao:"+a.get().getObservacao()+
-		 * ";\nOrigemLeite:"+a.get().getAnalise().getOrigemLeite()+
-		 * ";\nProdutos:"+a.get().getAnalise().getProdutos()+
-		 * ";\nEspecie:"+a.get().getAnalise().getEspecie();
-		 */
-
 		String texto = a.get().getIdentificadorAmostra();
 
 		ByteArrayOutputStream bout = QRCode.from(texto).withSize(250, 250).to(ImageType.PNG).stream();

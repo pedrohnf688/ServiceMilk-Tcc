@@ -3,6 +3,8 @@ package com.pa2.milk.api.model.dto;
 import java.util.Collection;
 import java.util.Date;
 
+import com.pa2.milk.api.model.Amostra;
+import com.pa2.milk.api.model.Analise;
 import com.pa2.milk.api.model.enums.EnumAnalisesSolicitadas;
 import com.pa2.milk.api.model.enums.EnumEspecie;
 import com.pa2.milk.api.model.enums.EnumOrigemLeite;
@@ -17,6 +19,8 @@ public class AmostraDto {
 	private String qrCode;
 
 	private String observacao;
+	
+	private String identificadorAmostra;
 
 	private EnumOrigemLeite origemLeite;
 
@@ -80,4 +84,9 @@ public class AmostraDto {
 		this.especie = especie;
 	}
 
+	
+	
+	
+	
+	
 }
