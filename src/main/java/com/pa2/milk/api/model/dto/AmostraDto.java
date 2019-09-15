@@ -19,8 +19,10 @@ public class AmostraDto {
 	private String qrCode;
 
 	private String observacao;
-	
+
 	private String identificadorAmostra;
+
+	private boolean finalizada;
 
 	private EnumOrigemLeite origemLeite;
 
@@ -34,6 +36,22 @@ public class AmostraDto {
 
 	public void setDataColeta(Date dataColeta) {
 		this.dataColeta = dataColeta;
+	}
+
+	public String getIdentificadorAmostra() {
+		return identificadorAmostra;
+	}
+
+	public void setIdentificadorAmostra(String identificadorAmostra) {
+		this.identificadorAmostra = identificadorAmostra;
+	}
+
+	public boolean isFinalizada() {
+		return finalizada;
+	}
+
+	public void setFinalizada(boolean finalizada) {
+		this.finalizada = finalizada;
 	}
 
 	public int getNumeroAmostra() {
@@ -84,9 +102,4 @@ public class AmostraDto {
 		this.especie = especie;
 	}
 
-	
-	
-	
-	
-	
 }

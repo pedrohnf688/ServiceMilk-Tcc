@@ -1,5 +1,6 @@
 package com.pa2.milk.api.controller;
 
+import java.awt.Image;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -59,26 +60,24 @@ public class LaudoMediaController {
 
 	@Autowired
 	private SolicitacaoService solicitacaoService;
-	
+
 	@Autowired
 	private LaudoMediaService laudoMediaService;
 
 	@PostMapping("/batchId/{solicitacaoId}")
-	public LaudoMedia MedidaLaudos(@RequestParam("batchId") String batchId, @PathVariable("solicitacaoId") Integer solicitacaoId) {
-		//return this.laudoMediaService.salvar(mediaAritmeticaLaudo(batchId, solicitacaoId));
-	//}
+	public LaudoMedia MedidaLaudos(@RequestParam("batchId") String batchId,
+			@PathVariable("solicitacaoId") Integer solicitacaoId) {
+		// return this.laudoMediaService.salvar(mediaAritmeticaLaudo(batchId,
+		// solicitacaoId));
+		// }
 
-	//public LaudoMedia mediaAritmeticaLaudo(String batchId, int solicitacaoId) {
+		// public LaudoMedia mediaAritmeticaLaudo(String batchId, int solicitacaoId) {
 		log.info("Metodo para gerar a media dos atributos do laudo por solicitação:");
 
-		
 		List<Laudo> laudos = this.laudoService.buscarPorBatchId(batchId);
 
 		Optional<Solicitacao> s = this.solicitacaoService.buscarSolicitacaoPorId(solicitacaoId);
-	
 
-		
-		
 		String regex = "[+-]?[0-9]+(\\.[0-9]+)?([Ee][+-]?[0-9]+)?";
 		// compiling regex
 		Pattern p = Pattern.compile(regex);
@@ -104,7 +103,6 @@ public class LaudoMediaController {
 		double media18 = 0;
 		double media19 = 0;
 		double media20 = 0;
-	
 
 		int cont = 0;
 
@@ -127,18 +125,17 @@ public class LaudoMediaController {
 			Matcher m13 = p.matcher(laudos.get(i).getTotpro() != null ? laudos.get(i).getTotpro() : "0");
 			Matcher m14 = p.matcher(laudos.get(i).getTrupro() != null ? laudos.get(i).getTrupro() : "0");
 			Matcher m15 = p.matcher(laudos.get(i).getUrea() != null ? laudos.get(i).getUrea() : "0");
-			
+
 			Matcher m16 = p.matcher(laudos.get(i).getGord() != null ? laudos.get(i).getGord() : "0");
 			Matcher m17 = p.matcher(laudos.get(i).getProt() != null ? laudos.get(i).getProt() : "0");
 			Matcher m18 = p.matcher(laudos.get(i).getLact() != null ? laudos.get(i).getLact() : "0");
 			Matcher m19 = p.matcher(laudos.get(i).getEsd() != null ? laudos.get(i).getEsd() : "0");
 			Matcher m20 = p.matcher(laudos.get(i).getPc() != null ? laudos.get(i).getPc() : "0");
 
-			
 			media1 += (m1.find() && m1.group().equals(laudos.get(i).getCasein()))
 					? Double.parseDouble(laudos.get(i).getCasein())
 					: 0;
-					
+
 			media2 += (m2.find() && m2.group().equals(laudos.get(i).getCbt()))
 					? Double.parseDouble(laudos.get(i).getCbt())
 					: 0;
@@ -191,15 +188,14 @@ public class LaudoMediaController {
 					: 0;
 			media18 += (m18.find() && m18.group().equals(laudos.get(i).getLact()))
 					? Double.parseDouble(laudos.get(i).getLact())
-					: 0;						
+					: 0;
 			media19 += (m19.find() && m19.group().equals(laudos.get(i).getEsd()))
 					? Double.parseDouble(laudos.get(i).getEsd())
-					: 0;												
+					: 0;
 			media20 += (m20.find() && m20.group().equals(laudos.get(i).getPc()))
 					? Double.parseDouble(laudos.get(i).getPc())
-					: 0;						
+					: 0;
 
-					
 			cont++;
 		}
 
@@ -227,8 +223,6 @@ public class LaudoMediaController {
 		media19 /= cont;
 		media20 /= cont;
 
-		
-		
 		LaudoMedia l = new LaudoMedia();
 
 		l.setCaseinMedia(media1);
@@ -251,9 +245,9 @@ public class LaudoMediaController {
 		l.setLactMedia(media18);
 		l.setEsdMedia(media19);
 		l.setPcMedia(media20);
-		
+
 		l.setSolicitacao(s.get());
-		
+
 		l.setListaLaudos(laudos);
 		this.laudoMediaService.salvar(l);
 
@@ -269,24 +263,10 @@ public class LaudoMediaController {
 
 		Map<String, Object> parametros = new HashMap<>();
 
-		
 		parametros.put("Id_LaudoMedia", id);
-		
-		
-//		ImageIcon gto1 = new ImageIcon(getClass().getResource("/relatorios/imgReport/image1.png"));
-//		ImageIcon gto3 = new ImageIcon(getClass().getResource("/relatorios/imgReport/image3.png"));
-//		ImageIcon gto4 = new ImageIcon(getClass().getResource("/relatorios/imgReport/image4.png"));
-//		ImageIcon gto5 = new ImageIcon(getClass().getResource("/relatorios/imgReport/image5.png"));
-//		ImageIcon gto6 = new ImageIcon(getClass().getResource("/relatorios/imgReport/image6.png"));
-//		ImageIcon gto7 = new ImageIcon(getClass().getResource("/relatorios/imgReport/image7.png"));
-//		ImageIcon gto9 = new ImageIcon(getClass().getResource("/relatorios/imgReport/image9.png"));
-//		ImageIcon gto10 = new ImageIcon(getClass().getResource("/relatorios/imgReport/image10.png"));
-//		ImageIcon gto11 = new ImageIcon(getClass().getResource("/relatorios/imgReport/image11.png"));
-//		ImageIcon gto12 = new ImageIcon(getClass().getResource("/relatorios/imgReport/image12.png"));
-//		
-		
-		InputStream gto1= this.getClass().getResourceAsStream("/relatorios/imgReport/image1.png");
-		InputStream gto3 = this.getClass().getResourceAsStream("/relatorios/imgReport/image3.png");
+
+		InputStream gto1 = this.getClass().getResourceAsStream("/relatorios/imgReport/image1.png");
+		InputStream gto3 = this.getClass().getResourceAsStream("/relatorios/imgReport/image3.jpg");
 		InputStream gto4 = this.getClass().getResourceAsStream("/relatorios/imgReport/image4.png");
 		InputStream gto5 = this.getClass().getResourceAsStream("/relatorios/imgReport/image5.png");
 		InputStream gto6 = this.getClass().getResourceAsStream("/relatorios/imgReport/image6.png");
@@ -294,23 +274,20 @@ public class LaudoMediaController {
 		InputStream gto9 = this.getClass().getResourceAsStream("/relatorios/imgReport/image9.png");
 		InputStream gto10 = this.getClass().getResourceAsStream("/relatorios/imgReport/image10.png");
 		InputStream gto11 = this.getClass().getResourceAsStream("/relatorios/imgReport/image11.png");
-		InputStream gto12 = this.getClass().getResourceAsStream("/relatorios/imgReport/image12.png");
-		InputStream gto13 = this.getClass().getResourceAsStream("/relatorios/imgReport/legenda.png");
-		
+		InputStream gto12 = this.getClass().getResourceAsStream("/relatorios/imgReport/image12.jpg");
+		InputStream gto13 = this.getClass().getResourceAsStream("/relatorios/imgReport/legenda.jpg");
+
 		parametros.put("imagem1", gto1);
 		parametros.put("imagem3", gto3);
 		parametros.put("imagem4", gto4);
 		parametros.put("imagem5", gto5);
-		parametros.put("imagem6", gto6);
-		parametros.put("imagem7", gto7);
-		parametros.put("imagem9", gto9);
+    	parametros.put("imagem6", gto6);
+//		parametros.put("imagem7", gto7); Erro
+//		parametros.put("imagem9", gto9); Erro
 		parametros.put("imagem10", gto10);
 		parametros.put("imagem11", gto11);
 		parametros.put("imagem12", gto12);
 		parametros.put("imagem13", gto13);
-		
-		
-		
 
 		// Pega o arquivo .jasper localizado em resources
 		InputStream jasperStream = this.getClass().getResourceAsStream("/relatorios/report2.jasper");
@@ -321,7 +298,6 @@ public class LaudoMediaController {
 		// caso uma conexão ao banco de dados
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, dataSource.getConnection());
 
-		
 		// Configura a respota para o tipo PDF
 		response.setContentType("application/pdf");
 		// Define que o arquivo pode ser visualizado no navegador e também nome final do
@@ -362,8 +338,10 @@ public class LaudoMediaController {
 		configuration.setOnePagePerSheet(true);
 		configuration.setDetectCellType(true);
 		configuration.setCollapseRowSpan(false);
-		configuration.setWhitePageBackground(false);
+		configuration.setWhitePageBackground(true);//
 		configuration.setRemoveEmptySpaceBetweenRows(false);
+		configuration.setAutoFitPageHeight(true);
+	
 
 		exportsXLS.setConfiguration(configuration);
 

@@ -52,7 +52,7 @@ public class SolicitacaoController {
 
 	@Autowired
 	private AmostraService amostraService;
-	
+
 	@GetMapping
 	public List<Solicitacao> listarSolicitacoes() {
 		log.info("Listando Solicitações");
@@ -63,7 +63,7 @@ public class SolicitacaoController {
 	@PostMapping
 	public ResponseEntity<Response<Solicitacao>> cadastrarSolicitacao(@RequestBody SolicitacaoDto solicitacaoDTO,
 			BindingResult result) throws NoSuchAlgorithmException, NotFoundException {
-		log.info("Cadastrando solicitacao: {}", solicitacaoDTO.toString(),"cpfcnj");
+		log.info("Cadastrando solicitacao: {}", solicitacaoDTO.toString(), "cpfcnj");
 		Response<Solicitacao> response = new Response<Solicitacao>();
 
 		Optional<Fazenda> fazenda = fazendaSerice.buscarPorCpfCnpj(solicitacaoDTO.getCpfcnpj());
@@ -80,7 +80,7 @@ public class SolicitacaoController {
 			result.getAllErrors().forEach(error -> response.getErros().add(error.getDefaultMessage()));
 			return ResponseEntity.badRequest().body(response);
 		}
-		
+
 		solicitacaoService.salvarSolicitacao(solicitacao);
 		response.setData(solicitacao);
 
@@ -91,33 +91,31 @@ public class SolicitacaoController {
 			throws NoSuchAlgorithmException {
 		List<Analise> analises = solicitacaoDTO.transformarParaListaAnalise();
 		List<Amostra> amostras = new ArrayList<Amostra>();
-		
-		
-		if(analises.isEmpty()) {
+
+		if (analises.isEmpty()) {
 			result.addError(new ObjectError("analises", "Lista de análises vazia"));
-		}else {		
+		} else {
 			for (int i = 0; i < analises.size(); i++) {
 				for (int j = 0; j < analises.get(i).getQuantidadeAmostras(); j++) {
-					//Cadastrar Amostra
+					// Cadastrar Amostra
 					Amostra a = new Amostra();
 					a.setAnalise(analises.get(i));
 					a.setDataColeta(new Date());
 					amostras.add(a);
-					analises.get(i).setAmostras(amostras);	
-					//this.amostraService.salvar(a);
+					analises.get(i).setAmostras(amostras);
+					// this.amostraService.salvar(a);
 				}
-				
-				
+
 			}
 		}
-		
+
 		Solicitacao solicitacao = solicitacaoDTO.transformarParaSolicitacao();
 		solicitacao.setFazenda(fazenda);
 		solicitacao.setCliente(fazenda.getCliente());
 		// solicitacao.setDataCriada(Calendar.getInstance(TimeZone.getTimeZone("GMT-03:00")).getTime());
 		solicitacao.setDataCriada(new Date());
 		analises.stream().forEach(objAnalise -> solicitacao.addAnalise(objAnalise));
-		
+
 		solicitacao.setStatus(EnumStatusSolicitacao.PENDENTE);
 		return solicitacao;
 	}

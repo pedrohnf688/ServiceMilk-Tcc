@@ -32,7 +32,7 @@ import com.pa2.milk.api.model.enums.EnumProdutos;
 public class Amostra extends AbstractModel<Integer> {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	@Column(nullable = true)
@@ -45,6 +45,8 @@ public class Amostra extends AbstractModel<Integer> {
 	// @NotBlank(message = "O campo qrCode não pode ser nulo.")
 	@Column(unique = true)
 	private String qrCode;
+
+	private boolean finalizada;
 
 	@Column(length = 2047)
 	private String observacao;
@@ -67,11 +69,13 @@ public class Amostra extends AbstractModel<Integer> {
 		this.observacao = observacao;
 		this.analise = analise;
 		this.identificadorAmostra = identificadorAmostra;
+		this.finalizada = false;
 	}
 
 	public Amostra() {
 		super();
 		this.numeroAmostra = cont++;
+		this.finalizada = false;
 	}
 
 	public String getIdentificadorAmostra() {
@@ -80,6 +84,14 @@ public class Amostra extends AbstractModel<Integer> {
 
 	public void setIdentificadorAmostra(String identificadorAmostra) {
 		this.identificadorAmostra = identificadorAmostra;
+	}
+
+	public boolean isFinalizada() {
+		return finalizada;
+	}
+
+	public void setFinalizada(boolean finalizada) {
+		this.finalizada = finalizada;
 	}
 
 	@Override
