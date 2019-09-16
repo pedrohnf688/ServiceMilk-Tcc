@@ -29,8 +29,10 @@ import com.pa2.milk.api.model.Fazenda;
 import com.pa2.milk.api.model.Solicitacao;
 import com.pa2.milk.api.model.dto.SolicitacaoDetalhesDto;
 import com.pa2.milk.api.model.dto.SolicitacaoDto;
+import com.pa2.milk.api.model.dto.SolicitacaoGetDto;
 import com.pa2.milk.api.model.dto.StatusSolicitacaoDTO;
 import com.pa2.milk.api.model.enums.EnumStatusSolicitacao;
+import com.pa2.milk.api.repository.AnaliseRepository;
 import com.pa2.milk.api.service.AmostraService;
 import com.pa2.milk.api.service.FazendaService;
 import com.pa2.milk.api.service.SolicitacaoService;
@@ -52,6 +54,9 @@ public class SolicitacaoController {
 
 	@Autowired
 	private AmostraService amostraService;
+
+	@Autowired
+	private AnaliseRepository analiseRepository;
 
 	@GetMapping
 	public List<Solicitacao> listarSolicitacoes() {
@@ -122,21 +127,56 @@ public class SolicitacaoController {
 
 	@PreAuthorize("hasAnyRole('ADMINISTRADOR','BOLSISTA','CLIENTE')")
 	@GetMapping(value = "{id}")
-	public ResponseEntity<Response<Solicitacao>> buscarSolicitacaoPorID(@PathVariable("id") Integer id) {
+	public ResponseEntity<Response<SolicitacaoGetDto>> buscarSolicitacaoPorID(@PathVariable("id") Integer id) {
 		log.info("Buscar Solicitacao por Id");
 
-		Response<Solicitacao> response = new Response<Solicitacao>();
+		Response<SolicitacaoGetDto> response = new Response<SolicitacaoGetDto>();
 
+		SolicitacaoGetDto sgt = new SolicitacaoGetDto();
 		Optional<Solicitacao> solicitacao = solicitacaoService.buscarSolicitacaoPorId(id);
 
 		if (!solicitacao.isPresent()) {
-			log.info("Cliente não encontrado: {}", solicitacao.get());
+			log.info("Solicitacao não encontrada: {}", solicitacao.get());
 			return ResponseEntity.badRequest().body(response);
 		}
 
-		response.setData(solicitacao.get());
+		this.converterSparaSdto(solicitacao.get(), sgt);
+		
+//		List<Amostra> amostras = new ArrayList<Amostra>();
+//
+//		for (int i = 0; i < solicitacao.get().getListaAnalise().size(); i++) {
+//			for (int j = 0; j < solicitacao.get().getListaAnalise().get(i).getAmostras().size(); j++) {
+//				amostras.add(solicitacao.get().getListaAnalise().get(i).getAmostras().get(j));
+//			}
+//		}
+//		
+
+		response.setData(sgt);
 
 		return ResponseEntity.ok(response);
+	}
+	
+	
+	private void converterSparaSdto(Solicitacao sol, SolicitacaoGetDto sgt) {
+		List<Amostra> amostras = new ArrayList<Amostra>();
+		
+		sgt.setId(sol.getId());
+		sgt.setListaAnalise(sol.getListaAnalise());
+		
+		for (int i = 0; i < sol.getListaAnalise().size(); i++) {
+			for (int j = 0; j < sol.getListaAnalise().get(i).getAmostras().size(); j++) {
+				amostras.add(sol.getListaAnalise().get(i).getAmostras().get(j));
+			}
+		}
+		
+		sgt.setAmostra(amostras);
+		sgt.setCliente(sol.getCliente());
+		sgt.setDataCriada(sol.getDataCriada());
+		sgt.setFazenda(sol.getFazenda());
+		sgt.setListaLaudoMedia(sol.getListaLaudoMedia());
+		sgt.setObservacao(sol.getObservacao());
+		sgt.setStatus(sol.getStatus());
+		
 	}
 
 	@GetMapping(value = "/status/{id}")

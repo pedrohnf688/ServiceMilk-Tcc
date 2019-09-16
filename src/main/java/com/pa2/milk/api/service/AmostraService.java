@@ -24,12 +24,10 @@ public class AmostraService {
 		amostraRepository.save(amostra);
 	}
 
-
-	public List<Amostra> salvarListaAmostras(List<Amostra> amostras){
+	public List<Amostra> salvarListaAmostras(List<Amostra> amostras) {
 		return this.amostraRepository.saveAll(amostras);
 	}
-	
-	
+
 	public Optional<Amostra> buscarPorId(Integer id) {
 		log.info("Buscando Amostra por ID ");
 		return this.amostraRepository.findById(id);
@@ -39,21 +37,20 @@ public class AmostraService {
 		log.info("Removendo amostra pelo Id: {}", id);
 		this.amostraRepository.deleteById(id);
 	}
-	
+
 	public List<Amostra> listarAmostras() {
 		log.info("Listando todas as amostras");
 		return this.amostraRepository.findAll();
 	}
-	
+
 	public List<Amostra> deletarAmostrasPorAnalise(Integer analiseId) {
 		log.info("Deletar todas as amostras por Analise");
 		return this.amostraRepository.deleteByAnaliseId(analiseId);
 	}
 
-	
 	public Optional<Amostra> buscarIdentificadorAmostra(String identifAmostra) {
-		log.info("Buscando Amostra pelo Identificador Amostra:{}",identifAmostra);
-		return  Optional.ofNullable(this.amostraRepository.findByIdentificadorAmostra(identifAmostra));
+		log.info("Buscando Amostra pelo Identificador Amostra:{}", identifAmostra);
+		return Optional.ofNullable(this.amostraRepository.findByIdentificadorAmostra(identifAmostra));
 	}
 
 }
