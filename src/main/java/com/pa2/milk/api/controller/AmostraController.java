@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,11 +23,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -65,17 +68,17 @@ public class AmostraController {
 
 		Response<AmostraDto> response = new Response<AmostraDto>();
 
-		Amostra a = this.amostraService.buscarIdentificadorAmostra(identifAmostra);
+		Optional<Amostra> a = this.amostraService.buscarIdentificadorAmostra(identifAmostra);
 
 		AmostraDto am = new AmostraDto();
 
-		am.setDataColeta(a.getDataColeta());
-		am.setNumeroAmostra(a.getNumeroAmostra());
-		am.setQrCode(a.getQrCode());
-		am.setEspecie(a.getAnalise().getEspecie());
-		am.setOrigemLeite(a.getAnalise().getOrigemLeite());
-		am.setProdutos(a.getAnalise().getProdutos());
-		am.setObservacao(a.getObservacao());
+		am.setDataColeta(a.get().getDataColeta());
+		am.setNumeroAmostra(a.get().getNumeroAmostra());
+		am.setQrCode(a.get().getQrCode());
+		am.setEspecie(a.get().getAnalise().getEspecie());
+		am.setOrigemLeite(a.get().getAnalise().getOrigemLeite());
+		am.setProdutos(a.get().getAnalise().getProdutos());
+		am.setObservacao(a.get().getObservacao());
 
 		response.setData(am);
 
@@ -114,6 +117,57 @@ public class AmostraController {
 
 	}
 
+	@PreAuthorize("hasAnyRole('ADMINISTRADOR','BOLSISTA','CLIENTE')")
+	@PutMapping(value = "{identifAmostra}")
+	public ResponseEntity<Response<Amostra>> atualizarAmostra(@PathVariable("identifAmostra") String identifAmostra,
+			@Valid @RequestBody Amostra amostra, BindingResult result) {
+
+		log.info("Atualizando a Amostra:{}", amostra.toString());
+
+		Response<Amostra> response = new Response<Amostra>();
+
+		Optional<Amostra> am = this.amostraService.buscarIdentificadorAmostra(identifAmostra);
+
+		if (!am.isPresent()) {
+			log.info("Amostra não encontrada");
+			response.getErros().add("Amostra não encontrada");
+			ResponseEntity.badRequest().body(response);
+		}
+
+		this.atualizarDadosAmostra(am.get(), amostra, result);
+
+		if (result.hasErrors()) {
+			log.error("Erro validando lancamento:{}", result.getAllErrors());
+			result.getAllErrors().forEach(error -> response.getErros().add(error.getDefaultMessage()));
+			return ResponseEntity.badRequest().body(response);
+		}
+
+		response.setData(am.get());
+		this.amostraService.salvar(am.get());
+
+		return ResponseEntity.ok(response);
+
+	}
+
+	private void atualizarDadosAmostra(Amostra am, Amostra amostra, BindingResult result) {
+
+		am.setDataColeta(new Date());
+		am.setFinalizada(true);
+
+		if (amostra.getObservacao() != null) {
+			am.setObservacao(amostra.getObservacao());
+		} else {
+			am.setObservacao(am.getObservacao());
+		}
+
+		if (amostra.getQrCode() != null) {
+			am.setQrCode(amostra.getQrCode());
+		} else {
+			am.setQrCode(am.getQrCode());
+		}
+
+	}
+
 	@PreAuthorize("hasAnyRole('ADMINISTRADOR','CLIENTE','BOLSISTA')")
 	@GetMapping(value = "{analiseId}/ListaQrCode")
 	public List<Amostra> listarAmostrasPorAnalise(@PathVariable("analiseId") Integer analiseId) {
@@ -144,6 +198,7 @@ public class AmostraController {
 	}
 
 	@PreAuthorize("hasAnyRole('ADMINISTRADOR','BOLSISTA')")
+	@GetMapping
 	public List<Amostra> listarTodasAmostras() {
 		List<Amostra> amostras = this.amostraService.listarAmostras();
 		return amostras;

@@ -51,9 +51,9 @@ public class AmostraService {
 	}
 
 	
-	public Amostra buscarIdentificadorAmostra(String identifAmostra) {
+	public Optional<Amostra> buscarIdentificadorAmostra(String identifAmostra) {
 		log.info("Buscando Amostra pelo Identificador Amostra:{}",identifAmostra);
-		return  this.amostraRepository.findByIdentificadorAmostra(identifAmostra);
+		return  Optional.ofNullable(this.amostraRepository.findByIdentificadorAmostra(identifAmostra));
 	}
 
 }
