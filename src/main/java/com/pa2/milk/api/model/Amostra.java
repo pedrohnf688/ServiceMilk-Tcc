@@ -60,7 +60,8 @@ public class Amostra extends AbstractModel<Integer> {
 
 	private String identificadorAmostra = UUID.randomUUID().toString();
 
-	public Amostra(Date dataColeta, String qrCode, String observacao, Analise analise, String identificadorAmostra) {
+	public Amostra(Date dataColeta, String qrCode, String observacao, Analise analise, String identificadorAmostra,
+			boolean finalizada) {
 		super();
 
 		this.dataColeta = dataColeta;
