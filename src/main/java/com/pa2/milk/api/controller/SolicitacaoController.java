@@ -141,7 +141,7 @@ public class SolicitacaoController {
 		}
 
 		this.converterSparaSdto(solicitacao.get(), sgt);
-		
+
 //		List<Amostra> amostras = new ArrayList<Amostra>();
 //
 //		for (int i = 0; i < solicitacao.get().getListaAnalise().size(); i++) {
@@ -155,28 +155,30 @@ public class SolicitacaoController {
 
 		return ResponseEntity.ok(response);
 	}
-	
-	
+
 	private void converterSparaSdto(Solicitacao sol, SolicitacaoGetDto sgt) {
 		List<Amostra> amostras = new ArrayList<Amostra>();
-		
+
 		sgt.setId(sol.getId());
 		sgt.setListaAnalise(sol.getListaAnalise());
-		
+
 		for (int i = 0; i < sol.getListaAnalise().size(); i++) {
 			for (int j = 0; j < sol.getListaAnalise().get(i).getAmostras().size(); j++) {
 				amostras.add(sol.getListaAnalise().get(i).getAmostras().get(j));
 			}
 		}
-		
+		for (int i = 0; i < sol.getListaAnalise().size(); i++) {
+			sgt.getListaAnalise().get(i).setAmostras(amostras);
+		}
 		sgt.setAmostra(amostras);
+
 		sgt.setCliente(sol.getCliente());
 		sgt.setDataCriada(sol.getDataCriada());
 		sgt.setFazenda(sol.getFazenda());
 		sgt.setListaLaudoMedia(sol.getListaLaudoMedia());
 		sgt.setObservacao(sol.getObservacao());
 		sgt.setStatus(sol.getStatus());
-		
+
 	}
 
 	@GetMapping(value = "/status/{id}")
