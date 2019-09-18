@@ -22,5 +22,8 @@ public class AnaliseService {
 		log.info("Listando Analises pelo Id da Solicitação");
 		return this.analiseRepository.findBySolicitacaoId(solicitacaoId);
 	}
+	
+	
+	
 
 }

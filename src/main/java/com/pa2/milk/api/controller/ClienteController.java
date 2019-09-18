@@ -2,6 +2,8 @@
 package com.pa2.milk.api.controller;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,12 +30,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pa2.milk.api.helper.PasswordUtils;
 import com.pa2.milk.api.helper.Response;
+import com.pa2.milk.api.model.Amostra;
 import com.pa2.milk.api.model.Cliente;
 import com.pa2.milk.api.model.Credencial;
 import com.pa2.milk.api.model.Fazenda;
 import com.pa2.milk.api.model.Solicitacao;
 import com.pa2.milk.api.model.Usuario;
 import com.pa2.milk.api.model.dto.CadastroClienteDto;
+import com.pa2.milk.api.model.dto.SolicitacaoGetDto;
 import com.pa2.milk.api.model.enums.EnumTipoPerfilUsuario;
 import com.pa2.milk.api.repository.CredencialRepository;
 import com.pa2.milk.api.repository.UsuarioRepository;
@@ -195,10 +199,12 @@ public class ClienteController {
 	@GetMapping(value = "{id}/solicitacao")
 	public List<Solicitacao> buscarSolicitacaoClientePorId(@PathVariable("id") Integer id) {
 		log.info("Buscar Solicitação por Id do Cliente");
-
+		
 		List<Solicitacao> s = this.solicitacaoService.buscarSolicitacaoClienteId(id);
+				
 		return s;
 	}
+
 
 	private void atualizarDadosCliente(Credencial credencial, CadastroClienteDto clienteDto, BindingResult result)
 			throws NoSuchAlgorithmException {

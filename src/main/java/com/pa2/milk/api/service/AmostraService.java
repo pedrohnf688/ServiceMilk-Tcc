@@ -44,13 +44,18 @@ public class AmostraService {
 	}
 
 	public List<Amostra> deletarAmostrasPorAnalise(Integer analiseId) {
-		log.info("Deletar todas as amostras por Analise");
+		log.info("Deletar todas as amostras por Analise:{}", analiseId);
 		return this.amostraRepository.deleteByAnaliseId(analiseId);
 	}
 
 	public Optional<Amostra> buscarIdentificadorAmostra(String identifAmostra) {
 		log.info("Buscando Amostra pelo Identificador Amostra:{}", identifAmostra);
 		return Optional.ofNullable(this.amostraRepository.findByIdentificadorAmostra(identifAmostra));
+	}
+	
+	public List<Amostra> listarAmostrasPorAnalise(Integer analiseId) {
+		log.info("Listar todas as amostras por Analise:{}", analiseId);
+		return this.amostraRepository.findByAnaliseId(analiseId);
 	}
 
 }

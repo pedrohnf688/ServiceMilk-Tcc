@@ -32,8 +32,10 @@ import com.pa2.milk.api.model.dto.SolicitacaoDto;
 import com.pa2.milk.api.model.dto.SolicitacaoGetDto;
 import com.pa2.milk.api.model.dto.StatusSolicitacaoDTO;
 import com.pa2.milk.api.model.enums.EnumStatusSolicitacao;
+import com.pa2.milk.api.repository.AmostraRepository;
 import com.pa2.milk.api.repository.AnaliseRepository;
 import com.pa2.milk.api.service.AmostraService;
+import com.pa2.milk.api.service.AnaliseService;
 import com.pa2.milk.api.service.FazendaService;
 import com.pa2.milk.api.service.SolicitacaoService;
 
@@ -58,6 +60,12 @@ public class SolicitacaoController {
 	@Autowired
 	private AnaliseRepository analiseRepository;
 
+	@Autowired
+	private AnaliseService analiseService;
+
+	@Autowired
+	private AmostraRepository amostraRepository;
+	
 	@GetMapping
 	public List<Solicitacao> listarSolicitacoes() {
 		log.info("Listando Solicitações");
@@ -218,9 +226,14 @@ public class SolicitacaoController {
 			ResponseEntity.badRequest().body(response);
 		}
 
+		List<Analise> analises = this.analiseService.listarAnalisesPorSolicitacaoId(solicitacao.get().getId());
+		
+		
 		response.setData(solicitacao.get());
 
 		this.solicitacaoService.deletarSolicitacaoPorId(id);
+		this.analiseRepository.deleteAll(analises);
+		//this.amostraRepository.deleteAll(amostras);
 
 		return ResponseEntity.ok(response);
 	}
