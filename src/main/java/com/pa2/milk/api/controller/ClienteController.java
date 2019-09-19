@@ -2,8 +2,6 @@
 package com.pa2.milk.api.controller;
 
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,21 +24,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.pa2.milk.api.helper.PasswordUtils;
 import com.pa2.milk.api.helper.Response;
-import com.pa2.milk.api.model.Amostra;
+import com.pa2.milk.api.helper.UploadFileResponse;
+import com.pa2.milk.api.model.Arquivo;
 import com.pa2.milk.api.model.Cliente;
 import com.pa2.milk.api.model.Credencial;
 import com.pa2.milk.api.model.Fazenda;
 import com.pa2.milk.api.model.Solicitacao;
 import com.pa2.milk.api.model.Usuario;
 import com.pa2.milk.api.model.dto.CadastroClienteDto;
-import com.pa2.milk.api.model.dto.SolicitacaoGetDto;
 import com.pa2.milk.api.model.enums.EnumTipoPerfilUsuario;
 import com.pa2.milk.api.repository.CredencialRepository;
 import com.pa2.milk.api.repository.UsuarioRepository;
+import com.pa2.milk.api.service.ArquivoService;
 import com.pa2.milk.api.service.ClienteService;
 import com.pa2.milk.api.service.CredencialService;
 import com.pa2.milk.api.service.FazendaService;
@@ -73,6 +75,9 @@ public class ClienteController {
 
 	@Autowired
 	private JavaMailSender javaMailSender;
+	
+	@Autowired
+	private ArquivoService arquivoService;
 
 	@PreAuthorize("hasAnyRole('ADMINISTRADOR','BOLSISTA')")
 	@GetMapping
@@ -153,7 +158,7 @@ public class ClienteController {
 			log.error("Erro validando a Credencial:{}", result.getAllErrors());
 			result.getAllErrors().forEach(error -> response.getErros().add(error.getDefaultMessage()));
 			return ResponseEntity.badRequest().body(response);
-		}
+		}	
 
 		this.credencialService.salvar(credencial.get());
 		response.setData(this.converterCadastroClienteDto(credencial.get()));

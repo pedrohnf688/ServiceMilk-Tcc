@@ -40,59 +40,59 @@ public class CredencialServicoTest {
 
 	List<Solicitacao> SOLICITACAO = new ArrayList<Solicitacao>();
 	
-	Cliente cliente = new Cliente(TEL1,TEL2,FAZENDA,SOLICITACAO);
-	
-	@Before
-	public void init() {
-		credencial = new Credencial(USERNAME,SENHA,cliente);
-	}
-	
-	/*@After	
-	public void after() {
-		//Mockito.doCallRealMethod().when(clienteservice).);
-		//Não foi possivel identific como apagar o credencial
-		
-	}*/
-	
-	@Test
-	public void SalvarCredencial() {
-		
-		credencialService.salvar(credencial);
-		
-		assertTrue("cadastro" + credencial + "com sucesso", true);
-	}
-	
-	@Test
-	public void SalvarCredencialSemUsarname() {
-		credencial = new Credencial(null,SENHA,cliente);
-		credencialService.salvar(credencial);
-		
-		assertFalse("cadastro" + credencial + "com Falha", false);
-	}
-	
-	@Test
-	public void SalvarCredencialSemSenha() {
-		credencial = new Credencial(USERNAME,null,cliente);
-		credencialService.salvar(credencial);
-		
-		assertFalse("cadastro" + credencial + "com Falha", false);
-	}
-	
-	@Test
-	public void SalvarCredencialComSenhaMenorQue8Digitos() {
-		credencial = new Credencial(USERNAME,"123",cliente);
-		credencialService.salvar(credencial);
-		
-		assertFalse("cadastro" + credencial + "com Falha", false);
-	}
-	
-	@Test
-	public void SalvarCredencialSemCliente() {
-		credencial = new Credencial(USERNAME,SENHA,null);
-		credencialService.salvar(credencial);
-		
-		assertFalse("cadastro" + credencial + "com Falha", false);
-	}
+//	Cliente cliente = new Cliente(TEL1,TEL2,FAZENDA,SOLICITACAO);
+//	
+//	@Before
+//	public void init() {
+//		credencial = new Credencial(USERNAME,SENHA,cliente);
+//	}
+//	
+//	/*@After	
+//	public void after() {
+//		//Mockito.doCallRealMethod().when(clienteservice).);
+//		//Não foi possivel identific como apagar o credencial
+//		
+//	}*/
+//	
+//	@Test
+//	public void SalvarCredencial() {
+//		
+//		credencialService.salvar(credencial);
+//		
+//		assertTrue("cadastro" + credencial + "com sucesso", true);
+//	}
+//	
+//	@Test
+//	public void SalvarCredencialSemUsarname() {
+//		credencial = new Credencial(null,SENHA,cliente);
+//		credencialService.salvar(credencial);
+//		
+//		assertFalse("cadastro" + credencial + "com Falha", false);
+//	}
+//	
+//	@Test
+//	public void SalvarCredencialSemSenha() {
+//		credencial = new Credencial(USERNAME,null,cliente);
+//		credencialService.salvar(credencial);
+//		
+//		assertFalse("cadastro" + credencial + "com Falha", false);
+//	}
+//	
+//	@Test
+//	public void SalvarCredencialComSenhaMenorQue8Digitos() {
+//		credencial = new Credencial(USERNAME,"123",cliente);
+//		credencialService.salvar(credencial);
+//		
+//		assertFalse("cadastro" + credencial + "com Falha", false);
+//	}
+//	
+//	@Test
+//	public void SalvarCredencialSemCliente() {
+//		credencial = new Credencial(USERNAME,SENHA,null);
+//		credencialService.salvar(credencial);
+//		
+//		assertFalse("cadastro" + credencial + "com Falha", false);
+//	}
 
 
 }

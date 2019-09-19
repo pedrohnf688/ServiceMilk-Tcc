@@ -7,8 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+
+import org.hibernate.annotations.Cascade;
 
 import com.pa2.milk.api.model.enums.EnumTipoPerfilUsuario;
 
@@ -34,6 +37,10 @@ public abstract class Usuario extends AbstractModel<Integer> {
 
 	@Column(name = "perfil", nullable = false)
 	private Integer codigoTipoPerfilUsuario;
+
+	@OneToOne
+	@Cascade({ org.hibernate.annotations.CascadeType.ALL })
+	private Arquivo fotoPerfil;
 
 	public Usuario() {
 		super();
@@ -88,4 +95,13 @@ public abstract class Usuario extends AbstractModel<Integer> {
 	public void setCodigoTipoPerfilUsuario(EnumTipoPerfilUsuario tipoPerfilUsuario) {
 		this.codigoTipoPerfilUsuario = tipoPerfilUsuario.getCodigo();
 	}
+
+	public Arquivo getFotoPerfil() {
+		return fotoPerfil;
+	}
+
+	public void setFotoPerfil(Arquivo fotoPerfil) {
+		this.fotoPerfil = fotoPerfil;
+	}
+
 }

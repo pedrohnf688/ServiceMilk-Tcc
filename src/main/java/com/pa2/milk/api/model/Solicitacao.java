@@ -64,6 +64,10 @@ public class Solicitacao extends AbstractModel<Integer> {
 	@Cascade({ org.hibernate.annotations.CascadeType.ALL })
 	private List<LaudoMedia> listaLaudoMedia;
 
+	@OneToOne
+	@Cascade({ org.hibernate.annotations.CascadeType.ALL })
+	private Arquivo fotoSolicitacao;
+
 	public Solicitacao() {
 		listaAnalise = new ArrayList<>();
 	}
@@ -142,6 +146,21 @@ public class Solicitacao extends AbstractModel<Integer> {
 
 	public void setListaLaudoMedia(List<LaudoMedia> listaLaudoMedia) {
 		this.listaLaudoMedia = listaLaudoMedia;
+	}
+
+	public Arquivo getFotoSolicitacao() {
+		return fotoSolicitacao;
+	}
+
+	public void setFotoSolicitacao(Arquivo fotoSolicitacao) {
+		this.fotoSolicitacao = fotoSolicitacao;
+	}
+
+	@Override
+	public String toString() {
+		return "Solicitacao [id=" + id + ", cliente=" + cliente + ", fazenda=" + fazenda + ", listaAnalise="
+				+ listaAnalise + ", status=" + status + ", dataCriada=" + dataCriada + ", observacao=" + observacao
+				+ ", listaLaudoMedia=" + listaLaudoMedia + ", fotoSolicitacao=" + fotoSolicitacao + "]";
 	}
 
 }

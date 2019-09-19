@@ -25,10 +25,9 @@ public class AdministradorService {
 		administradorRepository.save(administrador);
 	}
 
-	public Administrador buscarPorId(Integer id) {
+	public Optional<Administrador> buscarPorId(Integer id) {
 		log.info("Buscando Administrador por ID ");
-		Optional<Administrador> objAdministrador = administradorRepository.findById(id);
-		return objAdministrador.orElse(null);
+		return administradorRepository.findById(id);
 	}
 
 	public Optional<Administrador> buscarPorCpf(String cpf) {

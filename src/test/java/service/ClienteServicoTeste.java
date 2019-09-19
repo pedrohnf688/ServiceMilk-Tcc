@@ -40,50 +40,50 @@ public class ClienteServicoTeste {
 
 	List<Solicitacao> SOLICITACAO = new ArrayList<Solicitacao>();
 	
-	@Before
-	public void init() {
-		cliente = new Cliente(TEL1,TEL2,FAZENDA,SOLICITACAO);
-	}
-	
-	/*@After	
-	public void after() {
-		//Mockito.doCallRealMethod().when(clienteservice).);
-		//Não foi possivel identific como apagar o cliente
-		
-	}*/
-	
-	@Test
-	public void salvarCliente() {
-		clienteService.salvar(cliente);
-		
-		assertTrue("cadastro" + cliente + "com sucesso", true);
-		
-	}
-	
-	@Test
-	public void salvarClienteSemTelefone1() {
-		cliente = new Cliente(null,TEL2,FAZENDA,SOLICITACAO);
-		clienteService.salvar(cliente);
-		
-		assertFalse("cadastro" + cliente + "com falha", false);
-		
-	}
-	
-	@Test
-	public void salvarClienteSemTelefone2() {
-		cliente = new Cliente(TEL1,null,FAZENDA,SOLICITACAO);
-		clienteService.salvar(cliente);
-		
-		assertFalse("cadastro" + cliente + "com falha", false);
-		
-	}
-	
-	@Test
-	public void salvarClienteComTelefoneErrado() {
-		cliente = new Cliente(TEL1,"lucas",FAZENDA,SOLICITACAO);
-		clienteService.salvar(cliente);
-		
-		assertFalse("cadastro" + cliente + "com falha", false);
-		
-	}
+//	@Before
+//	public void init() {
+//		cliente = new Cliente(TEL1,TEL2,FAZENDA,SOLICITACAO);
+//	}
+//	
+//	/*@After	
+//	public void after() {
+//		//Mockito.doCallRealMethod().when(clienteservice).);
+//		//Não foi possivel identific como apagar o cliente
+//		
+//	}*/
+//	
+//	@Test
+//	public void salvarCliente() {
+//		clienteService.salvar(cliente);
+//		
+//		assertTrue("cadastro" + cliente + "com sucesso", true);
+//		
+//	}
+//	
+//	@Test
+//	public void salvarClienteSemTelefone1() {
+//		cliente = new Cliente(null,TEL2,FAZENDA,SOLICITACAO);
+//		clienteService.salvar(cliente);
+//		
+//		assertFalse("cadastro" + cliente + "com falha", false);
+//		
+//	}
+//	
+//	@Test
+//	public void salvarClienteSemTelefone2() {
+//		cliente = new Cliente(TEL1,null,FAZENDA,SOLICITACAO);
+//		clienteService.salvar(cliente);
+//		
+//		assertFalse("cadastro" + cliente + "com falha", false);
+//		
+//	}
+//	
+//	@Test
+//	public void salvarClienteComTelefoneErrado() {
+//		cliente = new Cliente(TEL1,"lucas",FAZENDA,SOLICITACAO);
+//		clienteService.salvar(cliente);
+//		
+//		assertFalse("cadastro" + cliente + "com falha", false);
+//		
+//	}
 }

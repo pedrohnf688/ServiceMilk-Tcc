@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pa2.milk.api.model.Bolsista;
+import com.pa2.milk.api.model.Cliente;
 import com.pa2.milk.api.model.enums.EnumTipoPerfilUsuario;
 import com.pa2.milk.api.repository.BolsistaRepository;
 
@@ -25,12 +26,12 @@ public class BolsistaService {
 		bolsistaRepository.save(bolsista);
 	}
 
-	public Bolsista buscarPorId(Integer id) {
+	public Optional<Bolsista> buscarPorId(Integer id) {
 		log.info("Buscando Bolsista por ID ");
-		Optional<Bolsista> objBolsista = bolsistaRepository.findById(id);
-		return objBolsista.orElse(null);
+		return bolsistaRepository.findById(id);
 	}
-
+	
+	
 	public Optional<Bolsista> buscarPorCpf(String cpf) {
 		log.info("Buscando Bolsista pelo Cpf: {}", cpf);
 		return Optional.ofNullable(this.bolsistaRepository.findByCpf(cpf));

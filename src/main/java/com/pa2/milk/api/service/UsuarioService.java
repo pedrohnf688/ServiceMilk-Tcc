@@ -35,10 +35,16 @@ public class UsuarioService {
 		return Optional.ofNullable(this.usuarioRepositorio.findByCodigoTipoPerfilUsuarioAndIdAndAtivoTrue(tipoPerfilUsuario.getCodigo(), id));
 	}
 
-	public Usuario buscarPorId(Integer id) {
+	public Optional<Usuario> buscarPorId(Integer id) {
 		log.info("Buscando Cliente por ID ");
-		Optional<Usuario> objCliente = this.usuarioRepositorio.findById(id);
-		return objCliente.orElse(null);
+		return this.usuarioRepositorio.findById(id);
 	}
-	 
+
+	public EnumTipoPerfilUsuario buscarPerfilpeloId(Integer id) {
+		log.info("Buscando Perfil do Usuario por ID:{}",id);
+		Optional<Usuario> usuario = this.usuarioRepositorio.findById(id);
+		return usuario.get().getCodigoTipoPerfilUsuario();
+	}
+
+	
 }
