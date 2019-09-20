@@ -93,163 +93,163 @@ public class ServiceMilkApplication {
 	public CommandLineRunner commandLineRunner() {
 		return args -> {
 
-//			// Administrador
-//
-//			Usuario a = new Administrador();
-//			a.setEmail("admin@email.com");
-//			a.setCodigoTipoPerfilUsuario(EnumTipoPerfilUsuario.ROLE_ADMINISTRADOR);
-//			a.setNome("ADM");
-//			a.setCpf("11242520023");
-//			Credencial cA = new Credencial();
-//			cA.setUsername("admin");
-//			cA.setSenha(PasswordUtils.gerarBCrypt("admin"));
-//			cA.setUsuario(a);
-//
-////			if(!this.credencialRepository.existsById(cA.getId()))
-//			this.credencialRepository.save(cA);
-//
-//			// Cliente
-//			Usuario usuario = new Cliente();
-//			usuario.setEmail("pedro@email.com");
-//			usuario.setCodigoTipoPerfilUsuario(EnumTipoPerfilUsuario.ROLE_CLIENTE);
-//			usuario.setNome("Pedro Fernandes");
-//			usuario.setCpf("26302742099");
-//			((Cliente) usuario).setTelefone1("888888888");
-//			((Cliente) usuario).setTelefone2("999999999");
-//			Credencial c = new Credencial();
-//			c.setId(usuario.getId());
-//			c.setUsername("pedrohnf688");
-//			c.setSenha(PasswordUtils.gerarBCrypt("pedrohnf"));
-//			c.setUsuario(usuario);
-//			this.credencialRepository.save(c);
-//
-//			// Bolsista
-//			Usuario b = new Bolsista();
-//			b.setEmail("fabio@email.com");
-//			b.setCodigoTipoPerfilUsuario(EnumTipoPerfilUsuario.ROLE_BOLSISTA);
-//			b.setNome("Fábio Henrique");
-//			b.setCpf("19056419072");
-//			Credencial cB = new Credencial();
-//			cB.setUsername("fabio");
-//			cB.setSenha(PasswordUtils.gerarBCrypt("fabio"));
-//			cB.setUsuario(b);
-//			this.credencialRepository.save(cB);
-//
-//			// Fazenda
-//			Fazenda fazenda = new Fazenda();
-//			fazenda.setNomeFazenda("Fazenda Monte Alegre");
-//			fazenda.setBairro("Iguaçu");
-//			fazenda.setCep("64965970");
-//			fazenda.setCidade("Avelino Lopes");
-//			fazenda.setCpfcnpj("07204356000196");
-//			fazenda.setEndereco("Avenida Sérgio Gama 105");
-//			fazenda.setNumero(211);
-//			fazenda.setImagem("imagem");
-//			fazenda.setEstado("Piauí");
-//			fazenda.setCliente((Cliente) usuario);
-//			this.fazendaRepository.save(fazenda);
-//
-//			Fazenda fazenda1 = new Fazenda();
-//			fazenda1.setNomeFazenda("Chácara Pedacinho do Céu");
-//			fazenda1.setBairro("Aracuí");
-//			fazenda1.setCep("29365984");
-//			fazenda1.setCidade("Aracui");
-//			fazenda1.setCpfcnpj("66965755000139");
-//			fazenda1.setEndereco("Rodovia Fued Nemer, s/n");
-//			fazenda1.setNumero(2112);
-//			fazenda1.setImagem("imagem2");
-//			fazenda1.setEstado("Minas Gerais");
-//			fazenda1.setCliente((Cliente) usuario);
-//			this.fazendaRepository.save(fazenda1);
-//
-//			// Solicitação
-//			Solicitacao s = new Solicitacao();
-//			s.setCliente((Cliente) usuario);
-//			s.setFazenda(fazenda);
-//			s.setStatus(EnumStatusSolicitacao.PENDENTE);
-//			s.setDataCriada(Calendar.getInstance(TimeZone.getTimeZone("GMT-03:00")).getTime());
-//			this.solicitacaoRepository.save(s);
-//
-//			// OrdemServiço
-//			OrdemServico os = new OrdemServico();
-//			os.setDataHora(new Date());
-//			os.setSolicitacao(s);
-//			os.setBolsista((Bolsista) b);
-//			os.setValor(112.0);
-//			this.ordemServicoRepository.save(os);
-//
-//			// Analise 1
-//			Collection<EnumLeite> teste = new ArrayList<>();
-//			teste.add(EnumLeite.CRU);
-//			teste.add(EnumLeite.PASTEURIZADO);
-//
-//			Collection<EnumProdutos> teste2 = new ArrayList<>();
-//			teste2.add(EnumProdutos.SORO);
-//			teste2.add(EnumProdutos.CREME_30_GORDURA);
-//
-//			Collection<EnumOrigemLeite> teste3 = new ArrayList<>();
-//			teste3.add(EnumOrigemLeite.TANQUE_COLETIVO);
-//			teste3.add(EnumOrigemLeite.REBANHO_BALDE);
-//
-//			Collection<EnumAnalisesSolicitadas> teste4 = new ArrayList<>();
-//			teste4.add(EnumAnalisesSolicitadas.ANALISES_FRAUDE_FORMOL);
-//			teste4.add(EnumAnalisesSolicitadas.CELULAS_SOMATICAS);
-//
-//			Analise analise = new Analise();
-//			analise.setEspecie(EnumEspecie.BOVINO);
-//			// analise.setLeite(EnumLeite.CRU);
-//			analise.setProdutos(teste2);
-//			analise.setOrigemLeite(EnumOrigemLeite.TETEIRA);
-//			analise.setAnalisesSolicitadas(teste4);
-//			analise.setQuantidadeAmostras(70);
-//
-//			Analise analise2 = new Analise();
-//			analise2.setEspecie(EnumEspecie.OVINO);
-//			// analise2.setLeite(EnumLeite.CRU);
-//			analise2.setProdutos(teste2);
-//			analise2.setOrigemLeite(EnumOrigemLeite.TETEIRA);
-//			analise2.setAnalisesSolicitadas(teste4);
-//			analise2.setQuantidadeAmostras(60);
-//			analise2.setDescricao("analise 2");
-//
-//			Analise analise3 = new Analise();
-//			analise3.setEspecie(EnumEspecie.CAPRINO);
-//			// analise3.setLeite(EnumLeite.CRU);
-//			analise3.setProdutos(teste2);
-//			analise3.setOrigemLeite(EnumOrigemLeite.TETEIRA);
-//			analise3.setAnalisesSolicitadas(teste4);
-//			analise3.setQuantidadeAmostras(5);
-//			analise3.setDescricao("analise 3");
-//			this.analiseRepository.save(analise);
-//
-//			// Amostra 1
-//			Amostra amostra = new Amostra();
-//			amostra.setDataColeta(new Date());
-//			// amostra.setNumeroAmostra(30);
-//			amostra.setObservacao("obs");
-//			amostra.setQrCode("qrCode");
-//			amostra.setAnalise(analise);
-//			this.amostraRepository.save(amostra);
-//
-//			// Amostra 2
-//			Amostra amostra2 = new Amostra();
-//			amostra2.setDataColeta(new Date());
-//			// amostra2.setNumeroAmostra(323);
-//			amostra2.setObservacao("obs2");
-//			amostra2.setQrCode("qrCode2");
-//			amostra2.setAnalise(analise);
-//			this.amostraRepository.save(amostra2);
-//
-//			// Adicionar id de solicitação em uma analise
-//			Optional<Solicitacao> solicitacao = this.solicitacaoRepository.findById(1);
-//			List<Analise> listaAnalises = new ArrayList<>();
-//			listaAnalises.add(analise);
-//			listaAnalises.add(analise2);
-//			listaAnalises.add(analise3);
-//			listaAnalises.stream().forEach(objAnalise -> solicitacao.get().addAnalise(objAnalise));
-//			// solicitacao.get().addAnalise(analise);
-//			// solicitacao.get().addAnalise(analise2);
-//			this.solicitacaoRepository.save(solicitacao.get());
+			// Administrador
+
+			Usuario a = new Administrador();
+			a.setEmail("admin@email.com");
+			a.setCodigoTipoPerfilUsuario(EnumTipoPerfilUsuario.ROLE_ADMINISTRADOR);
+			a.setNome("ADM");
+			a.setCpf("11242520023");
+			Credencial cA = new Credencial();
+			cA.setUsername("admin");
+			cA.setSenha(PasswordUtils.gerarBCrypt("admin"));
+			cA.setUsuario(a);
+
+//			if(!this.credencialRepository.existsById(cA.getId()))
+			this.credencialRepository.save(cA);
+
+			// Cliente
+			Usuario usuario = new Cliente();
+			usuario.setEmail("pedro@email.com");
+			usuario.setCodigoTipoPerfilUsuario(EnumTipoPerfilUsuario.ROLE_CLIENTE);
+			usuario.setNome("Pedro Fernandes");
+			usuario.setCpf("26302742099");
+			((Cliente) usuario).setTelefone1("888888888");
+			((Cliente) usuario).setTelefone2("999999999");
+			Credencial c = new Credencial();
+			c.setId(usuario.getId());
+			c.setUsername("pedrohnf688");
+			c.setSenha(PasswordUtils.gerarBCrypt("pedrohnf"));
+			c.setUsuario(usuario);
+			this.credencialRepository.save(c);
+
+			// Bolsista
+			Usuario b = new Bolsista();
+			b.setEmail("fabio@email.com");
+			b.setCodigoTipoPerfilUsuario(EnumTipoPerfilUsuario.ROLE_BOLSISTA);
+			b.setNome("Fábio Henrique");
+			b.setCpf("19056419072");
+			Credencial cB = new Credencial();
+			cB.setUsername("fabio");
+			cB.setSenha(PasswordUtils.gerarBCrypt("fabio"));
+			cB.setUsuario(b);
+			this.credencialRepository.save(cB);
+
+			// Fazenda
+			Fazenda fazenda = new Fazenda();
+			fazenda.setNomeFazenda("Fazenda Monte Alegre");
+			fazenda.setBairro("Iguaçu");
+			fazenda.setCep("64965970");
+			fazenda.setCidade("Avelino Lopes");
+			fazenda.setCpfcnpj("07204356000196");
+			fazenda.setEndereco("Avenida Sérgio Gama 105");
+			fazenda.setNumero(211);
+			fazenda.setImagem("imagem");
+			fazenda.setEstado("Piauí");
+			fazenda.setCliente((Cliente) usuario);
+			this.fazendaRepository.save(fazenda);
+
+			Fazenda fazenda1 = new Fazenda();
+			fazenda1.setNomeFazenda("Chácara Pedacinho do Céu");
+			fazenda1.setBairro("Aracuí");
+			fazenda1.setCep("29365984");
+			fazenda1.setCidade("Aracui");
+			fazenda1.setCpfcnpj("66965755000139");
+			fazenda1.setEndereco("Rodovia Fued Nemer, s/n");
+			fazenda1.setNumero(2112);
+			fazenda1.setImagem("imagem2");
+			fazenda1.setEstado("Minas Gerais");
+			fazenda1.setCliente((Cliente) usuario);
+			this.fazendaRepository.save(fazenda1);
+
+			// Solicitação
+			Solicitacao s = new Solicitacao();
+			s.setCliente((Cliente) usuario);
+			s.setFazenda(fazenda);
+			s.setStatus(EnumStatusSolicitacao.PENDENTE);
+			s.setDataCriada(Calendar.getInstance(TimeZone.getTimeZone("GMT-03:00")).getTime());
+			this.solicitacaoRepository.save(s);
+
+			// OrdemServiço
+			OrdemServico os = new OrdemServico();
+			os.setDataHora(new Date());
+			os.setSolicitacao(s);
+			os.setBolsista((Bolsista) b);
+			os.setValor(112.0);
+			this.ordemServicoRepository.save(os);
+
+			// Analise 1
+			Collection<EnumLeite> teste = new ArrayList<>();
+			teste.add(EnumLeite.CRU);
+			teste.add(EnumLeite.PASTEURIZADO);
+
+			Collection<EnumProdutos> teste2 = new ArrayList<>();
+			teste2.add(EnumProdutos.SORO);
+			teste2.add(EnumProdutos.CREME_30_GORDURA);
+
+			Collection<EnumOrigemLeite> teste3 = new ArrayList<>();
+			teste3.add(EnumOrigemLeite.TANQUE_COLETIVO);
+			teste3.add(EnumOrigemLeite.REBANHO_BALDE);
+
+			Collection<EnumAnalisesSolicitadas> teste4 = new ArrayList<>();
+			teste4.add(EnumAnalisesSolicitadas.ANALISES_FRAUDE_FORMOL);
+			teste4.add(EnumAnalisesSolicitadas.CELULAS_SOMATICAS);
+
+			Analise analise = new Analise();
+			analise.setEspecie(EnumEspecie.BOVINO);
+			// analise.setLeite(EnumLeite.CRU);
+			analise.setProdutos(teste2);
+			analise.setOrigemLeite(EnumOrigemLeite.TETEIRA);
+			analise.setAnalisesSolicitadas(teste4);
+			analise.setQuantidadeAmostras(70);
+
+			Analise analise2 = new Analise();
+			analise2.setEspecie(EnumEspecie.OVINO);
+			// analise2.setLeite(EnumLeite.CRU);
+			analise2.setProdutos(teste2);
+			analise2.setOrigemLeite(EnumOrigemLeite.TETEIRA);
+			analise2.setAnalisesSolicitadas(teste4);
+			analise2.setQuantidadeAmostras(60);
+			analise2.setDescricao("analise 2");
+
+			Analise analise3 = new Analise();
+			analise3.setEspecie(EnumEspecie.CAPRINO);
+			// analise3.setLeite(EnumLeite.CRU);
+			analise3.setProdutos(teste2);
+			analise3.setOrigemLeite(EnumOrigemLeite.TETEIRA);
+			analise3.setAnalisesSolicitadas(teste4);
+			analise3.setQuantidadeAmostras(5);
+			analise3.setDescricao("analise 3");
+			this.analiseRepository.save(analise);
+
+			// Amostra 1
+			Amostra amostra = new Amostra();
+			amostra.setDataColeta(new Date());
+			// amostra.setNumeroAmostra(30);
+			amostra.setObservacao("obs");
+			amostra.setQrCode("qrCode");
+			amostra.setAnalise(analise);
+			this.amostraRepository.save(amostra);
+
+			// Amostra 2
+			Amostra amostra2 = new Amostra();
+			amostra2.setDataColeta(new Date());
+			// amostra2.setNumeroAmostra(323);
+			amostra2.setObservacao("obs2");
+			amostra2.setQrCode("qrCode2");
+			amostra2.setAnalise(analise);
+			this.amostraRepository.save(amostra2);
+
+			// Adicionar id de solicitação em uma analise
+			Optional<Solicitacao> solicitacao = this.solicitacaoRepository.findById(1);
+			List<Analise> listaAnalises = new ArrayList<>();
+			listaAnalises.add(analise);
+			listaAnalises.add(analise2);
+			listaAnalises.add(analise3);
+			listaAnalises.stream().forEach(objAnalise -> solicitacao.get().addAnalise(objAnalise));
+			// solicitacao.get().addAnalise(analise);
+			// solicitacao.get().addAnalise(analise2);
+			this.solicitacaoRepository.save(solicitacao.get());
 
 		};
 	}
