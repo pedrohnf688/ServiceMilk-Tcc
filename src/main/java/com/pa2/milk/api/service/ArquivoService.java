@@ -29,7 +29,7 @@ public class ArquivoService {
 						"Desculpa! Nome do arquivo contém sequência de caminho inválida " + fileName);
 			}
 
-			Arquivo arquivo = new Arquivo(fileName, file.getContentType(), file.getBytes());
+			Arquivo arquivo = new Arquivo(fileName, file.getContentType(), file.getBytes(),null, 0);
 
 			return arquivoRepository.save(arquivo);
 		} catch (IOException ex) {

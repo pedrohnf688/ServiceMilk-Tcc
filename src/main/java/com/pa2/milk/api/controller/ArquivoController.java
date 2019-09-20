@@ -63,9 +63,14 @@ public class ArquivoController {
 	private SolicitacaoService solicitacaoService;
 
 	@PutMapping("/uploadFileUsuario/{id}")
-	public UploadFileResponse uploadFileCliente(@RequestParam("file") MultipartFile file,
-			@PathVariable("id") Integer id) {
+	public Arquivo uploadFileCliente(@RequestParam("file") MultipartFile file, @PathVariable("id") Integer id) {
 		Arquivo dbFile = arquivoService.storeFile(file);
+
+		String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/downloadFile/")
+				.path(dbFile.getId()).toUriString();
+
+		dbFile.setFileDownloadUri(fileDownloadUri);
+		dbFile.setSize(file.getSize());
 
 		Optional<Usuario> usuario = this.usuarioService.buscarPorId(id);
 
@@ -89,10 +94,9 @@ public class ArquivoController {
 
 		}
 
-		String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/downloadFile/")
-				.path(dbFile.getId()).toUriString();
-
-		return new UploadFileResponse(dbFile.getFileName(), fileDownloadUri, file.getContentType(), file.getSize());
+		// return new UploadFileResponse(dbFile.getFileName(), fileDownloadUri,
+		// file.getContentType(), file.getSize());
+		return dbFile;
 	}
 
 	@PutMapping("/uploadFileSolicitacao/{id}")
