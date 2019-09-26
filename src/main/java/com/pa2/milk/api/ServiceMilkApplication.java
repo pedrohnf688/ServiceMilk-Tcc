@@ -250,7 +250,7 @@ public class ServiceMilkApplication {
 			// solicitacao.get().addAnalise(analise);
 			// solicitacao.get().addAnalise(analise2);
 			this.solicitacaoRepository.save(solicitacao.get());
-
+			
 		};
 	}
 

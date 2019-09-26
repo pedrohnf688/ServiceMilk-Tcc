@@ -1,18 +1,25 @@
 package com.pa2.milk.api.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pa2.milk.api.helper.Response;
+import com.pa2.milk.api.model.Amostra;
 import com.pa2.milk.api.model.Analise;
+import com.pa2.milk.api.repository.AmostraRepository;
+import com.pa2.milk.api.service.AmostraService;
 import com.pa2.milk.api.service.AnaliseService;
 
 @RestController
@@ -25,6 +32,11 @@ public class AnaliseController {
 	@Autowired
 	private AnaliseService analiseService;
 	
+	@Autowired
+	private AmostraService amostraService;
+	
+	@Autowired
+	private AmostraRepository amostraRepository;
 	
 	@PreAuthorize("hasAnyRole('ADMINISTRADOR','BOLSISTA','CLIENTE')")
 	@GetMapping(value = "{solicitacaoId}")
@@ -34,6 +46,33 @@ public class AnaliseController {
 		return analises;
 
 	}
+	
+	@PreAuthorize("hasAnyRole('ADMINISTRADOR','BOLSISTA','CLIENTE')")
+	@DeleteMapping(value = "{id}")
+	public ResponseEntity<Response<Analise>> deletarAnalisePorId(@PathVariable("id") Integer id) {
+
+		log.info("Removendo Analise por Id: {}", id);
+
+		Response<Analise> response = new Response<Analise>();
+
+		Optional<Analise> analise = this.analiseService.buscarAnalisePorId(id);
+		
+		if (!analise.isPresent()) {
+			log.info("Analise não encontrada");
+			response.getErros().add("Analise não encontrada");
+			ResponseEntity.badRequest().body(response);
+		}
+
+		List<Amostra> amostras = this.amostraService.listarAmostrasPorAnalise(analise.get().getId());
+		
+		response.setData(analise.get());
+		
+		this.analiseService.deletarAnalisePorId(id);
+		this.amostraRepository.deleteAll(amostras);
+
+		return ResponseEntity.ok(response);
+	}
+	
 
 
 }

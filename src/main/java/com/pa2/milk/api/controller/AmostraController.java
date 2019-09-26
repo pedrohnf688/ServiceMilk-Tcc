@@ -244,17 +244,10 @@ public class AmostraController {
 		response.setData(amostra.get());
 		this.amostraService.remover(id);
 
+
 		return ResponseEntity.ok(response);
 	}
 
-	@PreAuthorize("hasAnyRole('ADMINISTRADOR','BOLSISTA','CLIENTE')")
-	@DeleteMapping(value = "/analise/{id}")
-	public List<Amostra> deletarAmostraPorAnalise(@PathVariable("id") Integer id) {
-		log.info("Removendo Amostra: {}", id);
 
-		List<Amostra> amostras = this.amostraService.deletarAmostrasPorAnalise(id);
-
-		return amostras;
-	}
 
 }
