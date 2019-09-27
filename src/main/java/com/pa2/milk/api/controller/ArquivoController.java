@@ -143,4 +143,10 @@ public class ArquivoController {
 				.body(new ByteArrayResource(dbFile.getData()));
 	}
 
+	@GetMapping("/fileUrl/{id}")
+	public String fileUrlFoto(@PathVariable("id") Integer id) {
+		Optional<Usuario> usuario = this.usuarioService.buscarPorId(id);
+		return usuario.get().getFotoPerfil().getFileDownloadUri();
+	}
+
 }
