@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,6 +31,7 @@ import com.pa2.milk.api.model.Cliente;
 import com.pa2.milk.api.model.Solicitacao;
 import com.pa2.milk.api.model.Usuario;
 import com.pa2.milk.api.model.enums.EnumTipoPerfilUsuario;
+import com.pa2.milk.api.repository.ArquivoRepository;
 import com.pa2.milk.api.service.AdministradorService;
 import com.pa2.milk.api.service.ArquivoService;
 import com.pa2.milk.api.service.BolsistaService;
@@ -65,6 +65,9 @@ public class ArquivoController {
 	@Autowired
 	private SolicitacaoService solicitacaoService;
 
+	@Autowired
+	private ArquivoRepository arquivoRepository;
+	
 	@PutMapping("/uploadFileUsuario/{id}")
 	public Arquivo uploadFileCliente(@RequestParam("file") MultipartFile file, @PathVariable("id") Integer id) {
 		Arquivo dbFile = arquivoService.storeFile(file);
@@ -146,7 +149,10 @@ public class ArquivoController {
 	@GetMapping("/fileUrl/{id}")
 	public String fileUrlFoto(@PathVariable("id") Integer id) {
 		Optional<Usuario> usuario = this.usuarioService.buscarPorId(id);
-		return usuario.get().getFotoPerfil().getFileDownloadUri();
+		
+		Optional<Arquivo> arquivo = this.arquivoRepository.findById(usuario.get().getFotoPerfil().getId());
+		
+		return arquivo.get().getFileDownloadUri();
 	}
 
 }
