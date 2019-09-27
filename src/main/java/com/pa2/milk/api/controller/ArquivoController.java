@@ -42,7 +42,6 @@ import com.pa2.milk.api.service.UsuarioService;
 import javassist.NotFoundException;
 
 @RestController
-@RequestMapping(value = "/arquivo")
 @CrossOrigin(origins = "*")
 public class ArquivoController {
 
