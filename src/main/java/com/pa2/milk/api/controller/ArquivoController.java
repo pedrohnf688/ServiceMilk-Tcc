@@ -30,7 +30,6 @@ import com.pa2.milk.api.model.Bolsista;
 import com.pa2.milk.api.model.Cliente;
 import com.pa2.milk.api.model.Solicitacao;
 import com.pa2.milk.api.model.Usuario;
-import com.pa2.milk.api.model.dto.ArquivoDto;
 import com.pa2.milk.api.model.enums.EnumTipoPerfilUsuario;
 import com.pa2.milk.api.repository.ArquivoRepository;
 import com.pa2.milk.api.service.AdministradorService;
@@ -148,18 +147,10 @@ public class ArquivoController {
 	}
 
 	@GetMapping("/fileUrl/{id}")
-	public ArquivoDto fileUrlFoto(@PathVariable("id") Integer id) {
-		
+	public String fileUrlFoto(@PathVariable("id") Integer id) {
 		Optional<Usuario> usuario = this.usuarioService.buscarPorId(id);
-		Optional<Arquivo> arquivo = this.arquivoRepository.findById(usuario.get().getFotoPerfil().getId());
 		
-		ArquivoDto a = new ArquivoDto();
-		
-		a.setEmail(usuario.get().getEmail());
-		a.setLinkUrlFoto(arquivo.get().getFileDownloadUri());
-		
-	
-		return a;
+		return usuario.get().getFotoPerfil().getFileDownloadUri();
 	}
 
 }
