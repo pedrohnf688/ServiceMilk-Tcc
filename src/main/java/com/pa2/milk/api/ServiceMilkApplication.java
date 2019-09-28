@@ -144,7 +144,6 @@ public class ServiceMilkApplication {
 			fazenda.setCpfcnpj("07204356000196");
 			fazenda.setEndereco("Avenida Sérgio Gama 105");
 			fazenda.setNumero(211);
-			fazenda.setImagem("imagem");
 			fazenda.setEstado("Piauí");
 			fazenda.setCliente((Cliente) usuario);
 			this.fazendaRepository.save(fazenda);
@@ -157,7 +156,6 @@ public class ServiceMilkApplication {
 			fazenda1.setCpfcnpj("66965755000139");
 			fazenda1.setEndereco("Rodovia Fued Nemer, s/n");
 			fazenda1.setNumero(2112);
-			fazenda1.setImagem("imagem2");
 			fazenda1.setEstado("Minas Gerais");
 			fazenda1.setCliente((Cliente) usuario);
 			this.fazendaRepository.save(fazenda1);

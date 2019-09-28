@@ -6,9 +6,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.Cascade;
 
 @Entity(name = "fazenda")
 @Table
@@ -19,9 +22,6 @@ public class Fazenda extends AbstractModel<Integer> {
 
 	@NotBlank(message = "O campo nome não pode ser nulo.")
 	private String nomeFazenda;
-
-	@NotBlank(message = "O campo imagem não pode ser nulo.")
-	private String imagem;
 
 	// @CNPJ(message = "O campo CNPJ é invalido")
 	@NotBlank(message = "O campo CNPJ não pode ser nulo.")
@@ -49,20 +49,25 @@ public class Fazenda extends AbstractModel<Integer> {
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 
+	@OneToOne
+	@Cascade({ org.hibernate.annotations.CascadeType.ALL })
+	private Arquivo fotoFazenda;
+
 	public Fazenda() {
 	}
 
-	public Fazenda(@NotBlank(message = "O campo nome não pode ser nulo.") String nomeFazenda,
-			@NotBlank(message = "O campo imagem não pode ser nulo.") String imagem,
+	public Fazenda(Integer id, @NotBlank(message = "O campo nome não pode ser nulo.") String nomeFazenda,
 			@NotBlank(message = "O campo CNPJ não pode ser nulo.") String cpfcnpj,
 			@NotBlank(message = "O campo cep não pode ser nulo.") String cep,
 			@NotBlank(message = "O campo endereço não pode ser nulo.") String endereco,
 			@NotNull(message = "O campo numero não pode ser nulo.") int numero,
 			@NotBlank(message = "O campo bairro não pode ser nulo.") String bairro,
 			@NotBlank(message = "O campo cidade não pode ser nulo.") String cidade,
-			@NotBlank(message = "O campo estado não pode ser nulo.") String estado, Cliente cliente) {
+			@NotBlank(message = "O campo estado não pode ser nulo.") String estado, Cliente cliente,
+			Arquivo fotoFazenda) {
+		super();
+		this.id = id;
 		this.nomeFazenda = nomeFazenda;
-		this.imagem = imagem;
 		this.cpfcnpj = cpfcnpj;
 		this.cep = cep;
 		this.endereco = endereco;
@@ -71,6 +76,7 @@ public class Fazenda extends AbstractModel<Integer> {
 		this.cidade = cidade;
 		this.estado = estado;
 		this.cliente = cliente;
+		this.fotoFazenda = fotoFazenda;
 	}
 
 	@Override
@@ -81,14 +87,6 @@ public class Fazenda extends AbstractModel<Integer> {
 	@Override
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getImagem() {
-		return imagem;
-	}
-
-	public void setImagem(String imagem) {
-		this.imagem = imagem;
 	}
 
 	public String getCpfcnpj() {
@@ -163,6 +161,19 @@ public class Fazenda extends AbstractModel<Integer> {
 		this.nomeFazenda = nomeFazenda;
 	}
 
-	
-	
+	public Arquivo getFotoFazenda() {
+		return fotoFazenda;
+	}
+
+	public void setFotoFazenda(Arquivo fotoFazenda) {
+		this.fotoFazenda = fotoFazenda;
+	}
+
+	@Override
+	public String toString() {
+		return "Fazenda [id=" + id + ", nomeFazenda=" + nomeFazenda + ", cpfcnpj=" + cpfcnpj + ", cep=" + cep
+				+ ", endereco=" + endereco + ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade
+				+ ", estado=" + estado + ", cliente=" + cliente + ", fotoFazenda=" + fotoFazenda + "]";
+	}
+
 }

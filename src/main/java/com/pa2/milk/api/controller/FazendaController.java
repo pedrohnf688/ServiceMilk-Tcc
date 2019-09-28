@@ -208,12 +208,6 @@ public class FazendaController {
 			farm.setEstado(farm.getEstado());
 		}
 		
-		if (fazenda.getImagem() != null) {
-			farm.setImagem(fazenda.getImagem());
-		}else {
-			farm.setImagem(farm.getImagem());
-		}
-		
 		if (fazenda.getNumero() != 0) {
 			farm.setNumero(fazenda.getNumero());
 		}else {

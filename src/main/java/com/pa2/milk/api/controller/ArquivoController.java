@@ -28,6 +28,7 @@ import com.pa2.milk.api.model.Administrador;
 import com.pa2.milk.api.model.Arquivo;
 import com.pa2.milk.api.model.Bolsista;
 import com.pa2.milk.api.model.Cliente;
+import com.pa2.milk.api.model.Fazenda;
 import com.pa2.milk.api.model.Solicitacao;
 import com.pa2.milk.api.model.Usuario;
 import com.pa2.milk.api.model.enums.EnumTipoPerfilUsuario;
@@ -36,6 +37,7 @@ import com.pa2.milk.api.service.AdministradorService;
 import com.pa2.milk.api.service.ArquivoService;
 import com.pa2.milk.api.service.BolsistaService;
 import com.pa2.milk.api.service.ClienteService;
+import com.pa2.milk.api.service.FazendaService;
 import com.pa2.milk.api.service.SolicitacaoService;
 import com.pa2.milk.api.service.UsuarioService;
 
@@ -67,7 +69,10 @@ public class ArquivoController {
 
 	@Autowired
 	private ArquivoRepository arquivoRepository;
-	
+
+	@Autowired
+	private FazendaService fazendaService;
+
 	@PutMapping("/uploadFileUsuario/{id}")
 	public Arquivo uploadFileCliente(@RequestParam("file") MultipartFile file, @PathVariable("id") Integer id) {
 		Arquivo dbFile = arquivoService.storeFile(file);
@@ -121,6 +126,25 @@ public class ArquivoController {
 		return new UploadFileResponse(dbFile.getFileName(), fileDownloadUri, file.getContentType(), file.getSize());
 	}
 
+	@PutMapping("/uploadFileFazenda/{id}")
+	public Arquivo uploadFileFazenda(@RequestParam("file") MultipartFile file, @PathVariable("id") Integer id)
+			throws NotFoundException {
+		Arquivo dbFile = arquivoService.storeFile(file);
+
+		Optional<Fazenda> fazenda = this.fazendaService.buscarPorId(id);
+		
+		String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/downloadFile/")
+				.path(dbFile.getId()).toUriString();
+		
+		dbFile.setFileDownloadUri(fileDownloadUri);
+		dbFile.setSize(file.getSize());
+		
+		fazenda.get().setFotoFazenda(dbFile);
+		this.fazendaService.salvar(fazenda.get());
+		
+		return dbFile;
+	}
+
 	@PostMapping("/uploadFile")
 	public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) {
 		Arquivo dbFile = arquivoService.storeFile(file);
@@ -149,7 +173,7 @@ public class ArquivoController {
 	@GetMapping("/fileUrl/{id}")
 	public String fileUrlFoto(@PathVariable("id") Integer id) {
 		Optional<Usuario> usuario = this.usuarioService.buscarPorId(id);
-		
+
 		return usuario.get().getFotoPerfil().getFileDownloadUri();
 	}
 

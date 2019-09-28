@@ -6,7 +6,6 @@ public class FazendaDto {
 
 	private Optional<Integer> id = Optional.empty();
 	private String nome;
-	private String imagem;
 	private String cpfcnpj;
 	private String cep;
 	private String endereco;
@@ -33,14 +32,6 @@ public class FazendaDto {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public String getImagem() {
-		return imagem;
-	}
-
-	public void setImagem(String imagem) {
-		this.imagem = imagem;
 	}
 
 	public String getCpfcnpj() {
@@ -107,11 +98,12 @@ public class FazendaDto {
 		this.clienteId = clienteId;
 	}
 
+
 	@Override
 	public String toString() {
-		return "FazendaDto [id=" + id + ", nome=" + nome + ", imagem=" + imagem + ", cpfcnpj=" + cpfcnpj + ", cep="
-				+ cep + ", endereco=" + endereco + ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade
-				+ ", estado=" + estado + ", clienteId=" + clienteId + "]";
+		return "FazendaDto [id=" + id + ", nome=" + nome + ", cpfcnpj=" + cpfcnpj + ", cep=" + cep + ", endereco="
+				+ endereco + ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado
+				+ ", clienteId=" + clienteId + "]";
 	}
 
 }
