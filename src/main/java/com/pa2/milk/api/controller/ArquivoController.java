@@ -132,16 +132,16 @@ public class ArquivoController {
 		Arquivo dbFile = arquivoService.storeFile(file);
 
 		Optional<Fazenda> fazenda = this.fazendaService.buscarPorId(id);
-		
+
 		String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/downloadFile/")
 				.path(dbFile.getId()).toUriString();
-		
+
 		dbFile.setFileDownloadUri(fileDownloadUri);
 		dbFile.setSize(file.getSize());
-		
+
 		fazenda.get().setFotoFazenda(dbFile);
 		this.fazendaService.salvar(fazenda.get());
-		
+
 		return dbFile;
 	}
 
@@ -175,6 +175,13 @@ public class ArquivoController {
 		Optional<Usuario> usuario = this.usuarioService.buscarPorId(id);
 
 		return usuario.get().getFotoPerfil().getFileDownloadUri();
+	}
+
+	@GetMapping("/fileUrlFazendad/{id}")
+	public String fileUrlFotoFazenda(@PathVariable("id") Integer id) {
+		Optional<Fazenda> fazenda = this.fazendaService.buscarPorId(id);
+		
+		return fazenda.get().getFotoFazenda().getFileDownloadUri();
 	}
 
 }
