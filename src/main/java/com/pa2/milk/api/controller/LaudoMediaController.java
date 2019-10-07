@@ -64,6 +64,14 @@ public class LaudoMediaController {
 	@Autowired
 	private LaudoMediaService laudoMediaService;
 
+	
+	@GetMapping("laudo/{solicitacaoId}")
+	public List<Laudo> listarLaudoPorSolicitacao(@PathVariable("solicitacaoId") Integer solicitacaoId){
+		LaudoMedia lm = this.laudoMediaService.listarLaudoMediaPeloIddaSolicitacao(solicitacaoId);
+		List<Laudo> listaLaudos = lm.getListaLaudos();
+		return listaLaudos;
+	}
+	
 	@PostMapping("/batchId/{solicitacaoId}")
 	public LaudoMedia MedidaLaudos(@RequestParam("batchId") String batchId,
 			@PathVariable("solicitacaoId") Integer solicitacaoId) {

@@ -116,6 +116,7 @@ public class LaudoController {
 		return ResponseEntity.ok(response);
 
 	}
+
 //  OK
 	@GetMapping(value = "/batch")
 	public List<Laudo> buscarLaudoPorBatchId(@RequestParam("batchId") String batchId) {
@@ -205,7 +206,7 @@ public class LaudoController {
 		laudoId.setGord(laudo.getGord());
 		laudoId.setProt(laudo.getProt());
 		laudoId.setLact(laudo.getLact());
-	    laudoId.setEsd(laudo.getEsd());
+		laudoId.setEsd(laudo.getEsd());
 		laudoId.setPc(laudo.getPc());
 
 		laudoId = laudo;
@@ -257,7 +258,7 @@ public class LaudoController {
 		float somaTotpro[] = new float[laudo.size()];
 		float somaTrupro[] = new float[laudo.size()];
 		float somaUrea[] = new float[laudo.size()];
-				
+
 		String regex = "[+-]?[0-9]+(\\.[0-9]+)?([Ee][+-]?[0-9]+)?";
 		// compiling regex
 		Pattern p = Pattern.compile(regex);
@@ -293,13 +294,12 @@ public class LaudoController {
 					Matcher m13 = p.matcher(laudo.get(z).getTotpro() != null ? laudo.get(z).getTotpro() : "0");
 					Matcher m14 = p.matcher(laudo.get(z).getTrupro() != null ? laudo.get(z).getTrupro() : "0");
 					Matcher m15 = p.matcher(laudo.get(z).getUrea() != null ? laudo.get(z).getUrea() : "0");
-	
-					
+
 					somaCasein[z] += (m1.find() && m1.group().equals(laudo.get(z).getCasein()))
 							? Float.parseFloat(laudo.get(z).getCasein())
 							: 0;
-						
-					System.out.println("SomaCasein:"+somaCasein[y]+"\n");		
+
+					System.out.println("SomaCasein:" + somaCasein[y] + "\n");
 					somaCbt[z] += (m2.find() && m2.group().equals(laudo.get(z).getCbt()))
 							? Float.parseFloat(laudo.get(z).getCbt())
 							: 0;
@@ -344,27 +344,26 @@ public class LaudoController {
 					somaUrea[z] += (m15.find() && m15.group().equals(laudo.get(z).getUrea()))
 							? Float.parseFloat(laudo.get(z).getUrea())
 							: 0;
-				
-			}
-				
-			
-	      }
 
-			//System.out.println("Vetor de Casein Soma:" + somaCasein[y] + "\nCont:" + contRepetidos[y]);
+				}
+
+			}
+
+			// System.out.println("Vetor de Casein Soma:" + somaCasein[y] + "\nCont:" +
+			// contRepetidos[y]);
 
 		}
-		
+
 ///OBS: DESCOBRIR COMO SOMAR		
 		for (int i = 0; i < somaCasein.length; i++) {
-			System.out.println("Ordem:"+i+" -->" +somaCasein[i]);
-		
+			System.out.println("Ordem:" + i + " -->" + somaCasein[i]);
+
 		}
-		
 
 		for (int s = 0; s < contRepetidos.length; s++) {
-			
+
 			System.out.println("Contador" + contRepetidos[s]);
-			
+
 			somaCasein[s] /= contRepetidos[s];
 			somaCbt[s] /= contRepetidos[s];
 			somaCcs[s] /= contRepetidos[s];
@@ -382,7 +381,6 @@ public class LaudoController {
 			somaTotpro[s] /= contRepetidos[s];
 			somaTrupro[s] /= contRepetidos[s];
 			somaUrea[s] /= contRepetidos[s];
-
 
 		}
 
