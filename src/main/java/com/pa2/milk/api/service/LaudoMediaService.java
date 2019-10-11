@@ -27,8 +27,10 @@ public class LaudoMediaService {
 		return this.laudoMediaRepositorio.findAll();
 	}
 	
-	public LaudoMedia listarLaudoMediaPeloIddaSolicitacao(Integer solicitacaoId) {
+	public List<LaudoMedia> laudoMediaPeloIddaSolicitacao(Integer solicitacaoId) {
 		return this.laudoMediaRepositorio.findBySolicitacaoId(solicitacaoId);
 	}
+
+
 
 }

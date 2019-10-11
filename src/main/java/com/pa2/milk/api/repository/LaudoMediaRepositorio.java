@@ -14,6 +14,5 @@ import com.pa2.milk.api.model.LaudoMedia;
 @NamedQuery(name = "LaudoMediaRepositorio.findBySolicitacaoId", query = "SELECT l FROM LaudoMedia l WHERE l.solicitacao.id = :solicitacaoId")
 public interface LaudoMediaRepositorio extends JpaRepository<LaudoMedia, Integer> {
 
-	LaudoMedia findBySolicitacaoId(@Param("solicitacaoId") Integer solicitacaoId);
-
+	List<LaudoMedia> findBySolicitacaoId(@Param("solicitacaoId") Integer solicitacaoId);
 }

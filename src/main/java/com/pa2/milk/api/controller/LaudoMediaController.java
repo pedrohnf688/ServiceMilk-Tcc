@@ -66,11 +66,11 @@ public class LaudoMediaController {
 
 	
 	@GetMapping("laudo/{solicitacaoId}")
-	public List<Laudo> listarLaudoPorSolicitacao(@PathVariable("solicitacaoId") Integer solicitacaoId){
-		LaudoMedia lm = this.laudoMediaService.listarLaudoMediaPeloIddaSolicitacao(solicitacaoId);
-		List<Laudo> listaLaudos = lm.getListaLaudos();
-		return listaLaudos;
+	public List<LaudoMedia> listarLaudoMediaPorSolicitacao(@PathVariable("solicitacaoId") Integer solicitacaoId){
+		List<LaudoMedia> lm = this.laudoMediaService.laudoMediaPeloIddaSolicitacao(solicitacaoId);
+		return lm;
 	}
+
 	
 	@PostMapping("/batchId/{solicitacaoId}")
 	public LaudoMedia MedidaLaudos(@RequestParam("batchId") String batchId,
