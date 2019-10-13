@@ -232,26 +232,26 @@ public class LaudoMediaController {
 		LaudoMedia l = new LaudoMedia();
 
 		l.setBatchIdMedia(batchId);
-		l.setCaseinMedia(String.valueOf(Math.round(media1)));
-		l.setCbtMedia(String.valueOf(Math.round(media2)));
-		l.setCcsMedia(String.valueOf(Math.round(media3)));
-		l.setCelMedia(String.valueOf(Math.round(media4)));
-		l.setCmtMedia(String.valueOf(Math.round(media5)));
-		l.setDenMedia(String.valueOf(Math.round(media6)));
-		l.setFatMedia(String.valueOf(Math.round(media7)));
-		l.setFpdMedia(String.valueOf(Math.round(media8)));
-		l.setPhMedia(String.valueOf(Math.round(media9)));
-		l.setRantMedia(String.valueOf(Math.round(media10)));
-		l.setSnfMedia(String.valueOf(Math.round(media11)));
-		l.setSolidsMedia(String.valueOf(Math.round(media12)));
-		l.setTotproMedia(String.valueOf(Math.round(media13)));
-		l.setTruproMedia(String.valueOf(Math.round(media14)));
-		l.setUreaMedia(String.valueOf(Math.round(media15)));
-		l.setGordMedia(String.valueOf(Math.round(media16)));
-		l.setProtMedia(String.valueOf(Math.round(media17)));
-		l.setLactMedia(String.valueOf(Math.round(media18)));
-		l.setEsdMedia(String.valueOf(Math.round(media19)));
-		l.setPcMedia(String.valueOf(Math.round(media20)));
+		l.setCaseinMedia(String.valueOf(Math.floor(media1)));
+		l.setCbtMedia(String.valueOf(Math.floor(media2)));
+		l.setCcsMedia(String.valueOf(Math.floor(media3)));
+		l.setCelMedia(String.valueOf(Math.floor(media4)));
+		l.setCmtMedia(String.valueOf(Math.floor(media5)));
+		l.setDenMedia(String.valueOf(Math.floor(media6)));
+		l.setFatMedia(String.valueOf(Math.floor(media7)));
+		l.setFpdMedia(String.valueOf(Math.floor(media8)));
+		l.setPhMedia(String.valueOf(Math.floor(media9)));
+		l.setRantMedia(String.valueOf(Math.floor(media10)));
+		l.setSnfMedia(String.valueOf(Math.floor(media11)));
+		l.setSolidsMedia(String.valueOf(Math.floor(media12)));
+		l.setTotproMedia(String.valueOf(Math.floor(media13)));
+		l.setTruproMedia(String.valueOf(Math.floor(media14)));
+		l.setUreaMedia(String.valueOf(Math.floor(media15)));
+		l.setGordMedia(String.valueOf(Math.floor(media16)));
+		l.setProtMedia(String.valueOf(Math.floor(media17)));
+		l.setLactMedia(String.valueOf(Math.floor(media18)));
+		l.setEsdMedia(String.valueOf(Math.floor(media19)));
+		l.setPcMedia(String.valueOf(Math.floor(media20)));
 
 		l.setSolicitacao(s.get());
 
