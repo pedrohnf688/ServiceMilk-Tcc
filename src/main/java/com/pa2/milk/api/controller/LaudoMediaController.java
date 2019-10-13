@@ -78,7 +78,7 @@ public class LaudoMediaController {
 		// }
 
 		// public LaudoMedia mediaAritmeticaLaudo(String batchId, int solicitacaoId) {
-		log.info("Metodo para gerar a media dos atributos do laudo por solicitação:");
+	//	log.info("Metodo para gerar a media dos atributos do laudo por solicitação:");
 
 		List<Laudo> laudos = this.laudoService.buscarPorBatchId(batchId);
 
