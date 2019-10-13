@@ -231,27 +231,29 @@ public class LaudoMediaController {
 
 		LaudoMedia l = new LaudoMedia();
 
+	
+		
 		l.setBatchIdMedia(batchId);
-		l.setCaseinMedia(df.format(media1));
-		l.setCbtMedia(df.format(media2));
-		l.setCcsMedia(df.format(media3));
-		l.setCelMedia(df.format(media4));
-		l.setCmtMedia(df.format(media5));
-		l.setDenMedia(df.format(media6));
-		l.setFatMedia(df.format(media7));
-		l.setFpdMedia(df.format(media8));
-		l.setPhMedia(df.format(media9));
-		l.setRantMedia(df.format(media10));
-		l.setSnfMedia(df.format(media11));
-		l.setSolidsMedia(df.format(media12));
-		l.setTotproMedia(df.format(media13));
-		l.setTruproMedia(df.format(media14));
-		l.setUreaMedia(df.format(media15));
-		l.setGordMedia(df.format(media16));
-		l.setProtMedia(df.format(media17));
-		l.setLactMedia(df.format(media18));
-		l.setEsdMedia(df.format(media19));
-		l.setPcMedia(df.format(media20));
+		l.setCaseinMedia(String.valueOf(media1).length() >= 5 ? String.valueOf(media1).substring(0, 5) : String.valueOf(media1));
+		l.setCbtMedia(String.valueOf(media2).length() >= 5 ? String.valueOf(media2).substring(0, 5) : String.valueOf(media2));
+		l.setCcsMedia(String.valueOf(media3).length() >= 5 ? String.valueOf(media3).substring(0, 5) : String.valueOf(media3));
+		l.setCelMedia(String.valueOf(media4).length() >= 5 ? String.valueOf(media4).substring(0, 5) : String.valueOf(media4));
+		l.setCmtMedia(String.valueOf(media5).length() >= 5 ? String.valueOf(media5).substring(0, 5) : String.valueOf(media5));
+		l.setDenMedia(String.valueOf(media6).length() >= 5 ? String.valueOf(media6).substring(0, 5): String.valueOf(media6));
+		l.setFatMedia(String.valueOf(media7).length() >= 5 ? String.valueOf(media7).substring(0, 5) : String.valueOf(media7));
+		l.setFpdMedia(String.valueOf(media8).length() >= 5 ? String.valueOf(media8).substring(0, 5) : String.valueOf(media8));
+		l.setPhMedia(String.valueOf(media9).length() >= 5 ? String.valueOf(media9).substring(0, 5) : String.valueOf(media9));
+		l.setRantMedia(String.valueOf(media10).length() >= 5 ? String.valueOf(media10).substring(0, 5) : String.valueOf(media10));
+		l.setSnfMedia(String.valueOf(media11).length() >= 5 ? String.valueOf(media11).substring(0, 5) : String.valueOf(media11));
+		l.setSolidsMedia(String.valueOf(media12).length() >= 5 ? String.valueOf(media12).substring(0, 5) : String.valueOf(media12));
+		l.setTotproMedia(String.valueOf(media13).length() >= 5 ? String.valueOf(media13).substring(0, 5) : String.valueOf(media13));
+		l.setTruproMedia(String.valueOf(media14).length() >= 5 ? String.valueOf(media14).substring(0, 5) : String.valueOf(media14));
+		l.setUreaMedia(String.valueOf(media15).length() >= 5 ? String.valueOf(media15).substring(0, 5) : String.valueOf(media15));
+		l.setGordMedia(String.valueOf(media16).length() >= 5 ? String.valueOf(media16).substring(0, 5) : String.valueOf(media16));
+		l.setProtMedia(String.valueOf(media17).length() >= 5 ? String.valueOf(media17).substring(0, 5) : String.valueOf(media17));
+		l.setLactMedia(String.valueOf(media18).length() >= 5 ? String.valueOf(media18).substring(0, 5) : String.valueOf(media18));
+		l.setEsdMedia(String.valueOf(media19).length() >= 5 ? String.valueOf(media19).substring(0, 5) : String.valueOf(media19));
+		l.setPcMedia(String.valueOf(media20).length() >= 5 ? String.valueOf(media20).substring(0, 5) : String.valueOf(media20));
 
 		l.setSolicitacao(s.get());
 
