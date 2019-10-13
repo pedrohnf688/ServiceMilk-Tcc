@@ -232,26 +232,26 @@ public class LaudoMediaController {
 		LaudoMedia l = new LaudoMedia();
 
 		l.setBatchIdMedia(batchId);
-		l.setCaseinMedia(String.valueOf(media1).replace(",", ".").substring(0, 5));
-		l.setCbtMedia(String.valueOf(media2).replace(",", ".").substring(0, 5));
-		l.setCcsMedia(String.valueOf(media3).replace(",", ".").substring(0, 5));
-		l.setCelMedia(String.valueOf(media4).replace(",", ".").substring(0, 5));
-		l.setCmtMedia(String.valueOf(media5).replace(",", ".").substring(0, 5));
-		l.setDenMedia(String.valueOf(media6).replace(",", ".").substring(0, 5));
-		l.setFatMedia(String.valueOf(media7).replace(",", ".").substring(0, 5));
-		l.setFpdMedia(String.valueOf(media8).replace(",", ".").substring(0, 5));
-		l.setPhMedia(String.valueOf(media9).replace(",", ".").substring(0, 5));
-		l.setRantMedia(String.valueOf(media10).replace(",", ".").substring(0, 5));
-		l.setSnfMedia(String.valueOf(media11).replace(",", ".").substring(0, 5));
-		l.setSolidsMedia(String.valueOf(media12).replace(",", ".").substring(0, 5));
-		l.setTotproMedia(String.valueOf(media13).replace(",", ".").substring(0, 5));
-		l.setTruproMedia(String.valueOf(media14).replace(",", ".").substring(0, 5));
-		l.setUreaMedia(String.valueOf(media15).replace(",", ".").substring(0, 5));
-		l.setGordMedia(String.valueOf(media16).replace(",", ".").substring(0, 5));
-		l.setProtMedia(String.valueOf(media17).replace(",", ".").substring(0, 5));
-		l.setLactMedia(String.valueOf(media18).replace(",", ".").substring(0, 5));
-		l.setEsdMedia(String.valueOf(media19).replace(",", ".").substring(0, 5));
-		l.setPcMedia(String.valueOf(media20).replace(",", ".").substring(0, 5));
+		l.setCaseinMedia(df.format(media1));
+		l.setCbtMedia(df.format(media2));
+		l.setCcsMedia(df.format(media3));
+		l.setCelMedia(df.format(media4));
+		l.setCmtMedia(df.format(media5));
+		l.setDenMedia(df.format(media6));
+		l.setFatMedia(df.format(media7));
+		l.setFpdMedia(df.format(media8));
+		l.setPhMedia(df.format(media9));
+		l.setRantMedia(df.format(media10));
+		l.setSnfMedia(df.format(media11));
+		l.setSolidsMedia(df.format(media12));
+		l.setTotproMedia(df.format(media13));
+		l.setTruproMedia(df.format(media14));
+		l.setUreaMedia(df.format(media15));
+		l.setGordMedia(df.format(media16));
+		l.setProtMedia(df.format(media17));
+		l.setLactMedia(df.format(media18));
+		l.setEsdMedia(df.format(media19));
+		l.setPcMedia(df.format(media20));
 
 		l.setSolicitacao(s.get());
 
