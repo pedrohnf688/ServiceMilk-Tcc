@@ -48,7 +48,7 @@ import net.sf.jasperreports.export.SimpleXlsReportConfiguration;
 @CrossOrigin(origins = "*")
 public class LaudoMediaController {
 
-	private static final Logger log = (Logger) LoggerFactory.getLogger(LaudoMediaController.class);
+//	private static final Logger log = (Logger) LoggerFactory.getLogger(LaudoMediaController.class);
 
 	@Autowired
 	private DataSource dataSource;
