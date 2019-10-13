@@ -232,26 +232,26 @@ public class LaudoMediaController {
 		LaudoMedia l = new LaudoMedia();
 
 		l.setBatchIdMedia(batchId);
-		l.setCaseinMedia(String.valueOf(df.format(media1)));
-		l.setCbtMedia(String.valueOf(df.format(media2)));
-		l.setCcsMedia(String.valueOf(df.format(media3)));
-		l.setCelMedia(String.valueOf(df.format(media4)));
-		l.setCmtMedia(String.valueOf(df.format(media5)));
-		l.setDenMedia(String.valueOf(df.format(media6)));
-		l.setFatMedia(String.valueOf(df.format(media7)));
-		l.setFpdMedia(String.valueOf(df.format(media8)));
-		l.setPhMedia(String.valueOf(df.format(media9)));
-		l.setRantMedia(String.valueOf(df.format(media10)));
-		l.setSnfMedia(String.valueOf(df.format(media11)));
-		l.setSolidsMedia(String.valueOf(df.format(media12)));
-		l.setTotproMedia(String.valueOf(df.format(media13)));
-		l.setTruproMedia(String.valueOf(df.format(media14)));
-		l.setUreaMedia(String.valueOf(df.format(media15)));
-		l.setGordMedia(String.valueOf(df.format(media16)));
-		l.setProtMedia(String.valueOf(df.format(media17)));
-		l.setLactMedia(String.valueOf(df.format(media18)));
-		l.setEsdMedia(String.valueOf(df.format(media19)));
-		l.setPcMedia(String.valueOf(df.format(media20)));
+		l.setCaseinMedia(String.valueOf(Math.round(media1)));
+		l.setCbtMedia(String.valueOf(Math.round(media2)));
+		l.setCcsMedia(String.valueOf(Math.round(media3)));
+		l.setCelMedia(String.valueOf(Math.round(media4)));
+		l.setCmtMedia(String.valueOf(Math.round(media5)));
+		l.setDenMedia(String.valueOf(Math.round(media6)));
+		l.setFatMedia(String.valueOf(Math.round(media7)));
+		l.setFpdMedia(String.valueOf(Math.round(media8)));
+		l.setPhMedia(String.valueOf(Math.round(media9)));
+		l.setRantMedia(String.valueOf(Math.round(media10)));
+		l.setSnfMedia(String.valueOf(Math.round(media11)));
+		l.setSolidsMedia(String.valueOf(Math.round(media12)));
+		l.setTotproMedia(String.valueOf(Math.round(media13)));
+		l.setTruproMedia(String.valueOf(Math.round(media14)));
+		l.setUreaMedia(String.valueOf(Math.round(media15)));
+		l.setGordMedia(String.valueOf(Math.round(media16)));
+		l.setProtMedia(String.valueOf(Math.round(media17)));
+		l.setLactMedia(String.valueOf(Math.round(media18)));
+		l.setEsdMedia(String.valueOf(Math.round(media19)));
+		l.setPcMedia(String.valueOf(Math.round(media20)));
 
 		l.setSolicitacao(s.get());
 
