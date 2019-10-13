@@ -232,26 +232,26 @@ public class LaudoMediaController {
 		LaudoMedia l = new LaudoMedia();
 
 		l.setBatchIdMedia(batchId);
-		l.setCaseinMedia(String.valueOf(Math.floor(media1)));
-		l.setCbtMedia(String.valueOf(Math.floor(media2)));
-		l.setCcsMedia(String.valueOf(Math.floor(media3)));
-		l.setCelMedia(String.valueOf(Math.floor(media4)));
-		l.setCmtMedia(String.valueOf(Math.floor(media5)));
-		l.setDenMedia(String.valueOf(Math.floor(media6)));
-		l.setFatMedia(String.valueOf(Math.floor(media7)));
-		l.setFpdMedia(String.valueOf(Math.floor(media8)));
-		l.setPhMedia(String.valueOf(Math.floor(media9)));
-		l.setRantMedia(String.valueOf(Math.floor(media10)));
-		l.setSnfMedia(String.valueOf(Math.floor(media11)));
-		l.setSolidsMedia(String.valueOf(Math.floor(media12)));
-		l.setTotproMedia(String.valueOf(Math.floor(media13)));
-		l.setTruproMedia(String.valueOf(Math.floor(media14)));
-		l.setUreaMedia(String.valueOf(Math.floor(media15)));
-		l.setGordMedia(String.valueOf(Math.floor(media16)));
-		l.setProtMedia(String.valueOf(Math.floor(media17)));
-		l.setLactMedia(String.valueOf(Math.floor(media18)));
-		l.setEsdMedia(String.valueOf(Math.floor(media19)));
-		l.setPcMedia(String.valueOf(Math.floor(media20)));
+		l.setCaseinMedia(String.valueOf(media1));
+		l.setCbtMedia(String.valueOf(media2));
+		l.setCcsMedia(String.valueOf(media3));
+		l.setCelMedia(String.valueOf(media4));
+		l.setCmtMedia(String.valueOf(media5));
+		l.setDenMedia(String.valueOf(media6));
+		l.setFatMedia(String.valueOf(media7));
+		l.setFpdMedia(String.valueOf(media8));
+		l.setPhMedia(String.valueOf(media9));
+		l.setRantMedia(String.valueOf(media10));
+		l.setSnfMedia(String.valueOf(media11));
+		l.setSolidsMedia(String.valueOf(media12));
+		l.setTotproMedia(String.valueOf(media13));
+		l.setTruproMedia(String.valueOf(media14));
+		l.setUreaMedia(String.valueOf(media15));
+		l.setGordMedia(String.valueOf(media16));
+		l.setProtMedia(String.valueOf(media17));
+		l.setLactMedia(String.valueOf(media18));
+		l.setEsdMedia(String.valueOf(media19));
+		l.setPcMedia(String.valueOf(media20));
 
 		l.setSolicitacao(s.get());
 
