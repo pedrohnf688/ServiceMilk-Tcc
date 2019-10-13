@@ -4,18 +4,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -62,14 +61,12 @@ public class LaudoMediaController {
 	@Autowired
 	private LaudoMediaService laudoMediaService;
 
-	
 	@GetMapping("laudo/{solicitacaoId}")
-	public List<LaudoMedia> listarLaudoMediaPorSolicitacao(@PathVariable("solicitacaoId") Integer solicitacaoId){
+	public List<LaudoMedia> listarLaudoMediaPorSolicitacao(@PathVariable("solicitacaoId") Integer solicitacaoId) {
 		List<LaudoMedia> lm = this.laudoMediaService.laudoMediaPeloIddaSolicitacao(solicitacaoId);
 		return lm;
 	}
 
-	
 	@PostMapping("/batchId/{solicitacaoId}")
 	public LaudoMedia MedidaLaudos(@RequestParam("batchId") String batchId,
 			@PathVariable("solicitacaoId") Integer solicitacaoId) {
@@ -78,7 +75,8 @@ public class LaudoMediaController {
 		// }
 
 		// public LaudoMedia mediaAritmeticaLaudo(String batchId, int solicitacaoId) {
-	//	log.info("Metodo para gerar a media dos atributos do laudo por solicitação:");
+		// log.info("Metodo para gerar a media dos atributos do laudo por
+		// solicitação:");
 
 		List<Laudo> laudos = this.laudoService.buscarPorBatchId(batchId);
 
@@ -229,35 +227,37 @@ public class LaudoMediaController {
 		media19 /= cont;
 		media20 /= cont;
 
+		DecimalFormat df = new DecimalFormat("##.##");
+
 		LaudoMedia l = new LaudoMedia();
 
-		l.setCaseinMedia(String.valueOf(media1));
-		l.setCbtMedia(String.valueOf(media2));
-		l.setCcsMedia(String.valueOf(media3));
-		l.setCelMedia(String.valueOf(media4));
-		l.setCmtMedia(String.valueOf(media5));
-		l.setDenMedia(String.valueOf(media6));
-		l.setFatMedia(String.valueOf(media7));
-		l.setFpdMedia(String.valueOf(media8));
-		l.setPhMedia(String.valueOf(media9));
-		l.setRantMedia(String.valueOf(media10));
-		l.setSnfMedia(String.valueOf(media11));
-		l.setSolidsMedia(String.valueOf(media12));
-		l.setTotproMedia(String.valueOf(media13));
-		l.setTruproMedia(String.valueOf(media14));
-		l.setUreaMedia(String.valueOf(media15));
-		l.setGordMedia(String.valueOf(media16));
-		l.setProtMedia(String.valueOf(media17));
-		l.setLactMedia(String.valueOf(media18));
-		l.setEsdMedia(String.valueOf(media19));
-		l.setPcMedia(String.valueOf(media20));
+		l.setCaseinMedia(String.valueOf(df.format(media1)));
+		l.setCbtMedia(String.valueOf(df.format(media2)));
+		l.setCcsMedia(String.valueOf(df.format(media3)));
+		l.setCelMedia(String.valueOf(df.format(media4)));
+		l.setCmtMedia(String.valueOf(df.format(media5)));
+		l.setDenMedia(String.valueOf(df.format(media6)));
+		l.setFatMedia(String.valueOf(df.format(media7)));
+		l.setFpdMedia(String.valueOf(df.format(media8)));
+		l.setPhMedia(String.valueOf(df.format(media9)));
+		l.setRantMedia(String.valueOf(df.format(media10)));
+		l.setSnfMedia(String.valueOf(df.format(media11)));
+		l.setSolidsMedia(String.valueOf(df.format(media12)));
+		l.setTotproMedia(String.valueOf(df.format(media13)));
+		l.setTruproMedia(String.valueOf(df.format(media14)));
+		l.setUreaMedia(String.valueOf(df.format(media15)));
+		l.setGordMedia(String.valueOf(df.format(media16)));
+		l.setProtMedia(String.valueOf(df.format(media17)));
+		l.setLactMedia(String.valueOf(df.format(media18)));
+		l.setEsdMedia(String.valueOf(df.format(media19)));
+		l.setPcMedia(String.valueOf(df.format(media20)));
 
 		l.setSolicitacao(s.get());
 
 		l.setListaLaudos(laudos);
 		this.laudoMediaService.salvar(l);
 
-	//	log.info("Contador:{}", cont);
+		// log.info("Contador:{}", cont);
 
 		return l;
 	}
@@ -265,7 +265,7 @@ public class LaudoMediaController {
 	@GetMapping(value = "relatorio/pdf/{id}")
 	public void gerarPdf(@PathVariable("id") Integer id, HttpServletResponse response)
 			throws JRException, SQLException, IOException {
-	//	log.info("Gerando Relatorio do Laudo para Id: {}", id);
+		// log.info("Gerando Relatorio do Laudo para Id: {}", id);
 
 		Map<String, Object> parametros = new HashMap<>();
 
@@ -287,7 +287,7 @@ public class LaudoMediaController {
 		parametros.put("imagem3", gto3);
 		parametros.put("imagem4", gto4);
 		parametros.put("imagem5", gto5);
-    	parametros.put("imagem6", gto6);
+		parametros.put("imagem6", gto6);
 //		parametros.put("imagem7", gto7); Erro
 //		parametros.put("imagem9", gto9); Erro
 		parametros.put("imagem10", gto10);
@@ -347,7 +347,6 @@ public class LaudoMediaController {
 		configuration.setWhitePageBackground(true);//
 		configuration.setRemoveEmptySpaceBetweenRows(false);
 		configuration.setAutoFitPageHeight(true);
-	
 
 		exportsXLS.setConfiguration(configuration);
 
