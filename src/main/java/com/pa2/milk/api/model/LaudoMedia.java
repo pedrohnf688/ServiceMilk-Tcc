@@ -21,27 +21,27 @@ public class LaudoMedia {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idMedia;
-	private String fatMedia;
-	private String truproMedia;
-	private String totproMedia;
-	private String caseinMedia;
-	private String solidsMedia;
-	private String snfMedia;
-	private String fpdMedia;
-	private String ureaMedia;
-	private String ccsMedia;
-	private String celMedia;
-	private String phMedia;
-	private String denMedia;
-	private String rantMedia;
-	private String cbtMedia;
-	private String cmtMedia;
-
-	private String gordMedia;
-	private String protMedia;
-	private String lactMedia;
-	private String esdMedia;
-	private String pcMedia;
+	private String batchIdMedia;
+	private double fatMedia;
+	private double truproMedia;
+	private double totproMedia;
+	private double caseinMedia;
+	private double solidsMedia;
+	private double snfMedia;
+	private double fpdMedia;
+	private double ureaMedia;
+	private double ccsMedia;
+	private double celMedia;
+	private double phMedia;
+	private double denMedia;
+	private double rantMedia;
+	private double cbtMedia;
+	private double cmtMedia;
+	private double gordMedia;
+	private double protMedia;
+	private double lactMedia;
+	private double esdMedia;
+	private double pcMedia;
 
 	@OneToMany(orphanRemoval = true)
 	@Cascade({ CascadeType.ALL })
@@ -64,163 +64,171 @@ public class LaudoMedia {
 		this.idMedia = idMedia;
 	}
 
-	public String getFatMedia() {
+	public String getBatchIdMedia() {
+		return batchIdMedia;
+	}
+
+	public void setBatchIdMedia(String batchIdMedia) {
+		this.batchIdMedia = batchIdMedia;
+	}
+
+	public double getFatMedia() {
 		return fatMedia;
 	}
 
-	public void setFatMedia(String fatMedia) {
+	public void setFatMedia(double fatMedia) {
 		this.fatMedia = fatMedia;
 	}
 
-	public String getTruproMedia() {
+	public double getTruproMedia() {
 		return truproMedia;
 	}
 
-	public void setTruproMedia(String truproMedia) {
+	public void setTruproMedia(double truproMedia) {
 		this.truproMedia = truproMedia;
 	}
 
-	public String getTotproMedia() {
+	public double getTotproMedia() {
 		return totproMedia;
 	}
 
-	public void setTotproMedia(String totproMedia) {
+	public void setTotproMedia(double totproMedia) {
 		this.totproMedia = totproMedia;
 	}
 
-	public String getCaseinMedia() {
+	public double getCaseinMedia() {
 		return caseinMedia;
 	}
 
-	public void setCaseinMedia(String caseinMedia) {
+	public void setCaseinMedia(double caseinMedia) {
 		this.caseinMedia = caseinMedia;
 	}
 
-	public String getSolidsMedia() {
+	public double getSolidsMedia() {
 		return solidsMedia;
 	}
 
-	public void setSolidsMedia(String solidsMedia) {
+	public void setSolidsMedia(double solidsMedia) {
 		this.solidsMedia = solidsMedia;
 	}
 
-	public String getSnfMedia() {
+	public double getSnfMedia() {
 		return snfMedia;
 	}
 
-	public void setSnfMedia(String snfMedia) {
+	public void setSnfMedia(double snfMedia) {
 		this.snfMedia = snfMedia;
 	}
 
-	public String getFpdMedia() {
+	public double getFpdMedia() {
 		return fpdMedia;
 	}
 
-	public void setFpdMedia(String fpdMedia) {
+	public void setFpdMedia(double fpdMedia) {
 		this.fpdMedia = fpdMedia;
 	}
 
-	public String getUreaMedia() {
+	public double getUreaMedia() {
 		return ureaMedia;
 	}
 
-	public void setUreaMedia(String ureaMedia) {
+	public void setUreaMedia(double ureaMedia) {
 		this.ureaMedia = ureaMedia;
 	}
 
-	public String getCcsMedia() {
+	public double getCcsMedia() {
 		return ccsMedia;
 	}
 
-	public void setCcsMedia(String ccsMedia) {
+	public void setCcsMedia(double ccsMedia) {
 		this.ccsMedia = ccsMedia;
 	}
 
-	public String getCelMedia() {
+	public double getCelMedia() {
 		return celMedia;
 	}
 
-	public void setCelMedia(String celMedia) {
+	public void setCelMedia(double celMedia) {
 		this.celMedia = celMedia;
 	}
 
-	public String getPhMedia() {
+	public double getPhMedia() {
 		return phMedia;
 	}
 
-	public void setPhMedia(String phMedia) {
+	public void setPhMedia(double phMedia) {
 		this.phMedia = phMedia;
 	}
 
-	public String getDenMedia() {
+	public double getDenMedia() {
 		return denMedia;
 	}
 
-	public void setDenMedia(String denMedia) {
+	public void setDenMedia(double denMedia) {
 		this.denMedia = denMedia;
 	}
 
-	public String getRantMedia() {
+	public double getRantMedia() {
 		return rantMedia;
 	}
 
-	public void setRantMedia(String rantMedia) {
+	public void setRantMedia(double rantMedia) {
 		this.rantMedia = rantMedia;
 	}
 
-	public String getCbtMedia() {
+	public double getCbtMedia() {
 		return cbtMedia;
 	}
 
-	public void setCbtMedia(String cbtMedia) {
+	public void setCbtMedia(double cbtMedia) {
 		this.cbtMedia = cbtMedia;
 	}
 
-	public String getCmtMedia() {
+	public double getCmtMedia() {
 		return cmtMedia;
 	}
 
-	public void setCmtMedia(String cmtMedia) {
+	public void setCmtMedia(double cmtMedia) {
 		this.cmtMedia = cmtMedia;
 	}
 
-	public String getGordMedia() {
+	public double getGordMedia() {
 		return gordMedia;
 	}
 
-	public void setGordMedia(String gordMedia) {
+	public void setGordMedia(double gordMedia) {
 		this.gordMedia = gordMedia;
 	}
 
-	public String getProtMedia() {
+	public double getProtMedia() {
 		return protMedia;
 	}
 
-	public void setProtMedia(String protMedia) {
+	public void setProtMedia(double protMedia) {
 		this.protMedia = protMedia;
 	}
 
-	public String getLactMedia() {
+	public double getLactMedia() {
 		return lactMedia;
 	}
 
-	public void setLactMedia(String lactMedia) {
+	public void setLactMedia(double lactMedia) {
 		this.lactMedia = lactMedia;
 	}
 
-	public String getEsdMedia() {
+	public double getEsdMedia() {
 		return esdMedia;
 	}
 
-	public void setEsdMedia(String esdMedia) {
+	public void setEsdMedia(double esdMedia) {
 		this.esdMedia = esdMedia;
 	}
 
-	public String getPcMedia() {
+	public double getPcMedia() {
 		return pcMedia;
 	}
 
-	public void setPcMedia(String pcMedia) {
+	public void setPcMedia(double pcMedia) {
 		this.pcMedia = pcMedia;
 	}
 

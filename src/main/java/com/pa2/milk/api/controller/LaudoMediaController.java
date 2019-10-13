@@ -231,26 +231,27 @@ public class LaudoMediaController {
 
 		LaudoMedia l = new LaudoMedia();
 
-		l.setCaseinMedia(df.format(media1));
-		l.setCbtMedia(df.format(media2));
-		l.setCcsMedia(df.format(media3));
-		l.setCelMedia(df.format(media4));
-		l.setCmtMedia(df.format(media5));
-		l.setDenMedia(df.format(media6));
-		l.setFatMedia(df.format(media7));
-		l.setFpdMedia(df.format(media8));
-		l.setPhMedia(df.format(media9));
-		l.setRantMedia(df.format(media10));
-		l.setSnfMedia(df.format(media11));
-		l.setSolidsMedia(df.format(media12));
-		l.setTotproMedia(df.format(media13));
-		l.setTruproMedia(df.format(media14));
-		l.setUreaMedia(df.format(media15));
-		l.setGordMedia(df.format(media16));
-		l.setProtMedia(df.format(media17));
-		l.setLactMedia(df.format(media18));
-		l.setEsdMedia(df.format(media19));
-		l.setPcMedia(df.format(media20));
+		l.setBatchIdMedia(batchId);
+		l.setCaseinMedia(media1);
+		l.setCbtMedia(media2);
+		l.setCcsMedia(media3);
+		l.setCelMedia(media4);
+		l.setCmtMedia(media5);
+		l.setDenMedia(media6);
+		l.setFatMedia(media7);
+		l.setFpdMedia(media8);
+		l.setPhMedia(media9);
+		l.setRantMedia(media10);
+		l.setSnfMedia(media11);
+		l.setSolidsMedia(media12);
+		l.setTotproMedia(media13);
+		l.setTruproMedia(media14);
+		l.setUreaMedia(media15);
+		l.setGordMedia(media16);
+		l.setProtMedia(media17);
+		l.setLactMedia(media18);
+		l.setEsdMedia(media19);
+		l.setPcMedia(media20);
 
 		l.setSolicitacao(s.get());
 
