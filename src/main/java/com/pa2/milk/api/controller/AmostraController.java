@@ -244,10 +244,7 @@ public class AmostraController {
 		response.setData(amostra.get());
 		this.amostraService.remover(id);
 
-
 		return ResponseEntity.ok(response);
 	}
-
-
 
 }
