@@ -232,26 +232,26 @@ public class LaudoMediaController {
 		LaudoMedia l = new LaudoMedia();
 
 		l.setBatchIdMedia(batchId);
-		l.setCaseinMedia(String.valueOf(media1));
-		l.setCbtMedia(String.valueOf(media2));
-		l.setCcsMedia(String.valueOf(media3));
-		l.setCelMedia(String.valueOf(media4));
-		l.setCmtMedia(String.valueOf(media5));
-		l.setDenMedia(String.valueOf(media6));
-		l.setFatMedia(String.valueOf(media7));
-		l.setFpdMedia(String.valueOf(media8));
-		l.setPhMedia(String.valueOf(media9));
-		l.setRantMedia(String.valueOf(media10));
-		l.setSnfMedia(String.valueOf(media11));
-		l.setSolidsMedia(String.valueOf(media12));
-		l.setTotproMedia(String.valueOf(media13));
-		l.setTruproMedia(String.valueOf(media14));
-		l.setUreaMedia(String.valueOf(media15));
-		l.setGordMedia(String.valueOf(media16));
-		l.setProtMedia(String.valueOf(media17));
-		l.setLactMedia(String.valueOf(media18));
-		l.setEsdMedia(String.valueOf(media19));
-		l.setPcMedia(String.valueOf(media20));
+		l.setCaseinMedia(String.valueOf(media1).replace(",", "."));
+		l.setCbtMedia(String.valueOf(media2).replace(",", "."));
+		l.setCcsMedia(String.valueOf(media3).replace(",", "."));
+		l.setCelMedia(String.valueOf(media4).replace(",", "."));
+		l.setCmtMedia(String.valueOf(media5).replace(",", "."));
+		l.setDenMedia(String.valueOf(media6).replace(",", "."));
+		l.setFatMedia(String.valueOf(media7).replace(",", "."));
+		l.setFpdMedia(String.valueOf(media8).replace(",", "."));
+		l.setPhMedia(String.valueOf(media9).replace(",", "."));
+		l.setRantMedia(String.valueOf(media10).replace(",", "."));
+		l.setSnfMedia(String.valueOf(media11).replace(",", "."));
+		l.setSolidsMedia(String.valueOf(media12).replace(",", "."));
+		l.setTotproMedia(String.valueOf(media13).replace(",", "."));
+		l.setTruproMedia(String.valueOf(media14).replace(",", "."));
+		l.setUreaMedia(String.valueOf(media15).replace(",", "."));
+		l.setGordMedia(String.valueOf(media16).replace(",", "."));
+		l.setProtMedia(String.valueOf(media17).replace(",", "."));
+		l.setLactMedia(String.valueOf(media18).replace(",", "."));
+		l.setEsdMedia(String.valueOf(media19).replace(",", "."));
+		l.setPcMedia(String.valueOf(media20).replace(",", "."));
 
 		l.setSolicitacao(s.get());
 
