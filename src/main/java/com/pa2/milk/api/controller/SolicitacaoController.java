@@ -266,7 +266,8 @@ public class SolicitacaoController {
 
 		return ResponseEntity.ok(response);
 	}
-
+	
+	
 //	@PutMapping(value = "{id}")
 //	public ResponseEntity<Response<SolicitacaoDto>> atualizarSolicitacao(@PathVariable("id") Integer id,
 //			@Valid @RequestBody SolicitacaoDto solicitacaoDto, BindingResult result) throws NoSuchAlgorithmException {

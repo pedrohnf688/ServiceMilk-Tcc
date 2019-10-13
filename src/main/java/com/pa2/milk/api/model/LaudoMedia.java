@@ -21,28 +21,27 @@ public class LaudoMedia {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idMedia;
-	private double fatMedia;
-	private double truproMedia;
-	private double totproMedia;
-	private double caseinMedia;
-	private double solidsMedia;
-	private double snfMedia;
-	private double fpdMedia;
-	private double ureaMedia;
-	private double ccsMedia;
-	private double celMedia;
-	private double phMedia;
-	private double denMedia;
-	private double rantMedia;
-	private double cbtMedia;
-	private double cmtMedia;
-	
-	private double gordMedia;
-	private double protMedia;
-	private double lactMedia;
-	private double esdMedia;
-	private double pcMedia;
+	private String fatMedia;
+	private String truproMedia;
+	private String totproMedia;
+	private String caseinMedia;
+	private String solidsMedia;
+	private String snfMedia;
+	private String fpdMedia;
+	private String ureaMedia;
+	private String ccsMedia;
+	private String celMedia;
+	private String phMedia;
+	private String denMedia;
+	private String rantMedia;
+	private String cbtMedia;
+	private String cmtMedia;
 
+	private String gordMedia;
+	private String protMedia;
+	private String lactMedia;
+	private String esdMedia;
+	private String pcMedia;
 
 	@OneToMany(orphanRemoval = true)
 	@Cascade({ CascadeType.ALL })
@@ -65,124 +64,164 @@ public class LaudoMedia {
 		this.idMedia = idMedia;
 	}
 
-	public double getFatMedia() {
+	public String getFatMedia() {
 		return fatMedia;
 	}
 
-	public void setFatMedia(double fatMedia) {
+	public void setFatMedia(String fatMedia) {
 		this.fatMedia = fatMedia;
 	}
 
-	public double getTruproMedia() {
+	public String getTruproMedia() {
 		return truproMedia;
 	}
 
-	public void setTruproMedia(double truproMedia) {
+	public void setTruproMedia(String truproMedia) {
 		this.truproMedia = truproMedia;
 	}
 
-	public double getTotproMedia() {
+	public String getTotproMedia() {
 		return totproMedia;
 	}
 
-	public void setTotproMedia(double totproMedia) {
+	public void setTotproMedia(String totproMedia) {
 		this.totproMedia = totproMedia;
 	}
 
-	public double getCaseinMedia() {
+	public String getCaseinMedia() {
 		return caseinMedia;
 	}
 
-	public void setCaseinMedia(double caseinMedia) {
+	public void setCaseinMedia(String caseinMedia) {
 		this.caseinMedia = caseinMedia;
 	}
 
-	public double getSolidsMedia() {
+	public String getSolidsMedia() {
 		return solidsMedia;
 	}
 
-	public void setSolidsMedia(double solidsMedia) {
+	public void setSolidsMedia(String solidsMedia) {
 		this.solidsMedia = solidsMedia;
 	}
 
-	public double getSnfMedia() {
+	public String getSnfMedia() {
 		return snfMedia;
 	}
 
-	public void setSnfMedia(double snfMedia) {
+	public void setSnfMedia(String snfMedia) {
 		this.snfMedia = snfMedia;
 	}
 
-	public double getFpdMedia() {
+	public String getFpdMedia() {
 		return fpdMedia;
 	}
 
-	public void setFpdMedia(double fpdMedia) {
+	public void setFpdMedia(String fpdMedia) {
 		this.fpdMedia = fpdMedia;
 	}
 
-	public double getUreaMedia() {
+	public String getUreaMedia() {
 		return ureaMedia;
 	}
 
-	public void setUreaMedia(double ureaMedia) {
+	public void setUreaMedia(String ureaMedia) {
 		this.ureaMedia = ureaMedia;
 	}
 
-	public double getCcsMedia() {
+	public String getCcsMedia() {
 		return ccsMedia;
 	}
 
-	public void setCcsMedia(double ccsMedia) {
+	public void setCcsMedia(String ccsMedia) {
 		this.ccsMedia = ccsMedia;
 	}
 
-	public double getCelMedia() {
+	public String getCelMedia() {
 		return celMedia;
 	}
 
-	public void setCelMedia(double celMedia) {
+	public void setCelMedia(String celMedia) {
 		this.celMedia = celMedia;
 	}
 
-	public double getPhMedia() {
+	public String getPhMedia() {
 		return phMedia;
 	}
 
-	public void setPhMedia(double phMedia) {
+	public void setPhMedia(String phMedia) {
 		this.phMedia = phMedia;
 	}
 
-	public double getDenMedia() {
+	public String getDenMedia() {
 		return denMedia;
 	}
 
-	public void setDenMedia(double denMedia) {
+	public void setDenMedia(String denMedia) {
 		this.denMedia = denMedia;
 	}
 
-	public double getRantMedia() {
+	public String getRantMedia() {
 		return rantMedia;
 	}
 
-	public void setRantMedia(double rantMedia) {
+	public void setRantMedia(String rantMedia) {
 		this.rantMedia = rantMedia;
 	}
 
-	public double getCbtMedia() {
+	public String getCbtMedia() {
 		return cbtMedia;
 	}
 
-	public void setCbtMedia(double cbtMedia) {
+	public void setCbtMedia(String cbtMedia) {
 		this.cbtMedia = cbtMedia;
 	}
 
-	public double getCmtMedia() {
+	public String getCmtMedia() {
 		return cmtMedia;
 	}
 
-	public void setCmtMedia(double cmtMedia) {
+	public void setCmtMedia(String cmtMedia) {
 		this.cmtMedia = cmtMedia;
+	}
+
+	public String getGordMedia() {
+		return gordMedia;
+	}
+
+	public void setGordMedia(String gordMedia) {
+		this.gordMedia = gordMedia;
+	}
+
+	public String getProtMedia() {
+		return protMedia;
+	}
+
+	public void setProtMedia(String protMedia) {
+		this.protMedia = protMedia;
+	}
+
+	public String getLactMedia() {
+		return lactMedia;
+	}
+
+	public void setLactMedia(String lactMedia) {
+		this.lactMedia = lactMedia;
+	}
+
+	public String getEsdMedia() {
+		return esdMedia;
+	}
+
+	public void setEsdMedia(String esdMedia) {
+		this.esdMedia = esdMedia;
+	}
+
+	public String getPcMedia() {
+		return pcMedia;
+	}
+
+	public void setPcMedia(String pcMedia) {
+		this.pcMedia = pcMedia;
 	}
 
 	public List<Laudo> getListaLaudos() {
@@ -201,46 +240,6 @@ public class LaudoMedia {
 		this.solicitacao = solicitacao;
 	}
 
-	public double getGordMedia() {
-		return gordMedia;
-	}
-
-	public void setGordMedia(double gordMedia) {
-		this.gordMedia = gordMedia;
-	}
-
-	public double getProtMedia() {
-		return protMedia;
-	}
-
-	public void setProtMedia(double protMedia) {
-		this.protMedia = protMedia;
-	}
-
-	public double getLactMedia() {
-		return lactMedia;
-	}
-
-	public void setLactMedia(double lactMedia) {
-		this.lactMedia = lactMedia;
-	}
-
-	public double getEsdMedia() {
-		return esdMedia;
-	}
-
-	public void setEsdMedia(double esdMedia) {
-		this.esdMedia = esdMedia;
-	}
-
-	public double getPcMedia() {
-		return pcMedia;
-	}
-
-	public void setPcMedia(double pcMedia) {
-		this.pcMedia = pcMedia;
-	}
-
 	@Override
 	public String toString() {
 		return "LaudoMedia [idMedia=" + idMedia + ", fatMedia=" + fatMedia + ", truproMedia=" + truproMedia
@@ -251,9 +250,5 @@ public class LaudoMedia {
 				+ gordMedia + ", protMedia=" + protMedia + ", lactMedia=" + lactMedia + ", esdMedia=" + esdMedia
 				+ ", pcMedia=" + pcMedia + ", listaLaudos=" + listaLaudos + ", solicitacao=" + solicitacao + "]";
 	}
-
-	
-	
-	
 
 }

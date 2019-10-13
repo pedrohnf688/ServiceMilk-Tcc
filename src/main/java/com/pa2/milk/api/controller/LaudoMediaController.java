@@ -1,6 +1,5 @@
 package com.pa2.milk.api.controller;
 
-import java.awt.Image;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -9,14 +8,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
-import javax.swing.ImageIcon;
 
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -50,7 +48,7 @@ import net.sf.jasperreports.export.SimpleXlsReportConfiguration;
 @CrossOrigin(origins = "*")
 public class LaudoMediaController {
 
-	private static final Logger log = LoggerFactory.getLogger(LaudoMediaController.class);
+	private static final Logger log = (Logger) LoggerFactory.getLogger(LaudoMediaController.class);
 
 	@Autowired
 	private DataSource dataSource;
@@ -233,33 +231,33 @@ public class LaudoMediaController {
 
 		LaudoMedia l = new LaudoMedia();
 
-		l.setCaseinMedia(media1);
-		l.setCbtMedia(media2);
-		l.setCcsMedia(media3);
-		l.setCelMedia(media4);
-		l.setCmtMedia(media5);
-		l.setDenMedia(media6);
-		l.setFatMedia(media7);
-		l.setFpdMedia(media8);
-		l.setPhMedia(media9);
-		l.setRantMedia(media10);
-		l.setSnfMedia(media11);
-		l.setSolidsMedia(media12);
-		l.setTotproMedia(media13);
-		l.setTruproMedia(media14);
-		l.setUreaMedia(media15);
-		l.setGordMedia(media16);
-		l.setProtMedia(media17);
-		l.setLactMedia(media18);
-		l.setEsdMedia(media19);
-		l.setPcMedia(media20);
+		l.setCaseinMedia(String.valueOf(media1));
+		l.setCbtMedia(String.valueOf(media2));
+		l.setCcsMedia(String.valueOf(media3));
+		l.setCelMedia(String.valueOf(media4));
+		l.setCmtMedia(String.valueOf(media5));
+		l.setDenMedia(String.valueOf(media6));
+		l.setFatMedia(String.valueOf(media7));
+		l.setFpdMedia(String.valueOf(media8));
+		l.setPhMedia(String.valueOf(media9));
+		l.setRantMedia(String.valueOf(media10));
+		l.setSnfMedia(String.valueOf(media11));
+		l.setSolidsMedia(String.valueOf(media12));
+		l.setTotproMedia(String.valueOf(media13));
+		l.setTruproMedia(String.valueOf(media14));
+		l.setUreaMedia(String.valueOf(media15));
+		l.setGordMedia(String.valueOf(media16));
+		l.setProtMedia(String.valueOf(media17));
+		l.setLactMedia(String.valueOf(media18));
+		l.setEsdMedia(String.valueOf(media19));
+		l.setPcMedia(String.valueOf(media20));
 
 		l.setSolicitacao(s.get());
 
 		l.setListaLaudos(laudos);
 		this.laudoMediaService.salvar(l);
 
-		log.info("Contador:{}", cont);
+	//	log.info("Contador:{}", cont);
 
 		return l;
 	}
@@ -267,7 +265,7 @@ public class LaudoMediaController {
 	@GetMapping(value = "relatorio/pdf/{id}")
 	public void gerarPdf(@PathVariable("id") Integer id, HttpServletResponse response)
 			throws JRException, SQLException, IOException {
-		log.info("Gerando Relatorio do Laudo para Id: {}", id);
+	//	log.info("Gerando Relatorio do Laudo para Id: {}", id);
 
 		Map<String, Object> parametros = new HashMap<>();
 
