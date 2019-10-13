@@ -232,26 +232,26 @@ public class LaudoMediaController {
 		LaudoMedia l = new LaudoMedia();
 
 		l.setBatchIdMedia(batchId);
-		l.setCaseinMedia(media1);
-		l.setCbtMedia(media2);
-		l.setCcsMedia(media3);
-		l.setCelMedia(media4);
-		l.setCmtMedia(media5);
-		l.setDenMedia(media6);
-		l.setFatMedia(media7);
-		l.setFpdMedia(media8);
-		l.setPhMedia(media9);
-		l.setRantMedia(media10);
-		l.setSnfMedia(media11);
-		l.setSolidsMedia(media12);
-		l.setTotproMedia(media13);
-		l.setTruproMedia(media14);
-		l.setUreaMedia(media15);
-		l.setGordMedia(media16);
-		l.setProtMedia(media17);
-		l.setLactMedia(media18);
-		l.setEsdMedia(media19);
-		l.setPcMedia(media20);
+		l.setCaseinMedia(String.valueOf(df.format(media1)));
+		l.setCbtMedia(String.valueOf(df.format(media2)));
+		l.setCcsMedia(String.valueOf(df.format(media3)));
+		l.setCelMedia(String.valueOf(df.format(media4)));
+		l.setCmtMedia(String.valueOf(df.format(media5)));
+		l.setDenMedia(String.valueOf(df.format(media6)));
+		l.setFatMedia(String.valueOf(df.format(media7)));
+		l.setFpdMedia(String.valueOf(df.format(media8)));
+		l.setPhMedia(String.valueOf(df.format(media9)));
+		l.setRantMedia(String.valueOf(df.format(media10)));
+		l.setSnfMedia(String.valueOf(df.format(media11)));
+		l.setSolidsMedia(String.valueOf(df.format(media12)));
+		l.setTotproMedia(String.valueOf(df.format(media13)));
+		l.setTruproMedia(String.valueOf(df.format(media14)));
+		l.setUreaMedia(String.valueOf(df.format(media15)));
+		l.setGordMedia(String.valueOf(df.format(media16)));
+		l.setProtMedia(String.valueOf(df.format(media17)));
+		l.setLactMedia(String.valueOf(df.format(media18)));
+		l.setEsdMedia(String.valueOf(df.format(media19)));
+		l.setPcMedia(String.valueOf(df.format(media20)));
 
 		l.setSolicitacao(s.get());
 
