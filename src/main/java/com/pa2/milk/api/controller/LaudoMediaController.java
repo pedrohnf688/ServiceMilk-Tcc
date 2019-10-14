@@ -109,6 +109,7 @@ public class LaudoMediaController {
 		double media20 = 0;
 
 		int cont = 0;
+		DecimalFormat df = new DecimalFormat("0,00");
 
 		for (int i = 0; i < laudos.size(); i++) {
 
@@ -199,7 +200,34 @@ public class LaudoMediaController {
 			media20 += (m20.find() && m20.group().equals(laudos.get(i).getPc()))
 					? Double.parseDouble(laudos.get(i).getPc())
 					: 0;
+					
+					
+			media1 = Double.parseDouble(String.valueOf((Math.round(media1*100)/100.0)));
+			media2 = Double.parseDouble(String.valueOf((Math.round(media2*100)/100.0)));
+			media3 = Double.parseDouble(String.valueOf((Math.round(media3*100)/100.0)));
+			media4 = Double.parseDouble(String.valueOf((Math.round(media4*100)/100.0)));
+			media5 = Double.parseDouble(String.valueOf((Math.round(media5*100)/100.0)));
+			media6 = Double.parseDouble(String.valueOf((Math.round(media6*100)/100.0)));
+			media7 = Double.parseDouble(String.valueOf((Math.round(media7*100)/100.0)));
+			media8 = Double.parseDouble(String.valueOf((Math.round(media8*100)/100.0)));
+			media9 = Double.parseDouble(String.valueOf((Math.round(media9*100)/100.0)));
+			media10 = Double.parseDouble(String.valueOf((Math.round(media10*100)/100.0)));
+			media11 = Double.parseDouble(String.valueOf((Math.round(media11*100)/100.0)));
+			media12 = Double.parseDouble(String.valueOf((Math.round(media12*100)/100.0)));
+			media13 = Double.parseDouble(String.valueOf((Math.round(media13*100)/100.0)));
+			media14 = Double.parseDouble(String.valueOf((Math.round(media14*100)/100.0)));
+			media15 = Double.parseDouble(String.valueOf((Math.round(media15*100)/100.0)));
+			media16 = Double.parseDouble(String.valueOf((Math.round(media16*100)/100.0)));
+			media17 = Double.parseDouble(String.valueOf((Math.round(media17*100)/100.0)));
+			media18 = Double.parseDouble(String.valueOf((Math.round(media18*100)/100.0)));
+			media19 = Double.parseDouble(String.valueOf((Math.round(media19*100)/100.0)));
+			media20 = Double.parseDouble(String.valueOf((Math.round(media20*100)/100.0)));
 
+
+			
+						
+					
+			System.out.println("Media "+i+":"+media1);
 			cont++;
 		}
 
@@ -227,33 +255,55 @@ public class LaudoMediaController {
 		media19 /= cont;
 		media20 /= cont;
 
-		DecimalFormat df = new DecimalFormat("##.##");
+		media1 = Double.parseDouble(String.valueOf((Math.round(media1*100)/100.0)));
+		media2 = Double.parseDouble(String.valueOf((Math.round(media2*100)/100.0)));
+		media3 = Double.parseDouble(String.valueOf((Math.round(media3*100)/100.0)));
+		media4 = Double.parseDouble(String.valueOf((Math.round(media4*100)/100.0)));
+		media5 = Double.parseDouble(String.valueOf((Math.round(media5*100)/100.0)));
+		media6 = Double.parseDouble(String.valueOf((Math.round(media6*100)/100.0)));
+		media7 = Double.parseDouble(String.valueOf((Math.round(media7*100)/100.0)));
+		media8 = Double.parseDouble(String.valueOf((Math.round(media8*100)/100.0)));
+		media9 = Double.parseDouble(String.valueOf((Math.round(media9*100)/100.0)));
+		media10 = Double.parseDouble(String.valueOf((Math.round(media10*100)/100.0)));
+		media11 = Double.parseDouble(String.valueOf((Math.round(media11*100)/100.0)));
+		media12 = Double.parseDouble(String.valueOf((Math.round(media12*100)/100.0)));
+		media13 = Double.parseDouble(String.valueOf((Math.round(media13*100)/100.0)));
+		media14 = Double.parseDouble(String.valueOf((Math.round(media14*100)/100.0)));
+		media15 = Double.parseDouble(String.valueOf((Math.round(media15*100)/100.0)));
+		media16 = Double.parseDouble(String.valueOf((Math.round(media16*100)/100.0)));
+		media17 = Double.parseDouble(String.valueOf((Math.round(media17*100)/100.0)));
+		media18 = Double.parseDouble(String.valueOf((Math.round(media18*100)/100.0)));
+		media19 = Double.parseDouble(String.valueOf((Math.round(media19*100)/100.0)));
+		media20 = Double.parseDouble(String.valueOf((Math.round(media20*100)/100.0)));
+
+		System.out.println("Media final:"+media1+ " Cont"+cont);
+		
 
 		LaudoMedia l = new LaudoMedia();
 
 	
 		
 		l.setBatchIdMedia(batchId);
-		l.setCaseinMedia(String.valueOf(media1).replace(",", "."));
-		l.setCbtMedia(String.valueOf(media2).replace(",", "."));
-		l.setCcsMedia(String.valueOf(media3).replace(",", "."));
-		l.setCelMedia(String.valueOf(media4).replace(",", "."));
-		l.setCmtMedia(String.valueOf(media5).replace(",", "."));
-		l.setDenMedia(String.valueOf(media6).replace(",", "."));
-		l.setFatMedia(String.valueOf(media7).replace(",", "."));
-		l.setFpdMedia(String.valueOf(media8).replace(",", "."));
-		l.setPhMedia(String.valueOf(media9).replace(",", "."));
-		l.setRantMedia(String.valueOf(media10).replace(",", "."));
-		l.setSnfMedia(String.valueOf(media11).replace(",", "."));
-		l.setSolidsMedia(String.valueOf(media12).replace(",", "."));
-		l.setTotproMedia(String.valueOf(media13).replace(",", "."));
-		l.setTruproMedia(String.valueOf(media14).replace(",", "."));
-		l.setUreaMedia(String.valueOf(media15).replace(",", "."));
-		l.setGordMedia(String.valueOf(media16).replace(",", "."));
-		l.setProtMedia(String.valueOf(media17).replace(",", "."));
-		l.setLactMedia(String.valueOf(media18).replace(",", "."));
-		l.setEsdMedia(String.valueOf(media19).replace(",", "."));
-		l.setPcMedia(String.valueOf(media20).replace(",", "."));
+		l.setCaseinMedia(String.valueOf(media1));
+		l.setCbtMedia(String.valueOf(media2));
+		l.setCcsMedia(String.valueOf(media3));
+		l.setCelMedia(String.valueOf(media4));
+		l.setCmtMedia(String.valueOf(media5));
+		l.setDenMedia(String.valueOf(media6));
+		l.setFatMedia(String.valueOf(media7));
+		l.setFpdMedia(String.valueOf(media8));
+		l.setPhMedia(String.valueOf(media9));
+		l.setRantMedia(String.valueOf(media10));
+		l.setSnfMedia(String.valueOf(media11));
+		l.setSolidsMedia(String.valueOf(media12));
+		l.setTotproMedia(String.valueOf(media13));
+		l.setTruproMedia(String.valueOf(media14));
+		l.setUreaMedia(String.valueOf(media15));
+		l.setGordMedia(String.valueOf(media16));
+		l.setProtMedia(String.valueOf(media17));
+		l.setLactMedia(String.valueOf(media18));
+		l.setEsdMedia(String.valueOf(media19));
+		l.setPcMedia(String.valueOf(media20));
 
 		
 //		l.setBatchIdMedia(batchId);
