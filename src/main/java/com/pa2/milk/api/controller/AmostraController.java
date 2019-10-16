@@ -1,11 +1,13 @@
 package com.pa2.milk.api.controller;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.MalformedURLException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -34,6 +37,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.zxing.WriterException;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.pa2.milk.api.helper.Response;
 import com.pa2.milk.api.model.Amostra;
 import com.pa2.milk.api.model.Analise;
@@ -167,13 +180,115 @@ public class AmostraController {
 
 	}
 
+	/// LISTA QRCODE
 	@PreAuthorize("hasAnyRole('ADMINISTRADOR','CLIENTE','BOLSISTA')")
-	@GetMapping(value = "{analiseId}/ListaQrCode")
+	@GetMapping(value = "listaQrCode/{analiseId}")
 	public List<Amostra> listarAmostrasPorAnalise(@PathVariable("analiseId") Integer analiseId) {
 
 		List<Amostra> amostras = this.amostraRepositorio.findByAnaliseId(analiseId);
 
-		return amostras;
+		return null;
+	}
+
+	@GetMapping(value = "/pdfreport/{analiseId}", produces = MediaType.APPLICATION_PDF_VALUE)
+	public ResponseEntity<InputStreamResource> listaQrcodeReport(@PathVariable("analiseId") Integer analiseId)
+			throws MalformedURLException, IOException {
+
+		List<Amostra> amostras = this.amostraRepositorio.findByAnaliseId(analiseId);
+
+		ByteArrayInputStream bis = report(amostras);
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Disposition", "attachment; filename=listaQrcodereport.pdf");
+
+		return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF)
+				.body(new InputStreamResource(bis));
+	}
+
+	public ByteArrayInputStream report(List<Amostra> amostras) throws MalformedURLException, IOException {
+
+		Document document = new Document();
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+		try {
+
+			PdfPTable table = new PdfPTable(4);
+			table.setWidthPercentage(100);
+			table.setWidths(new int[] { 3, 4, 4, 3 });
+			table.setTotalWidth(300);
+			table.setLockedWidth(true);
+
+			for (Amostra amostra : amostras) {
+
+				ByteArrayOutputStream bout = QRCode.from(amostra.getIdentificadorAmostra()).withSize(250, 250)
+						.to(ImageType.PNG).stream();
+
+				try {
+					File file = new File("qr_code.png");
+					OutputStream out2 = new FileOutputStream(file);
+					bout.writeTo(out2);
+
+					out.flush();
+					out.close();
+
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+				byte[] pngData = bout.toByteArray();
+
+				PdfPCell cell;
+
+				cell = new PdfPCell(new Phrase(amostra.getId().toString()));
+				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+				cell.setFixedHeight(60);
+				table.addCell(cell);
+
+				cell = new PdfPCell(new Phrase(amostra.getIdentificadorAmostra()));
+				cell.setPaddingLeft(5);
+				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+				cell.setFixedHeight(60);
+				table.addCell(cell);
+
+				String dataCriacao = amostra.getDataColeta().toGMTString();
+
+				cell = new PdfPCell(new Phrase("Data:\n" + dataCriacao));
+				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+				cell.setPaddingRight(5);
+				cell.setFixedHeight(60);
+				table.addCell(cell);
+
+				Image img2 = Image.getInstance(pngData);
+				img2.scaleAbsolute(55f, 55f);
+
+				cell = new PdfPCell(img2);
+				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+				cell.setPaddingRight(5);
+				cell.setFixedHeight(60);
+				table.addCell(cell);
+
+				PdfWriter.getInstance(document, out);
+				document.open();
+				document.add(table);
+
+			}
+
+			// i.setAbsolutePosition(360f, 500f);
+
+			document.close();
+
+		} catch (DocumentException ex) {
+
+			log.error("Error occurred: {0}", ex);
+		}
+
+		return new ByteArrayInputStream(out.toByteArray());
 	}
 
 	@PreAuthorize("hasAnyRole('ADMINISTRADOR','CLIENTE','BOLSISTA')")

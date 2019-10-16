@@ -176,6 +176,7 @@ public class ServiceMilkApplication {
 			os.setValor(112.0);
 			this.ordemServicoRepository.save(os);
 
+			
 			// Analise 1
 			Collection<EnumLeite> teste = new ArrayList<>();
 			teste.add(EnumLeite.CRU);
@@ -199,26 +200,33 @@ public class ServiceMilkApplication {
 			analise.setProdutos(teste2);
 			analise.setOrigemLeite(EnumOrigemLeite.TETEIRA);
 			analise.setAnalisesSolicitadas(teste4);
-			analise.setQuantidadeAmostras(70);
-
+			analise.setQuantidadeAmostras(4);
+			analise.setDescricao("analise 1");
+			analise.setSolicitacao(s);
+			this.analiseRepository.save(analise);
+			
 			Analise analise2 = new Analise();
 			analise2.setEspecie(EnumEspecie.OVINO);
 			// analise2.setLeite(EnumLeite.CRU);
 			analise2.setProdutos(teste2);
 			analise2.setOrigemLeite(EnumOrigemLeite.TETEIRA);
 			analise2.setAnalisesSolicitadas(teste4);
-			analise2.setQuantidadeAmostras(60);
+			analise2.setQuantidadeAmostras(3);
 			analise2.setDescricao("analise 2");
-
+			analise2.setSolicitacao(s);
+			this.analiseRepository.save(analise2);
+			
+			
 			Analise analise3 = new Analise();
 			analise3.setEspecie(EnumEspecie.CAPRINO);
 			// analise3.setLeite(EnumLeite.CRU);
 			analise3.setProdutos(teste2);
 			analise3.setOrigemLeite(EnumOrigemLeite.TETEIRA);
 			analise3.setAnalisesSolicitadas(teste4);
-			analise3.setQuantidadeAmostras(5);
+			analise3.setQuantidadeAmostras(3);
 			analise3.setDescricao("analise 3");
-			this.analiseRepository.save(analise);
+			analise3.setSolicitacao(s);
+			this.analiseRepository.save(analise3);
 
 			// Amostra 1
 			Amostra amostra = new Amostra();
@@ -238,17 +246,88 @@ public class ServiceMilkApplication {
 			amostra2.setAnalise(analise);
 			this.amostraRepository.save(amostra2);
 
-			// Adicionar id de solicitação em uma analise
-			Optional<Solicitacao> solicitacao = this.solicitacaoRepository.findById(1);
-			List<Analise> listaAnalises = new ArrayList<>();
-			listaAnalises.add(analise);
-			listaAnalises.add(analise2);
-			listaAnalises.add(analise3);
-			listaAnalises.stream().forEach(objAnalise -> solicitacao.get().addAnalise(objAnalise));
-			// solicitacao.get().addAnalise(analise);
-			// solicitacao.get().addAnalise(analise2);
-			this.solicitacaoRepository.save(solicitacao.get());
+			Amostra amostra3 = new Amostra();
+			amostra3.setDataColeta(new Date());
+			// amostra2.setNumeroAmostra(323);
+			amostra3.setObservacao("obs3");
+			amostra3.setQrCode("qrCode3");
+			amostra3.setAnalise(analise);
+			this.amostraRepository.save(amostra3);
+
+			Amostra amostra4 = new Amostra();
+			amostra4.setDataColeta(new Date());
+			// amostra2.setNumeroAmostra(323);
+			amostra4.setObservacao("obs4");
+			amostra4.setQrCode("qrCode4");
+			amostra4.setAnalise(analise);
+			this.amostraRepository.save(amostra4);
+
+			Amostra amostra5 = new Amostra();
+			amostra5.setDataColeta(new Date());
+			// amostra2.setNumeroAmostra(323);
+			amostra5.setObservacao("obs5");
+			amostra5.setQrCode("qrCode5");
+			amostra5.setAnalise(analise2);
+			this.amostraRepository.save(amostra5);
+
+			Amostra amostra6 = new Amostra();
+			amostra6.setDataColeta(new Date());
+			// amostra2.setNumeroAmostra(323);
+			amostra6.setObservacao("obs6");
+			amostra6.setQrCode("qrCode6");
+			amostra6.setAnalise(analise2);
+			this.amostraRepository.save(amostra6);
+
+			Amostra amostra7 = new Amostra();
+			amostra7.setDataColeta(new Date());
+			// amostra2.setNumeroAmostra(323);
+			amostra7.setObservacao("obs7");
+			amostra7.setQrCode("qrCode7");
+			amostra7.setAnalise(analise2);
+			this.amostraRepository.save(amostra7);
 			
+			Amostra amostra8 = new Amostra();
+			amostra8.setDataColeta(new Date());
+			// amostra2.setNumeroAmostra(323);
+			amostra8.setObservacao("obs8");
+			amostra8.setQrCode("qrCode8");
+			amostra8.setAnalise(analise3);
+			this.amostraRepository.save(amostra8);
+
+			Amostra amostra9 = new Amostra();
+			amostra9.setDataColeta(new Date());
+			// amostra2.setNumeroAmostra(323);
+			amostra4.setObservacao("obs9");
+			amostra4.setQrCode("qrCode9");
+			amostra4.setAnalise(analise3);
+			this.amostraRepository.save(amostra9);
+
+			Amostra amostra10 = new Amostra();
+			amostra10.setDataColeta(new Date());
+			// amostra2.setNumeroAmostra(323);
+			amostra10.setObservacao("obs10");
+			amostra10.setQrCode("qrCode10");
+			amostra10.setAnalise(analise3);
+			this.amostraRepository.save(amostra10);
+			
+			
+			
+			
+			
+			
+			
+
+//			// Adicionar id de solicitação em uma analise
+//			Optional<Solicitacao> solicitacao = this.solicitacaoRepository.findById(1);
+//			List<Analise> listaAnalises = new ArrayList<>();
+//			listaAnalises.add(analise);
+//			listaAnalises.add(analise2);
+//			listaAnalises.add(analise3);
+//			listaAnalises.stream().forEach(objAnalise -> solicitacao.get().addAnalise(objAnalise));
+//			// solicitacao.get().addAnalise(analise);
+//			// solicitacao.get().addAnalise(analise2);
+//			this.solicitacaoRepository.save(solicitacao.get());
+
 		};
 	}
 
