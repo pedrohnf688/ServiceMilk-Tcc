@@ -214,7 +214,7 @@ public class AmostraController {
 			PdfPTable table = new PdfPTable(5);
 			table.setWidthPercentage(100);
 			table.setWidths(new int[] { 2, 2, 2, 3, 2 });
-			table.setTotalWidth(320);
+			table.setTotalWidth(360);
 			table.setLockedWidth(true);
 
 			for (Amostra amostra : amostras) {
@@ -256,13 +256,13 @@ public class AmostraController {
 				cell.setFixedHeight(60);
 				table.addCell(cell);
 
-				cell = new PdfPCell(new Phrase(amostra.getNumeroAmostra()));
+				cell = new PdfPCell(new Phrase(String.valueOf(amostra.getNumeroAmostra())));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
 				cell.setFixedHeight(60);
 				table.addCell(cell);
 
-				cell = new PdfPCell(new Phrase(amostra.getDataColeta().toGMTString()));
+				cell = new PdfPCell(new Phrase(amostra.getDataColeta().toLocaleString()));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
 				cell.setPaddingRight(5);

@@ -176,7 +176,6 @@ public class ServiceMilkApplication {
 			os.setValor(112.0);
 			this.ordemServicoRepository.save(os);
 
-			
 			// Analise 1
 			Collection<EnumLeite> teste = new ArrayList<>();
 			teste.add(EnumLeite.CRU);
@@ -204,7 +203,7 @@ public class ServiceMilkApplication {
 			analise.setDescricao("analise 1");
 			analise.setSolicitacao(s);
 			this.analiseRepository.save(analise);
-			
+
 			Analise analise2 = new Analise();
 			analise2.setEspecie(EnumEspecie.OVINO);
 			// analise2.setLeite(EnumLeite.CRU);
@@ -215,8 +214,7 @@ public class ServiceMilkApplication {
 			analise2.setDescricao("analise 2");
 			analise2.setSolicitacao(s);
 			this.analiseRepository.save(analise2);
-			
-			
+
 			Analise analise3 = new Analise();
 			analise3.setEspecie(EnumEspecie.CAPRINO);
 			// analise3.setLeite(EnumLeite.CRU);
@@ -285,7 +283,7 @@ public class ServiceMilkApplication {
 			amostra7.setQrCode("qrCode7");
 			amostra7.setAnalise(analise2);
 			this.amostraRepository.save(amostra7);
-			
+
 			Amostra amostra8 = new Amostra();
 			amostra8.setDataColeta(new Date());
 			// amostra2.setNumeroAmostra(323);
@@ -297,9 +295,9 @@ public class ServiceMilkApplication {
 			Amostra amostra9 = new Amostra();
 			amostra9.setDataColeta(new Date());
 			// amostra2.setNumeroAmostra(323);
-			amostra4.setObservacao("obs9");
-			amostra4.setQrCode("qrCode9");
-			amostra4.setAnalise(analise3);
+			amostra9.setObservacao("obs9");
+			amostra9.setQrCode("qrCode9");
+			amostra9.setAnalise(analise3);
 			this.amostraRepository.save(amostra9);
 
 			Amostra amostra10 = new Amostra();
@@ -309,13 +307,6 @@ public class ServiceMilkApplication {
 			amostra10.setQrCode("qrCode10");
 			amostra10.setAnalise(analise3);
 			this.amostraRepository.save(amostra10);
-			
-			
-			
-			
-			
-			
-			
 
 //			// Adicionar id de solicitação em uma analise
 //			Optional<Solicitacao> solicitacao = this.solicitacaoRepository.findById(1);
