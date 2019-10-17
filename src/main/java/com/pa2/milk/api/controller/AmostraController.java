@@ -180,14 +180,13 @@ public class AmostraController {
 
 	}
 
-	/// LISTA QRCODE
 	@PreAuthorize("hasAnyRole('ADMINISTRADOR','CLIENTE','BOLSISTA')")
 	@GetMapping(value = "listaQrCode/{analiseId}")
 	public List<Amostra> listarAmostrasPorAnalise(@PathVariable("analiseId") Integer analiseId) {
 
 		List<Amostra> amostras = this.amostraRepositorio.findByAnaliseId(analiseId);
 
-		return null;
+		return amostras;
 	}
 
 	@GetMapping(value = "/pdfreport/{analiseId}", produces = MediaType.APPLICATION_PDF_VALUE)
@@ -214,7 +213,7 @@ public class AmostraController {
 
 			PdfPTable table = new PdfPTable(4);
 			table.setWidthPercentage(100);
-			table.setWidths(new int[] { 2, 2, 3, 3 });
+			table.setWidths(new int[] { 2, 2, 3, 2 });
 			table.setTotalWidth(320);
 			table.setLockedWidth(true);
 
@@ -236,13 +235,13 @@ public class AmostraController {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-  
+
 				byte[] pngData = bout.toByteArray();
 
 				PdfPCell cell;
 
 				Image img = Image.getInstance("logo1.jpg");
-				img.scaleAbsolute(55f, 55f);
+				img.scaleAbsolute(60f, 55f);
 
 				cell = new PdfPCell(img);
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
