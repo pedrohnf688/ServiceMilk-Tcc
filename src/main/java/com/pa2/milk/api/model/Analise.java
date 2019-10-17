@@ -39,10 +39,10 @@ public class Analise extends AbstractModel<Integer> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	//@Column(name = "enumLeite", nullable = false)
-	//@Enumerated(EnumType.STRING)
-	//@NotNull(message = "O campo leite não pode ser vazio.")
-	//private EnumLeite leite;
+	// @Column(name = "enumLeite", nullable = false)
+	// @Enumerated(EnumType.STRING)
+	// @NotNull(message = "O campo leite não pode ser vazio.")
+	// private EnumLeite leite;
 
 	@Column(name = "enumOrigemLeite", nullable = false)
 	@Enumerated(EnumType.STRING)
@@ -77,8 +77,11 @@ public class Analise extends AbstractModel<Integer> {
 	private List<Amostra> amostras = new ArrayList<>();
 
 	@Column(name = "descricao"/* , nullable = false */)
-	//@NotBlank(message = "O campo descrição não pode ser nulo.")
+	// @NotBlank(message = "O campo descrição não pode ser nulo.")
 	private String descricao;
+
+	@Column(name = "temperatura")
+	private float temperatura;
 
 	@ManyToOne
 	@JoinColumn(name = "solicitacao_id")
@@ -86,13 +89,14 @@ public class Analise extends AbstractModel<Integer> {
 	private Solicitacao solicitacao;
 
 	public Analise(Builder builder) {
-		//this.leite = builder.leite;
+		// this.leite = builder.leite;
 		this.origemLeite = builder.origemLeite;
 		this.produtos = builder.produtos;
 		this.analisesSolicitadas = builder.analisesSolicitadas;
 		this.especie = builder.especie;
 		this.quantidadeAmostras = builder.quantidadeAmostras;
 		this.descricao = builder.descricao;
+		this.temperatura = builder.temperatura;
 	}
 
 	public Analise() {
@@ -108,13 +112,11 @@ public class Analise extends AbstractModel<Integer> {
 		this.id = id;
 	}
 
-	/*public EnumLeite getLeite() {
-		return leite;
-	}
-
-	public void setLeite(EnumLeite leite) {
-		this.leite = leite;
-	}*/
+	/*
+	 * public EnumLeite getLeite() { return leite; }
+	 * 
+	 * public void setLeite(EnumLeite leite) { this.leite = leite; }
+	 */
 
 	public EnumOrigemLeite getOrigemLeite() {
 		return origemLeite;
@@ -164,6 +166,14 @@ public class Analise extends AbstractModel<Integer> {
 		this.descricao = descricao;
 	}
 
+	public float getTemperatura() {
+		return temperatura;
+	}
+
+	public void setTemperatura(float temperatura) {
+		this.temperatura = temperatura;
+	}
+
 	public Solicitacao getSolicitacao() {
 		return solicitacao;
 	}
@@ -198,6 +208,7 @@ public class Analise extends AbstractModel<Integer> {
 		private Collection<EnumAnalisesSolicitadas> analisesSolicitadas;
 		private Integer quantidadeAmostras;
 		private String descricao;
+		private float temperatura;
 
 		public Builder(String descricao) {
 			this.descricao = descricao;
@@ -232,7 +243,11 @@ public class Analise extends AbstractModel<Integer> {
 			this.quantidadeAmostras = quantidadeAmostras;
 			return this;
 		}
-
+		
+		public Builder temperatura(float temperatura) {
+			this.temperatura = temperatura;
+			return this;
+		}
 		public Analise build() {
 			return new Analise(this);
 		}

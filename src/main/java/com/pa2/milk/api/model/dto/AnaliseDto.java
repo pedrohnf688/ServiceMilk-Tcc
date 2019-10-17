@@ -12,7 +12,7 @@ import com.pa2.milk.api.model.enums.EnumProdutos;
 
 public class AnaliseDto {
 
-	//private EnumLeite leite;
+	// private EnumLeite leite;
 
 	private EnumOrigemLeite origemLeite;
 
@@ -28,13 +28,13 @@ public class AnaliseDto {
 
 	private String descricao;
 
-	/*public EnumLeite getLeite() {
-		return leite;
-	}
+	private float temperatura;
 
-	public void setLeite(EnumLeite leite) {
-		this.leite = leite;
-	}*/
+	/*
+	 * public EnumLeite getLeite() { return leite; }
+	 * 
+	 * public void setLeite(EnumLeite leite) { this.leite = leite; }
+	 */
 
 	public EnumOrigemLeite getOrigemLeite() {
 		return origemLeite;
@@ -92,9 +92,18 @@ public class AnaliseDto {
 		this.descricao = descricao;
 	}
 
+	public float getTemperatura() {
+		return temperatura;
+	}
+
+	public void setTemperatura(float temperatura) {
+		this.temperatura = temperatura;
+	}
+
 	public Analise transformarParaAnalise() {
 		return new Analise.Builder(descricao).especie(especie).origemLeite(origemLeite)
-				.analisesSolicitadas(analisesSolicitadas).quantidadeAmostras(quantidadeAmostras).produtos(produtos)
+				.analisesSolicitadas(analisesSolicitadas).quantidadeAmostras(quantidadeAmostras)
+				.produtos(produtos).temperatura(temperatura)
 				.build();
 	}
 }

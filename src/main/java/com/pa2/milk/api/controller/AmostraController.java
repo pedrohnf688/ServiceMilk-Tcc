@@ -214,8 +214,8 @@ public class AmostraController {
 
 			PdfPTable table = new PdfPTable(4);
 			table.setWidthPercentage(100);
-			table.setWidths(new int[] { 3, 4, 4, 3 });
-			table.setTotalWidth(300);
+			table.setWidths(new int[] { 2, 2, 3, 3 });
+			table.setTotalWidth(320);
 			table.setLockedWidth(true);
 
 			for (Amostra amostra : amostras) {
@@ -236,10 +236,20 @@ public class AmostraController {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-
+  
 				byte[] pngData = bout.toByteArray();
 
 				PdfPCell cell;
+
+				Image img = Image.getInstance("logo1.jpg");
+				img.scaleAbsolute(55f, 55f);
+
+				cell = new PdfPCell(img);
+				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+				cell.setPaddingRight(5);
+				cell.setFixedHeight(60);
+				table.addCell(cell);
 
 				cell = new PdfPCell(new Phrase(amostra.getId().toString()));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -247,16 +257,7 @@ public class AmostraController {
 				cell.setFixedHeight(60);
 				table.addCell(cell);
 
-				cell = new PdfPCell(new Phrase(amostra.getIdentificadorAmostra()));
-				cell.setPaddingLeft(5);
-				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-				cell.setFixedHeight(60);
-				table.addCell(cell);
-
-				String dataCriacao = amostra.getDataColeta().toGMTString();
-
-				cell = new PdfPCell(new Phrase("Data:\n" + dataCriacao));
+				cell = new PdfPCell(new Phrase(amostra.getDataColeta().toGMTString()));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
 				cell.setPaddingRight(5);
@@ -278,8 +279,6 @@ public class AmostraController {
 				document.add(table);
 
 			}
-
-			// i.setAbsolutePosition(360f, 500f);
 
 			document.close();
 
