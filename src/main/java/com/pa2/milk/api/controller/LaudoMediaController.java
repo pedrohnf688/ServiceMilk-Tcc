@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pa2.milk.api.model.Laudo;
 import com.pa2.milk.api.model.LaudoMedia;
 import com.pa2.milk.api.model.Solicitacao;
+import com.pa2.milk.api.model.dto.CadastroClienteDto;
 import com.pa2.milk.api.service.LaudoMediaService;
 import com.pa2.milk.api.service.LaudoService;
 import com.pa2.milk.api.service.SolicitacaoService;
@@ -68,12 +70,12 @@ public class LaudoMediaController {
 	}
 
 	@PostMapping("/batchId/{solicitacaoId}")
-	public LaudoMedia MedidaLaudos(@RequestParam("batchId") String batchId,
+	public LaudoMedia MedidaLaudos(@RequestBody String batchId,
 			@PathVariable("solicitacaoId") Integer solicitacaoId) {
 		// return this.laudoMediaService.salvar(mediaAritmeticaLaudo(batchId,
 		// solicitacaoId));
 		// }
-
+// @RequestParam("batchId") String batchId
 		// public LaudoMedia mediaAritmeticaLaudo(String batchId, int solicitacaoId) {
 		// log.info("Metodo para gerar a media dos atributos do laudo por
 		// solicitação:");
