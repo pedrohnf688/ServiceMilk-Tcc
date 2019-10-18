@@ -29,6 +29,7 @@ import com.pa2.milk.api.model.Laudo;
 import com.pa2.milk.api.model.LaudoMedia;
 import com.pa2.milk.api.model.Solicitacao;
 import com.pa2.milk.api.model.dto.CadastroClienteDto;
+import com.pa2.milk.api.model.dto.LaudoMediaDto;
 import com.pa2.milk.api.service.LaudoMediaService;
 import com.pa2.milk.api.service.LaudoService;
 import com.pa2.milk.api.service.SolicitacaoService;
@@ -70,7 +71,7 @@ public class LaudoMediaController {
 	}
 
 	@PostMapping("/batchId/{solicitacaoId}")
-	public LaudoMedia MedidaLaudos(@RequestBody String batchId,
+	public LaudoMedia MedidaLaudos(@RequestBody LaudoMediaDto laudoMediaDto,
 			@PathVariable("solicitacaoId") Integer solicitacaoId) {
 		// return this.laudoMediaService.salvar(mediaAritmeticaLaudo(batchId,
 		// solicitacaoId));
@@ -80,10 +81,9 @@ public class LaudoMediaController {
 		// log.info("Metodo para gerar a media dos atributos do laudo por
 		// solicitação:");
 
-		List<Laudo> laudos = this.laudoService.buscarPorBatchId(batchId);
+		List<Laudo> laudos = this.laudoService.buscarPorBatchId(laudoMediaDto.getBatch().toString());
 //		List<Laudo> laudos = this.laudoService.buscarPorBatchId("bovinocultura");
 
-		
 		Optional<Solicitacao> s = this.solicitacaoService.buscarSolicitacaoPorId(solicitacaoId);
 
 		String regex = "[+-]?[0-9]+(\\.[0-9]+)?([Ee][+-]?[0-9]+)?";
@@ -204,34 +204,29 @@ public class LaudoMediaController {
 			media20 += (m20.find() && m20.group().equals(laudos.get(i).getPc()))
 					? Double.parseDouble(laudos.get(i).getPc())
 					: 0;
-					
-					
-			media1 = Double.parseDouble(String.valueOf((Math.round(media1*100)/100.0)));
-			media2 = Double.parseDouble(String.valueOf((Math.round(media2*100)/100.0)));
-			media3 = Double.parseDouble(String.valueOf((Math.round(media3*100)/100.0)));
-			media4 = Double.parseDouble(String.valueOf((Math.round(media4*100)/100.0)));
-			media5 = Double.parseDouble(String.valueOf((Math.round(media5*100)/100.0)));
-			media6 = Double.parseDouble(String.valueOf((Math.round(media6*100)/100.0)));
-			media7 = Double.parseDouble(String.valueOf((Math.round(media7*100)/100.0)));
-			media8 = Double.parseDouble(String.valueOf((Math.round(media8*100)/100.0)));
-			media9 = Double.parseDouble(String.valueOf((Math.round(media9*100)/100.0)));
-			media10 = Double.parseDouble(String.valueOf((Math.round(media10*100)/100.0)));
-			media11 = Double.parseDouble(String.valueOf((Math.round(media11*100)/100.0)));
-			media12 = Double.parseDouble(String.valueOf((Math.round(media12*100)/100.0)));
-			media13 = Double.parseDouble(String.valueOf((Math.round(media13*100)/100.0)));
-			media14 = Double.parseDouble(String.valueOf((Math.round(media14*100)/100.0)));
-			media15 = Double.parseDouble(String.valueOf((Math.round(media15*100)/100.0)));
-			media16 = Double.parseDouble(String.valueOf((Math.round(media16*100)/100.0)));
-			media17 = Double.parseDouble(String.valueOf((Math.round(media17*100)/100.0)));
-			media18 = Double.parseDouble(String.valueOf((Math.round(media18*100)/100.0)));
-			media19 = Double.parseDouble(String.valueOf((Math.round(media19*100)/100.0)));
-			media20 = Double.parseDouble(String.valueOf((Math.round(media20*100)/100.0)));
 
+			media1 = Double.parseDouble(String.valueOf((Math.round(media1 * 100) / 100.0)));
+			media2 = Double.parseDouble(String.valueOf((Math.round(media2 * 100) / 100.0)));
+			media3 = Double.parseDouble(String.valueOf((Math.round(media3 * 100) / 100.0)));
+			media4 = Double.parseDouble(String.valueOf((Math.round(media4 * 100) / 100.0)));
+			media5 = Double.parseDouble(String.valueOf((Math.round(media5 * 100) / 100.0)));
+			media6 = Double.parseDouble(String.valueOf((Math.round(media6 * 100) / 100.0)));
+			media7 = Double.parseDouble(String.valueOf((Math.round(media7 * 100) / 100.0)));
+			media8 = Double.parseDouble(String.valueOf((Math.round(media8 * 100) / 100.0)));
+			media9 = Double.parseDouble(String.valueOf((Math.round(media9 * 100) / 100.0)));
+			media10 = Double.parseDouble(String.valueOf((Math.round(media10 * 100) / 100.0)));
+			media11 = Double.parseDouble(String.valueOf((Math.round(media11 * 100) / 100.0)));
+			media12 = Double.parseDouble(String.valueOf((Math.round(media12 * 100) / 100.0)));
+			media13 = Double.parseDouble(String.valueOf((Math.round(media13 * 100) / 100.0)));
+			media14 = Double.parseDouble(String.valueOf((Math.round(media14 * 100) / 100.0)));
+			media15 = Double.parseDouble(String.valueOf((Math.round(media15 * 100) / 100.0)));
+			media16 = Double.parseDouble(String.valueOf((Math.round(media16 * 100) / 100.0)));
+			media17 = Double.parseDouble(String.valueOf((Math.round(media17 * 100) / 100.0)));
+			media18 = Double.parseDouble(String.valueOf((Math.round(media18 * 100) / 100.0)));
+			media19 = Double.parseDouble(String.valueOf((Math.round(media19 * 100) / 100.0)));
+			media20 = Double.parseDouble(String.valueOf((Math.round(media20 * 100) / 100.0)));
 
-			
-						
-					
-			System.out.println("Media "+i+":"+media1);
+			System.out.println("Media " + i + ":" + media1);
 			cont++;
 		}
 
@@ -259,35 +254,32 @@ public class LaudoMediaController {
 		media19 /= cont;
 		media20 /= cont;
 
-		media1 = Double.parseDouble(String.valueOf((Math.round(media1*100)/100.0)));
-		media2 = Double.parseDouble(String.valueOf((Math.round(media2*100)/100.0)));
-		media3 = Double.parseDouble(String.valueOf((Math.round(media3*100)/100.0)));
-		media4 = Double.parseDouble(String.valueOf((Math.round(media4*100)/100.0)));
-		media5 = Double.parseDouble(String.valueOf((Math.round(media5*100)/100.0)));
-		media6 = Double.parseDouble(String.valueOf((Math.round(media6*100)/100.0)));
-		media7 = Double.parseDouble(String.valueOf((Math.round(media7*100)/100.0)));
-		media8 = Double.parseDouble(String.valueOf((Math.round(media8*100)/100.0)));
-		media9 = Double.parseDouble(String.valueOf((Math.round(media9*100)/100.0)));
-		media10 = Double.parseDouble(String.valueOf((Math.round(media10*100)/100.0)));
-		media11 = Double.parseDouble(String.valueOf((Math.round(media11*100)/100.0)));
-		media12 = Double.parseDouble(String.valueOf((Math.round(media12*100)/100.0)));
-		media13 = Double.parseDouble(String.valueOf((Math.round(media13*100)/100.0)));
-		media14 = Double.parseDouble(String.valueOf((Math.round(media14*100)/100.0)));
-		media15 = Double.parseDouble(String.valueOf((Math.round(media15*100)/100.0)));
-		media16 = Double.parseDouble(String.valueOf((Math.round(media16*100)/100.0)));
-		media17 = Double.parseDouble(String.valueOf((Math.round(media17*100)/100.0)));
-		media18 = Double.parseDouble(String.valueOf((Math.round(media18*100)/100.0)));
-		media19 = Double.parseDouble(String.valueOf((Math.round(media19*100)/100.0)));
-		media20 = Double.parseDouble(String.valueOf((Math.round(media20*100)/100.0)));
+		media1 = Double.parseDouble(String.valueOf((Math.round(media1 * 100) / 100.0)));
+		media2 = Double.parseDouble(String.valueOf((Math.round(media2 * 100) / 100.0)));
+		media3 = Double.parseDouble(String.valueOf((Math.round(media3 * 100) / 100.0)));
+		media4 = Double.parseDouble(String.valueOf((Math.round(media4 * 100) / 100.0)));
+		media5 = Double.parseDouble(String.valueOf((Math.round(media5 * 100) / 100.0)));
+		media6 = Double.parseDouble(String.valueOf((Math.round(media6 * 100) / 100.0)));
+		media7 = Double.parseDouble(String.valueOf((Math.round(media7 * 100) / 100.0)));
+		media8 = Double.parseDouble(String.valueOf((Math.round(media8 * 100) / 100.0)));
+		media9 = Double.parseDouble(String.valueOf((Math.round(media9 * 100) / 100.0)));
+		media10 = Double.parseDouble(String.valueOf((Math.round(media10 * 100) / 100.0)));
+		media11 = Double.parseDouble(String.valueOf((Math.round(media11 * 100) / 100.0)));
+		media12 = Double.parseDouble(String.valueOf((Math.round(media12 * 100) / 100.0)));
+		media13 = Double.parseDouble(String.valueOf((Math.round(media13 * 100) / 100.0)));
+		media14 = Double.parseDouble(String.valueOf((Math.round(media14 * 100) / 100.0)));
+		media15 = Double.parseDouble(String.valueOf((Math.round(media15 * 100) / 100.0)));
+		media16 = Double.parseDouble(String.valueOf((Math.round(media16 * 100) / 100.0)));
+		media17 = Double.parseDouble(String.valueOf((Math.round(media17 * 100) / 100.0)));
+		media18 = Double.parseDouble(String.valueOf((Math.round(media18 * 100) / 100.0)));
+		media19 = Double.parseDouble(String.valueOf((Math.round(media19 * 100) / 100.0)));
+		media20 = Double.parseDouble(String.valueOf((Math.round(media20 * 100) / 100.0)));
 
-		System.out.println("Media final:"+media1+ " Cont"+cont);
-		
+		System.out.println("Media final:" + media1 + " Cont" + cont);
 
 		LaudoMedia l = new LaudoMedia();
 
-	
-		
-		l.setBatchIdMedia(batchId);
+		l.setBatchIdMedia(laudoMediaDto.getBatch().toString());
 		l.setCaseinMedia(String.valueOf(media1));
 		l.setCbtMedia(String.valueOf(media2));
 		l.setCcsMedia(String.valueOf(media3));
@@ -309,7 +301,6 @@ public class LaudoMediaController {
 		l.setEsdMedia(String.valueOf(media19));
 		l.setPcMedia(String.valueOf(media20));
 
-		
 //		l.setBatchIdMedia(batchId);
 //		l.setCaseinMedia(String.valueOf(Math.round(media1*100)/100.0));
 //		l.setCbtMedia(String.valueOf(Math.round(media2*100)/100.0));
@@ -332,9 +323,6 @@ public class LaudoMediaController {
 //		l.setEsdMedia(String.valueOf(Math.round(media19*100)/100.0));
 //		l.setPcMedia(String.valueOf(Math.round(media20*100)/100.0));
 
-		
-		
-		
 		l.setSolicitacao(s.get());
 
 		l.setListaLaudos(laudos);
