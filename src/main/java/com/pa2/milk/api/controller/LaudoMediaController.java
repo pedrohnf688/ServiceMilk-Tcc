@@ -81,8 +81,8 @@ public class LaudoMediaController {
 		// log.info("Metodo para gerar a media dos atributos do laudo por
 		// solicitação:");
 
-//		List<Laudo> laudos = this.laudoService.buscarPorBatchId(laudoMediaDto.getBatch().toString());
-		List<Laudo> laudos = this.laudoService.buscarPorBatchId("bovinocultura");
+		List<Laudo> laudos = this.laudoService.buscarPorBatchId(laudoMediaDto.getBatch().toString());
+//		List<Laudo> laudos = this.laudoService.buscarPorBatchId("bovinocultura");
 
 		Optional<Solicitacao> s = this.solicitacaoService.buscarSolicitacaoPorId(solicitacaoId);
 
