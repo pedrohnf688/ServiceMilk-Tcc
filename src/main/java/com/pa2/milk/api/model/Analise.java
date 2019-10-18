@@ -81,7 +81,7 @@ public class Analise extends AbstractModel<Integer> {
 	private String descricao;
 
 	@Column(name = "temperatura")
-	private float temperatura;
+	private double temperatura;
 
 	@ManyToOne
 	@JoinColumn(name = "solicitacao_id")
@@ -166,11 +166,11 @@ public class Analise extends AbstractModel<Integer> {
 		this.descricao = descricao;
 	}
 
-	public float getTemperatura() {
+	public double getTemperatura() {
 		return temperatura;
 	}
 
-	public void setTemperatura(float temperatura) {
+	public void setTemperatura(double temperatura) {
 		this.temperatura = temperatura;
 	}
 
@@ -208,7 +208,7 @@ public class Analise extends AbstractModel<Integer> {
 		private Collection<EnumAnalisesSolicitadas> analisesSolicitadas;
 		private Integer quantidadeAmostras;
 		private String descricao;
-		private float temperatura;
+		private double temperatura;
 
 		public Builder(String descricao) {
 			this.descricao = descricao;
@@ -244,7 +244,7 @@ public class Analise extends AbstractModel<Integer> {
 			return this;
 		}
 		
-		public Builder temperatura(float temperatura) {
+		public Builder temperatura(double temperatura) {
 			this.temperatura = temperatura;
 			return this;
 		}

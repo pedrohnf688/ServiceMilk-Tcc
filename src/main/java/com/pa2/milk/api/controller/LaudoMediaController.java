@@ -78,8 +78,10 @@ public class LaudoMediaController {
 		// log.info("Metodo para gerar a media dos atributos do laudo por
 		// solicitação:");
 
-		List<Laudo> laudos = this.laudoService.buscarPorBatchId(batchId);
+//		List<Laudo> laudos = this.laudoService.buscarPorBatchId(batchId);
+		List<Laudo> laudos = this.laudoService.buscarPorBatchId("bovinocultura");
 
+		
 		Optional<Solicitacao> s = this.solicitacaoService.buscarSolicitacaoPorId(solicitacaoId);
 
 		String regex = "[+-]?[0-9]+(\\.[0-9]+)?([Ee][+-]?[0-9]+)?";

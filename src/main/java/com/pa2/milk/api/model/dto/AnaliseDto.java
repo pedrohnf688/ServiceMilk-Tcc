@@ -28,7 +28,7 @@ public class AnaliseDto {
 
 	private String descricao;
 
-	private float temperatura;
+	private double temperatura;
 
 	/*
 	 * public EnumLeite getLeite() { return leite; }
@@ -92,11 +92,11 @@ public class AnaliseDto {
 		this.descricao = descricao;
 	}
 
-	public float getTemperatura() {
+	public double getTemperatura() {
 		return temperatura;
 	}
 
-	public void setTemperatura(float temperatura) {
+	public void setTemperatura(double temperatura) {
 		this.temperatura = temperatura;
 	}
 
