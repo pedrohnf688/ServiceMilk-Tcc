@@ -11,6 +11,7 @@ import java.net.MalformedURLException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -37,6 +38,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.zxing.WriterException;
+import com.ibm.icu.text.DateFormat;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -250,7 +252,7 @@ public class AmostraController {
 				cell.setFixedHeight(60);
 				table.addCell(cell);
 
-				cell = new PdfPCell(new Phrase(amostra.getObservacao()));
+				cell = new PdfPCell(new Phrase(amostra.getId().toString()));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
 				cell.setFixedHeight(60);
@@ -262,7 +264,9 @@ public class AmostraController {
 				cell.setFixedHeight(60);
 				table.addCell(cell);
 
-				cell = new PdfPCell(new Phrase(amostra.getDataColeta().toLocaleString()));
+				Locale.setDefault(new Locale("pt","Brazil"));
+				
+				cell = new PdfPCell(new Phrase(DateFormat.getInstance().format(amostra.getDataColeta())));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
 				cell.setPaddingRight(5);
