@@ -71,7 +71,7 @@ public class LaudoMediaController {
 	}
 
 	@PostMapping("/batchId/{solicitacaoId}")
-	public LaudoMedia MedidaLaudos(@RequestBody LaudoMediaDto laudoMediaDto,
+	public LaudoMedia MedidaLaudos(/*@RequestBody LaudoMediaDto laudoMediaDto,*/
 			@PathVariable("solicitacaoId") Integer solicitacaoId) {
 		// return this.laudoMediaService.salvar(mediaAritmeticaLaudo(batchId,
 		// solicitacaoId));
@@ -81,8 +81,8 @@ public class LaudoMediaController {
 		// log.info("Metodo para gerar a media dos atributos do laudo por
 		// solicitação:");
 
-		List<Laudo> laudos = this.laudoService.buscarPorBatchId(laudoMediaDto.getBatch().toString());
-//		List<Laudo> laudos = this.laudoService.buscarPorBatchId("bovinocultura");
+//		List<Laudo> laudos = this.laudoService.buscarPorBatchId(laudoMediaDto.getBatch().toString());
+		List<Laudo> laudos = this.laudoService.buscarPorBatchId("bovinocultura");
 
 		Optional<Solicitacao> s = this.solicitacaoService.buscarSolicitacaoPorId(solicitacaoId);
 
@@ -279,7 +279,7 @@ public class LaudoMediaController {
 
 		LaudoMedia l = new LaudoMedia();
 
-		l.setBatchIdMedia(laudoMediaDto.getBatch().toString());
+	//	l.setBatchIdMedia(laudoMediaDto.getBatch().toString());
 		l.setCaseinMedia(String.valueOf(media1));
 		l.setCbtMedia(String.valueOf(media2));
 		l.setCcsMedia(String.valueOf(media3));
