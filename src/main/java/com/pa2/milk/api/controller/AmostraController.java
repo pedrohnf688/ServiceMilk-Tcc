@@ -266,7 +266,7 @@ public class AmostraController {
 
 				//Locale.setDefault(new Locale("pt","Brazil"));
 				
-				cell = new PdfPCell(new Phrase(amostra.getDataColeta().toString()));
+				cell = new PdfPCell(new Phrase(amostra.getDataColeta().toGMTString()));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
 				cell.setPaddingRight(5);
