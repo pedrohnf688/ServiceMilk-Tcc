@@ -279,7 +279,7 @@ public class LaudoMediaController {
 
 		LaudoMedia l = new LaudoMedia();
 
-	//	l.setBatchIdMedia(laudoMediaDto.getBatch().toString());
+		l.setBatchIdMedia(laudoMediaDto.getBatch().toString());
 		l.setCaseinMedia(String.valueOf(media1));
 		l.setCbtMedia(String.valueOf(media2));
 		l.setCcsMedia(String.valueOf(media3));

@@ -75,7 +75,7 @@ public class ClienteController {
 
 	@Autowired
 	private JavaMailSender javaMailSender;
-	
+
 	@Autowired
 	private ArquivoService arquivoService;
 
@@ -134,6 +134,7 @@ public class ClienteController {
 		response.setData(cliente.get());
 
 		return ResponseEntity.ok(response);
+
 	}
 
 	@PreAuthorize("hasAnyRole('ADMINISTRADOR','BOLSISTA','CLIENTE')")
@@ -158,7 +159,7 @@ public class ClienteController {
 			log.error("Erro validando a Credencial:{}", result.getAllErrors());
 			result.getAllErrors().forEach(error -> response.getErros().add(error.getDefaultMessage()));
 			return ResponseEntity.badRequest().body(response);
-		}	
+		}
 
 		this.credencialService.salvar(credencial.get());
 		response.setData(this.converterCadastroClienteDto(credencial.get()));
@@ -204,12 +205,11 @@ public class ClienteController {
 	@GetMapping(value = "{id}/solicitacao")
 	public List<Solicitacao> buscarSolicitacaoClientePorId(@PathVariable("id") Integer id) {
 		log.info("Buscar Solicitação por Id do Cliente");
-		
+
 		List<Solicitacao> s = this.solicitacaoService.buscarSolicitacaoClienteId(id);
-				
+
 		return s;
 	}
-
 
 	private void atualizarDadosCliente(Credencial credencial, CadastroClienteDto clienteDto, BindingResult result)
 			throws NoSuchAlgorithmException {
