@@ -68,6 +68,9 @@ public class Solicitacao extends AbstractModel<Integer> {
 	@Cascade({ org.hibernate.annotations.CascadeType.ALL })
 	private Arquivo fotoSolicitacao;
 
+	@Column(name = "temperatura")
+	private double temperatura;
+
 	public Solicitacao() {
 		listaAnalise = new ArrayList<>();
 	}
@@ -156,11 +159,20 @@ public class Solicitacao extends AbstractModel<Integer> {
 		this.fotoSolicitacao = fotoSolicitacao;
 	}
 
+	public double getTemperatura() {
+		return temperatura;
+	}
+
+	public void setTemperatura(double temperatura) {
+		this.temperatura = temperatura;
+	}
+
 	@Override
 	public String toString() {
 		return "Solicitacao [id=" + id + ", cliente=" + cliente + ", fazenda=" + fazenda + ", listaAnalise="
 				+ listaAnalise + ", status=" + status + ", dataCriada=" + dataCriada + ", observacao=" + observacao
-				+ ", listaLaudoMedia=" + listaLaudoMedia + ", fotoSolicitacao=" + fotoSolicitacao + "]";
+				+ ", listaLaudoMedia=" + listaLaudoMedia + ", fotoSolicitacao=" + fotoSolicitacao + ", temperatura="
+				+ temperatura + "]";
 	}
 
 }

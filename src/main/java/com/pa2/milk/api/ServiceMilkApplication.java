@@ -166,6 +166,8 @@ public class ServiceMilkApplication {
 			s.setFazenda(fazenda);
 			s.setStatus(EnumStatusSolicitacao.PENDENTE);
 			s.setDataCriada(Calendar.getInstance(TimeZone.getTimeZone("GMT-03:00")).getTime());
+			s.setTemperatura(17.5);
+			
 			this.solicitacaoRepository.save(s);
 
 			// OrdemServiço
@@ -201,7 +203,6 @@ public class ServiceMilkApplication {
 			analise.setAnalisesSolicitadas(teste4);
 			analise.setQuantidadeAmostras(4);
 			analise.setDescricao("analise 1");
-			analise.setTemperatura(16.5);
 			analise.setSolicitacao(s);
 			this.analiseRepository.save(analise);
 
@@ -213,7 +214,6 @@ public class ServiceMilkApplication {
 			analise2.setAnalisesSolicitadas(teste4);
 			analise2.setQuantidadeAmostras(3);
 			analise2.setDescricao("analise 2");
-			analise2.setTemperatura(18.5);
 			analise2.setSolicitacao(s);
 			this.analiseRepository.save(analise2);
 
@@ -225,7 +225,6 @@ public class ServiceMilkApplication {
 			analise3.setAnalisesSolicitadas(teste4);
 			analise3.setQuantidadeAmostras(3);
 			analise3.setDescricao("analise 3");
-			analise3.setTemperatura(13.5);
 			analise3.setSolicitacao(s);
 			this.analiseRepository.save(analise3);
 

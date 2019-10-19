@@ -80,9 +80,6 @@ public class Analise extends AbstractModel<Integer> {
 	// @NotBlank(message = "O campo descrição não pode ser nulo.")
 	private String descricao;
 
-	@Column(name = "temperatura")
-	private double temperatura;
-
 	@ManyToOne
 	@JoinColumn(name = "solicitacao_id")
 	@JsonIgnore
@@ -96,7 +93,6 @@ public class Analise extends AbstractModel<Integer> {
 		this.especie = builder.especie;
 		this.quantidadeAmostras = builder.quantidadeAmostras;
 		this.descricao = builder.descricao;
-		this.temperatura = builder.temperatura;
 	}
 
 	public Analise() {
@@ -166,14 +162,6 @@ public class Analise extends AbstractModel<Integer> {
 		this.descricao = descricao;
 	}
 
-	public double getTemperatura() {
-		return temperatura;
-	}
-
-	public void setTemperatura(double temperatura) {
-		this.temperatura = temperatura;
-	}
-
 	public Solicitacao getSolicitacao() {
 		return solicitacao;
 	}
@@ -208,8 +196,7 @@ public class Analise extends AbstractModel<Integer> {
 		private Collection<EnumAnalisesSolicitadas> analisesSolicitadas;
 		private Integer quantidadeAmostras;
 		private String descricao;
-		private double temperatura;
-
+	
 		public Builder(String descricao) {
 			this.descricao = descricao;
 		}
@@ -244,10 +231,6 @@ public class Analise extends AbstractModel<Integer> {
 			return this;
 		}
 		
-		public Builder temperatura(double temperatura) {
-			this.temperatura = temperatura;
-			return this;
-		}
 		public Analise build() {
 			return new Analise(this);
 		}

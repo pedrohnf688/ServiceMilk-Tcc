@@ -28,8 +28,6 @@ public class AnaliseDto {
 
 	private String descricao;
 
-	private double temperatura;
-
 	/*
 	 * public EnumLeite getLeite() { return leite; }
 	 * 
@@ -92,18 +90,10 @@ public class AnaliseDto {
 		this.descricao = descricao;
 	}
 
-	public double getTemperatura() {
-		return temperatura;
-	}
-
-	public void setTemperatura(double temperatura) {
-		this.temperatura = temperatura;
-	}
 
 	public Analise transformarParaAnalise() {
 		return new Analise.Builder(descricao).especie(especie).origemLeite(origemLeite)
 				.analisesSolicitadas(analisesSolicitadas).quantidadeAmostras(quantidadeAmostras)
-				.produtos(produtos).temperatura(temperatura)
-				.build();
+				.produtos(produtos).build();
 	}
 }

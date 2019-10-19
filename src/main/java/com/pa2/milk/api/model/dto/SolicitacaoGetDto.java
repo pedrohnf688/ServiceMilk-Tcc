@@ -30,6 +30,8 @@ public class SolicitacaoGetDto {
 
 	private List<Amostra> amostras;
 
+	private double temperatura;
+
 	public SolicitacaoGetDto() {
 		super();
 	}
@@ -106,11 +108,24 @@ public class SolicitacaoGetDto {
 		this.amostras = amostras;
 	}
 
+	public double getTemperatura() {
+		return temperatura;
+	}
+
+	public void setTemperatura(double temperatura) {
+		this.temperatura = temperatura;
+	}
+
+	public void setAmostras(List<Amostra> amostras) {
+		this.amostras = amostras;
+	}
+
 	@Override
 	public String toString() {
 		return "SolicitacaoGetDto [id=" + id + ", cliente=" + cliente + ", fazenda=" + fazenda + ", listaAnalise="
 				+ listaAnalise + ", status=" + status + ", dataCriada=" + dataCriada + ", observacao=" + observacao
-				+ ", listaLaudoMedia=" + listaLaudoMedia + ", amostras=" + amostras + "]";
+				+ ", listaLaudoMedia=" + listaLaudoMedia + ", amostras=" + amostras + ", temperatura=" + temperatura
+				+ "]";
 	}
 
 }

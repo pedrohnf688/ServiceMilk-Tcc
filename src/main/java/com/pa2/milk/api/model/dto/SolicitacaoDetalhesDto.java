@@ -6,6 +6,7 @@ public class SolicitacaoDetalhesDto {
 
 	private EnumStatusSolicitacao status;
 	private String observacao;
+	private double temperatura;
 
 	public EnumStatusSolicitacao getStatus() {
 		return status;
@@ -23,9 +24,18 @@ public class SolicitacaoDetalhesDto {
 		this.observacao = observacao;
 	}
 
+	public double getTemperatura() {
+		return temperatura;
+	}
+
+	public void setTemperatura(double temperatura) {
+		this.temperatura = temperatura;
+	}
+
 	@Override
 	public String toString() {
-		return "SolicitacaoDetalhesDto [status=" + status + ", observacao=" + observacao + "]";
+		return "SolicitacaoDetalhesDto [status=" + status + ", observacao=" + observacao + ", temperatura="
+				+ temperatura + "]";
 	}
 
 }

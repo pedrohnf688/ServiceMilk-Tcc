@@ -187,6 +187,7 @@ public class SolicitacaoController {
 		sgt.setListaLaudoMedia(sol.getListaLaudoMedia());
 		sgt.setObservacao(sol.getObservacao());
 		sgt.setStatus(sol.getStatus());
+		sgt.setTemperatura(sol.getTemperatura());
 
 	}
 
@@ -206,6 +207,7 @@ public class SolicitacaoController {
 		SolicitacaoDetalhesDto s = new SolicitacaoDetalhesDto();
 		s.setStatus(solicitacao.get().getStatus());
 		s.setObservacao(solicitacao.get().getObservacao());
+		s.setTemperatura(solicitacao.get().getTemperatura());
 
 		response.setData(s);
 
@@ -260,6 +262,7 @@ public class SolicitacaoController {
 
 		solicitacao.get().setStatus(statusSolicitacaoDTO.getStatus());
 		solicitacao.get().setObservacao(statusSolicitacaoDTO.getObservacao());
+		solicitacao.get().setTemperatura(statusSolicitacaoDTO.getTemperatura());
 		solicitacaoService.salvarSolicitacao(solicitacao.get());
 
 		response.setData(solicitacao.get());
