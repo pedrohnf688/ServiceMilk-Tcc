@@ -198,7 +198,7 @@ public class ArquivoController {
 	}
 
 	@GetMapping(value ="/fileUrl/{id}", produces= MediaType.APPLICATION_JSON_VALUE)
-	public String fileUrlFoto(@PathVariable("id") Integer id) {
+	public Arquivo fileUrlFoto(@PathVariable("id") Integer id) {
 		
 		
 		Optional<Cliente> cliente = this.clienteService
@@ -206,7 +206,7 @@ public class ArquivoController {
 
 		Arquivo arquivo = this.arquivoService.buscarCliente(cliente.get().getId());
 		
-		return arquivo.getFileDownloadUri().toString();
+		return arquivo;
 	}
 
 	@GetMapping("/fileUrlFazenda/{id}")
