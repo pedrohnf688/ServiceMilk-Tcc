@@ -93,6 +93,7 @@ public class AmostraController {
 		am.setOrigemLeite(a.get().getAnalise().getOrigemLeite());
 		am.setProdutos(a.get().getAnalise().getProdutos());
 		am.setObservacao(a.get().getObservacao());
+		am.setAnalise(a.get().getAnalise());
 
 		response.setData(am);
 

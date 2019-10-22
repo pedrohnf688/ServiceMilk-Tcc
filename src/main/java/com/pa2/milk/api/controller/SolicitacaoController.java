@@ -65,7 +65,7 @@ public class SolicitacaoController {
 
 	@Autowired
 	private AmostraRepository amostraRepository;
-	
+
 	@GetMapping
 	public List<Solicitacao> listarSolicitacoes() {
 		log.info("Listando Solicitações");
@@ -188,6 +188,8 @@ public class SolicitacaoController {
 		sgt.setObservacao(sol.getObservacao());
 		sgt.setStatus(sol.getStatus());
 		sgt.setTemperatura(sol.getTemperatura());
+		sgt.setComprovanteSolicitacao(sol.getComprovanteSolicitacao());
+		sgt.setFotoSolicitacao(sol.getFotoSolicitacao());
 
 	}
 
@@ -230,13 +232,12 @@ public class SolicitacaoController {
 		}
 
 		List<Analise> analises = this.analiseService.listarAnalisesPorSolicitacaoId(solicitacao.get().getId());
-		
-		
+
 		response.setData(solicitacao.get());
 
 		this.solicitacaoService.deletarSolicitacaoPorId(id);
 		this.analiseRepository.deleteAll(analises);
-		//this.amostraRepository.deleteAll(amostras);
+		// this.amostraRepository.deleteAll(amostras);
 
 		return ResponseEntity.ok(response);
 	}
@@ -269,8 +270,7 @@ public class SolicitacaoController {
 
 		return ResponseEntity.ok(response);
 	}
-	
-	
+
 //	@PutMapping(value = "{id}")
 //	public ResponseEntity<Response<SolicitacaoDto>> atualizarSolicitacao(@PathVariable("id") Integer id,
 //			@Valid @RequestBody SolicitacaoDto solicitacaoDto, BindingResult result) throws NoSuchAlgorithmException {

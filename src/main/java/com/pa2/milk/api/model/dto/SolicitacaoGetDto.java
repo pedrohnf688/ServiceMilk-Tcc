@@ -3,8 +3,13 @@ package com.pa2.milk.api.model.dto;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.Cascade;
+
 import com.pa2.milk.api.model.Amostra;
 import com.pa2.milk.api.model.Analise;
+import com.pa2.milk.api.model.Arquivo;
 import com.pa2.milk.api.model.Cliente;
 import com.pa2.milk.api.model.Fazenda;
 import com.pa2.milk.api.model.LaudoMedia;
@@ -31,6 +36,9 @@ public class SolicitacaoGetDto {
 	private List<Amostra> amostras;
 
 	private double temperatura;
+	private Arquivo fotoSolicitacao;
+	private Arquivo comprovanteSolicitacao;
+
 
 	public SolicitacaoGetDto() {
 		super();
@@ -120,12 +128,29 @@ public class SolicitacaoGetDto {
 		this.amostras = amostras;
 	}
 
+	public Arquivo getFotoSolicitacao() {
+		return fotoSolicitacao;
+	}
+
+	public void setFotoSolicitacao(Arquivo fotoSolicitacao) {
+		this.fotoSolicitacao = fotoSolicitacao;
+	}
+
+	public Arquivo getComprovanteSolicitacao() {
+		return comprovanteSolicitacao;
+	}
+
+	public void setComprovanteSolicitacao(Arquivo comprovanteSolicitacao) {
+		this.comprovanteSolicitacao = comprovanteSolicitacao;
+	}
+
 	@Override
 	public String toString() {
 		return "SolicitacaoGetDto [id=" + id + ", cliente=" + cliente + ", fazenda=" + fazenda + ", listaAnalise="
 				+ listaAnalise + ", status=" + status + ", dataCriada=" + dataCriada + ", observacao=" + observacao
 				+ ", listaLaudoMedia=" + listaLaudoMedia + ", amostras=" + amostras + ", temperatura=" + temperatura
-				+ "]";
+				+ ", fotoSolicitacao=" + fotoSolicitacao + ", comprovanteSolicitacao=" + comprovanteSolicitacao + "]";
 	}
 
+	
 }

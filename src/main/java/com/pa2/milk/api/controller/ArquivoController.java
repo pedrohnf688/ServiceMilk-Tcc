@@ -111,19 +111,42 @@ public class ArquivoController {
 	}
 
 	@PutMapping("/uploadFileSolicitacao/{id}")
-	public UploadFileResponse uploadFileSolicitacao(@RequestParam("file") MultipartFile file,
+	public Arquivo uploadFileSolicitacao(@RequestParam("file") MultipartFile file, @PathVariable("id") Integer id)
+			throws NotFoundException {
+		Arquivo dbFile = arquivoService.storeFile(file);
+
+		Optional<Solicitacao> solic = this.solicitacaoService.buscarSolicitacaoPorId(id);
+
+		String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/downloadFile/")
+				.path(dbFile.getId()).toUriString();
+
+		dbFile.setFileDownloadUri(fileDownloadUri);
+		dbFile.setSize(file.getSize());
+
+		solic.get().setFotoSolicitacao(dbFile);
+		this.solicitacaoService.salvarSolicitacao(solic.get());
+
+
+		return dbFile;
+	}
+
+	@PutMapping("/uploadFileComprovanteSolicitacao/{id}")
+	public Arquivo uploadFileComprovanteSolicitacao(@RequestParam("file") MultipartFile file,
 			@PathVariable("id") Integer id) throws NotFoundException {
 		Arquivo dbFile = arquivoService.storeFile(file);
 
 		Optional<Solicitacao> solic = this.solicitacaoService.buscarSolicitacaoPorId(id);
 
-		solic.get().setFotoSolicitacao(dbFile);
-		this.solicitacaoService.salvarSolicitacao(solic.get());
-
 		String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/downloadFile/")
 				.path(dbFile.getId()).toUriString();
 
-		return new UploadFileResponse(dbFile.getFileName(), fileDownloadUri, file.getContentType(), file.getSize());
+		dbFile.setFileDownloadUri(fileDownloadUri);
+		dbFile.setSize(file.getSize());
+		
+		solic.get().setComprovanteSolicitacao(dbFile);
+		this.solicitacaoService.salvarSolicitacao(solic.get());
+
+		return dbFile;
 	}
 
 	@PutMapping("/uploadFileFazenda/{id}")
@@ -173,15 +196,25 @@ public class ArquivoController {
 	@GetMapping("/fileUrl/{id}")
 	public String fileUrlFoto(@PathVariable("id") Integer id) {
 		Optional<Usuario> usuario = this.usuarioService.buscarPorId(id);
-
 		return usuario.get().getFotoPerfil().getFileDownloadUri();
 	}
 
-	@GetMapping("/fileUrlFazendad/{id}")
+	@GetMapping("/fileUrlFazenda/{id}")
 	public String fileUrlFotoFazenda(@PathVariable("id") Integer id) {
 		Optional<Fazenda> fazenda = this.fazendaService.buscarPorId(id);
-		
 		return fazenda.get().getFotoFazenda().getFileDownloadUri();
+	}
+
+	@GetMapping("/fileUrlComprovante/{id}")
+	public String fileUrlComprovante(@PathVariable("id") Integer id) {
+		Optional<Solicitacao> solicitacao = this.solicitacaoService.buscarSolicitacaoPorId(id);
+		return solicitacao.get().getComprovanteSolicitacao().getFileDownloadUri();
+	}
+
+	@GetMapping("/fileUrlSolicitacao/{id}")
+	public String fileUrlSolicitacao(@PathVariable("id") Integer id) {
+		Optional<Solicitacao> solicitacao = this.solicitacaoService.buscarSolicitacaoPorId(id);
+		return solicitacao.get().getFotoSolicitacao().getFileDownloadUri();
 	}
 
 }

@@ -30,6 +30,8 @@ public class AmostraDto {
 
 	private EnumEspecie especie;
 
+	private Analise analise;
+
 	public Date getDataColeta() {
 		return dataColeta;
 	}
@@ -100,6 +102,22 @@ public class AmostraDto {
 
 	public void setEspecie(EnumEspecie especie) {
 		this.especie = especie;
+	}
+
+	public Analise getAnalise() {
+		return analise;
+	}
+
+	public void setAnalise(Analise analise) {
+		this.analise = analise;
+	}
+
+	@Override
+	public String toString() {
+		return "AmostraDto [dataColeta=" + dataColeta + ", numeroAmostra=" + numeroAmostra + ", qrCode=" + qrCode
+				+ ", observacao=" + observacao + ", identificadorAmostra=" + identificadorAmostra + ", finalizada="
+				+ finalizada + ", origemLeite=" + origemLeite + ", produtos=" + produtos + ", especie=" + especie
+				+ ", analise=" + analise + "]";
 	}
 
 }

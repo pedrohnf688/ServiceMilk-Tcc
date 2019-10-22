@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pa2.milk.api.helper.Response;
 import com.pa2.milk.api.model.Amostra;
 import com.pa2.milk.api.model.Analise;
+import com.pa2.milk.api.model.Cliente;
+import com.pa2.milk.api.model.enums.EnumTipoPerfilUsuario;
 import com.pa2.milk.api.repository.AmostraRepository;
 import com.pa2.milk.api.service.AmostraService;
 import com.pa2.milk.api.service.AnaliseService;
@@ -74,5 +76,28 @@ public class AnaliseController {
 	}
 	
 
+	
+	@PreAuthorize("hasAnyRole('ADMINISTRADOR','BOLSISTA','CLIENTE')")
+	@GetMapping(value = "{id}")
+	public ResponseEntity<Response<Analise>> buscarAnalisePorId(@PathVariable("id") Integer id) {
+
+		log.info("Buscar Cliente por Id");
+
+		Response<Analise> response = new Response<Analise>();
+
+		Optional<Analise> analise = this.analiseService.buscarAnalisePorId(id);
+
+		if (!analise.isPresent()) {
+			log.info("Analise não encontrada: {}", analise.get());
+			response.getErros().add("Analise não encontrada");
+			return ResponseEntity.badRequest().body(response);
+		}
+
+		response.setData(analise.get());
+
+		return ResponseEntity.ok(response);
+
+	}
+	
 
 }
