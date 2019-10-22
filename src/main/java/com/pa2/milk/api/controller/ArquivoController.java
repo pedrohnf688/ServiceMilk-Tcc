@@ -198,14 +198,15 @@ public class ArquivoController {
 	}
 
 	@GetMapping("/fileUrl/{id}")
-	public Arquivo fileUrlFoto(@PathVariable("id") Integer id) {
+	public String fileUrlFoto(@PathVariable("id") Integer id) {
+		
 		
 		Optional<Cliente> cliente = this.clienteService
 				.buscarPorTipoPerfilUsuarioandID(EnumTipoPerfilUsuario.ROLE_CLIENTE, id);
 
 		Arquivo arquivo = this.arquivoService.buscarCliente(cliente.get().getId());
 		
-		return arquivo;
+		return arquivo.getFileDownloadUri().toString();
 	}
 
 	@GetMapping("/fileUrlFazenda/{id}")
