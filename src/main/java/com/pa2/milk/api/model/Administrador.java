@@ -9,8 +9,8 @@ public class Administrador extends Usuario {
 
 	}
 
-	public Administrador(String email, String nome, String cpf, Integer codigoTipoPerfilUsuario) {
-		super(email, nome, cpf, codigoTipoPerfilUsuario);
+	public Administrador(String email, String nome, String cpf, Integer codigoTipoPerfilUsuario, Arquivo fotoPerfil) {
+		super(email, nome, cpf, codigoTipoPerfilUsuario, fotoPerfil);
 	}
 
 }

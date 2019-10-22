@@ -46,13 +46,15 @@ public abstract class Usuario extends AbstractModel<Integer> {
 		super();
 	}
 
-	public Usuario(String email, String nome, String cpf, Integer codigoTipoPerfilUsuario) {
+	public Usuario(String email, String nome, String cpf, Integer codigoTipoPerfilUsuario, Arquivo fotoPerfil) {
 		super();
 		this.email = email;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.codigoTipoPerfilUsuario = codigoTipoPerfilUsuario;
+		this.fotoPerfil = fotoPerfil;
 	}
+	
 
 	@Override
 	public Integer getId() {

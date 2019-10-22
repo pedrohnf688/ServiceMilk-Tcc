@@ -89,21 +89,21 @@ public class ArquivoController {
 			Optional<Cliente> cliente = this.clienteService
 					.buscarPorTipoPerfilUsuarioandID(usuario.get().getCodigoTipoPerfilUsuario(), id);
 			cliente.get().setFotoPerfil(dbFile);
-			this.arquivoRepository.save(dbFile);
+			//this.arquivoRepository.save(dbFile);
 			this.clienteService.salvar(cliente.get());
 
 		} else if (usuario.get().getCodigoTipoPerfilUsuario().equals(EnumTipoPerfilUsuario.ROLE_BOLSISTA)) {
 			Optional<Bolsista> bolsista = this.bolsistaService
 					.buscarPorTipoPerfilUsuarioandID(usuario.get().getCodigoTipoPerfilUsuario(), id);
 			bolsista.get().setFotoPerfil(dbFile);
-			this.arquivoRepository.save(dbFile);
+			//this.arquivoRepository.save(dbFile);
 			this.bolsistaService.salvar(bolsista.get());
 
 		} else if (usuario.get().getCodigoTipoPerfilUsuario().equals(EnumTipoPerfilUsuario.ROLE_ADMINISTRADOR)) {
 			Optional<Administrador> administrador = this.administradorService
 					.buscarPorTipoPerfilUsuarioandID(usuario.get().getCodigoTipoPerfilUsuario(), id);
 			administrador.get().setFotoPerfil(dbFile);
-			this.arquivoRepository.save(dbFile);
+			//this.arquivoRepository.save(dbFile);
 			this.administradorService.salvar(administrador.get());
 			
 
@@ -197,8 +197,10 @@ public class ArquivoController {
 
 	@GetMapping("/fileUrl/{id}")
 	public String fileUrlFoto(@PathVariable("id") Integer id) {
-		Optional<Usuario> usuario = this.usuarioService.buscarPorId(id);
-		return usuario.get().getFotoPerfil().toString();
+		Optional<Cliente> cliente = this.clienteService
+				.buscarPorTipoPerfilUsuarioandID(EnumTipoPerfilUsuario.ROLE_CLIENTE, id);
+
+		return cliente.get().getFotoPerfil().toString();
 	}
 
 	@GetMapping("/fileUrlFazenda/{id}")

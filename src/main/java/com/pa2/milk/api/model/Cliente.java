@@ -38,8 +38,9 @@ public class Cliente extends Usuario {
 
 	}
 
-	public Cliente(String telefone1, String telefone2, List<Fazenda> listaFazenda, List<Solicitacao> listaSolicitacao) {
-		super();
+	public Cliente(String email, String nome, String cpf, Integer codigoTipoPerfilUsuario, Arquivo fotoPerfil,
+			String telefone1, String telefone2, List<Fazenda> listaFazenda, List<Solicitacao> listaSolicitacao) {
+		super(email, nome, cpf, codigoTipoPerfilUsuario, fotoPerfil);
 		this.telefone1 = telefone1;
 		this.telefone2 = telefone2;
 		this.listaFazenda = listaFazenda;
@@ -86,6 +87,12 @@ public class Cliente extends Usuario {
 	public void removeFazenda(Fazenda removeFazenda) {
 		listaFazenda.remove(removeFazenda);
 		removeFazenda.setCliente(null);
+	}
+
+	@Override
+	public String toString() {
+		return "Cliente [telefone1=" + telefone1 + ", telefone2=" + telefone2 + ", listaFazenda=" + listaFazenda
+				+ ", listaSolicitacao=" + listaSolicitacao + "]";
 	}
 
 }
