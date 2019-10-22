@@ -38,9 +38,9 @@ public class Cliente extends Usuario {
 
 	}
 
-	public Cliente(String email, String nome, String cpf, Integer codigoTipoPerfilUsuario, Arquivo fotoPerfil,
+	public Cliente(String email, String nome, String cpf, Integer codigoTipoPerfilUsuario,
 			String telefone1, String telefone2, List<Fazenda> listaFazenda, List<Solicitacao> listaSolicitacao) {
-		super(email, nome, cpf, codigoTipoPerfilUsuario, fotoPerfil);
+		super(email, nome, cpf, codigoTipoPerfilUsuario);
 		this.telefone1 = telefone1;
 		this.telefone2 = telefone2;
 		this.listaFazenda = listaFazenda;

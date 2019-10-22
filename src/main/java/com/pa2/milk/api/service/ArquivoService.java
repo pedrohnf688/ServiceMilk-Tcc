@@ -29,7 +29,7 @@ public class ArquivoService {
 						"Desculpa! Nome do arquivo contém sequência de caminho inválida " + fileName);
 			}
 
-			Arquivo arquivo = new Arquivo(fileName, file.getContentType(), file.getBytes(),null, 0);
+			Arquivo arquivo = new Arquivo(fileName, file.getContentType(), file.getBytes(),null, 0, null);
 
 			return arquivoRepository.save(arquivo);
 		} catch (IOException ex) {
@@ -42,4 +42,10 @@ public class ArquivoService {
 		return arquivoRepository.findById(fileId)
 				.orElseThrow(() -> new MyFileNotFoundException("Arquivo não encontrado com o id " + fileId));
 	}
+	
+	public Arquivo buscarCliente(Integer clienteId) {
+		return this.arquivoRepository.findByFotoPerfilId(clienteId);
+	}
+	
+	
 }

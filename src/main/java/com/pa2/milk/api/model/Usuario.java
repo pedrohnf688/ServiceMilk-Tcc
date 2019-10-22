@@ -38,21 +38,17 @@ public abstract class Usuario extends AbstractModel<Integer> {
 	@Column(name = "perfil", nullable = false)
 	private Integer codigoTipoPerfilUsuario;
 
-	@OneToOne
-	@Cascade({ org.hibernate.annotations.CascadeType.ALL })
-	private Arquivo fotoPerfil;
 
 	public Usuario() {
 		super();
 	}
 
-	public Usuario(String email, String nome, String cpf, Integer codigoTipoPerfilUsuario, Arquivo fotoPerfil) {
+	public Usuario(String email, String nome, String cpf, Integer codigoTipoPerfilUsuario) {
 		super();
 		this.email = email;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.codigoTipoPerfilUsuario = codigoTipoPerfilUsuario;
-		this.fotoPerfil = fotoPerfil;
 	}
 	
 
@@ -98,12 +94,5 @@ public abstract class Usuario extends AbstractModel<Integer> {
 		this.codigoTipoPerfilUsuario = tipoPerfilUsuario.getCodigo();
 	}
 
-	public Arquivo getFotoPerfil() {
-		return fotoPerfil;
-	}
-
-	public void setFotoPerfil(Arquivo fotoPerfil) {
-		this.fotoPerfil = fotoPerfil;
-	}
-
+	
 }

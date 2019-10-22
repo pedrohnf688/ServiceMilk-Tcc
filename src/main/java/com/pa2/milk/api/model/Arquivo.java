@@ -6,8 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -25,18 +27,27 @@ public class Arquivo {
 	private String fileDownloadUri;
 	private long size;
 
+	@OneToOne
+	@Cascade({ org.hibernate.annotations.CascadeType.ALL })
+	private Cliente fotoPerfil;
+
+	
 	public Arquivo() {
 		super();
 	}
 
-	public Arquivo(String fileName, String fileType, byte[] data, String fileDownloadUri, long size) {
+
+	public Arquivo(String fileName, String fileType, byte[] data, String fileDownloadUri, long size,
+			Cliente fotoPerfil) {
 		super();
 		this.fileName = fileName;
 		this.fileType = fileType;
 		this.data = data;
 		this.fileDownloadUri = fileDownloadUri;
 		this.size = size;
+		this.fotoPerfil = fotoPerfil;
 	}
+
 
 	public String getId() {
 		return id;
@@ -86,10 +97,23 @@ public class Arquivo {
 		this.size = size;
 	}
 
+
+	public Cliente getFotoPerfil() {
+		return fotoPerfil;
+	}
+
+
+	public void setFotoPerfil(Cliente fotoPerfil) {
+		this.fotoPerfil = fotoPerfil;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Arquivo [id=" + id + ", fileName=" + fileName + ", fileType=" + fileType + ", data="
-				+ Arrays.toString(data) + ", fileDownloadUri=" + fileDownloadUri + ", size=" + size + "]";
+				+ Arrays.toString(data) + ", fileDownloadUri=" + fileDownloadUri + ", size=" + size + ", fotoPerfil="
+				+ fotoPerfil + "]";
 	}
 
+	
 }
