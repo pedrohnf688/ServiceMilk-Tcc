@@ -73,42 +73,42 @@ public class ArquivoController {
 	@Autowired
 	private FazendaService fazendaService;
 
-	@PutMapping("/uploadFileUsuario/{id}")
-	public Arquivo uploadFileCliente(@RequestParam("file") MultipartFile file, @PathVariable("id") Integer id) {
-		Arquivo dbFile = arquivoService.storeFile(file);
-
-		String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/downloadFile/")
-				.path(dbFile.getId()).toUriString();
-
-		dbFile.setFileDownloadUri(fileDownloadUri);
-		dbFile.setSize(file.getSize());
-
-		Optional<Usuario> usuario = this.usuarioService.buscarPorId(id);
-
-		if (usuario.get().getCodigoTipoPerfilUsuario().equals(EnumTipoPerfilUsuario.ROLE_CLIENTE)) {
-			Optional<Cliente> cliente = this.clienteService
-					.buscarPorTipoPerfilUsuarioandID(usuario.get().getCodigoTipoPerfilUsuario(), id);
-			cliente.get().setFotoPerfil(dbFile);
-			this.clienteService.salvar(cliente.get());
-
-		} else if (usuario.get().getCodigoTipoPerfilUsuario().equals(EnumTipoPerfilUsuario.ROLE_BOLSISTA)) {
-			Optional<Bolsista> bolsista = this.bolsistaService
-					.buscarPorTipoPerfilUsuarioandID(usuario.get().getCodigoTipoPerfilUsuario(), id);
-			bolsista.get().setFotoPerfil(dbFile);
-			this.bolsistaService.salvar(bolsista.get());
-
-		} else if (usuario.get().getCodigoTipoPerfilUsuario().equals(EnumTipoPerfilUsuario.ROLE_ADMINISTRADOR)) {
-			Optional<Administrador> administrador = this.administradorService
-					.buscarPorTipoPerfilUsuarioandID(usuario.get().getCodigoTipoPerfilUsuario(), id);
-			administrador.get().setFotoPerfil(dbFile);
-			this.administradorService.salvar(administrador.get());
-
-		}
-
-		// return new UploadFileResponse(dbFile.getFileName(), fileDownloadUri,
-		// file.getContentType(), file.getSize());
-		return dbFile;
-	}
+//	@PutMapping("/uploadFileUsuario/{id}")
+//	public Arquivo uploadFileCliente(@RequestParam("file") MultipartFile file, @PathVariable("id") Integer id) {
+//		Arquivo dbFile = arquivoService.storeFile(file);
+//
+//		String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/downloadFile/")
+//				.path(dbFile.getId()).toUriString();
+//
+//		dbFile.setFileDownloadUri(fileDownloadUri);
+//		dbFile.setSize(file.getSize());
+//
+//		Optional<Usuario> usuario = this.usuarioService.buscarPorId(id);
+//
+//		if (usuario.get().getCodigoTipoPerfilUsuario().equals(EnumTipoPerfilUsuario.ROLE_CLIENTE)) {
+//			Optional<Cliente> cliente = this.clienteService
+//					.buscarPorTipoPerfilUsuarioandID(usuario.get().getCodigoTipoPerfilUsuario(), id);
+//			cliente.get().setFotoPerfil(dbFile);
+//			this.clienteService.salvar(cliente.get());
+//
+//		} else if (usuario.get().getCodigoTipoPerfilUsuario().equals(EnumTipoPerfilUsuario.ROLE_BOLSISTA)) {
+//			Optional<Bolsista> bolsista = this.bolsistaService
+//					.buscarPorTipoPerfilUsuarioandID(usuario.get().getCodigoTipoPerfilUsuario(), id);
+//			bolsista.get().setFotoPerfil(dbFile);
+//			this.bolsistaService.salvar(bolsista.get());
+//
+//		} else if (usuario.get().getCodigoTipoPerfilUsuario().equals(EnumTipoPerfilUsuario.ROLE_ADMINISTRADOR)) {
+//			Optional<Administrador> administrador = this.administradorService
+//					.buscarPorTipoPerfilUsuarioandID(usuario.get().getCodigoTipoPerfilUsuario(), id);
+//			administrador.get().setFotoPerfil(dbFile);
+//			this.administradorService.salvar(administrador.get());
+//
+//		}
+//
+//		// return new UploadFileResponse(dbFile.getFileName(), fileDownloadUri,
+//		// file.getContentType(), file.getSize());
+//		return dbFile;
+//	}
 
 	@PutMapping("/uploadFileSolicitacao/{id}")
 	public Arquivo uploadFileSolicitacao(@RequestParam("file") MultipartFile file, @PathVariable("id") Integer id)
@@ -217,4 +217,25 @@ public class ArquivoController {
 		return solicitacao.get().getFotoSolicitacao().getFileDownloadUri();
 	}
 
+	@PutMapping("/uploadFileUsuario/{id}")
+	public Cliente uploadFileaq(@RequestParam("file") MultipartFile file, @PathVariable("id") Integer id) {
+		Arquivo dbFile = arquivoService.storeFile(file);
+
+		String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/downloadFile/")
+				.path(dbFile.getId()).toUriString();
+
+		dbFile.setFileDownloadUri(fileDownloadUri);
+		dbFile.setSize(file.getSize());
+
+			Optional<Cliente> cliente = this.clienteService.buscarPorId(id);
+			cliente.get().setFotoPerfil(dbFile);
+			this.clienteService.salvar(cliente.get());
+
+
+		// return new UploadFileResponse(dbFile.getFileName(), fileDownloadUri,
+		// file.getContentType(), file.getSize());
+		return cliente.get();
+	}
+	
+	
 }
