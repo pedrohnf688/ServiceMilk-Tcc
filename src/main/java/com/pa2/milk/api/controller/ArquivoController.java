@@ -194,9 +194,9 @@ public class ArquivoController {
 	}
 
 	@GetMapping("/fileUrl/{id}")
-	public String fileUrlFoto(@PathVariable("id") Integer id) {
+	public Cliente fileUrlFoto(@PathVariable("id") Integer id) {
 		Optional<Usuario> usuario = this.usuarioService.buscarPorId(id);
-		return usuario.get().getFotoPerfil().getFileDownloadUri();
+		return (Cliente) usuario.get();
 	}
 
 	@GetMapping("/fileUrlFazenda/{id}")

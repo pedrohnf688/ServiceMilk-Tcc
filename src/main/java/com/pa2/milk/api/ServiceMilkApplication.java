@@ -73,6 +73,7 @@ public class ServiceMilkApplication {
 	@Autowired
 	private SolicitacaoRepository solicitacaoRepository;
 
+	
 	@Autowired
 	private OrdemServicoRepository ordemServicoRepository;
 
