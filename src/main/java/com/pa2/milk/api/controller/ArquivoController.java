@@ -197,7 +197,7 @@ public class ArquivoController {
 				.body(new ByteArrayResource(dbFile.getData()));
 	}
 
-	@GetMapping("/fileUrl/{id}")
+	@GetMapping(value ="/fileUrl/{id}", produces= MediaType.APPLICATION_JSON_VALUE)
 	public String fileUrlFoto(@PathVariable("id") Integer id) {
 		
 		
