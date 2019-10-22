@@ -51,44 +51,44 @@ public class BolsistaServicoTest {
 
 	}
 
-	@Test
-	public void salvarBolsistaSemNome() {
-		bolsista = new Bolsista(EMAIL, null, CPF, PERFIL);
-
-		assertFalse("cadastro" + bolsista + "com falha", false);
-
-	}
-
-	@Test
-	public void salvarBolsistaSemEmail() {
-		bolsista = new Bolsista(null, NOME, CPF, PERFIL);
-
-		assertFalse("cadastro" + bolsista + "com falha", false);
-
-	}
-
-	@Test
-	public void salvarBolsistaSemCpf() {
-		bolsista = new Bolsista(EMAIL, NOME, null, PERFIL);
-
-		assertFalse("cadastro" + bolsista + "com falha", false);
-
-	}
-
-	@Test
-	public void salvarBolsistaSemTipoDePerfil() {
-		bolsista = new Bolsista(EMAIL, NOME, CPF, null);
-
-		assertFalse("cadastro" + bolsista + "com falha", false);
-
-	}
-	
-	@Before //recriar o objeto bolsista
-	public void init() {
-		 bolsista = new Bolsista(EMAIL, NOME, CPF, PERFIL);
-		 
-		
-	}
+//	@Test
+//	public void salvarBolsistaSemNome() {
+//		bolsista = new Bolsista(EMAIL, null, CPF, PERFIL);
+//
+//		assertFalse("cadastro" + bolsista + "com falha", false);
+//
+//	}
+//
+//	@Test
+//	public void salvarBolsistaSemEmail() {
+//		bolsista = new Bolsista(null, NOME, CPF, PERFIL);
+//
+//		assertFalse("cadastro" + bolsista + "com falha", false);
+//
+//	}
+//
+//	@Test
+//	public void salvarBolsistaSemCpf() {
+//		bolsista = new Bolsista(EMAIL, NOME, null, PERFIL);
+//
+//		assertFalse("cadastro" + bolsista + "com falha", false);
+//
+//	}
+//
+//	@Test
+//	public void salvarBolsistaSemTipoDePerfil() {
+//		bolsista = new Bolsista(EMAIL, NOME, CPF, null);
+//
+//		assertFalse("cadastro" + bolsista + "com falha", false);
+//
+//	}
+//	
+//	@Before //recriar o objeto bolsista
+//	public void init() {
+//		 bolsista = new Bolsista(EMAIL, NOME, CPF, PERFIL);
+//		 
+//		
+//	}
 	
 	/*@After//apagar e/ou tirar o objeto garantindo que ele não esteja no banco de dados real.	
 	public void after() {

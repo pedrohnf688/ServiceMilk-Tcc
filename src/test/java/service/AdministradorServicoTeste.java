@@ -39,10 +39,10 @@ public class AdministradorServicoTeste {
 
 	private static final Integer PERFIL = EnumTipoPerfilUsuario.ROLE_ADMINISTRADOR.getCodigo();
 	
-	@Before
-	public void init() {
-		 admin = new Administrador(EMAIL, NOME, CPF, PERFIL);
-	}
+//	@Before
+//	public void init() {
+//		 admin = new Administrador(EMAIL, NOME, CPF, PERFIL);
+//	}
 	
 	/*@After	
 	public void after() {
@@ -51,71 +51,71 @@ public class AdministradorServicoTeste {
 		
 	}*/
 
-	@Test
-	public void salvarAdministrador() {
-
-		adminservico.salvar(admin);
-
-		assertTrue("cadastro" + admin + "com sucesso", true);
-
-		verify(adminservico).salvar(admin);
-
-	}
-
-	@Test
-	public void salvarAdministradorSemNome() {
-
-		admin = new Administrador(EMAIL, null, CPF, PERFIL);
-		assertFalse("cadatro" + admin + "com falha ", false);
-	}
-
-	@Test
-	public void salvarAdministradorSemEmail() {
-
-		admin = new Administrador(null, NOME, CPF, PERFIL);
-
-		assertFalse("cadatro" + admin + "com falha ", false);
-
-	}
-
-	@Test
-	public void salvarAdministradorEmail2() {
-
-		admin = new Administrador(EMAIL2, NOME, CPF, PERFIL);
-
-		assertFalse("cadatro" + admin + "com falha ", false);
-
-	}
-
-	@Test
-	public void salvarAdministradorSemCPF() {
-
-		admin = new Administrador(EMAIL, NOME, null, PERFIL);
-
-		assertFalse("cadatro" + admin + "com falha ", false);
-	}
-	
-	@Test
-	public void salvarAdministradorCPF2() {
-
-		admin = new Administrador(EMAIL, NOME, CPF2, PERFIL);
-
-		assertFalse("cadatro" + admin + "com falha ", false);
-	}
-	@Test
-	public void salvarAdministradorCPF3() {
-
-		admin = new Administrador(EMAIL, NOME, CPF3, PERFIL);
-
-		assertFalse("cadatro" + admin + "com falha ", false);
-	}
-
-	@Test
-	public void salvarAdministradorSemPerfil() {
-
-		admin = new Administrador(EMAIL, NOME, CPF, null);
-
-		assertFalse("cadatro" + admin + "com falha ", false);
-	}
+//	@Test
+//	public void salvarAdministrador() {
+//
+//		adminservico.salvar(admin);
+//
+//		assertTrue("cadastro" + admin + "com sucesso", true);
+//
+//		verify(adminservico).salvar(admin);
+//
+//	}
+//
+//	@Test
+//	public void salvarAdministradorSemNome() {
+//
+//		admin = new Administrador(EMAIL, null, CPF, PERFIL);
+//		assertFalse("cadatro" + admin + "com falha ", false);
+//	}
+//
+//	@Test
+//	public void salvarAdministradorSemEmail() {
+//
+//		admin = new Administrador(null, NOME, CPF, PERFIL);
+//
+//		assertFalse("cadatro" + admin + "com falha ", false);
+//
+//	}
+//
+//	@Test
+//	public void salvarAdministradorEmail2() {
+//
+//		admin = new Administrador(EMAIL2, NOME, CPF, PERFIL);
+//
+//		assertFalse("cadatro" + admin + "com falha ", false);
+//
+//	}
+//
+//	@Test
+//	public void salvarAdministradorSemCPF() {
+//
+//		admin = new Administrador(EMAIL, NOME, null, PERFIL);
+//
+//		assertFalse("cadatro" + admin + "com falha ", false);
+//	}
+//	
+//	@Test
+//	public void salvarAdministradorCPF2() {
+//
+//		admin = new Administrador(EMAIL, NOME, CPF2, PERFIL);
+//
+//		assertFalse("cadatro" + admin + "com falha ", false);
+//	}
+//	@Test
+//	public void salvarAdministradorCPF3() {
+//
+//		admin = new Administrador(EMAIL, NOME, CPF3, PERFIL);
+//
+//		assertFalse("cadatro" + admin + "com falha ", false);
+//	}
+//
+//	@Test
+//	public void salvarAdministradorSemPerfil() {
+//
+//		admin = new Administrador(EMAIL, NOME, CPF, null);
+//
+//		assertFalse("cadatro" + admin + "com falha ", false);
+//	}
 
 }

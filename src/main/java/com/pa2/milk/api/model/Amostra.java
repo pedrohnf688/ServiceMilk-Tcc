@@ -43,7 +43,6 @@ public class Amostra extends AbstractModel<Integer> {
 	private int numeroAmostra;
 
 	// @NotBlank(message = "O campo qrCode não pode ser nulo.")
-	@Column(unique = true)
 	private String qrCode;
 
 	private boolean finalizada;
