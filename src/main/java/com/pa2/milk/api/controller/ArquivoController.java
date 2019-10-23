@@ -75,7 +75,7 @@ public class ArquivoController {
 
 	@PutMapping("/uploadFileUsuario/{id}")
 	public Arquivo uploadFileCliente(@RequestParam("file") MultipartFile file, @PathVariable("id") Integer id) {
-		
+
 		Arquivo dbFile = arquivoService.storeFile(file);
 
 		String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/downloadFile/")
@@ -86,30 +86,22 @@ public class ArquivoController {
 
 		Optional<Usuario> usuario = this.usuarioService.buscarPorId(id);
 
+		List<Arquivo> a = this.arquivoService.buscarListarArquivos(id);
+
+		if (a.size() > 0) {
+			for (int i = 0; i < a.size(); i++) {
+
+				this.arquivoRepository.deleteById(a.get(i).getId());
+			}
+		}
+
 		if (usuario.get().getCodigoTipoPerfilUsuario().equals(EnumTipoPerfilUsuario.ROLE_CLIENTE)) {
 			Optional<Cliente> cliente = this.clienteService
 					.buscarPorTipoPerfilUsuarioandID(usuario.get().getCodigoTipoPerfilUsuario(), id);
 
 			dbFile.setFotoPerfil(cliente.get());
 			this.arquivoRepository.save(dbFile);
-
-		} 
-//		else if (usuario.get().getCodigoTipoPerfilUsuario().equals(EnumTipoPerfilUsuario.ROLE_BOLSISTA)) {
-//			Optional<Bolsista> bolsista = this.bolsistaService
-//					.buscarPorTipoPerfilUsuarioandID(usuario.get().getCodigoTipoPerfilUsuario(), id);
-//			//bolsista.get().setFotoPerfil(dbFile);
-//			this.arquivoRepository.save(dbFile);
-//			//this.bolsistaService.salvar(bolsista.get());
-//
-//		} else if (usuario.get().getCodigoTipoPerfilUsuario().equals(EnumTipoPerfilUsuario.ROLE_ADMINISTRADOR)) {
-//			Optional<Administrador> administrador = this.administradorService
-//					.buscarPorTipoPerfilUsuarioandID(usuario.get().getCodigoTipoPerfilUsuario(), id);
-//			administrador.get().setFotoPerfil(dbFile);
-//			//this.arquivoRepository.save(dbFile);
-//			this.administradorService.salvar(administrador.get());
-//			
-//
-//		}
+		}
 
 		return dbFile;
 	}
@@ -130,7 +122,6 @@ public class ArquivoController {
 		solic.get().setFotoSolicitacao(dbFile);
 		this.solicitacaoService.salvarSolicitacao(solic.get());
 
-
 		return dbFile;
 	}
 
@@ -146,7 +137,7 @@ public class ArquivoController {
 
 		dbFile.setFileDownloadUri(fileDownloadUri);
 		dbFile.setSize(file.getSize());
-		
+
 		solic.get().setComprovanteSolicitacao(dbFile);
 		this.solicitacaoService.salvarSolicitacao(solic.get());
 
@@ -197,16 +188,15 @@ public class ArquivoController {
 				.body(new ByteArrayResource(dbFile.getData()));
 	}
 
-	@GetMapping(value ="/fileUrl/{id}", produces= MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/fileUrl/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Arquivo fileUrlFoto(@PathVariable("id") Integer id) {
-		
-		
+
 		Optional<Cliente> cliente = this.clienteService
 				.buscarPorTipoPerfilUsuarioandID(EnumTipoPerfilUsuario.ROLE_CLIENTE, id);
 
-		Arquivo arquivo = this.arquivoService.buscarCliente(cliente.get().getId());
-		
-		return arquivo;
+		Optional<Arquivo> arquivo = this.arquivoService.buscarCliente(cliente.get().getId());
+
+		return arquivo.get();
 	}
 
 	@GetMapping("/fileUrlFazenda/{id}")
@@ -227,7 +217,4 @@ public class ArquivoController {
 		return solicitacao.get().getFotoSolicitacao().getFileDownloadUri();
 	}
 
-
-	
-	
 }

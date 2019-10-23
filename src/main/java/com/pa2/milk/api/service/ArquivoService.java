@@ -1,6 +1,8 @@
 package com.pa2.milk.api.service;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,9 +45,12 @@ public class ArquivoService {
 				.orElseThrow(() -> new MyFileNotFoundException("Arquivo não encontrado com o id " + fileId));
 	}
 	
-	public Arquivo buscarCliente(Integer clienteId) {
-		return this.arquivoRepository.findByFotoPerfilId(clienteId);
+	public Optional<Arquivo> buscarCliente(Integer clienteId) {
+		return Optional.ofNullable(this.arquivoRepository.findByFotoPerfilId(clienteId));
 	}
-	
+
+	public List<Arquivo> buscarListarArquivos(Integer clienteId) {
+		return this.arquivoRepository.findAllByFotoPerfilId(clienteId);
+	}
 	
 }

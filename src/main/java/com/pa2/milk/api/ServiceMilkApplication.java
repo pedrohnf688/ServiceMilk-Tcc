@@ -73,7 +73,6 @@ public class ServiceMilkApplication {
 	@Autowired
 	private SolicitacaoRepository solicitacaoRepository;
 
-	
 	@Autowired
 	private OrdemServicoRepository ordemServicoRepository;
 
@@ -168,7 +167,7 @@ public class ServiceMilkApplication {
 			s.setStatus(EnumStatusSolicitacao.PENDENTE);
 			s.setDataCriada(Calendar.getInstance(TimeZone.getTimeZone("GMT-03:00")).getTime());
 			s.setTemperatura(17.5);
-			
+
 			this.solicitacaoRepository.save(s);
 
 			// OrdemServiço

@@ -2,6 +2,7 @@ package com.pa2.milk.api.model;
 
 import java.util.Arrays;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -28,14 +29,12 @@ public class Arquivo {
 	private long size;
 
 	@OneToOne
-	@Cascade({ org.hibernate.annotations.CascadeType.ALL })
+	//@Cascade({ org.hibernate.annotations.CascadeType.ALL })
 	private Cliente fotoPerfil;
 
-	
 	public Arquivo() {
 		super();
 	}
-
 
 	public Arquivo(String fileName, String fileType, byte[] data, String fileDownloadUri, long size,
 			Cliente fotoPerfil) {
@@ -47,7 +46,6 @@ public class Arquivo {
 		this.size = size;
 		this.fotoPerfil = fotoPerfil;
 	}
-
 
 	public String getId() {
 		return id;
@@ -97,16 +95,13 @@ public class Arquivo {
 		this.size = size;
 	}
 
-
 	public Cliente getFotoPerfil() {
 		return fotoPerfil;
 	}
 
-
 	public void setFotoPerfil(Cliente fotoPerfil) {
 		this.fotoPerfil = fotoPerfil;
 	}
-
 
 	@Override
 	public String toString() {
@@ -115,5 +110,4 @@ public class Arquivo {
 				+ fotoPerfil + "]";
 	}
 
-	
 }
