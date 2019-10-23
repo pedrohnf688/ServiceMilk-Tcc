@@ -64,14 +64,6 @@ public class Solicitacao extends AbstractModel<Integer> {
 	@Cascade({ org.hibernate.annotations.CascadeType.ALL })
 	private List<LaudoMedia> listaLaudoMedia;
 
-	@OneToOne
-	@Cascade({ org.hibernate.annotations.CascadeType.ALL })
-	private Arquivo fotoSolicitacao;
-
-	@OneToOne
-	@Cascade({ org.hibernate.annotations.CascadeType.ALL })
-	private Arquivo comprovanteSolicitacao;
-
 	@Column(name = "temperatura")
 	private double temperatura;
 
@@ -155,14 +147,6 @@ public class Solicitacao extends AbstractModel<Integer> {
 		this.listaLaudoMedia = listaLaudoMedia;
 	}
 
-	public Arquivo getFotoSolicitacao() {
-		return fotoSolicitacao;
-	}
-
-	public void setFotoSolicitacao(Arquivo fotoSolicitacao) {
-		this.fotoSolicitacao = fotoSolicitacao;
-	}
-
 	public double getTemperatura() {
 		return temperatura;
 	}
@@ -171,20 +155,11 @@ public class Solicitacao extends AbstractModel<Integer> {
 		this.temperatura = temperatura;
 	}
 
-	public Arquivo getComprovanteSolicitacao() {
-		return comprovanteSolicitacao;
-	}
-
-	public void setComprovanteSolicitacao(Arquivo comprovanteSolicitacao) {
-		this.comprovanteSolicitacao = comprovanteSolicitacao;
-	}
-
 	@Override
 	public String toString() {
 		return "Solicitacao [id=" + id + ", cliente=" + cliente + ", fazenda=" + fazenda + ", listaAnalise="
 				+ listaAnalise + ", status=" + status + ", dataCriada=" + dataCriada + ", observacao=" + observacao
-				+ ", listaLaudoMedia=" + listaLaudoMedia + ", fotoSolicitacao=" + fotoSolicitacao
-				+ ", comprovanteSolicitacao=" + comprovanteSolicitacao + ", temperatura=" + temperatura + "]";
+				+ ", listaLaudoMedia=" + listaLaudoMedia + ", temperatura=" + temperatura + "]";
 	}
 
 }

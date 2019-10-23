@@ -14,12 +14,18 @@ import com.pa2.milk.api.model.Arquivo;
 
 @Repository
 @Transactional(readOnly = true)
-@NamedQuery(name = "ArquivoRepository.findByFotoPerfilId", query = "SELECT a FROM Arquivo a WHERE a.cliente.id = :clienteId")
-@NamedQuery(name = "ArquivoRepository.findAllByFotoPerfilId", query = "SELECT a FROM Arquivo a WHERE a.cliente.id = :clienteId")
 public interface ArquivoRepository extends JpaRepository<Arquivo, String> {
 
 	Arquivo findByFotoPerfilId(@Param("clienteId") Integer clienteId);
 
 	List<Arquivo> findAllByFotoPerfilId(@Param("clienteId") Integer clienteId);
+
+	Arquivo findByFotoSolicitacaoId(@Param("clienteId") Integer clienteId);
+
+	List<Arquivo> findAllByFotoSolicitacaoId(@Param("clienteId") Integer clienteId);
+
+	Arquivo findByComprovanteSolicitacaoId(@Param("clienteId") Integer clienteId);
+
+	List<Arquivo> findAllByComprovanteSolicitacaoId(@Param("clienteId") Integer clienteId);
 
 }

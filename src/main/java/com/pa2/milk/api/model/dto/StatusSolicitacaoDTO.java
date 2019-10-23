@@ -11,23 +11,24 @@ public class StatusSolicitacaoDTO {
 	@Id
 	private Integer solicitacaoId;
 
-	//@NotNull
+	// @NotNull
 	@Enumerated(EnumType.STRING)
 	private EnumStatusSolicitacao status;
-
 	private String observacao;
-
 	private double temperatura;
+	private String emailBolsista;
 
 	public StatusSolicitacaoDTO() {
 	}
 
-	public StatusSolicitacaoDTO(Integer solicitacaoId, @NotNull EnumStatusSolicitacao status, String observacao,
-			double temperatura) {
+	public StatusSolicitacaoDTO(Integer solicitacaoId, EnumStatusSolicitacao status, String observacao,
+			double temperatura, String emailBolsista) {
+		super();
 		this.solicitacaoId = solicitacaoId;
 		this.status = status;
 		this.observacao = observacao;
 		this.temperatura = temperatura;
+		this.emailBolsista = emailBolsista;
 	}
 
 	public Integer getSolicitacaoId() {
@@ -62,10 +63,18 @@ public class StatusSolicitacaoDTO {
 		this.temperatura = temperatura;
 	}
 
+	public String getEmailBolsista() {
+		return emailBolsista;
+	}
+
+	public void setEmailBolsista(String emailBolsista) {
+		this.emailBolsista = emailBolsista;
+	}
+
 	@Override
 	public String toString() {
 		return "StatusSolicitacaoDTO [solicitacaoId=" + solicitacaoId + ", status=" + status + ", observacao="
-				+ observacao + ", temperatura=" + temperatura + "]";
+				+ observacao + ", temperatura=" + temperatura + ", emailBolsista=" + emailBolsista + "]";
 	}
 
 }

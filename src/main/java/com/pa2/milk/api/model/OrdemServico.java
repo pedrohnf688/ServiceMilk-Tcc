@@ -30,7 +30,7 @@ public class OrdemServico extends AbstractModel<Integer> {
 	private Bolsista bolsista;
 
 	@OneToOne
-	@JoinColumn(name = "solicitacao_id", nullable = false)
+	@JoinColumn(name = "solicitacao_id")
 	private Solicitacao solicitacao;
 
 	@NotNull(message = "O campo valor não pode ser nulo.")

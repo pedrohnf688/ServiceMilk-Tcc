@@ -111,16 +111,25 @@ public class ArquivoController {
 			throws NotFoundException {
 		Arquivo dbFile = arquivoService.storeFile(file);
 
-		Optional<Solicitacao> solic = this.solicitacaoService.buscarSolicitacaoPorId(id);
-
 		String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/downloadFile/")
 				.path(dbFile.getId()).toUriString();
 
 		dbFile.setFileDownloadUri(fileDownloadUri);
 		dbFile.setSize(file.getSize());
 
-		solic.get().setFotoSolicitacao(dbFile);
-		this.solicitacaoService.salvarSolicitacao(solic.get());
+		Optional<Solicitacao> solic = this.solicitacaoService.buscarSolicitacaoPorId(id);
+
+		List<Arquivo> as = this.arquivoService.buscarListarArquivosSolicitacao(id);
+
+		if (as.size() > 0) {
+			for (int i = 0; i < as.size(); i++) {
+
+				this.arquivoRepository.deleteById(as.get(i).getId());
+			}
+		}
+
+		dbFile.setFotoSolicitacao(solic.get());
+		this.arquivoRepository.save(dbFile);
 
 		return dbFile;
 	}
@@ -130,16 +139,28 @@ public class ArquivoController {
 			@PathVariable("id") Integer id) throws NotFoundException {
 		Arquivo dbFile = arquivoService.storeFile(file);
 
-		Optional<Solicitacao> solic = this.solicitacaoService.buscarSolicitacaoPorId(id);
-
 		String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/downloadFile/")
 				.path(dbFile.getId()).toUriString();
 
 		dbFile.setFileDownloadUri(fileDownloadUri);
 		dbFile.setSize(file.getSize());
 
-		solic.get().setComprovanteSolicitacao(dbFile);
-		this.solicitacaoService.salvarSolicitacao(solic.get());
+		// solic.get().setComprovanteSolicitacao(dbFile);
+		// this.solicitacaoService.salvarSolicitacao(solic.get());
+
+		Optional<Solicitacao> solic = this.solicitacaoService.buscarSolicitacaoPorId(id);
+
+		List<Arquivo> as = this.arquivoService.buscarListarArquivosComprovanteSolicitacao(id);
+
+		if (as.size() > 0) {
+			for (int i = 0; i < as.size(); i++) {
+
+				this.arquivoRepository.deleteById(as.get(i).getId());
+			}
+		}
+
+		dbFile.setComprovanteSolicitacao(solic.get());
+		this.arquivoRepository.save(dbFile);
 
 		return dbFile;
 	}
@@ -206,15 +227,17 @@ public class ArquivoController {
 	}
 
 	@GetMapping("/fileUrlComprovante/{id}")
-	public String fileUrlComprovante(@PathVariable("id") Integer id) {
+	public Arquivo fileUrlComprovante(@PathVariable("id") Integer id) {
 		Optional<Solicitacao> solicitacao = this.solicitacaoService.buscarSolicitacaoPorId(id);
-		return solicitacao.get().getComprovanteSolicitacao().getFileDownloadUri();
+		Optional<Arquivo> arquivo = this.arquivoService.buscarComprovanteSolicitacao(solicitacao.get().getId());
+		return arquivo.get();
 	}
 
 	@GetMapping("/fileUrlSolicitacao/{id}")
-	public String fileUrlSolicitacao(@PathVariable("id") Integer id) {
+	public Arquivo fileUrlSolicitacao(@PathVariable("id") Integer id) {
 		Optional<Solicitacao> solicitacao = this.solicitacaoService.buscarSolicitacaoPorId(id);
-		return solicitacao.get().getFotoSolicitacao().getFileDownloadUri();
+		Optional<Arquivo> arquivo = this.arquivoService.buscarSolicitacao(solicitacao.get().getId());
+		return arquivo.get();
 	}
 
 }

@@ -36,9 +36,6 @@ public class SolicitacaoGetDto {
 	private List<Amostra> amostras;
 
 	private double temperatura;
-	private Arquivo fotoSolicitacao;
-	private Arquivo comprovanteSolicitacao;
-
 
 	public SolicitacaoGetDto() {
 		super();
@@ -128,29 +125,12 @@ public class SolicitacaoGetDto {
 		this.amostras = amostras;
 	}
 
-	public Arquivo getFotoSolicitacao() {
-		return fotoSolicitacao;
-	}
-
-	public void setFotoSolicitacao(Arquivo fotoSolicitacao) {
-		this.fotoSolicitacao = fotoSolicitacao;
-	}
-
-	public Arquivo getComprovanteSolicitacao() {
-		return comprovanteSolicitacao;
-	}
-
-	public void setComprovanteSolicitacao(Arquivo comprovanteSolicitacao) {
-		this.comprovanteSolicitacao = comprovanteSolicitacao;
-	}
-
 	@Override
 	public String toString() {
 		return "SolicitacaoGetDto [id=" + id + ", cliente=" + cliente + ", fazenda=" + fazenda + ", listaAnalise="
 				+ listaAnalise + ", status=" + status + ", dataCriada=" + dataCriada + ", observacao=" + observacao
 				+ ", listaLaudoMedia=" + listaLaudoMedia + ", amostras=" + amostras + ", temperatura=" + temperatura
-				+ ", fotoSolicitacao=" + fotoSolicitacao + ", comprovanteSolicitacao=" + comprovanteSolicitacao + "]";
+				+ "]";
 	}
 
-	
 }

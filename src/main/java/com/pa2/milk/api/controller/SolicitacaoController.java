@@ -25,7 +25,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pa2.milk.api.helper.Response;
 import com.pa2.milk.api.model.Amostra;
 import com.pa2.milk.api.model.Analise;
+import com.pa2.milk.api.model.Bolsista;
 import com.pa2.milk.api.model.Fazenda;
+import com.pa2.milk.api.model.OrdemServico;
 import com.pa2.milk.api.model.Solicitacao;
 import com.pa2.milk.api.model.dto.SolicitacaoDetalhesDto;
 import com.pa2.milk.api.model.dto.SolicitacaoDto;
@@ -34,8 +36,11 @@ import com.pa2.milk.api.model.dto.StatusSolicitacaoDTO;
 import com.pa2.milk.api.model.enums.EnumStatusSolicitacao;
 import com.pa2.milk.api.repository.AmostraRepository;
 import com.pa2.milk.api.repository.AnaliseRepository;
+import com.pa2.milk.api.repository.BolsistaRepository;
+import com.pa2.milk.api.repository.OrdemServicoRepository;
 import com.pa2.milk.api.service.AmostraService;
 import com.pa2.milk.api.service.AnaliseService;
+import com.pa2.milk.api.service.BolsistaService;
 import com.pa2.milk.api.service.FazendaService;
 import com.pa2.milk.api.service.SolicitacaoService;
 
@@ -65,6 +70,15 @@ public class SolicitacaoController {
 
 	@Autowired
 	private AmostraRepository amostraRepository;
+
+	@Autowired
+	private OrdemServicoRepository ordemServicoRepository;
+
+	@Autowired
+	private BolsistaService bolsistaService;
+
+	@Autowired
+	private BolsistaRepository bolsistaRepository;
 
 	@GetMapping
 	public List<Solicitacao> listarSolicitacoes() {
@@ -188,8 +202,6 @@ public class SolicitacaoController {
 		sgt.setObservacao(sol.getObservacao());
 		sgt.setStatus(sol.getStatus());
 		sgt.setTemperatura(sol.getTemperatura());
-		sgt.setComprovanteSolicitacao(sol.getComprovanteSolicitacao());
-		sgt.setFotoSolicitacao(sol.getFotoSolicitacao());
 
 	}
 
@@ -264,6 +276,19 @@ public class SolicitacaoController {
 		solicitacao.get().setStatus(statusSolicitacaoDTO.getStatus());
 		solicitacao.get().setObservacao(statusSolicitacaoDTO.getObservacao());
 		solicitacao.get().setTemperatura(statusSolicitacaoDTO.getTemperatura());
+
+		Optional<Bolsista> bolsista = this.bolsistaService.buscarPorEmail(statusSolicitacaoDTO.getEmailBolsista());
+
+		if (bolsista.isPresent()) {
+			OrdemServico os = new OrdemServico();
+			os.setBolsista(bolsista.get());
+			os.setSolicitacao(solicitacao.get());
+			os.setValor(12);
+			os.setDataHora(new Date());
+
+			this.ordemServicoRepository.save(os);
+		}
+
 		solicitacaoService.salvarSolicitacao(solicitacao.get());
 
 		response.setData(solicitacao.get());
