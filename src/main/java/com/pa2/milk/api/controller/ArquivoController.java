@@ -145,9 +145,6 @@ public class ArquivoController {
 		dbFile.setFileDownloadUri(fileDownloadUri);
 		dbFile.setSize(file.getSize());
 
-		// solic.get().setComprovanteSolicitacao(dbFile);
-		// this.solicitacaoService.salvarSolicitacao(solic.get());
-
 		Optional<Solicitacao> solic = this.solicitacaoService.buscarSolicitacaoPorId(id);
 
 		List<Arquivo> as = this.arquivoService.buscarListarArquivosComprovanteSolicitacao(id);
@@ -170,16 +167,24 @@ public class ArquivoController {
 			throws NotFoundException {
 		Arquivo dbFile = arquivoService.storeFile(file);
 
-		Optional<Fazenda> fazenda = this.fazendaService.buscarPorId(id);
-
 		String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/downloadFile/")
 				.path(dbFile.getId()).toUriString();
 
 		dbFile.setFileDownloadUri(fileDownloadUri);
 		dbFile.setSize(file.getSize());
 
-		fazenda.get().setFotoFazenda(dbFile);
-		this.fazendaService.salvar(fazenda.get());
+		Optional<Fazenda> fazenda = this.fazendaService.buscarPorId(id);
+
+		List<Arquivo> as = this.arquivoService.buscarListarArquivosFazendas(id);
+
+		if (as.size() > 0) {
+			for (int i = 0; i < as.size(); i++) {
+				this.arquivoRepository.deleteById(as.get(i).getId());
+			}
+		}
+
+		dbFile.setFotoFazenda(fazenda.get());
+		this.arquivoRepository.save(dbFile);
 
 		return dbFile;
 	}
@@ -221,9 +226,10 @@ public class ArquivoController {
 	}
 
 	@GetMapping("/fileUrlFazenda/{id}")
-	public String fileUrlFotoFazenda(@PathVariable("id") Integer id) {
+	public Arquivo fileUrlFotoFazenda(@PathVariable("id") Integer id) {
 		Optional<Fazenda> fazenda = this.fazendaService.buscarPorId(id);
-		return fazenda.get().getFotoFazenda().getFileDownloadUri();
+		Optional<Arquivo> arquivo = this.arquivoService.buscarFazenda(fazenda.get().getId());
+		return arquivo.get();
 	}
 
 	@GetMapping("/fileUrlComprovante/{id}")

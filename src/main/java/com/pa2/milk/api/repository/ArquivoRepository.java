@@ -28,4 +28,9 @@ public interface ArquivoRepository extends JpaRepository<Arquivo, String> {
 
 	List<Arquivo> findAllByComprovanteSolicitacaoId(@Param("clienteId") Integer clienteId);
 
+	Arquivo findByFotoFazendaId(@Param("clienteId") Integer clienteId);
+
+	List<Arquivo> findAllByFotoFazendaId(@Param("clienteId") Integer clienteId);
+
+	
 }

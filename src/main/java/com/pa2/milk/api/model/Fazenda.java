@@ -49,10 +49,6 @@ public class Fazenda extends AbstractModel<Integer> {
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 
-	@OneToOne
-	@Cascade({ org.hibernate.annotations.CascadeType.ALL })
-	private Arquivo fotoFazenda;
-
 	public Fazenda() {
 	}
 
@@ -63,8 +59,7 @@ public class Fazenda extends AbstractModel<Integer> {
 			@NotNull(message = "O campo numero não pode ser nulo.") int numero,
 			@NotBlank(message = "O campo bairro não pode ser nulo.") String bairro,
 			@NotBlank(message = "O campo cidade não pode ser nulo.") String cidade,
-			@NotBlank(message = "O campo estado não pode ser nulo.") String estado, Cliente cliente,
-			Arquivo fotoFazenda) {
+			@NotBlank(message = "O campo estado não pode ser nulo.") String estado, Cliente cliente) {
 		super();
 		this.id = id;
 		this.nomeFazenda = nomeFazenda;
@@ -76,7 +71,6 @@ public class Fazenda extends AbstractModel<Integer> {
 		this.cidade = cidade;
 		this.estado = estado;
 		this.cliente = cliente;
-		this.fotoFazenda = fotoFazenda;
 	}
 
 	@Override
@@ -161,19 +155,11 @@ public class Fazenda extends AbstractModel<Integer> {
 		this.nomeFazenda = nomeFazenda;
 	}
 
-	public Arquivo getFotoFazenda() {
-		return fotoFazenda;
-	}
-
-	public void setFotoFazenda(Arquivo fotoFazenda) {
-		this.fotoFazenda = fotoFazenda;
-	}
-
 	@Override
 	public String toString() {
 		return "Fazenda [id=" + id + ", nomeFazenda=" + nomeFazenda + ", cpfcnpj=" + cpfcnpj + ", cep=" + cep
 				+ ", endereco=" + endereco + ", numero=" + numero + ", bairro=" + bairro + ", cidade=" + cidade
-				+ ", estado=" + estado + ", cliente=" + cliente + ", fotoFazenda=" + fotoFazenda + "]";
+				+ ", estado=" + estado + ", cliente=" + cliente + "]";
 	}
 
 }

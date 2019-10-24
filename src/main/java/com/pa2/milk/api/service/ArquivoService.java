@@ -31,7 +31,8 @@ public class ArquivoService {
 						"Desculpa! Nome do arquivo contém sequência de caminho inválida " + fileName);
 			}
 
-			Arquivo arquivo = new Arquivo(fileName, file.getContentType(), file.getBytes(),null, 0, null, null, null);
+			Arquivo arquivo = new Arquivo(fileName, file.getContentType(), file.getBytes(), null, 0, null, null, null,
+					null);
 
 			return arquivoRepository.save(arquivo);
 		} catch (IOException ex) {
@@ -44,7 +45,7 @@ public class ArquivoService {
 		return arquivoRepository.findById(fileId)
 				.orElseThrow(() -> new MyFileNotFoundException("Arquivo não encontrado com o id " + fileId));
 	}
-	
+
 	public Optional<Arquivo> buscarCliente(Integer clienteId) {
 		return Optional.ofNullable(this.arquivoRepository.findByFotoPerfilId(clienteId));
 	}
@@ -67,6 +68,14 @@ public class ArquivoService {
 
 	public List<Arquivo> buscarListarArquivosComprovanteSolicitacao(Integer clienteId) {
 		return this.arquivoRepository.findAllByComprovanteSolicitacaoId(clienteId);
+	}
+
+	public Optional<Arquivo> buscarFazenda(Integer clienteId) {
+		return Optional.ofNullable(this.arquivoRepository.findByFotoFazendaId(clienteId));
+	}
+
+	public List<Arquivo> buscarListarArquivosFazendas(Integer clienteId) {
+		return this.arquivoRepository.findAllByFotoFazendaId(clienteId);
 	}
 
 }

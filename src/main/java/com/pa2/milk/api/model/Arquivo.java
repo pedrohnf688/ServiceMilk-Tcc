@@ -37,12 +37,15 @@ public class Arquivo {
 	@OneToOne
 	private Solicitacao comprovanteSolicitacao;
 
+	@OneToOne
+	private Fazenda fotoFazenda;
+
 	public Arquivo() {
 		super();
 	}
 
 	public Arquivo(String fileName, String fileType, byte[] data, String fileDownloadUri, long size, Cliente fotoPerfil,
-			Solicitacao fotoSolicitacao, Solicitacao comprovanteSolicitacao) {
+			Solicitacao fotoSolicitacao, Solicitacao comprovanteSolicitacao, Fazenda fotoFazenda) {
 		super();
 		this.fileName = fileName;
 		this.fileType = fileType;
@@ -52,6 +55,7 @@ public class Arquivo {
 		this.fotoPerfil = fotoPerfil;
 		this.fotoSolicitacao = fotoSolicitacao;
 		this.comprovanteSolicitacao = comprovanteSolicitacao;
+		this.fotoFazenda = fotoFazenda;
 	}
 
 	public String getId() {
@@ -126,12 +130,20 @@ public class Arquivo {
 		this.comprovanteSolicitacao = comprovanteSolicitacao;
 	}
 
+	public Fazenda getFotoFazenda() {
+		return fotoFazenda;
+	}
+
+	public void setFotoFazenda(Fazenda fotoFazenda) {
+		this.fotoFazenda = fotoFazenda;
+	}
+
 	@Override
 	public String toString() {
 		return "Arquivo [id=" + id + ", fileName=" + fileName + ", fileType=" + fileType + ", data="
 				+ Arrays.toString(data) + ", fileDownloadUri=" + fileDownloadUri + ", size=" + size + ", fotoPerfil="
 				+ fotoPerfil + ", fotoSolicitacao=" + fotoSolicitacao + ", comprovanteSolicitacao="
-				+ comprovanteSolicitacao + "]";
+				+ comprovanteSolicitacao + ", fotoFazenda=" + fotoFazenda + "]";
 	}
 
 }
