@@ -47,14 +47,18 @@ public class AmostraService {
 		log.info("Buscando Amostra pelo Identificador Amostra:{}", identifAmostra);
 		return Optional.ofNullable(this.amostraRepository.findByIdentificadorAmostra(identifAmostra));
 	}
-	
+
 	public List<Amostra> listarAmostrasPorAnalise(Integer analiseId) {
 		log.info("Listar todas as amostras por Analise:{}", analiseId);
 		return this.amostraRepository.findByAnaliseId(analiseId);
 	}
-	
+
 	public void deletarAmostraPorId(Integer id) {
 		this.amostraRepository.deleteById(id);
+	}
+
+	public Integer amostrasColetas() {
+		return this.amostraRepository.findByAmostrasStatusColetadas().size();
 	}
 
 }

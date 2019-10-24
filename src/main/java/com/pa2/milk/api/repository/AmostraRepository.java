@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.NamedQuery;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +15,10 @@ import com.pa2.milk.api.model.Amostra;
 public interface AmostraRepository extends GenericRepository<Amostra, Integer> {
 
 	List<Amostra> findByAnaliseId(@Param("analiseId") Integer analiseId);
+
 	Amostra findByIdentificadorAmostra(@Param("identifAmostra") String identifAmostra);
 
+	@Query(value = "SELECT * FROM Amostra t WHERE t.finalizada = true", nativeQuery = true)
+	List<Amostra> findByAmostrasStatusColetadas();
+	
 }

@@ -9,9 +9,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -38,12 +38,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.zxing.WriterException;
-import com.ibm.icu.text.DateFormat;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -53,6 +50,7 @@ import com.pa2.milk.api.helper.Response;
 import com.pa2.milk.api.model.Amostra;
 import com.pa2.milk.api.model.Analise;
 import com.pa2.milk.api.model.dto.AmostraDto;
+import com.pa2.milk.api.model.dto.AmostrasDetalhes;
 import com.pa2.milk.api.repository.AmostraRepository;
 import com.pa2.milk.api.repository.AnaliseRepository;
 import com.pa2.milk.api.service.AmostraService;
@@ -265,8 +263,8 @@ public class AmostraController {
 				cell.setFixedHeight(60);
 				table.addCell(cell);
 
-				//Locale.setDefault(new Locale("pt","Brazil"));
-				
+				// Locale.setDefault(new Locale("pt","Brazil"));
+
 				cell = new PdfPCell(new Phrase(amostra.getDataColeta().toGMTString()));
 				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
 				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -368,6 +366,29 @@ public class AmostraController {
 		this.amostraService.remover(id);
 
 		return ResponseEntity.ok(response);
+	}
+
+	@GetMapping(value = "/dadosAmostras/{analiseId}")
+	public ResponseEntity<Response<AmostrasDetalhes>> buscarDadosAmostrasPorAnaliseId(@PathVariable("analiseId") Integer analiseId) {
+
+		log.info("Buscar Analise por Id:", analiseId);
+
+		Response<AmostrasDetalhes> response = new Response<AmostrasDetalhes>();
+
+		Optional<Analise> analise = this.analiseRepository.findById(analiseId);
+
+		analise.get().getQuantidadeAmostras();// total de Amostras
+		int amostrasColetadas = this.amostraService.amostrasColetas(); // amostras Coletas
+
+		AmostrasDetalhes ad = new AmostrasDetalhes();
+
+		ad.setAmostrasColetadas(amostrasColetadas);
+		ad.setTotalAmostras(analise.get().getQuantidadeAmostras());
+
+		response.setData(ad);
+
+		return ResponseEntity.ok(response);
+
 	}
 
 }
