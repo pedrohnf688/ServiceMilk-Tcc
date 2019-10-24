@@ -369,25 +369,21 @@ public class AmostraController {
 	}
 
 	@GetMapping(value = "/dadosAmostras/{analiseId}")
-	public ResponseEntity<Response<AmostrasDetalhes>> buscarDadosAmostrasPorAnaliseId(@PathVariable("analiseId") Integer analiseId) {
+	public AmostrasDetalhes buscarDadosAmostrasPorAnaliseId(@PathVariable("analiseId") Integer analiseId) {
 
 		log.info("Buscar Analise por Id:", analiseId);
-
-		Response<AmostrasDetalhes> response = new Response<AmostrasDetalhes>();
 
 		Optional<Analise> analise = this.analiseRepository.findById(analiseId);
 
 		analise.get().getQuantidadeAmostras();// total de Amostras
 		int amostrasColetadas = this.amostraService.amostrasColetas(); // amostras Coletas
 
-		AmostrasDetalhes ad = new AmostrasDetalhes();
+		AmostrasDetalhes amostrasDetalhes = new AmostrasDetalhes();
 
-		ad.setAmostrasColetadas(amostrasColetadas);
-		ad.setTotalAmostras(analise.get().getQuantidadeAmostras());
+		amostrasDetalhes.setAmostrasColetadas(amostrasColetadas);
+		amostrasDetalhes.setTotalAmostras(analise.get().getQuantidadeAmostras());
 
-		response.setData(ad);
-
-		return ResponseEntity.ok(response);
+		return amostrasDetalhes;
 
 	}
 
