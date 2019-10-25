@@ -61,4 +61,8 @@ public class AmostraService {
 		return this.amostraRepository.findByAmostrasStatusColetadas().size();
 	}
 
+	public Optional<Amostra> BuscarPorQrCodeAmostras(Integer analiseId, String identifAmostra) {
+		return Optional.ofNullable(this.amostraRepository.findByQrCodeAmostras(analiseId, identifAmostra));
+	}
+
 }

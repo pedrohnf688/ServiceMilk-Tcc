@@ -20,5 +20,14 @@ public interface AmostraRepository extends GenericRepository<Amostra, Integer> {
 
 	@Query(value = "SELECT * FROM Amostra t WHERE t.finalizada = true", nativeQuery = true)
 	List<Amostra> findByAmostrasStatusColetadas();
+
+	@Query(value = "SELECT * FROM Amostra t WHERE t.analise_id = :analiseId AND t.identificador_amostra = :identifAmostra", nativeQuery = true)
+	Amostra findByQrCodeAmostras(@Param("analiseId") Integer analiseId, @Param("identifAmostra") String identifAmostra);
+
+	
+	
 	
 }
+   
+
+

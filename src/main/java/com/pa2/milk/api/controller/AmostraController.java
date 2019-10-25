@@ -75,23 +75,29 @@ public class AmostraController {
 	@Autowired
 	private AnaliseRepository analiseRepository;
 
-	@GetMapping(value = "buscarAmostra/{identifAmostra}")
-	public ResponseEntity<Response<AmostraDto>> buscarAmostra(@PathVariable("identifAmostra") String identifAmostra) {
+	@GetMapping(value = "buscarAmostra/{analiseId}/{identifAmostra}")
+	public ResponseEntity<Response<AmostraDto>> buscarAmostra(@PathVariable("analiseId") Integer analiseId,
+			@PathVariable("identifAmostra") String identifAmostra) {
 
 		Response<AmostraDto> response = new Response<AmostraDto>();
 
-		Optional<Amostra> a = this.amostraService.buscarIdentificadorAmostra(identifAmostra);
+		Optional<Amostra> amostra = this.amostraService.BuscarPorQrCodeAmostras(analiseId, identifAmostra);
+		// Optional<Amostra> a =
+		// this.amostraService.buscarIdentificadorAmostra(identifAmostra);
 
 		AmostraDto am = new AmostraDto();
-
-		am.setDataColeta(a.get().getDataColeta());
-		am.setNumeroAmostra(a.get().getNumeroAmostra());
-		am.setQrCode(a.get().getQrCode());
-		am.setEspecie(a.get().getAnalise().getEspecie());
-		am.setOrigemLeite(a.get().getAnalise().getOrigemLeite());
-		am.setProdutos(a.get().getAnalise().getProdutos());
-		am.setObservacao(a.get().getObservacao());
-		am.setAnalise(a.get().getAnalise());
+		
+		if (amostra.isPresent()) {
+			am.setDataColeta(amostra.get().getDataColeta());
+			am.setIdentificadorAmostra(amostra.get().getIdentificadorAmostra());
+			am.setNumeroAmostra(amostra.get().getNumeroAmostra());
+			am.setQrCode(amostra.get().getQrCode());
+			am.setEspecie(amostra.get().getAnalise().getEspecie());
+			am.setOrigemLeite(amostra.get().getAnalise().getOrigemLeite());
+			am.setProdutos(amostra.get().getAnalise().getProdutos());
+			am.setObservacao(amostra.get().getObservacao());
+			am.setAnalise(amostra.get().getAnalise());
+		}
 
 		response.setData(am);
 
