@@ -192,7 +192,7 @@ public class ServiceMilkApplication {
 			teste3.add(EnumOrigemLeite.REBANHO_BALDE);
 
 			Collection<EnumAnalisesSolicitadas> teste4 = new ArrayList<>();
-			teste4.add(EnumAnalisesSolicitadas.ANALISES_FRAUDE_FORMOL);
+			teste4.add(EnumAnalisesSolicitadas.FORMOL);
 			teste4.add(EnumAnalisesSolicitadas.CELULAS_SOMATICAS);
 
 			Analise analise = new Analise();

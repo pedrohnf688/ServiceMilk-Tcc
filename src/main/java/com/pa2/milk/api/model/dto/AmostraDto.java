@@ -29,6 +29,12 @@ public class AmostraDto {
 	private Collection<EnumProdutos> produtos;
 
 	private EnumEspecie especie;
+	
+	private String nomeCliente;
+	
+	private String nomeFazenda;
+	
+	private Collection<EnumAnalisesSolicitadas> analisesSolicitadas;
 
 	private Analise analise;
 
@@ -112,12 +118,39 @@ public class AmostraDto {
 		this.analise = analise;
 	}
 
+	public String getNomeCliente() {
+		return nomeCliente;
+	}
+
+	public void setNomeCliente(String nomeCliente) {
+		this.nomeCliente = nomeCliente;
+	}
+
+	public String getNomeFazenda() {
+		return nomeFazenda;
+	}
+
+	public void setNomeFazenda(String nomeFazenda) {
+		this.nomeFazenda = nomeFazenda;
+	}
+
+	public Collection<EnumAnalisesSolicitadas> getAnalisesSolicitadas() {
+		return analisesSolicitadas;
+	}
+
+	public void setAnalisesSolicitadas(Collection<EnumAnalisesSolicitadas> analisesSolicitadas) {
+		this.analisesSolicitadas = analisesSolicitadas;
+	}
+
 	@Override
 	public String toString() {
 		return "AmostraDto [dataColeta=" + dataColeta + ", numeroAmostra=" + numeroAmostra + ", qrCode=" + qrCode
 				+ ", observacao=" + observacao + ", identificadorAmostra=" + identificadorAmostra + ", finalizada="
 				+ finalizada + ", origemLeite=" + origemLeite + ", produtos=" + produtos + ", especie=" + especie
-				+ ", analise=" + analise + "]";
+				+ ", nomeCliente=" + nomeCliente + ", nomeFazenda=" + nomeFazenda + ", analisesSolicitadas="
+				+ analisesSolicitadas + ", analise=" + analise + "]";
 	}
 
+
+	
 }

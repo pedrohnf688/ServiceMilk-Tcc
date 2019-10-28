@@ -103,7 +103,46 @@ public class AmostraController {
 
 		return ResponseEntity.ok(response);
 	}
+	
+	@GetMapping(value = "buscarAmostraInfo/{identifAmostra}")
+	public ResponseEntity<Response<AmostraDto>> buscarAmostra(@PathVariable("identifAmostra") String identifAmostra) {
 
+		Response<AmostraDto> response = new Response<AmostraDto>();
+		
+		Optional<Amostra> amostra = this.amostraService.buscarIdentificadorAmostra(identifAmostra);
+		
+		AmostraDto am = new AmostraDto();
+		
+		if (amostra.isPresent()) {
+			
+			am.setDataColeta(amostra.get().getDataColeta());
+			am.setIdentificadorAmostra(amostra.get().getIdentificadorAmostra());
+			am.setNumeroAmostra(amostra.get().getNumeroAmostra());
+			am.setQrCode(amostra.get().getQrCode());
+			am.setEspecie(amostra.get().getAnalise().getEspecie());
+			am.setOrigemLeite(amostra.get().getAnalise().getOrigemLeite());
+			am.setProdutos(amostra.get().getAnalise().getProdutos());
+			am.setObservacao(amostra.get().getObservacao());
+			
+			am.setNomeFazenda(amostra.get().getAnalise().getSolicitacao().getFazenda().getNomeFazenda());
+			am.setAnalisesSolicitadas(amostra.get().getAnalise().getAnalisesSolicitadas());
+			am.setNomeCliente(amostra.get().getAnalise().getSolicitacao().getCliente().getNome());
+			
+		}
+
+		response.setData(am);
+
+		return ResponseEntity.ok(response);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@GetMapping(value = "qrCode/{amostraId}")
 	public ResponseEntity<Resource> getQRCodeImage(@PathVariable("amostraId") Integer amostraId)
 			throws WriterException, IOException {
