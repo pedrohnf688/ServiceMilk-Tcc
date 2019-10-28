@@ -80,7 +80,7 @@ public class AuthenticationController {
 		
 		r.addHeader(TOKEN_HEADER, BEARER_PREFIX + " " + token);
 		r.addHeader("Usuario","ID:"+credencial.get().getUsuario().getId());
-		r.addHeader("UsuarioPerfil:",String.valueOf(credencial.get().getUsuario().getCodigoTipoPerfilUsuario()));
+		r.addHeader("UsuarioPerfil",String.valueOf(credencial.get().getUsuario().getCodigoTipoPerfilUsuario()));
 		
 		response.setData(new TokenDto(token, String.valueOf(credencial.get().getUsuario().getCodigoTipoPerfilUsuario()), credencial.get().getUsuario().getId()));
 		
