@@ -121,12 +121,12 @@ public class ArquivoController {
 
 		List<Arquivo> as = this.arquivoService.buscarListarArquivosSolicitacao(id);
 
-		if (as.size() > 0) {
-			for (int i = 0; i < as.size(); i++) {
-
-				this.arquivoRepository.deleteById(as.get(i).getId());
-			}
-		}
+//		if (as.size() > 0) {
+//			for (int i = 0; i < as.size(); i++) {
+//
+//				this.arquivoRepository.deleteById(as.get(i).getId());
+//			}
+//		}
 
 		dbFile.setFotoSolicitacao(solic.get());
 		this.arquivoRepository.save(dbFile);
@@ -240,10 +240,10 @@ public class ArquivoController {
 	}
 
 	@GetMapping("/fileUrlSolicitacao/{id}")
-	public Arquivo fileUrlSolicitacao(@PathVariable("id") Integer id) {
+	public List<Arquivo> fileUrlSolicitacao(@PathVariable("id") Integer id) {
 		Optional<Solicitacao> solicitacao = this.solicitacaoService.buscarSolicitacaoPorId(id);
-		Optional<Arquivo> arquivo = this.arquivoService.buscarSolicitacao(solicitacao.get().getId());
-		return arquivo.get();
+		List<Arquivo> arquivos = this.arquivoService.buscarListarArquivosSolicitacao(solicitacao.get().getId());
+		return arquivos;
 	}
 
 }

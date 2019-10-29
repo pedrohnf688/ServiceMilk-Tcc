@@ -16,19 +16,12 @@ public class StatusSolicitacaoDTO {
 	private EnumStatusSolicitacao status;
 	private String observacao;
 	private double temperatura;
-	private String emailBolsista;
+	private String emissaoLaudo;
+	private String analiseLaboratorial;
+	private String entregaAmostras;
+	private double valorPreco;
 
 	public StatusSolicitacaoDTO() {
-	}
-
-	public StatusSolicitacaoDTO(Integer solicitacaoId, EnumStatusSolicitacao status, String observacao,
-			double temperatura, String emailBolsista) {
-		super();
-		this.solicitacaoId = solicitacaoId;
-		this.status = status;
-		this.observacao = observacao;
-		this.temperatura = temperatura;
-		this.emailBolsista = emailBolsista;
 	}
 
 	public Integer getSolicitacaoId() {
@@ -63,18 +56,44 @@ public class StatusSolicitacaoDTO {
 		this.temperatura = temperatura;
 	}
 
-	public String getEmailBolsista() {
-		return emailBolsista;
+	public String getEmissaoLaudo() {
+		return emissaoLaudo;
 	}
 
-	public void setEmailBolsista(String emailBolsista) {
-		this.emailBolsista = emailBolsista;
+	public void setEmissaoLaudo(String emissaoLaudo) {
+		this.emissaoLaudo = emissaoLaudo;
+	}
+
+	public String getAnaliseLaboratorial() {
+		return analiseLaboratorial;
+	}
+
+	public void setAnaliseLaboratorial(String analiseLaboratorial) {
+		this.analiseLaboratorial = analiseLaboratorial;
+	}
+
+	public String getEntregaAmostras() {
+		return entregaAmostras;
+	}
+
+	public void setEntregaAmostras(String entregaAmostras) {
+		this.entregaAmostras = entregaAmostras;
+	}
+
+	public double getValorPreco() {
+		return valorPreco;
+	}
+
+	public void setValorPreco(double valorPreco) {
+		this.valorPreco = valorPreco;
 	}
 
 	@Override
 	public String toString() {
 		return "StatusSolicitacaoDTO [solicitacaoId=" + solicitacaoId + ", status=" + status + ", observacao="
-				+ observacao + ", temperatura=" + temperatura + ", emailBolsista=" + emailBolsista + "]";
+				+ observacao + ", temperatura=" + temperatura + ", emissaoLaudo=" + emissaoLaudo
+				+ ", analiseLaboratorial=" + analiseLaboratorial + ", entregaAmostras=" + entregaAmostras
+				+ ", valorPreco=" + valorPreco + "]";
 	}
 
 }

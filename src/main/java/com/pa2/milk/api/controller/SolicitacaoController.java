@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ibm.icu.util.Calendar;
 import com.pa2.milk.api.helper.Response;
 import com.pa2.milk.api.model.Amostra;
 import com.pa2.milk.api.model.Analise;
@@ -277,17 +278,21 @@ public class SolicitacaoController {
 		solicitacao.get().setObservacao(statusSolicitacaoDTO.getObservacao());
 		solicitacao.get().setTemperatura(statusSolicitacaoDTO.getTemperatura());
 
-		Optional<Bolsista> bolsista = this.bolsistaService.buscarPorEmail(statusSolicitacaoDTO.getEmailBolsista());
+		OrdemServico os = new OrdemServico();
+		os.setSolicitacao(solicitacao.get());
+		os.setValorPreco(statusSolicitacaoDTO.getValorPreco());
+		os.setEmissaoLaudo(statusSolicitacaoDTO.getEmissaoLaudo());
+		os.setEntregaAmostras(statusSolicitacaoDTO.getEntregaAmostras());
+		os.setAnaliseLaboratorial(statusSolicitacaoDTO.getAnaliseLaboratorial());
+		os.setDataHora(new Date());
 
-		if (bolsista.isPresent()) {
-			OrdemServico os = new OrdemServico();
-			os.setBolsista(bolsista.get());
-			os.setSolicitacao(solicitacao.get());
-			os.setValor(12);
-			os.setDataHora(new Date());
+		Calendar hoje = Calendar.getInstance();
+		int mes = hoje.get(Calendar.MONTH) + 1;
+		int ano = hoje.get(Calendar.YEAR);
+		// mes/idSolicitacao/ano
+		os.setOrdem(mes + "/" + solicitacao.get().getId() + "/" + ano);
 
-			this.ordemServicoRepository.save(os);
-		}
+		this.ordemServicoRepository.save(os);
 
 		solicitacaoService.salvarSolicitacao(solicitacao.get());
 

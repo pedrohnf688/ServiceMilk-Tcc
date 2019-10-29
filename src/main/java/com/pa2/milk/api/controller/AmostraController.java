@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -42,7 +41,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Image;
-import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -86,7 +85,7 @@ public class AmostraController {
 		// this.amostraService.buscarIdentificadorAmostra(identifAmostra);
 
 		AmostraDto am = new AmostraDto();
-		
+
 		if (amostra.isPresent()) {
 			am.setDataColeta(amostra.get().getDataColeta());
 			am.setIdentificadorAmostra(amostra.get().getIdentificadorAmostra());
@@ -103,18 +102,18 @@ public class AmostraController {
 
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@GetMapping(value = "buscarAmostraInfo/{identifAmostra}")
 	public ResponseEntity<Response<AmostraDto>> buscarAmostra(@PathVariable("identifAmostra") String identifAmostra) {
 
 		Response<AmostraDto> response = new Response<AmostraDto>();
-		
+
 		Optional<Amostra> amostra = this.amostraService.buscarIdentificadorAmostra(identifAmostra);
-		
+
 		AmostraDto am = new AmostraDto();
-		
+
 		if (amostra.isPresent()) {
-			
+
 			am.setDataColeta(amostra.get().getDataColeta());
 			am.setIdentificadorAmostra(amostra.get().getIdentificadorAmostra());
 			am.setNumeroAmostra(amostra.get().getNumeroAmostra());
@@ -123,26 +122,18 @@ public class AmostraController {
 			am.setOrigemLeite(amostra.get().getAnalise().getOrigemLeite());
 			am.setProdutos(amostra.get().getAnalise().getProdutos());
 			am.setObservacao(amostra.get().getObservacao());
-			
+
 			am.setNomeFazenda(amostra.get().getAnalise().getSolicitacao().getFazenda().getNomeFazenda());
 			am.setAnalisesSolicitadas(amostra.get().getAnalise().getAnalisesSolicitadas());
 			am.setNomeCliente(amostra.get().getAnalise().getSolicitacao().getCliente().getNome());
-			
+
 		}
 
 		response.setData(am);
 
 		return ResponseEntity.ok(response);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	@GetMapping(value = "qrCode/{amostraId}")
 	public ResponseEntity<Resource> getQRCodeImage(@PathVariable("amostraId") Integer amostraId)
 			throws WriterException, IOException {
@@ -257,11 +248,9 @@ public class AmostraController {
 
 		try {
 
-			PdfPTable table = new PdfPTable(5);
+			PdfPTable table = new PdfPTable(8);
 			table.setWidthPercentage(100);
-			table.setWidths(new float[] { (float) 2.2, (float) 1.7, (float) 1.5, 3, 2 });
-			table.setTotalWidth(330);
-			table.setLockedWidth(true);
+			table.setWidths(new float[] { 1, 1, 1, 1, 1, 1, 1, 1 });
 
 			for (Amostra amostra : amostras) {
 
@@ -286,36 +275,36 @@ public class AmostraController {
 
 				PdfPCell cell;
 
-				Image img = Image.getInstance("logo1.jpg");
-				img.scaleAbsolute(60f, 55f);
+//				Image img = Image.getInstance("logo1.jpg");
+//				img.scaleAbsolute(60f, 55f);
+//
+//				cell = new PdfPCell(img);
+//				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+//				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+//				cell.setPaddingRight(5);
+//				cell.setFixedHeight(60);
+//				table.addCell(cell);
 
-				cell = new PdfPCell(img);
-				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-				cell.setPaddingRight(5);
-				cell.setFixedHeight(60);
-				table.addCell(cell);
+//				cell = new PdfPCell(new Phrase(amostra.getId().toString()));
+//				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+//				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+//				cell.setFixedHeight(60);
+//				table.addCell(cell);
 
-				cell = new PdfPCell(new Phrase(amostra.getId().toString()));
-				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-				cell.setFixedHeight(60);
-				table.addCell(cell);
-
-				cell = new PdfPCell(new Phrase(String.valueOf(amostra.getNumeroAmostra())));
-				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-				cell.setFixedHeight(60);
-				table.addCell(cell);
+//				cell = new PdfPCell(new Phrase(String.valueOf(amostra.getNumeroAmostra())));
+//				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+//				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+//				cell.setFixedHeight(60);
+//				table.addCell(cell);
 
 				// Locale.setDefault(new Locale("pt","Brazil"));
 
-				cell = new PdfPCell(new Phrase(amostra.getDataColeta().toGMTString()));
-				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-				cell.setPaddingRight(5);
-				cell.setFixedHeight(60);
-				table.addCell(cell);
+//				cell = new PdfPCell(new Phrase(amostra.getDataColeta().toGMTString()));
+//				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+//				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+//				cell.setPaddingRight(5);
+//				cell.setFixedHeight(60);
+//				table.addCell(cell);
 
 				Image img2 = Image.getInstance(pngData);
 				img2.scaleAbsolute(55f, 55f);
@@ -325,7 +314,22 @@ public class AmostraController {
 				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
 				cell.setPaddingRight(5);
 				cell.setFixedHeight(60);
+
+//				Paragraph p = new Paragraph("ID: " + amostra.getId().toString());
+//				p.setAlignment(Element.ALIGN_RIGHT);
+//				cell.addElement(p);
+//				Paragraph p2 = new Paragraph("SEQ: " + String.valueOf(amostra.getNumeroAmostra()));
+//				p2.setAlignment(Element.ALIGN_CENTER);
+//				cell.addElement(p2);
+
 				table.addCell(cell);
+
+//				cell = new PdfPCell(new Phrase(
+//						"ID: " + amostra.getId().toString() + "\nSEQ: " + String.valueOf(amostra.getNumeroAmostra())));
+//				cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+//				//cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+//				cell.setFixedHeight(60);
+//				table.addCell(cell);
 
 				PdfWriter.getInstance(document, out);
 				document.open();

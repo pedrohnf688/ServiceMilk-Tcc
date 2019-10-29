@@ -174,8 +174,8 @@ public class ServiceMilkApplication {
 			OrdemServico os = new OrdemServico();
 			os.setDataHora(new Date());
 			os.setSolicitacao(s);
-			os.setBolsista((Bolsista) b);
-			os.setValor(112.0);
+			//os.setBolsista((Bolsista) b);
+			os.setValorPreco(40.3);
 			this.ordemServicoRepository.save(os);
 
 			// Analise 1
@@ -237,6 +237,10 @@ public class ServiceMilkApplication {
 			amostra.setAnalise(analise);
 			this.amostraRepository.save(amostra);
 
+			
+			for (int i = 0; i < 100; i++) {
+				
+			
 			// Amostra 2
 			Amostra amostra2 = new Amostra();
 			amostra2.setDataColeta(new Date());
@@ -245,7 +249,8 @@ public class ServiceMilkApplication {
 			amostra2.setQrCode("qrCode2");
 			amostra2.setAnalise(analise);
 			this.amostraRepository.save(amostra2);
-
+			}
+			
 			Amostra amostra3 = new Amostra();
 			amostra3.setDataColeta(new Date());
 			amostra3.setObservacao("9999999");

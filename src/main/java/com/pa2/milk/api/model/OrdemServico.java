@@ -25,27 +25,34 @@ public class OrdemServico extends AbstractModel<Integer> {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dataHora;
 
-	@OneToOne
-	@JoinColumn(name = "bolsista_id", nullable = false)
-	private Bolsista bolsista;
+	private String emissaoLaudo;
+
+	private String analiseLaboratorial;
 
 	@OneToOne
 	@JoinColumn(name = "solicitacao_id")
 	private Solicitacao solicitacao;
 
-	@NotNull(message = "O campo valor não pode ser nulo.")
-	private double valor;
+	// @NotNull(message = "O campo valor não pode ser nulo.")
+	private double valorPreco;
+
+	private String ordem;
+
+	private String entregaAmostras;
 
 	public OrdemServico() {
 	}
 
-	public OrdemServico(Date dataHora, Bolsista bolsista, Solicitacao solicitacao,
-			@NotNull(message = "O campo valor não pode ser nulo.") double valor) {
+	public OrdemServico(Date dataHora, String emissaoLaudo, String analiseLaboratorial, Solicitacao solicitacao,
+			double valorPreco, String ordem, String entregaAmostras) {
 		super();
 		this.dataHora = dataHora;
-		this.bolsista = bolsista;
+		this.emissaoLaudo = emissaoLaudo;
+		this.analiseLaboratorial = analiseLaboratorial;
 		this.solicitacao = solicitacao;
-		this.valor = valor;
+		this.valorPreco = valorPreco;
+		this.ordem = ordem;
+		this.entregaAmostras = entregaAmostras;
 	}
 
 	@Override
@@ -66,14 +73,6 @@ public class OrdemServico extends AbstractModel<Integer> {
 		this.dataHora = dataHora;
 	}
 
-	public Bolsista getBolsista() {
-		return bolsista;
-	}
-
-	public void setBolsista(Bolsista bolsista) {
-		this.bolsista = bolsista;
-	}
-
 	public Solicitacao getSolicitacao() {
 		return solicitacao;
 	}
@@ -82,12 +81,51 @@ public class OrdemServico extends AbstractModel<Integer> {
 		this.solicitacao = solicitacao;
 	}
 
-	public double getValor() {
-		return valor;
+	public double getValorPreco() {
+		return valorPreco;
 	}
 
-	public void setValor(double valor) {
-		this.valor = valor;
+	public void setValorPreco(double valorPreco) {
+		this.valorPreco = valorPreco;
+	}
+
+	public String getEmissaoLaudo() {
+		return emissaoLaudo;
+	}
+
+	public void setEmissaoLaudo(String emissaoLaudo) {
+		this.emissaoLaudo = emissaoLaudo;
+	}
+
+	public String getAnaliseLaboratorial() {
+		return analiseLaboratorial;
+	}
+
+	public void setAnaliseLaboratorial(String analiseLaboratorial) {
+		this.analiseLaboratorial = analiseLaboratorial;
+	}
+
+	public String getOrdem() {
+		return ordem;
+	}
+
+	public void setOrdem(String ordem) {
+		this.ordem = ordem;
+	}
+
+	public String getEntregaAmostras() {
+		return entregaAmostras;
+	}
+
+	public void setEntregaAmostras(String entregaAmostras) {
+		this.entregaAmostras = entregaAmostras;
+	}
+
+	@Override
+	public String toString() {
+		return "OrdemServico [id=" + id + ", dataHora=" + dataHora + ", emissaoLaudo=" + emissaoLaudo
+				+ ", analiseLaboratorial=" + analiseLaboratorial + ", solicitacao=" + solicitacao + ", valorPreco="
+				+ valorPreco + ", ordem=" + ordem + ", entregaAmostras=" + entregaAmostras + "]";
 	}
 
 }
