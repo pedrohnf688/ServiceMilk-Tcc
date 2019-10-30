@@ -173,7 +173,7 @@ public class ServiceMilkApplication {
 			// OrdemServiço
 			OrdemServico os = new OrdemServico();
 			os.setDataHora(new Date());
-			os.setSolicitacao(s);
+			//os.setSolicitacao(s);
 			//os.setBolsista((Bolsista) b);
 			os.setValorPreco(40.3);
 			this.ordemServicoRepository.save(os);

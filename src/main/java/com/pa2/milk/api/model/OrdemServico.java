@@ -73,14 +73,6 @@ public class OrdemServico extends AbstractModel<Integer> {
 		this.dataHora = dataHora;
 	}
 
-	public Solicitacao getSolicitacao() {
-		return solicitacao;
-	}
-
-	public void setSolicitacao(Solicitacao solicitacao) {
-		this.solicitacao = solicitacao;
-	}
-
 	public double getValorPreco() {
 		return valorPreco;
 	}
@@ -119,6 +111,14 @@ public class OrdemServico extends AbstractModel<Integer> {
 
 	public void setEntregaAmostras(String entregaAmostras) {
 		this.entregaAmostras = entregaAmostras;
+	}
+
+	public Solicitacao getSolicitacao() {
+		return solicitacao;
+	}
+
+	public void setSolicitacao(Solicitacao solicitacao) {
+		this.solicitacao = solicitacao;
 	}
 
 	@Override

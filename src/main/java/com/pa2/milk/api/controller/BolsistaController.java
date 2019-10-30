@@ -176,7 +176,7 @@ public class BolsistaController {
 		return clienteDto;
 	}
 
-	@PreAuthorize("hasAnyRole('ADMINISTRADOR')")
+	@PreAuthorize("hasAnyRole('ADMINISTRADOR','BOLSISTA')")
 	@GetMapping
 	public List<Bolsista> listarBolsistas() {
 		List<Bolsista> bolsista = this.bolsistaService.buscarPorTipoPerfilUsuario(EnumTipoPerfilUsuario.ROLE_BOLSISTA);

@@ -109,7 +109,19 @@ public class SolicitacaoController {
 			return ResponseEntity.badRequest().body(response);
 		}
 
+		this.solicitacaoService.salvarSolicitacao(solicitacao);
+
+		Calendar hoje = Calendar.getInstance();
+		int mes = hoje.get(Calendar.MONTH) + 1;
+		int ano = hoje.get(Calendar.YEAR);
+		// mes/idSolicitacao/ano
+		OrdemServico os = new OrdemServico();
+		os.setDataHora(new Date());
 		solicitacaoService.salvarSolicitacao(solicitacao);
+		os.setOrdem(mes + "/" + "A" + "/" + ano);
+		os.setSolicitacao(solicitacao);
+		this.ordemServicoRepository.save(os);
+
 		response.setData(solicitacao);
 
 		return ResponseEntity.ok(response);
@@ -140,6 +152,7 @@ public class SolicitacaoController {
 
 		Solicitacao solicitacao = solicitacaoDTO.transformarParaSolicitacao();
 		solicitacao.setFazenda(fazenda);
+
 		solicitacao.setCliente(fazenda.getCliente());
 		// solicitacao.setDataCriada(Calendar.getInstance(TimeZone.getTimeZone("GMT-03:00")).getTime());
 		solicitacao.setDataCriada(new Date());
@@ -275,24 +288,33 @@ public class SolicitacaoController {
 		}
 
 		solicitacao.get().setStatus(statusSolicitacaoDTO.getStatus());
-		solicitacao.get().setObservacao(statusSolicitacaoDTO.getObservacao());
-		solicitacao.get().setTemperatura(statusSolicitacaoDTO.getTemperatura());
+		solicitacao.get().setObservacao(statusSolicitacaoDTO.getObservacao() == null ? solicitacao.get().getObservacao()
+				: statusSolicitacaoDTO.getObservacao());
+		solicitacao.get().setTemperatura(statusSolicitacaoDTO.getTemperatura() == 0 ? solicitacao.get().getTemperatura()
+				: statusSolicitacaoDTO.getTemperatura());
+////Corrigir
 
-		OrdemServico os = new OrdemServico();
-		os.setSolicitacao(solicitacao.get());
-		os.setValorPreco(statusSolicitacaoDTO.getValorPreco());
-		os.setEmissaoLaudo(statusSolicitacaoDTO.getEmissaoLaudo());
-		os.setEntregaAmostras(statusSolicitacaoDTO.getEntregaAmostras());
-		os.setAnaliseLaboratorial(statusSolicitacaoDTO.getAnaliseLaboratorial());
-		os.setDataHora(new Date());
+		Optional<OrdemServico> os = this.ordemServicoRepository.findById(solicitacao.get().getId());
 
-		Calendar hoje = Calendar.getInstance();
-		int mes = hoje.get(Calendar.MONTH) + 1;
-		int ano = hoje.get(Calendar.YEAR);
-		// mes/idSolicitacao/ano
-		os.setOrdem(mes + "/" + solicitacao.get().getId() + "/" + ano);
+		os.get().setEmissaoLaudo(statusSolicitacaoDTO.getEmissaoLaudo() == null ? os.get().getEmissaoLaudo()
+				: statusSolicitacaoDTO.getEmissaoLaudo());
+		os.get().setAnaliseLaboratorial(
+				statusSolicitacaoDTO.getAnaliseLaboratorial() == null ? os.get().getAnaliseLaboratorial()
+						: statusSolicitacaoDTO.getAnaliseLaboratorial());
+		os.get().setEntregaAmostras(statusSolicitacaoDTO.getEntregaAmostras() == null ? os.get().getEntregaAmostras()
+				: statusSolicitacaoDTO.getEntregaAmostras());
+		os.get().setValorPreco(statusSolicitacaoDTO.getValorPreco() == 0 ? os.get().getValorPreco()
+				: statusSolicitacaoDTO.getValorPreco());
+		
+		
+		if(os.get().getOrdem().contains("A")) {
+			os.get().setOrdem(os.get().getOrdem().replace("A", String.valueOf(solicitacao.get().getId())));
+		}
 
-		this.ordemServicoRepository.save(os);
+///
+
+		os.get().setSolicitacao(solicitacao.get());
+		this.ordemServicoRepository.save(os.get());
 
 		solicitacaoService.salvarSolicitacao(solicitacao.get());
 
