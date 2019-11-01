@@ -196,6 +196,17 @@ public class LaudoController {
 
 	private void atualizarDadosLaudo(Laudo laudoId, Laudo laudo, BindingResult result) throws NoSuchAlgorithmException {
 
+		laudoId.setCasein(laudo.getCasein());
+		laudoId.setFat(laudo.getFat());
+		laudoId.setFpd(laudo.getFpd());
+		laudoId.setIdentificadorLaudo(laudo.getIdentificadorLaudo());
+		laudoId.setLact(laudo.getLact());
+		laudoId.setSequence(laudo.getSequence());
+		laudoId.setSnf(laudo.getSnf());
+		laudoId.setSolids(laudo.getSolids());
+		laudoId.setTotpro(laudo.getTotpro());
+		laudoId.setTrupro(laudo.getTrupro());
+		laudoId.setUrea(laudo.getUrea());
 		laudoId.setCbt(laudo.getCbt());
 		laudoId.setCcs(laudo.getCcs());
 		laudoId.setCel(laudo.getCel());
@@ -203,13 +214,8 @@ public class LaudoController {
 		laudoId.setDen(laudo.getDen());
 		laudoId.setPh(laudo.getPh());
 		laudoId.setRant(laudo.getRant());
-		laudoId.setGord(laudo.getGord());
-		laudoId.setProt(laudo.getProt());
-		laudoId.setLact(laudo.getLact());
-		laudoId.setEsd(laudo.getEsd());
-		laudoId.setPc(laudo.getPc());
-
-		laudoId = laudo;
+		laudoId.setBatchId(laudo.getBatchId());
+		laudoId.setDate(laudo.getDate());
 
 	}
 

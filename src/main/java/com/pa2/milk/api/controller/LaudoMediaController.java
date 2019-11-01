@@ -163,11 +163,11 @@ public class LaudoMediaController {
 			Matcher m14 = p.matcher(laudos.get(i).getTrupro() != null ? laudos.get(i).getTrupro() : "0");
 			Matcher m15 = p.matcher(laudos.get(i).getUrea() != null ? laudos.get(i).getUrea() : "0");
 
-			Matcher m16 = p.matcher(laudos.get(i).getGord() != null ? laudos.get(i).getGord() : "0");
-			Matcher m17 = p.matcher(laudos.get(i).getProt() != null ? laudos.get(i).getProt() : "0");
+			//Matcher m16 = p.matcher(laudos.get(i).getGord() != null ? laudos.get(i).getGord() : "0");
+			//Matcher m17 = p.matcher(laudos.get(i).getProt() != null ? laudos.get(i).getProt() : "0");
 			Matcher m18 = p.matcher(laudos.get(i).getLact() != null ? laudos.get(i).getLact() : "0");
-			Matcher m19 = p.matcher(laudos.get(i).getEsd() != null ? laudos.get(i).getEsd() : "0");
-			Matcher m20 = p.matcher(laudos.get(i).getPc() != null ? laudos.get(i).getPc() : "0");
+			//Matcher m19 = p.matcher(laudos.get(i).getEsd() != null ? laudos.get(i).getEsd() : "0");
+			//Matcher m20 = p.matcher(laudos.get(i).getPc() != null ? laudos.get(i).getPc() : "0");
 
 			media1 += (m1.find() && m1.group().equals(laudos.get(i).getCasein()))
 					? Double.parseDouble(laudos.get(i).getCasein())
@@ -217,21 +217,18 @@ public class LaudoMediaController {
 			media15 += (m15.find() && m15.group().equals(laudos.get(i).getUrea()))
 					? Double.parseDouble(laudos.get(i).getUrea())
 					: 0;
-			media16 += (m16.find() && m16.group().equals(laudos.get(i).getGord()))
-					? Double.parseDouble(laudos.get(i).getGord())
-					: 0;
-			media17 += (m17.find() && m17.group().equals(laudos.get(i).getProt()))
-					? Double.parseDouble(laudos.get(i).getProt())
-					: 0;
+			//media16 += (m16.find() && m16.group().equals(laudos.get(i).getGord()))
+					//? Double.parseDouble(laudos.get(i).getGord()): 0;
+			//media17 += (m17.find() && m17.group().equals(laudos.get(i).getProt()))
+					//? Double.parseDouble(laudos.get(i).getProt()): 0;
 			media18 += (m18.find() && m18.group().equals(laudos.get(i).getLact()))
 					? Double.parseDouble(laudos.get(i).getLact())
 					: 0;
-			media19 += (m19.find() && m19.group().equals(laudos.get(i).getEsd()))
-					? Double.parseDouble(laudos.get(i).getEsd())
-					: 0;
-			media20 += (m20.find() && m20.group().equals(laudos.get(i).getPc()))
-					? Double.parseDouble(laudos.get(i).getPc())
-					: 0;
+			//media19 += (m19.find() && m19.group().equals(laudos.get(i).getEsd()))
+					//? Double.parseDouble(laudos.get(i).getEsd()): 0;
+			//media20 += (m20.find() && m20.group().equals(laudos.get(i).getPc()))
+					//? Double.parseDouble(laudos.get(i).getPc()): 0;
+					
 
 			media1 = Double.parseDouble(String.valueOf((Math.round(media1 * 100) / 100.0)));
 			media2 = Double.parseDouble(String.valueOf((Math.round(media2 * 100) / 100.0)));
@@ -248,11 +245,7 @@ public class LaudoMediaController {
 			media13 = Double.parseDouble(String.valueOf((Math.round(media13 * 100) / 100.0)));
 			media14 = Double.parseDouble(String.valueOf((Math.round(media14 * 100) / 100.0)));
 			media15 = Double.parseDouble(String.valueOf((Math.round(media15 * 100) / 100.0)));
-			media16 = Double.parseDouble(String.valueOf((Math.round(media16 * 100) / 100.0)));
-			media17 = Double.parseDouble(String.valueOf((Math.round(media17 * 100) / 100.0)));
 			media18 = Double.parseDouble(String.valueOf((Math.round(media18 * 100) / 100.0)));
-			media19 = Double.parseDouble(String.valueOf((Math.round(media19 * 100) / 100.0)));
-			media20 = Double.parseDouble(String.valueOf((Math.round(media20 * 100) / 100.0)));
 
 			System.out.println("Media " + i + ":" + media1);
 			cont++;
@@ -276,11 +269,7 @@ public class LaudoMediaController {
 		media14 /= cont;
 		media15 /= cont;
 
-		media16 /= cont;
-		media17 /= cont;
 		media18 /= cont;
-		media19 /= cont;
-		media20 /= cont;
 
 		media1 = Double.parseDouble(String.valueOf((Math.round(media1 * 100) / 100.0)));
 		media2 = Double.parseDouble(String.valueOf((Math.round(media2 * 100) / 100.0)));
@@ -297,11 +286,7 @@ public class LaudoMediaController {
 		media13 = Double.parseDouble(String.valueOf((Math.round(media13 * 100) / 100.0)));
 		media14 = Double.parseDouble(String.valueOf((Math.round(media14 * 100) / 100.0)));
 		media15 = Double.parseDouble(String.valueOf((Math.round(media15 * 100) / 100.0)));
-		media16 = Double.parseDouble(String.valueOf((Math.round(media16 * 100) / 100.0)));
-		media17 = Double.parseDouble(String.valueOf((Math.round(media17 * 100) / 100.0)));
 		media18 = Double.parseDouble(String.valueOf((Math.round(media18 * 100) / 100.0)));
-		media19 = Double.parseDouble(String.valueOf((Math.round(media19 * 100) / 100.0)));
-		media20 = Double.parseDouble(String.valueOf((Math.round(media20 * 100) / 100.0)));
 
 		System.out.println("Media final:" + media1 + " Cont" + cont);
 
@@ -323,33 +308,8 @@ public class LaudoMediaController {
 		l.setTotproMedia(String.valueOf(media13));
 		l.setTruproMedia(String.valueOf(media14));
 		l.setUreaMedia(String.valueOf(media15));
-		l.setGordMedia(String.valueOf(media16));
-		l.setProtMedia(String.valueOf(media17));
 		l.setLactMedia(String.valueOf(media18));
-		l.setEsdMedia(String.valueOf(media19));
-		l.setPcMedia(String.valueOf(media20));
 
-//		l.setBatchIdMedia(batchId);
-//		l.setCaseinMedia(String.valueOf(Math.round(media1*100)/100.0));
-//		l.setCbtMedia(String.valueOf(Math.round(media2*100)/100.0));
-//		l.setCcsMedia(String.valueOf(Math.round(media3*100)/100.0));
-//		l.setCelMedia(String.valueOf(Math.round(media4*100)/100.0));
-//		l.setCmtMedia(String.valueOf(Math.round(media5*100)/100.0));
-//		l.setDenMedia(String.valueOf(Math.round(media6*100)/100.0));
-//		l.setFatMedia(String.valueOf(Math.round(media7*100)/100.0));
-//		l.setFpdMedia(String.valueOf(Math.round(media8*100)/100.0));
-//		l.setPhMedia(String.valueOf(Math.round(media9*100)/100.0));
-//		l.setRantMedia(String.valueOf(Math.round(media10*100)/100.0));
-//		l.setSnfMedia(String.valueOf(Math.round(media11*100)/100.0));
-//		l.setSolidsMedia(String.valueOf(Math.round(media12*100)/100.0));
-//		l.setTotproMedia(String.valueOf(Math.round(media13*100)/100.0));
-//		l.setTruproMedia(String.valueOf(Math.round(media14*100)/100.0));
-//		l.setUreaMedia(String.valueOf(Math.round(media15*100)/100.0));
-//		l.setGordMedia(String.valueOf(Math.round(media16*100)/100.0));
-//		l.setProtMedia(String.valueOf(Math.round(media17*100)/100.0));
-//		l.setLactMedia(String.valueOf(Math.round(media18*100)/100.0));
-//		l.setEsdMedia(String.valueOf(Math.round(media19*100)/100.0));
-//		l.setPcMedia(String.valueOf(Math.round(media20*100)/100.0));
 
 		l.setSolicitacao(s.get());
 

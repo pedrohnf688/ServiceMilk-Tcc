@@ -243,7 +243,7 @@ public class ServiceMilkApplication {
 			Amostra amostra = new Amostra();
 			amostra.setDataColeta(new Date());
 			// amostra.setNumeroAmostra(30);
-			amostra.setObservacao("obs");
+			// amostra.setObservacao("obs");
 			amostra.setQrCode("qrCode");
 			amostra.setAnalise(analise);
 			this.amostraRepository.save(amostra);
@@ -254,7 +254,7 @@ public class ServiceMilkApplication {
 				Amostra amostra2 = new Amostra();
 				amostra2.setDataColeta(new Date());
 				// amostra2.setNumeroAmostra(323);
-				amostra2.setObservacao("obs2");
+				// amostra2.setObservacao("obs2");
 				amostra2.setQrCode("qrCode2");
 				amostra2.setAnalise(analise);
 				this.amostraRepository.save(amostra2);
@@ -262,7 +262,7 @@ public class ServiceMilkApplication {
 
 			Amostra amostra3 = new Amostra();
 			amostra3.setDataColeta(new Date());
-			amostra3.setObservacao("9999999");
+			// amostra3.setObservacao("9999999");
 			amostra3.setQrCode("qrCode3");
 			amostra3.setAnalise(analise);
 			this.amostraRepository.save(amostra3);
@@ -270,7 +270,7 @@ public class ServiceMilkApplication {
 			Amostra amostra4 = new Amostra();
 			amostra4.setDataColeta(new Date());
 			// amostra2.setNumeroAmostra(323);
-			amostra4.setObservacao("obs4");
+			// amostra4.setObservacao("obs4");
 			amostra4.setQrCode("qrCode4");
 			amostra4.setAnalise(analise);
 			this.amostraRepository.save(amostra4);
@@ -278,7 +278,7 @@ public class ServiceMilkApplication {
 			Amostra amostra5 = new Amostra();
 			amostra5.setDataColeta(new Date());
 			// amostra2.setNumeroAmostra(323);
-			amostra5.setObservacao("obs5");
+			// amostra5.setObservacao("obs5");
 			amostra5.setQrCode("qrCode5");
 			amostra5.setAnalise(analise2);
 			this.amostraRepository.save(amostra5);
@@ -286,7 +286,7 @@ public class ServiceMilkApplication {
 			Amostra amostra6 = new Amostra();
 			amostra6.setDataColeta(new Date());
 			// amostra2.setNumeroAmostra(323);
-			amostra6.setObservacao("obs6");
+			// amostra6.setObservacao("obs6");
 			amostra6.setQrCode("qrCode6");
 			amostra6.setAnalise(analise2);
 			this.amostraRepository.save(amostra6);
@@ -294,7 +294,7 @@ public class ServiceMilkApplication {
 			Amostra amostra7 = new Amostra();
 			amostra7.setDataColeta(new Date());
 			// amostra2.setNumeroAmostra(323);
-			amostra7.setObservacao("obs7");
+			// amostra7.setObservacao("obs7");
 			amostra7.setQrCode("qrCode7");
 			amostra7.setAnalise(analise2);
 			this.amostraRepository.save(amostra7);
@@ -302,7 +302,7 @@ public class ServiceMilkApplication {
 			Amostra amostra8 = new Amostra();
 			amostra8.setDataColeta(new Date());
 			// amostra2.setNumeroAmostra(323);
-			amostra8.setObservacao("obs8");
+			// amostra8.setObservacao("obs8");
 			amostra8.setQrCode("qrCode8");
 			amostra8.setAnalise(analise3);
 			this.amostraRepository.save(amostra8);
@@ -310,7 +310,7 @@ public class ServiceMilkApplication {
 			Amostra amostra9 = new Amostra();
 			amostra9.setDataColeta(new Date());
 			// amostra2.setNumeroAmostra(323);
-			amostra9.setObservacao("obs9");
+			// amostra9.setObservacao("obs9");
 			amostra9.setQrCode("qrCode9");
 			amostra9.setAnalise(analise3);
 			this.amostraRepository.save(amostra9);
@@ -318,7 +318,7 @@ public class ServiceMilkApplication {
 			Amostra amostra10 = new Amostra();
 			amostra10.setDataColeta(new Date());
 			// amostra2.setNumeroAmostra(323);
-			amostra10.setObservacao("obs10");
+			// amostra10.setObservacao("obs10");
 			amostra10.setQrCode("qrCode10");
 			amostra10.setAnalise(analise3);
 			this.amostraRepository.save(amostra10);

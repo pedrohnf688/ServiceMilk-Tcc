@@ -59,7 +59,7 @@ public class Solicitacao extends AbstractModel<Integer> {
 	@Column(length = 2047)
 	private String observacao;
 
-	@OneToMany(mappedBy = "solicitacao", fetch = FetchType.EAGER, orphanRemoval = true)
+	@OneToMany(mappedBy = "solicitacao")
 	@Fetch(FetchMode.SUBSELECT)
 	@Cascade({ org.hibernate.annotations.CascadeType.ALL })
 	private List<LaudoMedia> listaLaudoMedia;

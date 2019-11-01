@@ -37,11 +37,7 @@ public class LaudoMedia {
 	private String rantMedia;
 	private String cbtMedia;
 	private String cmtMedia;
-	private String gordMedia;
-	private String protMedia;
 	private String lactMedia;
-	private String esdMedia;
-	private String pcMedia;
 
 	@OneToMany(orphanRemoval = true)
 	@Cascade({ CascadeType.ALL })
@@ -192,44 +188,12 @@ public class LaudoMedia {
 		this.cmtMedia = cmtMedia;
 	}
 
-	public String getGordMedia() {
-		return gordMedia;
-	}
-
-	public void setGordMedia(String gordMedia) {
-		this.gordMedia = gordMedia;
-	}
-
-	public String getProtMedia() {
-		return protMedia;
-	}
-
-	public void setProtMedia(String protMedia) {
-		this.protMedia = protMedia;
-	}
-
 	public String getLactMedia() {
 		return lactMedia;
 	}
 
 	public void setLactMedia(String lactMedia) {
 		this.lactMedia = lactMedia;
-	}
-
-	public String getEsdMedia() {
-		return esdMedia;
-	}
-
-	public void setEsdMedia(String esdMedia) {
-		this.esdMedia = esdMedia;
-	}
-
-	public String getPcMedia() {
-		return pcMedia;
-	}
-
-	public void setPcMedia(String pcMedia) {
-		this.pcMedia = pcMedia;
 	}
 
 	public List<Laudo> getListaLaudos() {
@@ -250,13 +214,13 @@ public class LaudoMedia {
 
 	@Override
 	public String toString() {
-		return "LaudoMedia [idMedia=" + idMedia + ", fatMedia=" + fatMedia + ", truproMedia=" + truproMedia
-				+ ", totproMedia=" + totproMedia + ", caseinMedia=" + caseinMedia + ", solidsMedia=" + solidsMedia
-				+ ", snfMedia=" + snfMedia + ", fpdMedia=" + fpdMedia + ", ureaMedia=" + ureaMedia + ", ccsMedia="
-				+ ccsMedia + ", celMedia=" + celMedia + ", phMedia=" + phMedia + ", denMedia=" + denMedia
-				+ ", rantMedia=" + rantMedia + ", cbtMedia=" + cbtMedia + ", cmtMedia=" + cmtMedia + ", gordMedia="
-				+ gordMedia + ", protMedia=" + protMedia + ", lactMedia=" + lactMedia + ", esdMedia=" + esdMedia
-				+ ", pcMedia=" + pcMedia + ", listaLaudos=" + listaLaudos + ", solicitacao=" + solicitacao + "]";
+		return "LaudoMedia [idMedia=" + idMedia + ", batchIdMedia=" + batchIdMedia + ", fatMedia=" + fatMedia
+				+ ", truproMedia=" + truproMedia + ", totproMedia=" + totproMedia + ", caseinMedia=" + caseinMedia
+				+ ", solidsMedia=" + solidsMedia + ", snfMedia=" + snfMedia + ", fpdMedia=" + fpdMedia + ", ureaMedia="
+				+ ureaMedia + ", ccsMedia=" + ccsMedia + ", celMedia=" + celMedia + ", phMedia=" + phMedia
+				+ ", denMedia=" + denMedia + ", rantMedia=" + rantMedia + ", cbtMedia=" + cbtMedia + ", cmtMedia="
+				+ cmtMedia + ", lactMedia=" + lactMedia + ", listaLaudos=" + listaLaudos + ", solicitacao="
+				+ solicitacao + "]";
 	}
 
 }

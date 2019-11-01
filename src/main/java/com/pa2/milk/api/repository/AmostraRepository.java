@@ -18,16 +18,10 @@ public interface AmostraRepository extends GenericRepository<Amostra, Integer> {
 
 	Amostra findByIdentificadorAmostra(@Param("identifAmostra") String identifAmostra);
 
-	@Query(value = "SELECT * FROM Amostra t WHERE t.finalizada = true AND t.analise_id = :analiseId", nativeQuery = true)
+	@Query(value = "SELECT * FROM Amostra t WHERE t.observacao IS NOT NULL AND t.analise_id = :analiseId", nativeQuery = true)
 	List<Amostra> findByAmostrasStatusColetadas(@Param("analiseId") Integer analiseId);
 
 	@Query(value = "SELECT * FROM Amostra t WHERE t.analise_id = :analiseId AND t.identificador_amostra = :identifAmostra", nativeQuery = true)
 	Amostra findByQrCodeAmostras(@Param("analiseId") Integer analiseId, @Param("identifAmostra") String identifAmostra);
 
-	
-	
-	
 }
-   
-
-

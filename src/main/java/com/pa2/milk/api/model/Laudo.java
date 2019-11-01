@@ -26,55 +26,54 @@ public class Laudo {
 	private String sequence;
 
 	@JsonProperty("Date")
-	private LocalDate date;
+	private String date;
 
 	@JsonProperty("SampleID")
 	private String sampleid;
 
 	@JsonProperty("Fat")
-	private String fat;
+	private String fat; // GORDURA
 
 	@JsonProperty("Tru.Pro.")
-	private String trupro;
+	private String trupro; // PROTEINA VERDADEIRA
 
 	@JsonProperty("Tot.Pro.")
-	private String totpro;
+	private String totpro; // PROTEINA TOTAL
 
 	@JsonProperty("Casein")
-	private String casein;
+	private String casein; // CASEINA
 
 	@JsonProperty("Solids")
-	private String solids;
+	private String solids; // Solidos Totais
 
 	@JsonProperty("SNF")
-	private String snf;
+	private String snf; // esd Teor de Extrato Seco Desengordurado
 
 	@JsonProperty("FPD")
-	private String fpd;
+	private String fpd; // Ponto Crioscópico
 
 	@JsonProperty("Urea")
-	private String urea;
+	private String urea; // Teor de Nitrogênio Ureico (mg/dL)
 
-	private String ccs;
+	private String ccs; // OK
 
-	private String cel;
+	private String cel; // OK
 
-	private String ph;
+	private String ph; // OK
 
-	private String den;
+	private String den; // OK
 
 	private String rant;
 
 	private String cbt;
 
 	private String cmt;
-	
-	private String gord;
-	private String prot;
+
+	@JsonProperty("Lactose")
 	private String lact;
-	private String esd;
-	private String pc;
-	
+
+	private String identificadorLaudo;
+
 	public Laudo() {
 	}
 
@@ -102,12 +101,12 @@ public class Laudo {
 		this.sequence = sequence;
 	}
 
-	public LocalDate getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(String dataRecebida) throws ParseException {
-		this.date = conversao(dataRecebida);
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 	public String getSampleid() {
@@ -238,26 +237,6 @@ public class Laudo {
 		this.cmt = cmt;
 	}
 
-	public void setDate(LocalDate date) {
-		this.date = date;
-	}
-
-	public String getGord() {
-		return gord;
-	}
-
-	public void setGord(String gord) {
-		this.gord = gord;
-	}
-
-	public String getProt() {
-		return prot;
-	}
-
-	public void setProt(String prot) {
-		this.prot = prot;
-	}
-
 	public String getLact() {
 		return lact;
 	}
@@ -266,30 +245,21 @@ public class Laudo {
 		this.lact = lact;
 	}
 
-	public String getEsd() {
-		return esd;
+	public String getIdentificadorLaudo() {
+		return identificadorLaudo;
 	}
 
-	public void setEsd(String esd) {
-		this.esd = esd;
+	public void setIdentificadorLaudo(String identificadorLaudo) {
+		this.identificadorLaudo = identificadorLaudo;
 	}
 
-	public String getPc() {
-		return pc;
-	}
-
-	public void setPc(String pc) {
-		this.pc = pc;
-	}
-
-	
 	@Override
 	public String toString() {
 		return "Laudo [laudo_id=" + laudo_id + ", batchId=" + batchId + ", sequence=" + sequence + ", date=" + date
 				+ ", sampleid=" + sampleid + ", fat=" + fat + ", trupro=" + trupro + ", totpro=" + totpro + ", casein="
 				+ casein + ", solids=" + solids + ", snf=" + snf + ", fpd=" + fpd + ", urea=" + urea + ", ccs=" + ccs
 				+ ", cel=" + cel + ", ph=" + ph + ", den=" + den + ", rant=" + rant + ", cbt=" + cbt + ", cmt=" + cmt
-				+ ", gord=" + gord + ", prot=" + prot + ", lact=" + lact + ", esd=" + esd + ", pc=" + pc + "]";
+				+ ", lact=" + lact + ", identificadorLaudo=" + identificadorLaudo + "]";
 	}
 
 	public LocalDate conversao(String dataRecebida) throws ParseException {
