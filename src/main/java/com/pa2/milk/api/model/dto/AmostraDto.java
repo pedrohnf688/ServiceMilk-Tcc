@@ -22,18 +22,18 @@ public class AmostraDto {
 
 	private String identificadorAmostra;
 
-	private boolean finalizada;
+	private Boolean finalizada;
 
 	private EnumOrigemLeite origemLeite;
 
 	private Collection<EnumProdutos> produtos;
 
 	private EnumEspecie especie;
-	
+
 	private String nomeCliente;
-	
+
 	private String nomeFazenda;
-	
+
 	private Collection<EnumAnalisesSolicitadas> analisesSolicitadas;
 
 	private Analise analise;
@@ -54,11 +54,11 @@ public class AmostraDto {
 		this.identificadorAmostra = identificadorAmostra;
 	}
 
-	public boolean getFinalizada() {
+	public Boolean getFinalizada() {
 		return finalizada;
 	}
 
-	public void setFinalizada(boolean finalizada) {
+	public void setFinalizada(Boolean finalizada) {
 		this.finalizada = finalizada;
 	}
 
@@ -151,6 +151,4 @@ public class AmostraDto {
 				+ analisesSolicitadas + ", analise=" + analise + "]";
 	}
 
-
-	
 }

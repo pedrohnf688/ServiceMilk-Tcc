@@ -201,9 +201,8 @@ public class AmostraController {
 	private void atualizarDadosAmostra(Amostra am, Amostra amostra, BindingResult result) {
 
 		am.setDataColeta(new Date());
-		if(amostra.getFinalizada() == false) {
-			am.setFinalizada(true);
-		}
+		am.setFinalizada(amostra.getFinalizada());
+	
 
 		if (amostra.getObservacao() != null) {
 			am.setObservacao(amostra.getObservacao());
