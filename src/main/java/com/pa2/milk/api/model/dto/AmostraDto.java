@@ -22,7 +22,7 @@ public class AmostraDto {
 
 	private String identificadorAmostra;
 
-	private int finalizada;
+	private boolean finalizada;
 
 	private EnumOrigemLeite origemLeite;
 
@@ -54,11 +54,11 @@ public class AmostraDto {
 		this.identificadorAmostra = identificadorAmostra;
 	}
 
-	public int getFinalizada() {
+	public boolean getFinalizada() {
 		return finalizada;
 	}
 
-	public void setFinalizada(int finalizada) {
+	public void setFinalizada(boolean finalizada) {
 		this.finalizada = finalizada;
 	}
 

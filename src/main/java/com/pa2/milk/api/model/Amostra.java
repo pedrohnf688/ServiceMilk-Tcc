@@ -45,7 +45,7 @@ public class Amostra extends AbstractModel<Integer> {
 	// @NotBlank(message = "O campo qrCode não pode ser nulo.")
 	private String qrCode;
 
-	private int finalizada;
+	private boolean finalizada;
 
 	@Column(length = 2047)
 	private String observacao;
@@ -60,7 +60,7 @@ public class Amostra extends AbstractModel<Integer> {
 	private String identificadorAmostra = UUID.randomUUID().toString();
 
 	public Amostra(Date dataColeta, String qrCode, String observacao, Analise analise, String identificadorAmostra,
-			int finalizada) {
+			boolean finalizada) {
 		super();
 
 		this.dataColeta = dataColeta;
@@ -86,11 +86,11 @@ public class Amostra extends AbstractModel<Integer> {
 		this.identificadorAmostra = identificadorAmostra;
 	}
 
-	public int getFinalizada() {
+	public boolean getFinalizada() {
 		return finalizada;
 	}
 
-	public void setFinalizada(int finalizada) {
+	public void setFinalizada(boolean finalizada) {
 		this.finalizada = finalizada;
 	}
 
