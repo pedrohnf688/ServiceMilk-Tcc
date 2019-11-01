@@ -1,6 +1,7 @@
 package com.pa2.milk.api.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +32,14 @@ public class LaudoMediaService {
 		return this.laudoMediaRepositorio.findBySolicitacaoId(solicitacaoId);
 	}
 
+	public Optional<LaudoMedia> buscarPorId(Integer id) {
+		log.info("Buscando Laudo Media por id");
+		return this.laudoMediaRepositorio.findById(id);
+	}
 
+	public void deletaLaudoMediaPorId(LaudoMedia lm) {
+		log.info("Deletando Laudo Media por Id");
+	     this.laudoMediaRepositorio.delete(lm);
+	}
 
 }

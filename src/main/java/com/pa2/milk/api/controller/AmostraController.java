@@ -201,7 +201,7 @@ public class AmostraController {
 	private void atualizarDadosAmostra(Amostra am, Amostra amostra, BindingResult result) {
 
 		am.setDataColeta(new Date());
-		am.setFinalizada(amostra.isFinalizada());
+		am.setFinalizada(amostra.getFinalizada());
 
 		if (amostra.getObservacao() != null) {
 			am.setObservacao(amostra.getObservacao());
@@ -209,11 +209,11 @@ public class AmostraController {
 			am.setObservacao(am.getObservacao());
 		}
 
-		if (amostra.getQrCode() != null) {
-			am.setQrCode(amostra.getQrCode());
-		} else {
-			am.setQrCode(am.getQrCode());
-		}
+//		if (amostra.getQrCode() != null) {
+//			am.setQrCode(amostra.getQrCode());
+//		} else {
+//			am.setQrCode(am.getQrCode());
+//		}
 
 	}
 

@@ -167,15 +167,26 @@ public class ServiceMilkApplication {
 			s.setStatus(EnumStatusSolicitacao.PENDENTE);
 			s.setDataCriada(Calendar.getInstance(TimeZone.getTimeZone("GMT-03:00")).getTime());
 			s.setTemperatura(17.5);
-
+			s.setObservacao("dasdsiadjaiofoijfiefenfreo fjeroforifrejfireferi jrijf reoiferjiofrjifrej ifreijferjiferi"
+					+ "fefe kfjwef l-çlefewk0 0kfew jferoif eorifrejiof oijrfoiefwfe fewfwjjfofwefwe erkewrwe ewwerw"
+					+ "eeweferewr qwrrw ewfew wrwerew erwetp rewpe erwple");
 			this.solicitacaoRepository.save(s);
 
 			// OrdemServiço
 			OrdemServico os = new OrdemServico();
 			os.setDataHora(new Date());
-			//os.setSolicitacao(s);
-			//os.setBolsista((Bolsista) b);
+			os.setAnaliseLaboratorial("Pedro Henrique");
+			os.setEmissaoLaudo("Marcos Paulo");
+			os.setEntregaAmostras("Lucas as");
+			os.setSolicitacao(s);
 			os.setValorPreco(40.3);
+
+			Calendar hoje = Calendar.getInstance();
+			int mes = hoje.get(Calendar.MONTH) + 1;
+			int ano = hoje.get(Calendar.YEAR);
+			// mes/idSolicitacao/ano
+			os.setOrdem(mes + "/" + s.getId() + "/" + ano);
+
 			this.ordemServicoRepository.save(os);
 
 			// Analise 1
@@ -237,20 +248,18 @@ public class ServiceMilkApplication {
 			amostra.setAnalise(analise);
 			this.amostraRepository.save(amostra);
 
-			
 			for (int i = 0; i < 100; i++) {
-				
-			
-			// Amostra 2
-			Amostra amostra2 = new Amostra();
-			amostra2.setDataColeta(new Date());
-			// amostra2.setNumeroAmostra(323);
-			amostra2.setObservacao("obs2");
-			amostra2.setQrCode("qrCode2");
-			amostra2.setAnalise(analise);
-			this.amostraRepository.save(amostra2);
+
+				// Amostra 2
+				Amostra amostra2 = new Amostra();
+				amostra2.setDataColeta(new Date());
+				// amostra2.setNumeroAmostra(323);
+				amostra2.setObservacao("obs2");
+				amostra2.setQrCode("qrCode2");
+				amostra2.setAnalise(analise);
+				this.amostraRepository.save(amostra2);
 			}
-			
+
 			Amostra amostra3 = new Amostra();
 			amostra3.setDataColeta(new Date());
 			amostra3.setObservacao("9999999");

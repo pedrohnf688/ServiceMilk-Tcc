@@ -54,7 +54,7 @@ public class AmostraDto {
 		this.identificadorAmostra = identificadorAmostra;
 	}
 
-	public boolean isFinalizada() {
+	public boolean getFinalizada() {
 		return finalizada;
 	}
 

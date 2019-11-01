@@ -16,7 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pa2.milk.api.helper.Response;
 import com.pa2.milk.api.model.Laudo;
 import com.pa2.milk.api.model.LaudoMedia;
 import com.pa2.milk.api.model.Solicitacao;
@@ -69,6 +72,31 @@ public class LaudoMediaController {
 		List<LaudoMedia> lm = this.laudoMediaService.laudoMediaPeloIddaSolicitacao(solicitacaoId);
 		return lm;
 	}
+	
+	
+	
+	@DeleteMapping(value = "{id}")
+	public ResponseEntity<Response<LaudoMedia>> deletarLaudoMedia(@PathVariable("id") Integer id) {
+		
+		Response<LaudoMedia> response = new Response<LaudoMedia>();
+
+		Optional<LaudoMedia> laudoM = this.laudoMediaService.buscarPorId(id);
+
+		if (!laudoM.isPresent()) {
+     		response.getErros().add("Laudo Media não encontrado");
+			ResponseEntity.badRequest().body(response);
+		}
+
+		response.setData(laudoM.get());
+
+		this.laudoMediaService.deletaLaudoMediaPorId(laudoM.get());
+
+		return ResponseEntity.ok(response);
+	}
+
+	
+	
+	
 
 	@PostMapping("/batchId/{solicitacaoId}")
 	public LaudoMedia MedidaLaudos(@RequestBody LaudoMediaDto laudoMediaDto,

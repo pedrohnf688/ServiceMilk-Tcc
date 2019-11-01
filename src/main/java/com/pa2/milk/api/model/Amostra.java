@@ -86,7 +86,7 @@ public class Amostra extends AbstractModel<Integer> {
 		this.identificadorAmostra = identificadorAmostra;
 	}
 
-	public boolean isFinalizada() {
+	public boolean getFinalizada() {
 		return finalizada;
 	}
 

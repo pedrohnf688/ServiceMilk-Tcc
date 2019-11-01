@@ -174,7 +174,7 @@ public class LaudoController {
 
 //  OK 	
 	@DeleteMapping(value = "{id}")
-	public ResponseEntity<Response<Laudo>> deletarCliente(@PathVariable("id") Integer id) {
+	public ResponseEntity<Response<Laudo>> deletarLaudo(@PathVariable("id") Integer id) {
 		log.info("Removendo Laudo por Id: {}", id);
 
 		Response<Laudo> response = new Response<Laudo>();
