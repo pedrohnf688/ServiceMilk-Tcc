@@ -141,7 +141,7 @@ public class SolicitacaoController {
 					Amostra a = new Amostra();
 					a.setAnalise(analises.get(i));
 					a.setDataColeta(new Date());
-					a.setFinalizada(false);
+					a.setFinalizada(0);
 					amostras.add(a);
 					analises.get(i).setAmostras(amostras);
 					// this.amostraService.salvar(a);
