@@ -57,8 +57,8 @@ public class AmostraService {
 		this.amostraRepository.deleteById(id);
 	}
 
-	public Integer amostrasColetas() {
-		return this.amostraRepository.findByAmostrasStatusColetadas().size();
+	public List<Amostra> amostrasColetas(Integer analiseId) {
+		return this.amostraRepository.findByAmostrasStatusColetadas(analiseId);
 	}
 
 	public Optional<Amostra> BuscarPorQrCodeAmostras(Integer analiseId, String identifAmostra) {

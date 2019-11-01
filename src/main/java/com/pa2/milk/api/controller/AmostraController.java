@@ -427,7 +427,7 @@ public class AmostraController {
 		Optional<Analise> analise = this.analiseRepository.findById(analiseId);
 
 		analise.get().getQuantidadeAmostras();// total de Amostras
-		int amostrasColetadas = this.amostraService.amostrasColetas(); // amostras Coletas
+		int amostrasColetadas = this.amostraService.amostrasColetas(analise.get().getId()).size(); // amostras Coletas
 
 		AmostrasDetalhes amostrasDetalhes = new AmostrasDetalhes();
 
