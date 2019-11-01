@@ -69,13 +69,13 @@ public class Amostra extends AbstractModel<Integer> {
 		this.observacao = observacao;
 		this.analise = analise;
 		this.identificadorAmostra = identificadorAmostra;
-		this.finalizada = false;
+		this.finalizada = finalizada;
 	}
 
 	public Amostra() {
 		super();
 		this.numeroAmostra = cont++;
-		this.finalizada = false;
+	
 	}
 
 	public String getIdentificadorAmostra() {
