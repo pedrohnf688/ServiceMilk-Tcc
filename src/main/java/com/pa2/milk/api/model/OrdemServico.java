@@ -40,11 +40,16 @@ public class OrdemServico extends AbstractModel<Integer> {
 
 	private String entregaAmostras;
 
+	private String dataRecebimento;
+	private String dataAnalise;
+	private String dataProcessamento;
+
 	public OrdemServico() {
 	}
 
 	public OrdemServico(Date dataHora, String emissaoLaudo, String analiseLaboratorial, Solicitacao solicitacao,
-			double valorPreco, String ordem, String entregaAmostras) {
+			double valorPreco, String ordem, String entregaAmostras, String dataRecebimento, String dataAnalise,
+			String dataProcessamento) {
 		super();
 		this.dataHora = dataHora;
 		this.emissaoLaudo = emissaoLaudo;
@@ -53,6 +58,9 @@ public class OrdemServico extends AbstractModel<Integer> {
 		this.valorPreco = valorPreco;
 		this.ordem = ordem;
 		this.entregaAmostras = entregaAmostras;
+		this.dataRecebimento = dataRecebimento;
+		this.dataAnalise = dataAnalise;
+		this.dataProcessamento = dataProcessamento;
 	}
 
 	@Override
@@ -121,11 +129,36 @@ public class OrdemServico extends AbstractModel<Integer> {
 		this.solicitacao = solicitacao;
 	}
 
+	public String getDataRecebimento() {
+		return dataRecebimento;
+	}
+
+	public void setDataRecebimento(String dataRecebimento) {
+		this.dataRecebimento = dataRecebimento;
+	}
+
+	public String getDataAnalise() {
+		return dataAnalise;
+	}
+
+	public void setDataAnalise(String dataAnalise) {
+		this.dataAnalise = dataAnalise;
+	}
+
+	public String getDataProcessamento() {
+		return dataProcessamento;
+	}
+
+	public void setDataProcessamento(String dataProcessamento) {
+		this.dataProcessamento = dataProcessamento;
+	}
+
 	@Override
 	public String toString() {
 		return "OrdemServico [id=" + id + ", dataHora=" + dataHora + ", emissaoLaudo=" + emissaoLaudo
 				+ ", analiseLaboratorial=" + analiseLaboratorial + ", solicitacao=" + solicitacao + ", valorPreco="
-				+ valorPreco + ", ordem=" + ordem + ", entregaAmostras=" + entregaAmostras + "]";
+				+ valorPreco + ", ordem=" + ordem + ", entregaAmostras=" + entregaAmostras + ", dataRecebimento="
+				+ dataRecebimento + ", dataAnalise=" + dataAnalise + ", dataProcessamento=" + dataProcessamento + "]";
 	}
 
 }

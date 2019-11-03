@@ -15,4 +15,5 @@ import com.pa2.milk.api.model.LaudoMedia;
 public interface LaudoMediaRepositorio extends JpaRepository<LaudoMedia, Integer> {
 
 	List<LaudoMedia> findBySolicitacaoId(@Param("solicitacaoId") Integer solicitacaoId);
+	LaudoMedia findAllBySolicitacaoId(@Param("solicitacaoId") Integer solicitacaoId);
 }

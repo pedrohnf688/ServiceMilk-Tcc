@@ -168,8 +168,7 @@ public class ServiceMilkApplication {
 			s.setDataCriada(Calendar.getInstance(TimeZone.getTimeZone("GMT-03:00")).getTime());
 			s.setTemperatura(17.5);
 			s.setObservacao("dasdsiadjaiofoijfiefenfreo fjeroforifrejfireferi jrijf reoiferjiofrjifrej ifreijferjiferi"
-					+ "fefe kfjwef l-çlefewk0 0kfew jferoif eorifrejiof oijrfoiefwfe fewfwjjfofwefwe erkewrwe ewwerw"
-					+ "eeweferewr qwrrw ewfew wrwerew erwetp rewpe erwple");
+					+ "fefe kfjwef l-çlefewk0 0kfew");
 			this.solicitacaoRepository.save(s);
 
 			// OrdemServiço

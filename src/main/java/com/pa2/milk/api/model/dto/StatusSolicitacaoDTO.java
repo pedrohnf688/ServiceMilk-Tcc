@@ -20,6 +20,9 @@ public class StatusSolicitacaoDTO {
 	private String analiseLaboratorial;
 	private String entregaAmostras;
 	private double valorPreco;
+	private String dataRecebimento;
+	private String dataAnalise;
+	private String dataProcessamento;
 
 	public StatusSolicitacaoDTO() {
 	}
@@ -88,12 +91,37 @@ public class StatusSolicitacaoDTO {
 		this.valorPreco = valorPreco;
 	}
 
+	public String getDataRecebimento() {
+		return dataRecebimento;
+	}
+
+	public void setDataRecebimento(String dataRecebimento) {
+		this.dataRecebimento = dataRecebimento;
+	}
+
+	public String getDataAnalise() {
+		return dataAnalise;
+	}
+
+	public void setDataAnalise(String dataAnalise) {
+		this.dataAnalise = dataAnalise;
+	}
+
+	public String getDataProcessamento() {
+		return dataProcessamento;
+	}
+
+	public void setDataProcessamento(String dataProcessamento) {
+		this.dataProcessamento = dataProcessamento;
+	}
+
 	@Override
 	public String toString() {
 		return "StatusSolicitacaoDTO [solicitacaoId=" + solicitacaoId + ", status=" + status + ", observacao="
 				+ observacao + ", temperatura=" + temperatura + ", emissaoLaudo=" + emissaoLaudo
 				+ ", analiseLaboratorial=" + analiseLaboratorial + ", entregaAmostras=" + entregaAmostras
-				+ ", valorPreco=" + valorPreco + "]";
+				+ ", valorPreco=" + valorPreco + ", dataRecebimento=" + dataRecebimento + ", dataAnalise=" + dataAnalise
+				+ ", dataProcessamento=" + dataProcessamento + "]";
 	}
 
 }

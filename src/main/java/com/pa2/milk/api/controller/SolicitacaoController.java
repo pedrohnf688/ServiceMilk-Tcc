@@ -86,6 +86,13 @@ public class SolicitacaoController {
 		log.info("Listando Solicitações");
 		return this.solicitacaoService.listarTodasSolicitacoes();
 	}
+	
+	@GetMapping(value = "ordemServico/{id}")	
+	public OrdemServico ordemServicoSolicitacao(@PathVariable("id") Integer id) {
+		OrdemServico os = this.ordemServicoRepository.findBySolicitacaoId(id);
+		return os;
+	}
+	
 
 	@PreAuthorize("hasAnyRole('ADMINISTRADOR','BOLSISTA','CLIENTE')")
 	@PostMapping
@@ -306,10 +313,14 @@ public class SolicitacaoController {
 		os.get().setValorPreco(statusSolicitacaoDTO.getValorPreco() == 0 ? os.get().getValorPreco()
 				: statusSolicitacaoDTO.getValorPreco());
 		
-		
 		if(os.get().getOrdem().contains("A")) {
 			os.get().setOrdem(os.get().getOrdem().replace("A", String.valueOf(solicitacao.get().getId())));
 		}
+		
+		os.get().setDataAnalise(statusSolicitacaoDTO.getDataAnalise() == null ? os.get().getDataAnalise():statusSolicitacaoDTO.getDataAnalise());
+		os.get().setDataProcessamento(statusSolicitacaoDTO.getDataProcessamento() == null ? os.get().getDataProcessamento() : statusSolicitacaoDTO.getDataProcessamento());
+		os.get().setDataRecebimento(statusSolicitacaoDTO.getDataRecebimento() == null ? os.get().getDataRecebimento() : statusSolicitacaoDTO.getDataRecebimento());
+		
 
 ///
 

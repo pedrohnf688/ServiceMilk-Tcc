@@ -32,6 +32,10 @@ public class LaudoMediaService {
 		return this.laudoMediaRepositorio.findBySolicitacaoId(solicitacaoId);
 	}
 
+	public LaudoMedia laudoPeloIdSolicitacao(Integer solicitacaoId) {
+		return this.laudoMediaRepositorio.findAllBySolicitacaoId(solicitacaoId);
+	}
+	
 	public Optional<LaudoMedia> buscarPorId(Integer id) {
 		log.info("Buscando Laudo Media por id");
 		return this.laudoMediaRepositorio.findById(id);

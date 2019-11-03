@@ -72,7 +72,12 @@ public class LaudoMediaController {
 		List<LaudoMedia> lm = this.laudoMediaService.laudoMediaPeloIddaSolicitacao(solicitacaoId);
 		return lm;
 	}
-	
+
+	@GetMapping("laudoM/{solicitacaoId}")
+	public List<Laudo> listarLaudoPorSolicitacao(@PathVariable("solicitacaoId") Integer solicitacaoId) {
+		LaudoMedia lm = this.laudoMediaService.laudoPeloIdSolicitacao(solicitacaoId);
+		return lm.getListaLaudos();
+	}
 	
 	
 	@DeleteMapping(value = "{id}")
