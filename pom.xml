@@ -123,7 +123,7 @@
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
-			<version>6.6.0</version>
+			<version>6.0.0</version> <!-- 6.6.0 -->
 		</dependency>
 
 		<dependency>
@@ -131,6 +131,7 @@
 			<artifactId>poi</artifactId>
 			<version>3.17</version>
 		</dependency>
+
 
 		<dependency>
 			<groupId>org.apache.poi</groupId>
@@ -148,6 +149,12 @@
 			<groupId>com.lowagie</groupId>
 			<artifactId>itext</artifactId>
 			<version>4.2.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sourceforge.jexcelapi</groupId>
+			<artifactId>jxl</artifactId>
+			<version>2.6.12</version>
 		</dependency>
 
 	</dependencies>

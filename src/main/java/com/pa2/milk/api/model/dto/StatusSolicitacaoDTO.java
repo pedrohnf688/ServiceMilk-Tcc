@@ -23,6 +23,8 @@ public class StatusSolicitacaoDTO {
 	private String dataRecebimento;
 	private String dataAnalise;
 	private String dataProcessamento;
+	private double amostrasRecebidas;
+	private double amostrasNaoAnalisadas;
 
 	public StatusSolicitacaoDTO() {
 	}
@@ -115,13 +117,30 @@ public class StatusSolicitacaoDTO {
 		this.dataProcessamento = dataProcessamento;
 	}
 
+	public double getAmostrasRecebidas() {
+		return amostrasRecebidas;
+	}
+
+	public void setAmostrasRecebidas(double amostrasRecebidas) {
+		this.amostrasRecebidas = amostrasRecebidas;
+	}
+
+	public double getAmostrasNaoAnalisadas() {
+		return amostrasNaoAnalisadas;
+	}
+
+	public void setAmostrasNaoAnalisadas(double amostrasNaoAnalisadas) {
+		this.amostrasNaoAnalisadas = amostrasNaoAnalisadas;
+	}
+
 	@Override
 	public String toString() {
 		return "StatusSolicitacaoDTO [solicitacaoId=" + solicitacaoId + ", status=" + status + ", observacao="
 				+ observacao + ", temperatura=" + temperatura + ", emissaoLaudo=" + emissaoLaudo
 				+ ", analiseLaboratorial=" + analiseLaboratorial + ", entregaAmostras=" + entregaAmostras
 				+ ", valorPreco=" + valorPreco + ", dataRecebimento=" + dataRecebimento + ", dataAnalise=" + dataAnalise
-				+ ", dataProcessamento=" + dataProcessamento + "]";
+				+ ", dataProcessamento=" + dataProcessamento + ", amostrasRecebidas=" + amostrasRecebidas
+				+ ", amostrasNaoAnalisadas=" + amostrasNaoAnalisadas + "]";
 	}
 
 }

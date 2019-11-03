@@ -2,6 +2,7 @@ package com.pa2.milk.api.controller;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -22,11 +23,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ibm.icu.util.Calendar;
 import com.pa2.milk.api.helper.Response;
 import com.pa2.milk.api.model.Amostra;
 import com.pa2.milk.api.model.Analise;
-import com.pa2.milk.api.model.Bolsista;
 import com.pa2.milk.api.model.Fazenda;
 import com.pa2.milk.api.model.OrdemServico;
 import com.pa2.milk.api.model.Solicitacao;
@@ -86,13 +85,12 @@ public class SolicitacaoController {
 		log.info("Listando Solicitações");
 		return this.solicitacaoService.listarTodasSolicitacoes();
 	}
-	
-	@GetMapping(value = "ordemServico/{id}")	
+
+	@GetMapping(value = "ordemServico/{id}")
 	public OrdemServico ordemServicoSolicitacao(@PathVariable("id") Integer id) {
 		OrdemServico os = this.ordemServicoRepository.findBySolicitacaoId(id);
 		return os;
 	}
-	
 
 	@PreAuthorize("hasAnyRole('ADMINISTRADOR','BOLSISTA','CLIENTE')")
 	@PostMapping
@@ -312,16 +310,23 @@ public class SolicitacaoController {
 				: statusSolicitacaoDTO.getEntregaAmostras());
 		os.get().setValorPreco(statusSolicitacaoDTO.getValorPreco() == 0 ? os.get().getValorPreco()
 				: statusSolicitacaoDTO.getValorPreco());
-		
-		if(os.get().getOrdem().contains("A")) {
+
+		if (os.get().getOrdem().contains("A")) {
 			os.get().setOrdem(os.get().getOrdem().replace("A", String.valueOf(solicitacao.get().getId())));
 		}
-		
-		os.get().setDataAnalise(statusSolicitacaoDTO.getDataAnalise() == null ? os.get().getDataAnalise():statusSolicitacaoDTO.getDataAnalise());
-		os.get().setDataProcessamento(statusSolicitacaoDTO.getDataProcessamento() == null ? os.get().getDataProcessamento() : statusSolicitacaoDTO.getDataProcessamento());
-		os.get().setDataRecebimento(statusSolicitacaoDTO.getDataRecebimento() == null ? os.get().getDataRecebimento() : statusSolicitacaoDTO.getDataRecebimento());
-		
 
+		os.get().setDataAnalise(statusSolicitacaoDTO.getDataAnalise() == null ? os.get().getDataAnalise()
+				: statusSolicitacaoDTO.getDataAnalise());
+		os.get().setDataProcessamento(
+				statusSolicitacaoDTO.getDataProcessamento() == null ? os.get().getDataProcessamento()
+						: statusSolicitacaoDTO.getDataProcessamento());
+		os.get().setDataRecebimento(statusSolicitacaoDTO.getDataRecebimento() == null ? os.get().getDataRecebimento()
+				: statusSolicitacaoDTO.getDataRecebimento());
+		os.get().setAmostrasNaoAnalisadas(
+				statusSolicitacaoDTO.getAmostrasNaoAnalisadas() == 0 ? os.get().getAmostrasNaoAnalisadas()
+						: statusSolicitacaoDTO.getAmostrasNaoAnalisadas());
+		os.get().setAmostrasRecebidas(statusSolicitacaoDTO.getAmostrasRecebidas() == 0 ? os.get().getAmostrasRecebidas()
+				: statusSolicitacaoDTO.getAmostrasRecebidas());
 ///
 
 		os.get().setSolicitacao(solicitacao.get());

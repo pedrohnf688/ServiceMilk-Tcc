@@ -43,13 +43,15 @@ public class OrdemServico extends AbstractModel<Integer> {
 	private String dataRecebimento;
 	private String dataAnalise;
 	private String dataProcessamento;
+	private double amostrasRecebidas;
+	private double amostrasNaoAnalisadas;
 
 	public OrdemServico() {
 	}
 
 	public OrdemServico(Date dataHora, String emissaoLaudo, String analiseLaboratorial, Solicitacao solicitacao,
 			double valorPreco, String ordem, String entregaAmostras, String dataRecebimento, String dataAnalise,
-			String dataProcessamento) {
+			String dataProcessamento, double amostrasRecebidas, double amostrasNaoAnalisadas) {
 		super();
 		this.dataHora = dataHora;
 		this.emissaoLaudo = emissaoLaudo;
@@ -61,6 +63,8 @@ public class OrdemServico extends AbstractModel<Integer> {
 		this.dataRecebimento = dataRecebimento;
 		this.dataAnalise = dataAnalise;
 		this.dataProcessamento = dataProcessamento;
+		this.amostrasRecebidas = amostrasRecebidas;
+		this.amostrasNaoAnalisadas = amostrasNaoAnalisadas;
 	}
 
 	@Override
@@ -153,12 +157,29 @@ public class OrdemServico extends AbstractModel<Integer> {
 		this.dataProcessamento = dataProcessamento;
 	}
 
+	public double getAmostrasRecebidas() {
+		return amostrasRecebidas;
+	}
+
+	public void setAmostrasRecebidas(double amostrasRecebidas) {
+		this.amostrasRecebidas = amostrasRecebidas;
+	}
+
+	public double getAmostrasNaoAnalisadas() {
+		return amostrasNaoAnalisadas;
+	}
+
+	public void setAmostrasNaoAnalisadas(double amostrasNaoAnalisadas) {
+		this.amostrasNaoAnalisadas = amostrasNaoAnalisadas;
+	}
+
 	@Override
 	public String toString() {
 		return "OrdemServico [id=" + id + ", dataHora=" + dataHora + ", emissaoLaudo=" + emissaoLaudo
 				+ ", analiseLaboratorial=" + analiseLaboratorial + ", solicitacao=" + solicitacao + ", valorPreco="
 				+ valorPreco + ", ordem=" + ordem + ", entregaAmostras=" + entregaAmostras + ", dataRecebimento="
-				+ dataRecebimento + ", dataAnalise=" + dataAnalise + ", dataProcessamento=" + dataProcessamento + "]";
+				+ dataRecebimento + ", dataAnalise=" + dataAnalise + ", dataProcessamento=" + dataProcessamento
+				+ ", amostrasRecebidas=" + amostrasRecebidas + ", amostrasNaoAnalisadas=" + amostrasNaoAnalisadas + "]";
 	}
 
 }

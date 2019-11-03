@@ -24,14 +24,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pa2.milk.api.helper.Response;
 import com.pa2.milk.api.model.Laudo;
 import com.pa2.milk.api.model.LaudoMedia;
 import com.pa2.milk.api.model.Solicitacao;
-import com.pa2.milk.api.model.dto.CadastroClienteDto;
 import com.pa2.milk.api.model.dto.LaudoMediaDto;
 import com.pa2.milk.api.service.LaudoMediaService;
 import com.pa2.milk.api.service.LaudoService;
@@ -78,17 +76,16 @@ public class LaudoMediaController {
 		LaudoMedia lm = this.laudoMediaService.laudoPeloIdSolicitacao(solicitacaoId);
 		return lm.getListaLaudos();
 	}
-	
-	
+
 	@DeleteMapping(value = "{id}")
 	public ResponseEntity<Response<LaudoMedia>> deletarLaudoMedia(@PathVariable("id") Integer id) {
-		
+
 		Response<LaudoMedia> response = new Response<LaudoMedia>();
 
 		Optional<LaudoMedia> laudoM = this.laudoMediaService.buscarPorId(id);
 
 		if (!laudoM.isPresent()) {
-     		response.getErros().add("Laudo Media não encontrado");
+			response.getErros().add("Laudo Media não encontrado");
 			ResponseEntity.badRequest().body(response);
 		}
 
@@ -98,10 +95,6 @@ public class LaudoMediaController {
 
 		return ResponseEntity.ok(response);
 	}
-
-	
-	
-	
 
 	@PostMapping("/batchId/{solicitacaoId}")
 	public LaudoMedia MedidaLaudos(@RequestBody LaudoMediaDto laudoMediaDto,
@@ -168,11 +161,15 @@ public class LaudoMediaController {
 			Matcher m14 = p.matcher(laudos.get(i).getTrupro() != null ? laudos.get(i).getTrupro() : "0");
 			Matcher m15 = p.matcher(laudos.get(i).getUrea() != null ? laudos.get(i).getUrea() : "0");
 
-			//Matcher m16 = p.matcher(laudos.get(i).getGord() != null ? laudos.get(i).getGord() : "0");
-			//Matcher m17 = p.matcher(laudos.get(i).getProt() != null ? laudos.get(i).getProt() : "0");
+			// Matcher m16 = p.matcher(laudos.get(i).getGord() != null ?
+			// laudos.get(i).getGord() : "0");
+			// Matcher m17 = p.matcher(laudos.get(i).getProt() != null ?
+			// laudos.get(i).getProt() : "0");
 			Matcher m18 = p.matcher(laudos.get(i).getLact() != null ? laudos.get(i).getLact() : "0");
-			//Matcher m19 = p.matcher(laudos.get(i).getEsd() != null ? laudos.get(i).getEsd() : "0");
-			//Matcher m20 = p.matcher(laudos.get(i).getPc() != null ? laudos.get(i).getPc() : "0");
+			// Matcher m19 = p.matcher(laudos.get(i).getEsd() != null ?
+			// laudos.get(i).getEsd() : "0");
+			// Matcher m20 = p.matcher(laudos.get(i).getPc() != null ? laudos.get(i).getPc()
+			// : "0");
 
 			media1 += (m1.find() && m1.group().equals(laudos.get(i).getCasein()))
 					? Double.parseDouble(laudos.get(i).getCasein())
@@ -222,18 +219,17 @@ public class LaudoMediaController {
 			media15 += (m15.find() && m15.group().equals(laudos.get(i).getUrea()))
 					? Double.parseDouble(laudos.get(i).getUrea())
 					: 0;
-			//media16 += (m16.find() && m16.group().equals(laudos.get(i).getGord()))
-					//? Double.parseDouble(laudos.get(i).getGord()): 0;
-			//media17 += (m17.find() && m17.group().equals(laudos.get(i).getProt()))
-					//? Double.parseDouble(laudos.get(i).getProt()): 0;
+			// media16 += (m16.find() && m16.group().equals(laudos.get(i).getGord()))
+			// ? Double.parseDouble(laudos.get(i).getGord()): 0;
+			// media17 += (m17.find() && m17.group().equals(laudos.get(i).getProt()))
+			// ? Double.parseDouble(laudos.get(i).getProt()): 0;
 			media18 += (m18.find() && m18.group().equals(laudos.get(i).getLact()))
 					? Double.parseDouble(laudos.get(i).getLact())
 					: 0;
-			//media19 += (m19.find() && m19.group().equals(laudos.get(i).getEsd()))
-					//? Double.parseDouble(laudos.get(i).getEsd()): 0;
-			//media20 += (m20.find() && m20.group().equals(laudos.get(i).getPc()))
-					//? Double.parseDouble(laudos.get(i).getPc()): 0;
-					
+			// media19 += (m19.find() && m19.group().equals(laudos.get(i).getEsd()))
+			// ? Double.parseDouble(laudos.get(i).getEsd()): 0;
+			// media20 += (m20.find() && m20.group().equals(laudos.get(i).getPc()))
+			// ? Double.parseDouble(laudos.get(i).getPc()): 0;
 
 			media1 = Double.parseDouble(String.valueOf((Math.round(media1 * 100) / 100.0)));
 			media2 = Double.parseDouble(String.valueOf((Math.round(media2 * 100) / 100.0)));
@@ -315,7 +311,6 @@ public class LaudoMediaController {
 		l.setUreaMedia(String.valueOf(media15));
 		l.setLactMedia(String.valueOf(media18));
 
-
 		l.setSolicitacao(s.get());
 
 		l.setListaLaudos(laudos);
@@ -384,6 +379,7 @@ public class LaudoMediaController {
 	public void gerarExcel(@PathVariable("id") Integer id, HttpServletResponse response)
 			throws JRException, SQLException, IOException {
 
+		
 		Map<String, Object> parametros = new HashMap<>();
 
 		parametros.put("Id_LaudoMedia", id);
@@ -410,12 +406,12 @@ public class LaudoMediaController {
 		configuration.setCollapseRowSpan(false);
 		configuration.setWhitePageBackground(true);//
 		configuration.setRemoveEmptySpaceBetweenRows(false);
-		configuration.setAutoFitPageHeight(true);
+		//configuration.setAutoFitPageHeight(true);
 
 		exportsXLS.setConfiguration(configuration);
 
 		exportsXLS.exportReport();
-
+		
 	}
 
 }
