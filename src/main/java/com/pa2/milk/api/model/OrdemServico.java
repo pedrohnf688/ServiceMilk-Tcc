@@ -43,15 +43,16 @@ public class OrdemServico extends AbstractModel<Integer> {
 	private String dataRecebimento;
 	private String dataAnalise;
 	private String dataProcessamento;
-	private double amostrasRecebidas;
-	private double amostrasNaoAnalisadas;
+	private int amostrasRecebidas;
+	private int amostrasNaoAnalisadas;
+	private int amostrasNaoColetadas;
 
 	public OrdemServico() {
 	}
 
 	public OrdemServico(Date dataHora, String emissaoLaudo, String analiseLaboratorial, Solicitacao solicitacao,
 			double valorPreco, String ordem, String entregaAmostras, String dataRecebimento, String dataAnalise,
-			String dataProcessamento, double amostrasRecebidas, double amostrasNaoAnalisadas) {
+			String dataProcessamento, int amostrasRecebidas, int amostrasNaoAnalisadas, int amostrasNaoColetadas) {
 		super();
 		this.dataHora = dataHora;
 		this.emissaoLaudo = emissaoLaudo;
@@ -65,6 +66,7 @@ public class OrdemServico extends AbstractModel<Integer> {
 		this.dataProcessamento = dataProcessamento;
 		this.amostrasRecebidas = amostrasRecebidas;
 		this.amostrasNaoAnalisadas = amostrasNaoAnalisadas;
+		this.amostrasNaoColetadas = amostrasNaoColetadas;
 	}
 
 	@Override
@@ -157,20 +159,28 @@ public class OrdemServico extends AbstractModel<Integer> {
 		this.dataProcessamento = dataProcessamento;
 	}
 
-	public double getAmostrasRecebidas() {
+	public int getAmostrasRecebidas() {
 		return amostrasRecebidas;
 	}
 
-	public void setAmostrasRecebidas(double amostrasRecebidas) {
+	public void setAmostrasRecebidas(int amostrasRecebidas) {
 		this.amostrasRecebidas = amostrasRecebidas;
 	}
 
-	public double getAmostrasNaoAnalisadas() {
+	public int getAmostrasNaoAnalisadas() {
 		return amostrasNaoAnalisadas;
 	}
 
-	public void setAmostrasNaoAnalisadas(double amostrasNaoAnalisadas) {
+	public void setAmostrasNaoAnalisadas(int amostrasNaoAnalisadas) {
 		this.amostrasNaoAnalisadas = amostrasNaoAnalisadas;
+	}
+
+	public int getAmostrasNaoColetadas() {
+		return amostrasNaoColetadas;
+	}
+
+	public void setAmostrasNaoColetadas(int amostrasNaoColetadas) {
+		this.amostrasNaoColetadas = amostrasNaoColetadas;
 	}
 
 	@Override
@@ -179,7 +189,8 @@ public class OrdemServico extends AbstractModel<Integer> {
 				+ ", analiseLaboratorial=" + analiseLaboratorial + ", solicitacao=" + solicitacao + ", valorPreco="
 				+ valorPreco + ", ordem=" + ordem + ", entregaAmostras=" + entregaAmostras + ", dataRecebimento="
 				+ dataRecebimento + ", dataAnalise=" + dataAnalise + ", dataProcessamento=" + dataProcessamento
-				+ ", amostrasRecebidas=" + amostrasRecebidas + ", amostrasNaoAnalisadas=" + amostrasNaoAnalisadas + "]";
+				+ ", amostrasRecebidas=" + amostrasRecebidas + ", amostrasNaoAnalisadas=" + amostrasNaoAnalisadas
+				+ ", amostrasNaoColetadas=" + amostrasNaoColetadas + "]";
 	}
 
 }

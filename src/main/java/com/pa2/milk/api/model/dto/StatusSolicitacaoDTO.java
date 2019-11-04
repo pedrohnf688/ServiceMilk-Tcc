@@ -23,8 +23,8 @@ public class StatusSolicitacaoDTO {
 	private String dataRecebimento;
 	private String dataAnalise;
 	private String dataProcessamento;
-	private double amostrasRecebidas;
-	private double amostrasNaoAnalisadas;
+	private int amostrasRecebidas;
+	private int amostrasNaoAnalisadas;
 
 	public StatusSolicitacaoDTO() {
 	}
@@ -117,20 +117,20 @@ public class StatusSolicitacaoDTO {
 		this.dataProcessamento = dataProcessamento;
 	}
 
-	public double getAmostrasRecebidas() {
+	public int getAmostrasRecebidas() {
 		return amostrasRecebidas;
 	}
 
-	public void setAmostrasRecebidas(double amostrasRecebidas) {
-		this.amostrasRecebidas = amostrasRecebidas;
-	}
-
-	public double getAmostrasNaoAnalisadas() {
+	public int getAmostrasNaoAnalisadas() {
 		return amostrasNaoAnalisadas;
 	}
 
-	public void setAmostrasNaoAnalisadas(double amostrasNaoAnalisadas) {
+	public void setAmostrasNaoAnalisadas(int amostrasNaoAnalisadas) {
 		this.amostrasNaoAnalisadas = amostrasNaoAnalisadas;
+	}
+
+	public void setAmostrasRecebidas(int amostrasRecebidas) {
+		this.amostrasRecebidas = amostrasRecebidas;
 	}
 
 	@Override
