@@ -36,15 +36,13 @@ import com.pa2.milk.api.service.LaudoService;
 import com.pa2.milk.api.service.SolicitacaoService;
 
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.export.JRXlsExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.export.SimpleExporterInput;
-import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
-import net.sf.jasperreports.export.SimpleXlsReportConfiguration;
 
 @RestController
 @RequestMapping("/laudoMedia")
@@ -379,12 +377,11 @@ public class LaudoMediaController {
 	public void gerarExcel(@PathVariable("id") Integer id, HttpServletResponse response)
 			throws JRException, SQLException, IOException {
 
-		
 		Map<String, Object> parametros = new HashMap<>();
 
 		parametros.put("Id_LaudoMedia", id);
 
-		InputStream jasperStream = this.getClass().getResourceAsStream("/relatorios/report2.jasper");
+		InputStream jasperStream = this.getClass().getResourceAsStream("/relatorios/reportExcel.jasper");
 
 		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, dataSource.getConnection());
@@ -396,22 +393,27 @@ public class LaudoMediaController {
 
 		JRXlsExporter exportsXLS = new JRXlsExporter();
 
-		exportsXLS.setExporterInput(new SimpleExporterInput(jasperPrint));
-		exportsXLS.setExporterOutput(new SimpleOutputStreamExporterOutput(outStream));
+		exportsXLS.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+		exportsXLS.setParameter(JRExporterParameter.OUTPUT_STREAM, outStream);
 
-		SimpleXlsReportConfiguration configuration = new SimpleXlsReportConfiguration();
+		
+//		exportsXLS.setExporterInput(new SimpleExporterInput(jasperPrint));
+//		exportsXLS.setExporterOutput(new SimpleOutputStreamExporterOutput(outStream));
 
-		configuration.setOnePagePerSheet(true);
-		configuration.setDetectCellType(true);
-		configuration.setCollapseRowSpan(false);
-		configuration.setWhitePageBackground(true);//
-		configuration.setRemoveEmptySpaceBetweenRows(false);
-		//configuration.setAutoFitPageHeight(true);
+		// SimpleXlsReportConfiguration configuration = new
+		// SimpleXlsReportConfiguration();
 
-		exportsXLS.setConfiguration(configuration);
+//		configuration.setOnePagePerSheet(true);
+//		configuration.setDetectCellType(true);
+//		configuration.setCollapseRowSpan(false);
+//		configuration.setWhitePageBackground(true);//
+//		configuration.setRemoveEmptySpaceBetweenRows(false);
+//		//configuration.setAutoFitPageHeight(true);
+//
+//		exportsXLS.setConfiguration(configuration);
 
 		exportsXLS.exportReport();
-		
+
 	}
 
 }
