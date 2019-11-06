@@ -110,7 +110,7 @@ public class ClienteController {
 		credencial.setUsuario(cliente);
 		this.credencialService.salvar(credencial);
 		response.setData(this.converterCadastroClienteDto(credencial));
-		enviarEmail(cliente);
+		//enviarEmail(cliente);
 		return ResponseEntity.ok(response);
 	}
 
@@ -253,8 +253,8 @@ public class ClienteController {
 
 	private void validarDadosExistentes(CadastroClienteDto clienteDto, BindingResult result) {
 
-		this.clienteService.buscarPorCpf(clienteDto.getCpf())
-				.ifPresent(cli -> result.addError(new ObjectError("cliente", "Cliente já existente")));
+//		this.clienteService.buscarPorCpf(clienteDto.getCpf())
+//				.ifPresent(cli -> result.addError(new ObjectError("cliente", "Cliente já existente")));
 
 		this.credencialService.buscarPorUsername(clienteDto.getUsername())
 				.ifPresent(cre -> result.addError(new ObjectError("credencial", "Credencial já existente")));

@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -41,6 +42,7 @@ public class Laudo {
 	private String totpro; // PROTEINA TOTAL
 
 	@JsonProperty("Casein")
+	@Column(name = "casein")
 	private String casein; // CASEINA
 
 	@JsonProperty("Solids")
@@ -70,9 +72,9 @@ public class Laudo {
 	private String cmt;
 
 	@JsonProperty("Lactose")
-	private String lact;
+	private String lact;  //OK
 
-	private String identificadorLaudo;
+	private String identificadorLaudo; //OK
 
 	public Laudo() {
 	}

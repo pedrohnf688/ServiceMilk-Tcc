@@ -39,6 +39,7 @@ import com.pa2.milk.api.service.LaudoService;
 @CrossOrigin(origins = "*")
 public class LaudoController {
 
+	
 	private static final Logger log = LoggerFactory.getLogger(LaudoController.class);
 
 	@Autowired
@@ -52,7 +53,8 @@ public class LaudoController {
 		List<Laudo> laudos = this.laudoService.listarLaudos();
 		return laudos;
 	}
-
+	
+	
 //  OK
 //	@PostMapping(value = "/upload", consumes = "text/csv")
 //	public void uploadSimple(@RequestBody InputStream body) throws IOException {

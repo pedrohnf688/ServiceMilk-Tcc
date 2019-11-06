@@ -14,7 +14,7 @@ public class CadastroClienteDto {
 	@NotEmpty(message = "O campo nome não pode ser nulo.")
 	private String nome;
 
-	@NotEmpty(message = "O campo CPF não pode ser nulo.")
+	//@NotEmpty(message = "O campo CPF não pode ser nulo.")
 	// @CPF(message = "CPF inválido.")
 	private String cpf;
 

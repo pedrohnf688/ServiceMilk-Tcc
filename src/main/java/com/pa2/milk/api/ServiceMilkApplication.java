@@ -93,6 +93,7 @@ public class ServiceMilkApplication {
 	public CommandLineRunner commandLineRunner() {
 		return args -> {
 
+			
 			// Administrador
 
 			Usuario a = new Administrador();
@@ -289,6 +290,7 @@ public class ServiceMilkApplication {
 			amostra6.setQrCode("qrCode6");
 			amostra6.setAnalise(analise2);
 			this.amostraRepository.save(amostra6);
+		
 
 			Amostra amostra7 = new Amostra();
 			amostra7.setDataColeta(new Date());
@@ -298,6 +300,48 @@ public class ServiceMilkApplication {
 			amostra7.setAnalise(analise2);
 			this.amostraRepository.save(amostra7);
 
+			Amostra amostra11 = new Amostra();
+			amostra11.setDataColeta(new Date());
+			// amostra2.setNumeroAmostra(323);
+			// amostra7.setObservacao("obs7");
+			amostra11.setQrCode("qrCode7");
+			amostra11.setAnalise(analise2);
+			this.amostraRepository.save(amostra11);
+		
+			Amostra amostra12 = new Amostra();
+			amostra12.setDataColeta(new Date());
+			// amostra2.setNumeroAmostra(323);
+			// amostra7.setObservacao("obs7");
+			amostra12.setQrCode("qrCode7");
+			amostra12.setAnalise(analise2);
+			this.amostraRepository.save(amostra12);
+
+			
+			Amostra amostra13 = new Amostra();
+			amostra13.setDataColeta(new Date());
+			// amostra2.setNumeroAmostra(323);
+			// amostra7.setObservacao("obs7");
+			amostra13.setQrCode("qrCode7");
+			amostra13.setAnalise(analise2);
+			this.amostraRepository.save(amostra13);
+
+			Amostra amostra14 = new Amostra();
+			amostra14.setDataColeta(new Date());
+			// amostra2.setNumeroAmostra(323);
+			// amostra7.setObservacao("obs7");
+			amostra14.setQrCode("qrCode7");
+			amostra14.setAnalise(analise2);
+			this.amostraRepository.save(amostra14);
+
+			Amostra amostra15 = new Amostra();
+			amostra15.setDataColeta(new Date());
+			// amostra2.setNumeroAmostra(323);
+			// amostra7.setObservacao("obs7");
+			amostra15.setQrCode("qrCode7");
+			amostra15.setAnalise(analise2);
+			this.amostraRepository.save(amostra15);
+
+			
 			Amostra amostra8 = new Amostra();
 			amostra8.setDataColeta(new Date());
 			// amostra2.setNumeroAmostra(323);
@@ -322,6 +366,10 @@ public class ServiceMilkApplication {
 			amostra10.setAnalise(analise3);
 			this.amostraRepository.save(amostra10);
 
+			
+			
+			
+			
 //			// Adicionar id de solicitação em uma analise
 //			Optional<Solicitacao> solicitacao = this.solicitacaoRepository.findById(1);
 //			List<Analise> listaAnalises = new ArrayList<>();
