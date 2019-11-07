@@ -67,6 +67,8 @@ public class Solicitacao extends AbstractModel<Integer> {
 	@Column(name = "temperatura")
 	private double temperatura;
 
+	private String inicioColeta;
+
 	public Solicitacao() {
 		listaAnalise = new ArrayList<>();
 	}
@@ -155,11 +157,20 @@ public class Solicitacao extends AbstractModel<Integer> {
 		this.temperatura = temperatura;
 	}
 
+	public String getInicioColeta() {
+		return inicioColeta;
+	}
+
+	public void setInicioColeta(String inicioColeta) {
+		this.inicioColeta = inicioColeta;
+	}
+
 	@Override
 	public String toString() {
 		return "Solicitacao [id=" + id + ", cliente=" + cliente + ", fazenda=" + fazenda + ", listaAnalise="
 				+ listaAnalise + ", status=" + status + ", dataCriada=" + dataCriada + ", observacao=" + observacao
-				+ ", listaLaudoMedia=" + listaLaudoMedia + ", temperatura=" + temperatura + "]";
+				+ ", listaLaudoMedia=" + listaLaudoMedia + ", temperatura=" + temperatura + ", inicioColeta="
+				+ inicioColeta + "]";
 	}
 
 }

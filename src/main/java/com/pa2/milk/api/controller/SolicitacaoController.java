@@ -141,15 +141,20 @@ public class SolicitacaoController {
 			result.addError(new ObjectError("analises", "Lista de análises vazia"));
 		} else {
 			for (int i = 0; i < analises.size(); i++) {
+				int cont = 1;
 				for (int j = 0; j < analises.get(i).getQuantidadeAmostras(); j++) {
 					// Cadastrar Amostra
+
 					Amostra a = new Amostra();
 					a.setAnalise(analises.get(i));
-					a.setDataColeta(new Date());
+//					a.setDataColeta(new Date());
 					a.setFinalizada(false);
+					a.setNumeroAmostra(cont);
 					amostras.add(a);
 					analises.get(i).setAmostras(amostras);
 					// this.amostraService.salvar(a);
+					cont++;
+					
 				}
 
 			}
@@ -324,20 +329,21 @@ public class SolicitacaoController {
 		os.get().setAmostrasNaoAnalisadas(
 				statusSolicitacaoDTO.getAmostrasNaoAnalisadas() == 0 ? os.get().getAmostrasNaoAnalisadas()
 						: statusSolicitacaoDTO.getAmostrasNaoAnalisadas());
-		os.get().setAmostrasRecebidas((statusSolicitacaoDTO.getAmostrasRecebidas() == 0 ? os.get().getAmostrasRecebidas()
-				: statusSolicitacaoDTO.getAmostrasRecebidas()));
+		os.get().setAmostrasRecebidas(
+				(statusSolicitacaoDTO.getAmostrasRecebidas() == 0 ? os.get().getAmostrasRecebidas()
+						: statusSolicitacaoDTO.getAmostrasRecebidas()));
 
 		int soma = 0;
 		int coletadas = 0;
 
 		for (int j = 0; j < solicitacao.get().getListaAnalise().size(); j++) {
-			Optional<Analise> analise = this.analiseRepository.findById(solicitacao.get().getListaAnalise().get(j).getId());
+			Optional<Analise> analise = this.analiseRepository
+					.findById(solicitacao.get().getListaAnalise().get(j).getId());
 			soma += analise.get().getQuantidadeAmostras();
 			coletadas += this.amostraService.amostrasColetas(analise.get().getId()).size();
 		}
-		
+
 		os.get().setAmostrasNaoColetadas(soma - coletadas);
-		
 
 		os.get().setSolicitacao(solicitacao.get());
 		this.ordemServicoRepository.save(os.get());
