@@ -146,13 +146,13 @@ public class LaudoMediaController {
 			Matcher m2 = p.matcher(laudos.get(i).getCbt() != null ? laudos.get(i).getCbt() : "0");
 			Matcher m3 = p.matcher(laudos.get(i).getCcs() != null ? laudos.get(i).getCcs() : "0");
 			Matcher m4 = p.matcher(laudos.get(i).getCel() != null ? laudos.get(i).getCel() : "0");
-			Matcher m5 = p.matcher(laudos.get(i).getCmt() != null ? laudos.get(i).getCmt() : "0");
+//			Matcher m5 = p.matcher(laudos.get(i).getCmt() != null ? laudos.get(i).getCmt() : "0");
 
 			Matcher m6 = p.matcher(laudos.get(i).getDen() != null ? laudos.get(i).getDen() : "0");
 			Matcher m7 = p.matcher(laudos.get(i).getFat() != null ? laudos.get(i).getFat() : "0");
 			Matcher m8 = p.matcher(laudos.get(i).getFpd() != null ? laudos.get(i).getFpd() : "0");
 			Matcher m9 = p.matcher(laudos.get(i).getPh() != null ? laudos.get(i).getPh() : "0");
-			Matcher m10 = p.matcher(laudos.get(i).getRant() != null ? laudos.get(i).getRant() : "0");
+//			Matcher m10 = p.matcher(laudos.get(i).getRant() != null ? laudos.get(i).getRant() : "0");
 
 			Matcher m11 = p.matcher(laudos.get(i).getSnf() != null ? laudos.get(i).getSnf() : "0");
 			Matcher m12 = p.matcher(laudos.get(i).getSolids() != null ? laudos.get(i).getSolids() : "0");
@@ -183,9 +183,9 @@ public class LaudoMediaController {
 			media4 += (m4.find() && m4.group().equals(laudos.get(i).getCel()))
 					? Double.parseDouble(laudos.get(i).getCel())
 					: 0;
-			media5 += (m5.find() && m5.group().equals(laudos.get(i).getCmt()))
-					? Double.parseDouble(laudos.get(i).getCmt())
-					: 0;
+//			media5 += (m5.find() && m5.group().equals(laudos.get(i).getCmt()))
+//					? Double.parseDouble(laudos.get(i).getCmt())
+//					: 0;
 
 			media6 += (m6.find() && m6.group().equals(laudos.get(i).getDen()))
 					? Double.parseDouble(laudos.get(i).getDen())
@@ -199,9 +199,9 @@ public class LaudoMediaController {
 			media9 += (m9.find() && m9.group().equals(laudos.get(i).getPh()))
 					? Double.parseDouble(laudos.get(i).getPh())
 					: 0;
-			media10 += (m10.find() && m10.group().equals(laudos.get(i).getRant()))
-					? Double.parseDouble(laudos.get(i).getRant())
-					: 0;
+//			media10 += (m10.find() && m10.group().equals(laudos.get(i).getRant()))
+//					? Double.parseDouble(laudos.get(i).getRant())
+//					: 0;
 
 			media11 += (m11.find() && m11.group().equals(laudos.get(i).getSnf()))
 					? Double.parseDouble(laudos.get(i).getSnf())
@@ -234,12 +234,12 @@ public class LaudoMediaController {
 			media2 = Double.parseDouble(String.valueOf((Math.round(media2 * 100) / 100.0)));
 			media3 = Double.parseDouble(String.valueOf((Math.round(media3 * 100) / 100.0)));
 			media4 = Double.parseDouble(String.valueOf((Math.round(media4 * 100) / 100.0)));
-			media5 = Double.parseDouble(String.valueOf((Math.round(media5 * 100) / 100.0)));
+//			media5 = Double.parseDouble(String.valueOf((Math.round(media5 * 100) / 100.0)));
 			media6 = Double.parseDouble(String.valueOf((Math.round(media6 * 100) / 100.0)));
 			media7 = Double.parseDouble(String.valueOf((Math.round(media7 * 100) / 100.0)));
 			media8 = Double.parseDouble(String.valueOf((Math.round(media8 * 100) / 100.0)));
 			media9 = Double.parseDouble(String.valueOf((Math.round(media9 * 100) / 100.0)));
-			media10 = Double.parseDouble(String.valueOf((Math.round(media10 * 100) / 100.0)));
+//			media10 = Double.parseDouble(String.valueOf((Math.round(media10 * 100) / 100.0)));
 			media11 = Double.parseDouble(String.valueOf((Math.round(media11 * 100) / 100.0)));
 			media12 = Double.parseDouble(String.valueOf((Math.round(media12 * 100) / 100.0)));
 			media13 = Double.parseDouble(String.valueOf((Math.round(media13 * 100) / 100.0)));
@@ -255,13 +255,13 @@ public class LaudoMediaController {
 		media2 /= cont;
 		media3 /= cont;
 		media4 /= cont;
-		media5 /= cont;
+//		media5 /= cont;
 
 		media6 /= cont;
 		media7 /= cont;
 		media8 /= cont;
 		media9 /= cont;
-		media10 /= cont;
+//		media10 /= cont;
 
 		media11 /= cont;
 		media12 /= cont;
@@ -275,12 +275,12 @@ public class LaudoMediaController {
 		media2 = Double.parseDouble(String.valueOf((Math.round(media2 * 100) / 100.0)));
 		media3 = Double.parseDouble(String.valueOf((Math.round(media3 * 100) / 100.0)));
 		media4 = Double.parseDouble(String.valueOf((Math.round(media4 * 100) / 100.0)));
-		media5 = Double.parseDouble(String.valueOf((Math.round(media5 * 100) / 100.0)));
+//		media5 = Double.parseDouble(String.valueOf((Math.round(media5 * 100) / 100.0)));
 		media6 = Double.parseDouble(String.valueOf((Math.round(media6 * 100) / 100.0)));
 		media7 = Double.parseDouble(String.valueOf((Math.round(media7 * 100) / 100.0)));
 		media8 = Double.parseDouble(String.valueOf((Math.round(media8 * 100) / 100.0)));
 		media9 = Double.parseDouble(String.valueOf((Math.round(media9 * 100) / 100.0)));
-		media10 = Double.parseDouble(String.valueOf((Math.round(media10 * 100) / 100.0)));
+//		media10 = Double.parseDouble(String.valueOf((Math.round(media10 * 100) / 100.0)));
 		media11 = Double.parseDouble(String.valueOf((Math.round(media11 * 100) / 100.0)));
 		media12 = Double.parseDouble(String.valueOf((Math.round(media12 * 100) / 100.0)));
 		media13 = Double.parseDouble(String.valueOf((Math.round(media13 * 100) / 100.0)));
@@ -297,12 +297,12 @@ public class LaudoMediaController {
 		l.setCbtMedia(String.valueOf(media2));
 		l.setCcsMedia(String.valueOf(media3));
 		l.setCelMedia(String.valueOf(media4));
-		l.setCmtMedia(String.valueOf(media5));
+//		l.setCmtMedia(String.valueOf(media5));
 		l.setDenMedia(String.valueOf(media6));
 		l.setFatMedia(String.valueOf(media7));
 		l.setFpdMedia(String.valueOf(media8));
 		l.setPhMedia(String.valueOf(media9));
-		l.setRantMedia(String.valueOf(media10));
+//		l.setRantMedia(String.valueOf(media10));
 		l.setSnfMedia(String.valueOf(media11));
 		l.setSolidsMedia(String.valueOf(media12));
 		l.setTotproMedia(String.valueOf(media13));
@@ -339,7 +339,7 @@ public class LaudoMediaController {
 		InputStream gto10 = this.getClass().getResourceAsStream("/relatorios/imgReport/image10.png");
 		InputStream gto11 = this.getClass().getResourceAsStream("/relatorios/imgReport/image11.png");
 		InputStream gto12 = this.getClass().getResourceAsStream("/relatorios/imgReport/image12.jpg");
-		InputStream gto13 = this.getClass().getResourceAsStream("/relatorios/imgReport/legenda.jpg");
+		InputStream gto13 = this.getClass().getResourceAsStream("/relatorios/imgReport/legenda.png");
 
 		parametros.put("imagem1", gto1);
 		parametros.put("imagem3", gto3);

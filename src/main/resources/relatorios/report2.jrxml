@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report2" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2bfe2fbb-4459-4998-a786-f98d8e6cba54">
-	<property name="ireport.zoom" value="4.0"/>
-	<property name="ireport.x" value="1209"/>
-	<property name="ireport.y" value="6033"/>
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="1545"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -268,22 +268,60 @@
 			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 		</parameter>
 		<queryString>
-			<![CDATA[SELECT enum_analises_solicitadas.enum_analises_solicitadas FROM solicitacao
+			<![CDATA[SELECT * FROM solicitacao
 INNER JOIN analise ON $P{Id_lista} = analise.solicitacao_id
 INNER JOIN enum_analises_solicitadas ON analise.id = enum_analises_solicitadas.id
 GROUP BY enum_analises_solicitadas.enum_analises_solicitadas]]>
 		</queryString>
+		<field name="id" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="ativo" class="java.lang.Boolean">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="data_criada" class="java.sql.Timestamp"/>
+		<field name="inicio_coleta" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="observacao" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="status" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="temperatura" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="cliente_id" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="fazenda_id" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="descricao" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="enum_especie" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="enum_origem_leite" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="quantidade_amostras" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="solicitacao_id" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
 		<field name="enum_analises_solicitadas" class="java.lang.String">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
 	</subDataset>
-	<subDataset name="dataset2" uuid="a3cd15e4-d29e-44ad-8bef-213db74ff194"/>
 	<subDataset name="dataSeetLaudo" uuid="25c7c7fd-5824-4cd3-8dd9-c4bf00bc9e63">
 		<parameter name="solicitacaoId" class="java.lang.Integer"/>
 		<queryString>
-			<![CDATA[SELECT (sum(cbt)/Count(sequence)),(sum(ccs)/Count(sequence)),(sum(cel)/Count(sequence)),(sum(cmt)/Count(sequence)),(sum(den)/Count(sequence)),
-(sum(fat)/Count(sequence)),(sum(fpd)/Count(sequence)),(sum(lact)/Count(sequence)),(sum(ph)/Count(sequence)),
-(sum(rant)/Count(sequence)),(sum(casein)/Count(sequence)),(sum(snf)/Count(sequence)),(sum(solids)/Count(sequence)),(sum(totpro)/Count(sequence)),
+			<![CDATA[SELECT (sum(cbt)/Count(sequence)),(sum(ccs)/Count(sequence)),(sum(cel)/Count(sequence)),(sum(den)/Count(sequence)),
+(sum(fat)/Count(sequence)),(sum(fpd)/Count(sequence)),(sum(lact)/Count(sequence)),(sum(ph)/Count(sequence)),(sum(casein)/Count(sequence)),(sum(snf)/Count(sequence)),(sum(solids)/Count(sequence)),(sum(totpro)/Count(sequence)),
 (sum(trupro)/Count(sequence)),(sum(urea)/Count(sequence)), laudo_id, batch_id, sequence, identificador_laudo FROM laudo,laudo_media,laudo_media_lista_laudos
 where laudo_media_lista_laudos.lista_laudos_laudo_id = laudo.laudo_id
 and laudo_media_lista_laudos.laudo_media_id_media = laudo_media.id_media
@@ -292,13 +330,11 @@ and laudo_media.solicitacao_id = $P{solicitacaoId} GROUP BY sequence HAVING COUN
 		<field name="(sum(cbt)/Count(sequence))" class="java.lang.Double"/>
 		<field name="(sum(ccs)/Count(sequence))" class="java.lang.Double"/>
 		<field name="(sum(cel)/Count(sequence))" class="java.lang.Double"/>
-		<field name="(sum(cmt)/Count(sequence))" class="java.lang.Double"/>
 		<field name="(sum(den)/Count(sequence))" class="java.lang.Double"/>
 		<field name="(sum(fat)/Count(sequence))" class="java.lang.Double"/>
 		<field name="(sum(fpd)/Count(sequence))" class="java.lang.Double"/>
 		<field name="(sum(lact)/Count(sequence))" class="java.lang.Double"/>
 		<field name="(sum(ph)/Count(sequence))" class="java.lang.Double"/>
-		<field name="(sum(rant)/Count(sequence))" class="java.lang.Double"/>
 		<field name="(sum(casein)/Count(sequence))" class="java.lang.Double"/>
 		<field name="(sum(snf)/Count(sequence))" class="java.lang.Double"/>
 		<field name="(sum(solids)/Count(sequence))" class="java.lang.Double"/>
@@ -334,14 +370,13 @@ and laudo_media.solicitacao_id = $P{solicitacaoId} GROUP BY sequence HAVING COUN
 		<field name="casein_media" class="java.lang.String">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
-		<field name="cbt_media" class="java.lang.String"/>
+		<field name="cbt_media" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
 		<field name="ccs_media" class="java.lang.String">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
 		<field name="cel_media" class="java.lang.String">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="cmt_media" class="java.lang.String">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
 		<field name="den_media" class="java.lang.String">
@@ -357,9 +392,6 @@ and laudo_media.solicitacao_id = $P{solicitacaoId} GROUP BY sequence HAVING COUN
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
 		<field name="ph_media" class="java.lang.String">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="rant_media" class="java.lang.String">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
 		<field name="snf_media" class="java.lang.String">
@@ -381,8 +413,57 @@ and laudo_media.solicitacao_id = $P{solicitacaoId} GROUP BY sequence HAVING COUN
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
 	</subDataset>
-	<subDataset name="dataset3" uuid="748ffd7b-68af-41aa-aeee-2843108a1358"/>
-	<subDataset name="dataset4" uuid="d5a8d079-4dfb-4b3a-a3d2-959f52ce2a2a"/>
+	<subDataset name="dataSet2" uuid="effe9496-1ee1-4a0b-8298-a574917bd1c1">
+		<parameter name="Id_lista" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT * FROM solicitacao
+INNER JOIN analise ON $P{Id_lista} = analise.solicitacao_id]]>
+		</queryString>
+		<field name="id" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="ativo" class="java.lang.Boolean">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="data_criada" class="java.sql.Timestamp">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="inicio_coleta" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="observacao" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="status" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="temperatura" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="cliente_id" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="fazenda_id" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="descricao" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="enum_especie" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="enum_origem_leite" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="quantidade_amostras" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="solicitacao_id" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+	</subDataset>
 	<parameter name="Id_LaudoMedia" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -443,7 +524,8 @@ and laudo_media_lista_laudos.laudo_media_id_media = laudo_media.id_media and lau
 	<field name="ativo" class="java.lang.Boolean">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="data_criada" class="java.sql.Timestamp">
+	<field name="data_criada" class="java.sql.Timestamp"/>
+	<field name="inicio_coleta" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="observacao" class="java.lang.String">
@@ -467,7 +549,9 @@ and laudo_media_lista_laudos.laudo_media_id_media = laudo_media.id_media and lau
 	<field name="perfil" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="cpf" class="java.lang.String"/>
+	<field name="cpf" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="email" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
@@ -480,10 +564,13 @@ and laudo_media_lista_laudos.laudo_media_id_media = laudo_media.id_media and lau
 	<field name="telefone2" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="amostras_nao_analisadas" class="java.lang.Double">
+	<field name="amostras_nao_analisadas" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="amostras_recebidas" class="java.lang.Double">
+	<field name="amostras_nao_coletadas" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="amostras_recebidas" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="analise_laboratorial" class="java.lang.String">
@@ -546,7 +633,6 @@ and laudo_media_lista_laudos.laudo_media_id_media = laudo_media.id_media and lau
 	<field name="cbt" class="java.lang.String"/>
 	<field name="ccs" class="java.lang.String"/>
 	<field name="cel" class="java.lang.String"/>
-	<field name="cmt" class="java.lang.String"/>
 	<field name="date" class="java.lang.String"/>
 	<field name="den" class="java.lang.String"/>
 	<field name="fat" class="java.lang.String"/>
@@ -554,7 +640,6 @@ and laudo_media_lista_laudos.laudo_media_id_media = laudo_media.id_media and lau
 	<field name="identificador_laudo" class="java.lang.String"/>
 	<field name="lact" class="java.lang.String"/>
 	<field name="ph" class="java.lang.String"/>
-	<field name="rant" class="java.lang.String"/>
 	<field name="sampleid" class="java.lang.String"/>
 	<field name="sequence" class="java.lang.String"/>
 	<field name="snf" class="java.lang.String"/>
@@ -568,13 +653,11 @@ and laudo_media_lista_laudos.laudo_media_id_media = laudo_media.id_media and lau
 	<field name="cbt_media" class="java.lang.String"/>
 	<field name="ccs_media" class="java.lang.String"/>
 	<field name="cel_media" class="java.lang.String"/>
-	<field name="cmt_media" class="java.lang.String"/>
 	<field name="den_media" class="java.lang.String"/>
 	<field name="fat_media" class="java.lang.String"/>
 	<field name="fpd_media" class="java.lang.String"/>
 	<field name="lact_media" class="java.lang.String"/>
 	<field name="ph_media" class="java.lang.String"/>
-	<field name="rant_media" class="java.lang.String"/>
 	<field name="snf_media" class="java.lang.String"/>
 	<field name="solids_media" class="java.lang.String"/>
 	<field name="totpro_media" class="java.lang.String"/>
@@ -603,7 +686,7 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 		</band>
 	</background>
 	<title>
-		<band height="770" splitType="Stretch">
+		<band height="667" splitType="Stretch">
 			<image>
 				<reportElement x="2" y="0" width="73" height="84" uuid="7dbf6631-04f5-4e20-8e25-03eb5578dd8c"/>
 				<imageExpression><![CDATA[$P{imagem3}]]></imageExpression>
@@ -624,30 +707,30 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 				<imageExpression><![CDATA[$P{imagem11}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="67" y="208" width="60" height="20" uuid="ca5f22c1-e924-4433-a898-1ad8037c722e"/>
+				<reportElement x="70" y="208" width="60" height="20" uuid="ca5f22c1-e924-4433-a898-1ad8037c722e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="10" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Endereço:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="71" y="246" width="37" height="19" uuid="945995e8-efa0-49f9-9b09-371bee2d2bbb"/>
+				<reportElement x="69" y="246" width="37" height="19" uuid="945995e8-efa0-49f9-9b09-371bee2d2bbb"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="10" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Email:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="69" y="190" width="47" height="19" uuid="15ca3de9-1749-4012-8ed6-7d3e8ccbb340"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="10" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cliente:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="68" y="227" width="47" height="20" uuid="afc953e0-ddcc-4d06-8cd9-ec18720c6b3f"/>
+				<reportElement x="69" y="227" width="47" height="20" uuid="afc953e0-ddcc-4d06-8cd9-ec18720c6b3f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="10" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cidade:]]></text>
 			</staticText>
@@ -659,18 +742,18 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 				<text><![CDATA[LAUDO DE ANÁLISE LABORATORIAL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="95" y="356" width="119" height="20" uuid="0e65e0e6-31f5-48d8-822d-206a5c0973af"/>
+				<reportElement x="95" y="356" width="129" height="20" uuid="0e65e0e6-31f5-48d8-822d-206a5c0973af"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="true"/>
+					<font size="13" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Unidade de análise:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="96" y="381" width="48" height="15" uuid="428bba22-7ca3-42a7-a1f6-8c145a1ee494"/>
+				<reportElement x="96" y="381" width="64" height="20" uuid="428bba22-7ca3-42a7-a1f6-8c145a1ee494"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11" isBold="true"/>
+					<font size="13" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Raça:]]></text>
+				<text><![CDATA[Espécie:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="122" y="16" width="308" height="23" forecolor="#0033CC" uuid="3ec86530-8c67-4fd8-aae2-ef1b5c77bf9b"/>
@@ -701,39 +784,44 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 				<text><![CDATA[Unidade Acadêmica de Ciências Agrárias]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="113" y="189" width="100" height="20" uuid="47ea70fa-e9ca-455a-86b7-904b6233a020"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<reportElement x="121" y="189" width="100" height="20" uuid="47ea70fa-e9ca-455a-86b7-904b6233a020"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="106" y="245" width="100" height="20" uuid="a9ca0bea-da3d-46f5-b939-8ab771a4bc25"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<reportElement x="109" y="245" width="100" height="20" uuid="a9ca0bea-da3d-46f5-b939-8ab771a4bc25"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="124" y="208" width="100" height="20" uuid="4c2605f8-8c7c-4226-bf12-142b482464d7"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<reportElement x="133" y="208" width="100" height="20" uuid="4c2605f8-8c7c-4226-bf12-142b482464d7"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{endereco}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="114" y="227" width="100" height="19" uuid="bf66326c-a5cd-4f20-b0c5-073a31661684"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<reportElement x="119" y="227" width="100" height="19" uuid="bf66326c-a5cd-4f20-b0c5-073a31661684"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{cidade}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="358" y="190" width="100" height="20" uuid="a7110f83-c666-4b72-b648-cf37d60c2494"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<reportElement x="364" y="190" width="100" height="20" uuid="a7110f83-c666-4b72-b648-cf37d60c2494"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="213" y="356" width="191" height="20" uuid="bd545fdd-19f6-4bcc-88bf-742b8ddff7f3"/>
-				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{nome_fazenda}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="315" y="190" width="45" height="20" uuid="283d2058-b41d-4fb8-8392-77a68014ccbb"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="10" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Estado:]]></text>
 			</staticText>
@@ -742,7 +830,7 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{ordem}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["OS "+$F{ordem}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="146" y="442" width="192" height="20" forecolor="#003399" uuid="7bc62bdc-1029-49d4-985a-a7e655d09a0e"/>
@@ -883,6 +971,56 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 					<text><![CDATA[Análises Solicitadas:]]></text>
 				</staticText>
 			</frame>
+			<textField>
+				<reportElement x="25" y="542" width="100" height="20" uuid="9a5d82e2-0703-489f-913e-817b597b7cc8"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{inicio_coleta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="198" y="627" width="100" height="20" uuid="3b501a9d-85d5-44de-9bb3-2eda15f5e7fb"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{amostras_nao_coletadas}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="224" y="356" width="132" height="20" uuid="6af8529b-8f99-4afe-bbd6-02ba81ec372f"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="dataSet2" uuid="f2c3aeb9-dff1-499b-b7ce-6ef53f6341b8">
+						<datasetParameter name="Id_lista">
+							<datasetParameterExpression><![CDATA[$P{Id_LaudoMedia}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="20" width="132">
+						<textField>
+							<reportElement x="0" y="0" width="132" height="20" uuid="cae733b0-9b9e-4657-9d0c-08a29c6e1d82"/>
+							<textElement verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{enum_origem_leite}.replace("_"," ")]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement x="161" y="381" width="128" height="20" uuid="d21f27f1-0012-4f42-8857-6e412b7b1263"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="dataSet2" uuid="3e3ae3b2-68a5-4fd7-a075-a32143a925e8">
+						<datasetParameter name="Id_lista">
+							<datasetParameterExpression><![CDATA[$P{Id_LaudoMedia}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="20" width="128">
+						<textField>
+							<reportElement x="0" y="0" width="127" height="20" uuid="39fd63a1-c0f6-492d-b886-de1dd3a00ce4"/>
+							<textElement verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$F{enum_especie}.replace( "_", " " )]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
 		</band>
 	</title>
 	<pageHeader>
@@ -931,7 +1069,7 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 				<textFieldExpression><![CDATA[$F{analise_laboratorial}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="413" y="682" width="139" height="17" uuid="0b5d5aff-78f5-4e0b-9805-6dba5b566e94"/>
+				<reportElement x="413" y="681" width="139" height="17" uuid="0b5d5aff-78f5-4e0b-9805-6dba5b566e94"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{emissao_laudo}]]></textFieldExpression>
 			</textField>
@@ -946,7 +1084,7 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 				<textFieldExpression><![CDATA[$F{observacao}]]></textFieldExpression>
 			</textField>
 			<componentElement>
-				<reportElement key="table 8" style="table 8" x="0" y="0" width="555" height="80" uuid="85127df6-aefb-48d1-8733-85ddaa8152dd"/>
+				<reportElement key="table 8" style="table 8" x="24" y="0" width="515" height="80" uuid="85127df6-aefb-48d1-8733-85ddaa8152dd"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="dataSeetLaudo" uuid="49cb7c6e-38fb-413c-a8ee-78edd8691ca0">
 						<datasetParameter name="solicitacaoId">
@@ -1039,23 +1177,6 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="30" uuid="cec18d85-5649-4d09-839f-4a722023a835">
-						<jr:columnHeader style="table 8_CH" height="30" rowSpan="1">
-							<staticText>
-								<reportElement x="0" y="0" width="30" height="30" uuid="43ff7257-1282-4ece-a067-94edfadb04ed"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<text><![CDATA[CMT]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:columnFooter style="table 8_CH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table 8_TD" height="20" rowSpan="1">
-							<textField pattern="###0.0">
-								<reportElement x="0" y="0" width="30" height="20" uuid="3597292c-9806-48f8-8edc-d7a3636bf6eb"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[$F{(sum(cmt)/Count(sequence))} == null ? "NA" : $F{(sum(cmt)/Count(sequence))}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
 					<jr:column width="29" uuid="02625606-39e9-4984-903d-9d7b5be77848">
 						<jr:columnHeader style="table 8_CH" height="30" rowSpan="1">
 							<staticText>
@@ -1138,23 +1259,6 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 								<reportElement x="0" y="0" width="30" height="20" uuid="5ab91776-8d8b-47de-992b-ffd24204a1ec"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle"/>
 								<textFieldExpression><![CDATA[$F{(sum(ph)/Count(sequence))} == null ? "NA" : $F{(sum(ph)/Count(sequence))}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="32" uuid="293e7312-ad33-4dad-a4d7-c617d2dc9e02">
-						<jr:columnHeader style="table 8_CH" height="30" rowSpan="1">
-							<staticText>
-								<reportElement x="0" y="0" width="32" height="30" uuid="d470e50b-b635-4611-ad1d-ff23c4bbcd8a"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<text><![CDATA[RANT]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:columnFooter style="table 8_CH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table 8_TD" height="20" rowSpan="1">
-							<textField pattern="###0.0">
-								<reportElement x="0" y="0" width="32" height="20" uuid="8e078747-e495-4679-8a55-c65798212e1d"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[$F{(sum(rant)/Count(sequence))} == null ? "NA" : $F{(sum(rant)/Count(sequence))}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -1246,7 +1350,7 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 				</jr:table>
 			</componentElement>
 			<componentElement>
-				<reportElement key="table 10" style="table 10" x="12" y="291" width="512" height="80" uuid="6af241e2-c3ec-49e9-a313-03548e6fc817"/>
+				<reportElement key="table 10" style="table 10" x="40" y="293" width="513" height="80" uuid="6af241e2-c3ec-49e9-a313-03548e6fc817"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="datasetLaudoMedia" uuid="a80fde5c-4a5d-4904-bf93-e284cee7e552">
 						<datasetParameter name="laudoMediaID">
@@ -1262,7 +1366,7 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 								<text><![CDATA[GOR]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="table 10_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="table 10_CH" height="19" rowSpan="1"/>
 						<jr:detailCell style="table 10_TD" height="20" rowSpan="1">
 							<textField pattern="###0.0">
 								<reportElement x="0" y="0" width="44" height="20" uuid="5ebdad69-9809-49e1-b4a5-efb9534aa1b3"/>
@@ -1279,7 +1383,7 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 								<text><![CDATA[PROT]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="table 10_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="table 10_CH" height="19" rowSpan="1"/>
 						<jr:detailCell style="table 10_TD" height="20" rowSpan="1">
 							<textField pattern="###0.0">
 								<reportElement x="0" y="0" width="43" height="20" uuid="b018d9df-9116-4d3e-b7b3-96436436b483"/>
@@ -1296,7 +1400,7 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 								<text><![CDATA[CAS]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="table 10_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="table 10_CH" height="19" rowSpan="1"/>
 						<jr:detailCell style="table 10_TD" height="20" rowSpan="1">
 							<textField pattern="###0.0">
 								<reportElement x="0" y="0" width="36" height="20" uuid="090abe8b-7cea-4f67-8254-052b82be19e2"/>
@@ -1313,7 +1417,7 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 								<text><![CDATA[LACT]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="table 10_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="table 10_CH" height="19" rowSpan="1"/>
 						<jr:detailCell style="table 10_TD" height="20" rowSpan="1">
 							<textField pattern="###0.0">
 								<reportElement x="0" y="0" width="33" height="20" uuid="55ecd2c2-b7a7-4a62-b418-266e374b7d1e"/>
@@ -1330,7 +1434,7 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 								<text><![CDATA[ST]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="table 10_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="table 10_CH" height="19" rowSpan="1"/>
 						<jr:detailCell style="table 10_TD" height="20" rowSpan="1">
 							<textField pattern="###0.0">
 								<reportElement x="0" y="0" width="33" height="20" uuid="0ab032a8-7e1d-4d69-9f8c-ac755ecebd8e"/>
@@ -1347,7 +1451,7 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 								<text><![CDATA[ESD]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="table 10_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="table 10_CH" height="19" rowSpan="1"/>
 						<jr:detailCell style="table 10_TD" height="20" rowSpan="1">
 							<textField pattern="###0.0">
 								<reportElement x="0" y="0" width="33" height="20" uuid="48b2ba8e-a305-43a0-98a4-5e9071ba977b"/>
@@ -1364,7 +1468,7 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 								<text><![CDATA[PC]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="table 10_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="table 10_CH" height="19" rowSpan="1"/>
 						<jr:detailCell style="table 10_TD" height="20" rowSpan="1">
 							<textField pattern="###0.0">
 								<reportElement x="0" y="0" width="33" height="20" uuid="d7af4052-8cf2-4f81-a05c-7fb2b6eabeb7"/>
@@ -1381,7 +1485,7 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 								<text><![CDATA[NU]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="table 10_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="table 10_CH" height="19" rowSpan="1"/>
 						<jr:detailCell style="table 10_TD" height="20" rowSpan="1">
 							<textField pattern="###0.0">
 								<reportElement x="0" y="0" width="31" height="20" uuid="f8208c86-017d-4ee9-ad64-5ae732377508"/>
@@ -1398,7 +1502,7 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 								<text><![CDATA[CCS]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="table 10_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="table 10_CH" height="19" rowSpan="1"/>
 						<jr:detailCell style="table 10_TD" height="20" rowSpan="1">
 							<textField pattern="###0.0">
 								<reportElement x="0" y="0" width="37" height="20" uuid="c8d331f7-b7c7-46f8-98bf-cd5fc97e4d12"/>
@@ -1415,7 +1519,7 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 								<text><![CDATA[CEL]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="table 10_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="table 10_CH" height="19" rowSpan="1"/>
 						<jr:detailCell style="table 10_TD" height="20" rowSpan="1">
 							<textField pattern="###0.0">
 								<reportElement x="0" y="0" width="32" height="20" uuid="8a0a805f-7a5c-458f-903b-c54349ac71d1"/>
@@ -1432,7 +1536,7 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 								<text><![CDATA[PH]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="table 10_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="table 10_CH" height="19" rowSpan="1"/>
 						<jr:detailCell style="table 10_TD" height="20" rowSpan="1">
 							<textField pattern="###0.0">
 								<reportElement x="0" y="0" width="34" height="20" uuid="894cff90-9d35-4de4-a01c-bc69d3b4cc42"/>
@@ -1449,7 +1553,7 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 								<text><![CDATA[DEN]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="table 10_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="table 10_CH" height="19" rowSpan="1"/>
 						<jr:detailCell style="table 10_TD" height="20" rowSpan="1">
 							<textField pattern="###0.0">
 								<reportElement x="0" y="0" width="31" height="20" uuid="11dc4e65-e15b-4fca-8d78-e6dc90007491"/>
@@ -1466,46 +1570,12 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 								<text><![CDATA[CBT]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="table 10_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="table 10_CH" height="19" rowSpan="1"/>
 						<jr:detailCell style="table 10_TD" height="20" rowSpan="1">
 							<textField pattern="###0.0">
 								<reportElement x="0" y="0" width="37" height="20" uuid="8fa14ebc-6fed-4c24-b5fd-4ed5937f0e06"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle"/>
 								<textFieldExpression><![CDATA[$F{cbt_media} == null ? "NA" : $F{cbt_media}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="38" uuid="af837792-bb83-4a7b-ac5c-648f5509db5a">
-						<jr:columnHeader style="table 10_CH" height="30" rowSpan="1">
-							<staticText>
-								<reportElement x="0" y="0" width="38" height="30" uuid="4a9f3655-299c-48ad-a60a-3918e9309f5e"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<text><![CDATA[CMT]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:columnFooter style="table 10_CH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table 10_TD" height="20" rowSpan="1">
-							<textField pattern="###0.0">
-								<reportElement x="0" y="0" width="38" height="20" uuid="24e5b951-6a2f-446e-9f82-998d176dddd2"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[$F{cmt_media} == null ? "NA" : $F{cmt_media}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="35" uuid="3fda4a6d-7ca3-445d-9fa0-46abcb214c5e">
-						<jr:columnHeader style="table 10_CH" height="30" rowSpan="1">
-							<staticText>
-								<reportElement x="0" y="0" width="35" height="30" uuid="ed5930f1-2238-491d-bb7a-5e5af48486f2"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<text><![CDATA[RANT]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:columnFooter style="table 10_CH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table 10_TD" height="20" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="35" height="20" uuid="1b3370f3-e867-418a-aa20-53f69cb769fd"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[$F{rant_media} == null ? "NA" : $F{rant_media}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -1523,6 +1593,22 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Prof. Adriano]]></text>
 			</staticText>
+			<line>
+				<reportElement x="8" y="699" width="118" height="1" uuid="e20206ec-726e-4f39-a3fe-388763aba365"/>
+			</line>
+			<line>
+				<reportElement x="146" y="699" width="118" height="1" uuid="9019239a-9538-4ff0-a9ec-10bb55f0f257"/>
+			</line>
+			<line>
+				<reportElement x="289" y="699" width="104" height="1" uuid="4bd15330-00b1-462e-8100-7db9226b7712"/>
+			</line>
+			<line>
+				<reportElement x="427" y="698" width="118" height="1" uuid="e0749034-4967-4e42-9988-47a277768081"/>
+			</line>
+			<image>
+				<reportElement x="62" y="402" width="443" height="164" uuid="0e018c12-82e8-4b14-9dbe-7ee7a3ea257f"/>
+				<imageExpression><![CDATA[$P{imagem13}]]></imageExpression>
+			</image>
 		</band>
 	</summary>
 </jasperReport>

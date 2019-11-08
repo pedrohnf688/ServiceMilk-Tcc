@@ -34,9 +34,7 @@ public class LaudoMedia {
 	private String celMedia;
 	private String phMedia;
 	private String denMedia;
-	private String rantMedia;
 	private String cbtMedia;
-	private String cmtMedia;
 	private String lactMedia;
 
 	@OneToMany(orphanRemoval = true)
@@ -164,28 +162,12 @@ public class LaudoMedia {
 		this.denMedia = denMedia;
 	}
 
-	public String getRantMedia() {
-		return rantMedia;
-	}
-
-	public void setRantMedia(String rantMedia) {
-		this.rantMedia = rantMedia;
-	}
-
 	public String getCbtMedia() {
 		return cbtMedia;
 	}
 
 	public void setCbtMedia(String cbtMedia) {
 		this.cbtMedia = cbtMedia;
-	}
-
-	public String getCmtMedia() {
-		return cmtMedia;
-	}
-
-	public void setCmtMedia(String cmtMedia) {
-		this.cmtMedia = cmtMedia;
 	}
 
 	public String getLactMedia() {
@@ -218,9 +200,8 @@ public class LaudoMedia {
 				+ ", truproMedia=" + truproMedia + ", totproMedia=" + totproMedia + ", caseinMedia=" + caseinMedia
 				+ ", solidsMedia=" + solidsMedia + ", snfMedia=" + snfMedia + ", fpdMedia=" + fpdMedia + ", ureaMedia="
 				+ ureaMedia + ", ccsMedia=" + ccsMedia + ", celMedia=" + celMedia + ", phMedia=" + phMedia
-				+ ", denMedia=" + denMedia + ", rantMedia=" + rantMedia + ", cbtMedia=" + cbtMedia + ", cmtMedia="
-				+ cmtMedia + ", lactMedia=" + lactMedia + ", listaLaudos=" + listaLaudos + ", solicitacao="
-				+ solicitacao + "]";
+				+ ", denMedia=" + denMedia + ", cbtMedia=" + cbtMedia + ", lactMedia=" + lactMedia + ", listaLaudos="
+				+ listaLaudos + ", solicitacao=" + solicitacao + "]";
 	}
 
 }

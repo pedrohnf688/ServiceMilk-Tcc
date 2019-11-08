@@ -65,16 +65,12 @@ public class Laudo {
 
 	private String den; // OK
 
-	private String rant;
-
 	private String cbt;
 
-	private String cmt;
-
 	@JsonProperty("Lactose")
-	private String lact;  //OK
+	private String lact; // OK
 
-	private String identificadorLaudo; //OK
+	private String identificadorLaudo; // OK
 
 	public Laudo() {
 	}
@@ -215,28 +211,12 @@ public class Laudo {
 		this.den = den;
 	}
 
-	public String getRant() {
-		return rant;
-	}
-
-	public void setRant(String rant) {
-		this.rant = rant;
-	}
-
 	public String getCbt() {
 		return cbt;
 	}
 
 	public void setCbt(String cbt) {
 		this.cbt = cbt;
-	}
-
-	public String getCmt() {
-		return cmt;
-	}
-
-	public void setCmt(String cmt) {
-		this.cmt = cmt;
 	}
 
 	public String getLact() {
@@ -260,8 +240,8 @@ public class Laudo {
 		return "Laudo [laudo_id=" + laudo_id + ", batchId=" + batchId + ", sequence=" + sequence + ", date=" + date
 				+ ", sampleid=" + sampleid + ", fat=" + fat + ", trupro=" + trupro + ", totpro=" + totpro + ", casein="
 				+ casein + ", solids=" + solids + ", snf=" + snf + ", fpd=" + fpd + ", urea=" + urea + ", ccs=" + ccs
-				+ ", cel=" + cel + ", ph=" + ph + ", den=" + den + ", rant=" + rant + ", cbt=" + cbt + ", cmt=" + cmt
-				+ ", lact=" + lact + ", identificadorLaudo=" + identificadorLaudo + "]";
+				+ ", cel=" + cel + ", ph=" + ph + ", den=" + den + ", cbt=" + cbt + ", lact=" + lact
+				+ ", identificadorLaudo=" + identificadorLaudo + "]";
 	}
 
 	public LocalDate conversao(String dataRecebida) throws ParseException {

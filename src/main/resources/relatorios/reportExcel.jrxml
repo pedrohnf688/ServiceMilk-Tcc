@@ -48,9 +48,9 @@
 			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 		</parameter>
 		<queryString>
-			<![CDATA[SELECT (sum(cbt)/Count(sequence)),(sum(ccs)/Count(sequence)),(sum(cel)/Count(sequence)),(sum(cmt)/Count(sequence)),(sum(den)/Count(sequence)),
-(sum(fat)/Count(sequence)),(sum(fpd)/Count(sequence)),(sum(lact)/Count(sequence)),(sum(ph)/Count(sequence)),
-(sum(rant)/Count(sequence)),(sum(casein)/Count(sequence)),(sum(snf)/Count(sequence)),(sum(solids)/Count(sequence)),(sum(totpro)/Count(sequence)),
+			<![CDATA[SELECT (sum(cbt)/Count(sequence)),(sum(ccs)/Count(sequence)),(sum(cel)/Count(sequence)),(sum(den)/Count(sequence)),
+(sum(fat)/Count(sequence)),(sum(fpd)/Count(sequence)),(sum(lact)/Count(sequence)),(sum(ph)/Count(sequence))
+,(sum(casein)/Count(sequence)),(sum(snf)/Count(sequence)),(sum(solids)/Count(sequence)),(sum(totpro)/Count(sequence)),
 (sum(trupro)/Count(sequence)),(sum(urea)/Count(sequence)), laudo_id, batch_id, sequence, identificador_laudo FROM laudo,laudo_media,laudo_media_lista_laudos
 where laudo_media_lista_laudos.lista_laudos_laudo_id = laudo.laudo_id
 and laudo_media_lista_laudos.laudo_media_id_media = laudo_media.id_media
@@ -59,13 +59,11 @@ and laudo_media.solicitacao_id = $P{solicitacaoId} GROUP BY sequence HAVING COUN
 		<field name="(sum(cbt)/Count(sequence))" class="java.lang.Double"/>
 		<field name="(sum(ccs)/Count(sequence))" class="java.lang.Double"/>
 		<field name="(sum(cel)/Count(sequence))" class="java.lang.Double"/>
-		<field name="(sum(cmt)/Count(sequence))" class="java.lang.Double"/>
 		<field name="(sum(den)/Count(sequence))" class="java.lang.Double"/>
 		<field name="(sum(fat)/Count(sequence))" class="java.lang.Double"/>
 		<field name="(sum(fpd)/Count(sequence))" class="java.lang.Double"/>
 		<field name="(sum(lact)/Count(sequence))" class="java.lang.Double"/>
 		<field name="(sum(ph)/Count(sequence))" class="java.lang.Double"/>
-		<field name="(sum(rant)/Count(sequence))" class="java.lang.Double"/>
 		<field name="(sum(casein)/Count(sequence))" class="java.lang.Double"/>
 		<field name="(sum(snf)/Count(sequence))" class="java.lang.Double"/>
 		<field name="(sum(solids)/Count(sequence))" class="java.lang.Double"/>
@@ -110,9 +108,6 @@ and laudo_media.solicitacao_id = $P{solicitacaoId} GROUP BY sequence HAVING COUN
 		<field name="cel_media" class="java.lang.String">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
-		<field name="cmt_media" class="java.lang.String">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
 		<field name="den_media" class="java.lang.String">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
@@ -126,9 +121,6 @@ and laudo_media.solicitacao_id = $P{solicitacaoId} GROUP BY sequence HAVING COUN
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
 		<field name="ph_media" class="java.lang.String">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
-		<field name="rant_media" class="java.lang.String">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
 		<field name="snf_media" class="java.lang.String">
@@ -157,8 +149,7 @@ and laudo_media.solicitacao_id = $P{solicitacaoId} GROUP BY sequence HAVING COUN
 		<![CDATA[SELECT * FROM solicitacao
 INNER JOIN usuario ON solicitacao.cliente_id = usuario.id
 INNER JOIN ordem_servico ON $P{Id_LaudoMedia} = ordem_servico.solicitacao_id
-INNER JOIN fazenda ON solicitacao.fazenda_id = fazenda.id
-]]>
+INNER JOIN fazenda ON solicitacao.fazenda_id = fazenda.id]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -545,40 +536,6 @@ INNER JOIN fazenda ON solicitacao.fazenda_id = fazenda.id
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="43" uuid="2cd052aa-70f2-49a4-827a-42346decfd32">
-						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
-							<staticText>
-								<reportElement x="0" y="0" width="43" height="30" uuid="a1fd12c7-954e-4b45-a244-631ae015054d"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<text><![CDATA[CMT]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:columnFooter style="table_CH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table_TD" height="20" rowSpan="1">
-							<textField pattern="###0.0">
-								<reportElement x="0" y="0" width="43" height="20" uuid="5a76de50-53aa-4123-a787-20ffafe6c5b3"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[$F{(sum(cmt)/Count(sequence))} == null ? "NA" : $F{(sum(cmt)/Count(sequence))}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="45" uuid="77a9b6b7-e36b-48b1-b38b-35572fb406e2">
-						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
-							<staticText>
-								<reportElement x="0" y="0" width="45" height="30" uuid="da1ef471-0d67-4680-a1ae-450a2da411bd"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<text><![CDATA[RANT]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:columnFooter style="table_CH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table_TD" height="20" rowSpan="1">
-							<textField pattern="###0.0">
-								<reportElement x="0" y="0" width="45" height="20" uuid="2c41714d-abc0-4efc-8a8a-4db8be6d4bce"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[$F{(sum(rant)/Count(sequence))} == null ? "NA" : $F{(sum(rant)/Count(sequence))}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
 				</jr:table>
 			</componentElement>
 		</band>
@@ -812,40 +769,6 @@ INNER JOIN fazenda ON solicitacao.fazenda_id = fazenda.id
 								<reportElement x="0" y="0" width="62" height="20" uuid="08e73549-accd-44bd-805b-7432ee4aefbc"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle"/>
 								<textFieldExpression><![CDATA[$F{cbt_media}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="68" uuid="9f6a9a8f-1445-437e-acc7-cd41f96473cc">
-						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
-							<staticText>
-								<reportElement x="0" y="0" width="68" height="30" uuid="b6cbcb8a-2d9d-4237-857a-131280abf6c3"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<text><![CDATA[CMT]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="68" height="20" uuid="b29b8040-ee5a-4d0d-b3ca-34077e4ee587"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[$F{cmt_media}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="69" uuid="1ff4ad34-ae14-4c9d-8a95-b542ae82fa99">
-						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
-							<staticText>
-								<reportElement x="0" y="0" width="69" height="30" uuid="3349bed3-36ac-43af-812f-dbd8367e842e"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<text><![CDATA[RANT]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
-						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="69" height="20" uuid="0d420b48-9898-4cd2-be50-23ecf8a98d8c"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[$F{rant_media}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>

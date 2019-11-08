@@ -198,24 +198,24 @@ public class LaudoController {
 
 	private void atualizarDadosLaudo(Laudo laudoId, Laudo laudo, BindingResult result) throws NoSuchAlgorithmException {
 
-		laudoId.setCasein(laudo.getCasein());
-		laudoId.setFat(laudo.getFat());
-		laudoId.setFpd(laudo.getFpd());
+		laudoId.setCasein(laudo.getCasein().contains(",") ? laudo.getCasein().replace(",", ".") : laudo.getCasein());
+		laudoId.setFat(laudo.getFat().contains(",") ? laudo.getFat().replace(",", ".") : laudo.getFat());
+		laudoId.setFpd(laudo.getFpd().contains(",") ? laudo.getFpd().replace(",", ".") : laudo.getFpd());
 		laudoId.setIdentificadorLaudo(laudo.getIdentificadorLaudo());
-		laudoId.setLact(laudo.getLact());
+		laudoId.setLact(laudo.getLact().contains(",") ? laudo.getLact().replace(",", ".") : laudo.getLact());
 		laudoId.setSequence(laudo.getSequence());
-		laudoId.setSnf(laudo.getSnf());
-		laudoId.setSolids(laudo.getSolids());
-		laudoId.setTotpro(laudo.getTotpro());
-		laudoId.setTrupro(laudo.getTrupro());
-		laudoId.setUrea(laudo.getUrea());
-		laudoId.setCbt(laudo.getCbt());
-		laudoId.setCcs(laudo.getCcs());
-		laudoId.setCel(laudo.getCel());
-		laudoId.setCmt(laudo.getCmt());
-		laudoId.setDen(laudo.getDen());
-		laudoId.setPh(laudo.getPh());
-		laudoId.setRant(laudo.getRant());
+		laudoId.setSnf(laudo.getSnf().contains(",") ? laudo.getSnf().replace(",", ".") : laudo.getSnf());
+		laudoId.setSolids(laudo.getSolids().contains(",") ? laudo.getSolids().replace(",", ".") : laudo.getSolids());
+		laudoId.setTotpro(laudo.getTotpro().contains(",") ? laudo.getTotpro().replace(",", ".") : laudo.getTotpro());
+		laudoId.setTrupro(laudo.getTrupro().contains(",") ? laudo.getTrupro().replace(",", ".") : laudo.getTrupro());
+		laudoId.setUrea(laudo.getUrea().contains(",") ? laudo.getUrea().replace(",", ".") : laudo.getUrea());
+		laudoId.setCbt(laudo.getCbt().contains(",") ? laudo.getCbt().replace(",", ".") : laudo.getCbt());
+		laudoId.setCcs(laudo.getCcs().contains(",") ? laudo.getCcs().replace(",", ".") : laudo.getCcs());
+		laudoId.setCel(laudo.getCel().contains(",") ? laudo.getCel().replace(",", ".") : laudo.getCel());
+//		laudoId.setCmt(laudo.getCmt().contains(",") ? laudo.getCmt().replace(",", ".") : laudo.getCmt());
+		laudoId.setDen(laudo.getDen().contains(",") ? laudo.getDen().replace(",", ".") : laudo.getDen());
+		laudoId.setPh(laudo.getPh().contains(",") ? laudo.getPh().replace(",", ".") : laudo.getPh());
+//		laudoId.setRant(laudo.getRant().contains(",") ? laudo.getRant().replace(",", ".") : laudo.getRant());
 		laudoId.setBatchId(laudo.getBatchId());
 		laudoId.setDate(laudo.getDate());
 
@@ -289,13 +289,13 @@ public class LaudoController {
 					Matcher m2 = p.matcher(laudo.get(z).getCbt() != null ? laudo.get(z).getCbt() : "0");
 					Matcher m3 = p.matcher(laudo.get(z).getCcs() != null ? laudo.get(z).getCcs() : "0");
 					Matcher m4 = p.matcher(laudo.get(z).getCel() != null ? laudo.get(z).getCel() : "0");
-					Matcher m5 = p.matcher(laudo.get(z).getCmt() != null ? laudo.get(z).getCmt() : "0");
+//					Matcher m5 = p.matcher(laudo.get(z).getCmt() != null ? laudo.get(z).getCmt() : "0");
 
 					Matcher m6 = p.matcher(laudo.get(z).getDen() != null ? laudo.get(z).getDen() : "0");
 					Matcher m7 = p.matcher(laudo.get(z).getFat() != null ? laudo.get(z).getFat() : "0");
 					Matcher m8 = p.matcher(laudo.get(z).getFpd() != null ? laudo.get(z).getFpd() : "0");
 					Matcher m9 = p.matcher(laudo.get(z).getPh() != null ? laudo.get(z).getPh() : "0");
-					Matcher m10 = p.matcher(laudo.get(z).getRant() != null ? laudo.get(z).getRant() : "0");
+//					Matcher m10 = p.matcher(laudo.get(z).getRant() != null ? laudo.get(z).getRant() : "0");
 
 					Matcher m11 = p.matcher(laudo.get(z).getSnf() != null ? laudo.get(z).getSnf() : "0");
 					Matcher m12 = p.matcher(laudo.get(z).getSolids() != null ? laudo.get(z).getSolids() : "0");
@@ -317,9 +317,9 @@ public class LaudoController {
 					somaCel[z] += (m4.find() && m4.group().equals(laudo.get(z).getCel()))
 							? Float.parseFloat(laudo.get(z).getCel())
 							: 0;
-					somaCmt[z] += (m5.find() && m5.group().equals(laudo.get(z).getCmt()))
-							? Float.parseFloat(laudo.get(z).getCmt())
-							: 0;
+//					somaCmt[z] += (m5.find() && m5.group().equals(laudo.get(z).getCmt()))
+//							? Float.parseFloat(laudo.get(z).getCmt())
+//							: 0;
 
 					somaDen[z] += (m6.find() && m6.group().equals(laudo.get(z).getDen()))
 							? Float.parseFloat(laudo.get(z).getDen())
@@ -333,9 +333,9 @@ public class LaudoController {
 					somaPh[z] += (m9.find() && m9.group().equals(laudo.get(z).getPh()))
 							? Float.parseFloat(laudo.get(z).getPh())
 							: 0;
-					somaRant[z] += (m10.find() && m10.group().equals(laudo.get(z).getRant()))
-							? Float.parseFloat(laudo.get(z).getRant())
-							: 0;
+//					somaRant[z] += (m10.find() && m10.group().equals(laudo.get(z).getRant()))
+//							? Float.parseFloat(laudo.get(z).getRant())
+//							: 0;
 
 					somaSnf[z] += (m11.find() && m11.group().equals(laudo.get(z).getSnf()))
 							? Float.parseFloat(laudo.get(z).getSnf())
@@ -402,13 +402,13 @@ public class LaudoController {
 					la.setCbt(String.valueOf(somaCbt[a - 1]));
 					la.setCcs(String.valueOf(somaCcs[a - 1]));
 					la.setCel(String.valueOf(somaCel[a - 1]));
-					la.setCmt(String.valueOf(somaCmt[a - 1]));
+//					la.setCmt(String.valueOf(somaCmt[a - 1]));
 					la.setDate(laudo.get(a).getDate());
 					la.setDen(String.valueOf(somaDen[a - 1]));
 					la.setFat(String.valueOf(somaFat[a - 1]));
 					la.setFpd(String.valueOf(somaFpd[a - 1]));
 					la.setPh(String.valueOf(somaPh[a - 1]));
-					la.setRant(String.valueOf(somaRant[a - 1]));
+//					la.setRant(String.valueOf(somaRant[a - 1]));
 					la.setSampleid(laudo.get(a).getSampleid());
 					la.setSequence(laudo.get(a).getSequence());
 					la.setSnf(String.valueOf(somaSnf[a - 1]));
@@ -424,13 +424,13 @@ public class LaudoController {
 					la.setCbt(String.valueOf(somaCbt[a]));
 					la.setCcs(String.valueOf(somaCcs[a]));
 					la.setCel(String.valueOf(somaCel[a]));
-					la.setCmt(String.valueOf(somaCmt[a]));
+//					la.setCmt(String.valueOf(somaCmt[a]));
 					la.setDate(laudo.get(a).getDate());
 					la.setDen(String.valueOf(somaDen[a]));
 					la.setFat(String.valueOf(somaFat[a]));
 					la.setFpd(String.valueOf(somaFpd[a]));
 					la.setPh(String.valueOf(somaPh[a]));
-					la.setRant(String.valueOf(somaRant[a]));
+//					la.setRant(String.valueOf(somaRant[a]));
 					la.setSampleid(laudo.get(a).getSampleid());
 					la.setSequence(laudo.get(a).getSequence());
 					la.setSnf(String.valueOf(somaSnf[a]));
