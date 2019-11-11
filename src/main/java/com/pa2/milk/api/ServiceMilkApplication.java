@@ -64,7 +64,6 @@ public class ServiceMilkApplication {
 	@Autowired
 	private AdministradorRepository administradorRepository;
 
-
 	@Autowired
 	private CredencialRepository credencialRepository;
 
@@ -74,6 +73,7 @@ public class ServiceMilkApplication {
 	@Autowired
 	private SolicitacaoRepository solicitacaoRepository;
 
+	
 	@Autowired
 	private OrdemServicoRepository ordemServicoRepository;
 

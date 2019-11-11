@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report2" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2bfe2fbb-4459-4998-a786-f98d8e6cba54">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="1545"/>
+	<property name="ireport.y" value="1144"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -516,7 +516,7 @@ INNER JOIN ordem_servico ON $P{Id_LaudoMedia} = ordem_servico.solicitacao_id
 INNER JOIN fazenda ON solicitacao.fazenda_id = fazenda.id
 INNER JOIN (SELECT * FROM laudo,laudo_media,laudo_media_lista_laudos
 where laudo_media_lista_laudos.lista_laudos_laudo_id = laudo.laudo_id
-and laudo_media_lista_laudos.laudo_media_id_media = laudo_media.id_media and laudo_media.solicitacao_id = $P{Id_LaudoMedia}) as resultado]]>
+and laudo_media_lista_laudos.laudo_media_id_media = laudo_media.id_media and laudo_media.solicitacao_id = $P{Id_LaudoMedia}) as resultado GROUP BY solicitacao.id]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -524,7 +524,9 @@ and laudo_media_lista_laudos.laudo_media_id_media = laudo_media.id_media and lau
 	<field name="ativo" class="java.lang.Boolean">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="data_criada" class="java.sql.Timestamp"/>
+	<field name="data_criada" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="inicio_coleta" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
@@ -1024,67 +1026,12 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 		</band>
 	</title>
 	<pageHeader>
-		<band height="32"/>
+		<band height="50"/>
 	</pageHeader>
-	<lastPageFooter>
-		<band height="30"/>
-	</lastPageFooter>
-	<summary>
-		<band height="719">
-			<rectangle>
-				<reportElement x="75" y="607" width="450" height="59" uuid="28e22d79-fb04-40e9-9be3-4d9c75acf070"/>
-			</rectangle>
-			<staticText>
-				<reportElement x="7" y="585" width="217" height="20" forecolor="#003399" uuid="68c718ac-159c-4813-ab7b-4476a92eb763"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Ocorrências observadas no lote de amostras
-]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="12" y="699" width="110" height="20" uuid="0e67c794-5e8e-4661-812f-6c1fb8dbd869"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Entrega das amostras]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="159" y="699" width="97" height="20" uuid="c1c4f8b0-9fe0-479e-9b95-333d6ffdb037"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Análise laboratorial]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="432" y="699" width="100" height="20" uuid="b800ea70-d266-4f5a-8181-6e2200e56086"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Emissão de Laudo]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="140" y="682" width="130" height="17" uuid="e96130ac-2802-4321-b6ac-6619a0cb1ccb"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{analise_laboratorial}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="413" y="681" width="139" height="17" uuid="0b5d5aff-78f5-4e0b-9805-6dba5b566e94"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{emissao_laudo}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="2" y="682" width="129" height="17" uuid="d631bbc4-ba07-43bc-b011-5ba77fbc56c1"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{entrega_amostras}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="75" y="608" width="450" height="57" uuid="cddadbb0-9987-4fc3-9797-49d20084d154"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{observacao}]]></textFieldExpression>
-			</textField>
+	<detail>
+		<band height="80">
 			<componentElement>
-				<reportElement key="table 8" style="table 8" x="24" y="0" width="515" height="80" uuid="85127df6-aefb-48d1-8733-85ddaa8152dd"/>
+				<reportElement key="table 8" style="table 8" x="26" y="0" width="529" height="80" uuid="85127df6-aefb-48d1-8733-85ddaa8152dd"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="dataSeetLaudo" uuid="49cb7c6e-38fb-413c-a8ee-78edd8691ca0">
 						<datasetParameter name="solicitacaoId">
@@ -1349,8 +1296,95 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 					</jr:column>
 				</jr:table>
 			</componentElement>
+		</band>
+	</detail>
+	<lastPageFooter>
+		<band height="30"/>
+	</lastPageFooter>
+	<summary>
+		<band height="802">
+			<rectangle>
+				<reportElement x="38" y="463" width="499" height="90" uuid="28e22d79-fb04-40e9-9be3-4d9c75acf070"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="7" y="423" width="263" height="20" forecolor="#003399" uuid="68c718ac-159c-4813-ab7b-4476a92eb763"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ocorrências observadas no lote de amostras
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="677" width="110" height="20" uuid="0e67c794-5e8e-4661-812f-6c1fb8dbd869"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Entrega das amostras]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="159" y="677" width="97" height="20" uuid="c1c4f8b0-9fe0-479e-9b95-333d6ffdb037"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Análise laboratorial]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="432" y="677" width="100" height="20" uuid="b800ea70-d266-4f5a-8181-6e2200e56086"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Emissão de Laudo]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="660" width="130" height="17" uuid="e96130ac-2802-4321-b6ac-6619a0cb1ccb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{analise_laboratorial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="413" y="659" width="139" height="17" uuid="0b5d5aff-78f5-4e0b-9805-6dba5b566e94"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{emissao_laudo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="660" width="129" height="17" uuid="d631bbc4-ba07-43bc-b011-5ba77fbc56c1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{entrega_amostras}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="39" y="463" width="497" height="90" uuid="cddadbb0-9987-4fc3-9797-49d20084d154"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{observacao}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="289" y="677" width="100" height="20" uuid="19807fcd-e5be-4313-ae22-01588a8f13f2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Verificado Por]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="301" y="657" width="77" height="20" uuid="e6e0acf6-8c15-43ad-aa1c-bb16764ec29f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Prof. Adriano]]></text>
+			</staticText>
+			<line>
+				<reportElement x="8" y="677" width="118" height="1" uuid="e20206ec-726e-4f39-a3fe-388763aba365"/>
+			</line>
+			<line>
+				<reportElement x="146" y="677" width="118" height="1" uuid="9019239a-9538-4ff0-a9ec-10bb55f0f257"/>
+			</line>
+			<line>
+				<reportElement x="289" y="677" width="104" height="1" uuid="4bd15330-00b1-462e-8100-7db9226b7712"/>
+			</line>
+			<line>
+				<reportElement x="427" y="676" width="118" height="1" uuid="e0749034-4967-4e42-9988-47a277768081"/>
+			</line>
+			<image>
+				<reportElement x="51" y="153" width="443" height="164" uuid="0e018c12-82e8-4b14-9dbe-7ee7a3ea257f"/>
+				<imageExpression><![CDATA[$P{imagem13}]]></imageExpression>
+			</image>
 			<componentElement>
-				<reportElement key="table 10" style="table 10" x="40" y="293" width="513" height="80" uuid="6af241e2-c3ec-49e9-a313-03548e6fc817"/>
+				<reportElement key="table 10" style="table 10" x="39" y="53" width="513" height="80" uuid="6af241e2-c3ec-49e9-a313-03548e6fc817"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="datasetLaudoMedia" uuid="a80fde5c-4a5d-4904-bf93-e284cee7e552">
 						<datasetParameter name="laudoMediaID">
@@ -1582,33 +1616,12 @@ Ramal 238 (Funcionamento: Segunda à quinta-feira (8:00 às 16:00) e sexta – f
 				</jr:table>
 			</componentElement>
 			<staticText>
-				<reportElement x="289" y="699" width="100" height="20" uuid="19807fcd-e5be-4313-ae22-01588a8f13f2"/>
+				<reportElement x="215" y="17" width="131" height="20" uuid="f18bea4e-627d-42f5-a7d2-70d64f91b1c6"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Verificado Por]]></text>
+				<text><![CDATA[MÉDIA ARITMÉTICA]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="301" y="679" width="77" height="20" uuid="e6e0acf6-8c15-43ad-aa1c-bb16764ec29f"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Prof. Adriano]]></text>
-			</staticText>
-			<line>
-				<reportElement x="8" y="699" width="118" height="1" uuid="e20206ec-726e-4f39-a3fe-388763aba365"/>
-			</line>
-			<line>
-				<reportElement x="146" y="699" width="118" height="1" uuid="9019239a-9538-4ff0-a9ec-10bb55f0f257"/>
-			</line>
-			<line>
-				<reportElement x="289" y="699" width="104" height="1" uuid="4bd15330-00b1-462e-8100-7db9226b7712"/>
-			</line>
-			<line>
-				<reportElement x="427" y="698" width="118" height="1" uuid="e0749034-4967-4e42-9988-47a277768081"/>
-			</line>
-			<image>
-				<reportElement x="62" y="402" width="443" height="164" uuid="0e018c12-82e8-4b14-9dbe-7ee7a3ea257f"/>
-				<imageExpression><![CDATA[$P{imagem13}]]></imageExpression>
-			</image>
 		</band>
 	</summary>
 </jasperReport>
