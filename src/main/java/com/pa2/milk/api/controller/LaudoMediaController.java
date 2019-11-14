@@ -80,18 +80,8 @@ public class LaudoMediaController {
 	public List<Laudo> batchIdLaudoMediaPorSolicitacao() {
 		List<LaudoMedia> lm = this.laudoMediaService.listarTodasMedias();
 		List<Laudo> l = this.laudoService.listarLaudos();
-		List<Laudo> a = new ArrayList<Laudo>();
-		for (int i = 0; i < lm.size(); i++) {
-			for (int j = 0; j < l.size(); j++) {
-				if(!lm.get(i).getBatchIdMedia().equals(l.get(j).getBatchId())) {
-					a.add(l.get(i));
-				}else {
-					
-				}
-			}
-		}
 		
-		return a;
+		return l;
 		
 		
 	}
