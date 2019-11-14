@@ -91,7 +91,7 @@ public class LaudoMediaController {
 			}
 		}
 		
-		return l;
+		return a;
 		
 		
 	}
