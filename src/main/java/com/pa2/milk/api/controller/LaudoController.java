@@ -201,28 +201,50 @@ public class LaudoController {
 		laudoId.setCasein(laudo.getCasein().contains(",") ? laudo.getCasein().replace(",", ".") : laudo.getCasein());
 		laudoId.setFat(laudo.getFat().contains(",") ? laudo.getFat().replace(",", ".") : laudo.getFat());
 		laudoId.setFpd(laudo.getFpd().contains(",") ? laudo.getFpd().replace(",", ".") : laudo.getFpd());
+		
 		laudoId.setIdentificadorLaudo(laudo.getIdentificadorLaudo());
-		laudoId.setLact(laudo.getLact().contains(",") ? laudo.getLact().replace(",", ".") : laudo.getLact());
+		
+
+		laudoId.setLact(laudo.getLact().contains(",") ? laudo.getLact().replace(",", ".") : laudo.getLact());		
 		laudoId.setSequence(laudo.getSequence());
+		
 		laudoId.setSnf(laudo.getSnf().contains(",") ? laudo.getSnf().replace(",", ".") : laudo.getSnf());
 		laudoId.setSolids(laudo.getSolids().contains(",") ? laudo.getSolids().replace(",", ".") : laudo.getSolids());
-		laudoId.setTotpro(laudo.getTotpro().contains(",") ? laudo.getTotpro().replace(",", ".") : laudo.getTotpro());
-		laudoId.setTrupro(laudo.getTrupro().contains(",") ? laudo.getTrupro().replace(",", ".") : laudo.getTrupro());
-		laudoId.setUrea(laudo.getUrea().contains(",") ? laudo.getUrea().replace(",", ".") : laudo.getUrea());
-		laudoId.setCbt(laudo.getCbt().contains(",") ? laudo.getCbt().replace(",", ".") : laudo.getCbt());
+		laudoId.setTotpro(laudo.getTotpro().contains(",") ? laudo.getTotpro().replace(",", ".") : laudo.getTotpro());			
+		laudoId.setTrupro(laudo.getTrupro().contains(",") ? laudo.getTrupro().replace(",", ".") : laudo.getTrupro());			
+		laudoId.setUrea(laudo.getUrea().contains(",") ? laudo.getUrea().replace(",", ".") : laudo.getUrea());	
+		laudoId.setCbt(laudo.getCbt().contains(",") ? laudo.getCbt().replace(",", ".") : laudo.getCbt());			
 		laudoId.setCcs(laudo.getCcs().contains(",") ? laudo.getCcs().replace(",", ".") : laudo.getCcs());
-		laudoId.setCel(laudo.getCel().contains(",") ? laudo.getCel().replace(",", ".") : laudo.getCel());
-//		laudoId.setCmt(laudo.getCmt().contains(",") ? laudo.getCmt().replace(",", ".") : laudo.getCmt());
-		laudoId.setDen(laudo.getDen().contains(",") ? laudo.getDen().replace(",", ".") : laudo.getDen());
-		laudoId.setPh(laudo.getPh().contains(",") ? laudo.getPh().replace(",", ".") : laudo.getPh());
-//		laudoId.setRant(laudo.getRant().contains(",") ? laudo.getRant().replace(",", ".") : laudo.getRant());
+		laudoId.setCel(laudo.getCel().contains(",") ? laudo.getCel().replace(",", ".") : laudo.getCel());			
+		laudoId.setDen(laudo.getDen().contains(",") ? laudo.getDen().replace(",", ".") : laudo.getDen());			
+		laudoId.setPh(laudo.getPh().contains(",") ? laudo.getPh().replace(",", ".") : laudo.getPh());			
 		laudoId.setBatchId(laudo.getBatchId());
+		
 		laudoId.setDate(laudo.getDate());
 
 	}
 
 	private void validarDadosExistentes(Laudo l, BindingResult result) {
-
+		
+		
+		l.setBatchId(l.getBatchId().equals(null) || l.getBatchId().isEmpty() ? "NA" : l.getBatchId());
+		l.setCasein(l.getCasein().equals(null) || l.getCasein().isEmpty() ? "NA" : l.getCasein());
+		l.setCbt(l.getCbt().equals(null) || l.getCbt().isEmpty() ? "NA" : l.getCbt());
+		l.setCcs(l.getCcs().equals(null) || l.getCcs().isEmpty() ? "NA" : l.getCcs());
+		l.setCel(l.getCel().equals(null) || l.getCel().isEmpty() ? "NA" : l.getCel());
+		l.setDen(l.getDen() == null || l.getDen().isEmpty() ? "NA" : l.getDen());
+		l.setFat(l.getFat() == null || l.getFat().isEmpty() ? "NA" : l.getFat());
+		l.setFpd(l.getFpd() == null || l.getFpd().isEmpty() ? "NA" : l.getFpd());
+		l.setIdentificadorLaudo(l.getIdentificadorLaudo() == null || l.getIdentificadorLaudo().isEmpty() ? "NA" : l.getIdentificadorLaudo());
+		l.setLact(l.getLact() == null || l.getLact().isEmpty() ? "NA" : l.getLact());
+		l.setPh(l.getPh() == null || l.getPh().isEmpty() ? "NA" : l.getPh());
+		//l.setSequence(l.getSequence() == null ? "0" : l.getSequence()); //sequencia
+		l.setSnf(l.getSnf() == null || l.getSnf().isEmpty()? "NA" : l.getSnf());
+		l.setSolids(l.getSolids() == null || l.getSolids().isEmpty() ? "NA" : l.getSolids());
+		l.setTotpro(l.getTotpro() == null || l.getTotpro().isEmpty() ? "NA" : l.getTotpro());
+		l.setTrupro(l.getTrupro() == null || l.getTrupro().isEmpty() ?"NA" : l.getTrupro());
+		l.setUrea(l.getUrea() == null || l.getUrea().isEmpty()? "NA" : l.getUrea());
+		
 	}
 
 	@GetMapping(value = "/filtro")

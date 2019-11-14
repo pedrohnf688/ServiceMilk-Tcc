@@ -212,20 +212,12 @@ public class ServiceMilkApplication {
 			analise.setProdutos(teste2);
 			analise.setOrigemLeite(EnumOrigemLeite.TETEIRA);
 			analise.setAnalisesSolicitadas(teste4);
-			analise.setQuantidadeAmostras(4);
+			analise.setQuantidadeAmostras(100);
 			analise.setDescricao("analise 1");
 			analise.setSolicitacao(s);
 			this.analiseRepository.save(analise);
 
-			// Amostra 1
-			Amostra amostra = new Amostra();
-			amostra.setDataColeta(new Date());
-			// amostra.setNumeroAmostra(30);
-			// amostra.setObservacao("obs");
-			amostra.setQrCode("qrCode");
-			amostra.setAnalise(analise);
-			this.amostraRepository.save(amostra);
-
+		
 			for (int i = 0; i < 100; i++) {
 
 				// Amostra 2
@@ -238,20 +230,7 @@ public class ServiceMilkApplication {
 				this.amostraRepository.save(amostra2);
 			}
 
-			Amostra amostra3 = new Amostra();
-			amostra3.setDataColeta(new Date());
-			// amostra3.setObservacao("9999999");
-			amostra3.setQrCode("qrCode3");
-			amostra3.setAnalise(analise);
-			this.amostraRepository.save(amostra3);
-
-			Amostra amostra4 = new Amostra();
-			amostra4.setDataColeta(new Date());
-			// amostra2.setNumeroAmostra(323);
-			// amostra4.setObservacao("obs4");
-			amostra4.setQrCode("qrCode4");
-			amostra4.setAnalise(analise);
-			this.amostraRepository.save(amostra4);
+		
 
 //			// Adicionar id de solicitação em uma analise
 //			Optional<Solicitacao> solicitacao = this.solicitacaoRepository.findById(1);
