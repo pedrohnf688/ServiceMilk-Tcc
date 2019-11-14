@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,6 +70,32 @@ public class LaudoMediaController {
 		return lm;
 	}
 	
+	@GetMapping("laudo/tamanho/{solicitacaoId}")
+	public Integer tamanhoLaudoMediaPorSolicitacao(@PathVariable("solicitacaoId") Integer solicitacaoId) {
+		List<LaudoMedia> lm = this.laudoMediaService.laudoMediaPeloIddaSolicitacao(solicitacaoId);
+		return lm.size();
+	}
+	
+	@GetMapping("laudo/batchId")
+	public List<Laudo> batchIdLaudoMediaPorSolicitacao() {
+		List<LaudoMedia> lm = this.laudoMediaService.listarTodasMedias();
+		List<Laudo> l = this.laudoService.listarLaudos();
+		List<Laudo> a = new ArrayList<Laudo>();
+		for (int i = 0; i < lm.size(); i++) {
+			for (int j = 0; j < l.size(); j++) {
+				if(!lm.get(i).getBatchIdMedia().equals(l.get(j).getBatchId())) {
+					a.add(l.get(i));
+				}else {
+					
+				}
+			}
+		}
+		
+		return l;
+		
+		
+	}
+
 	
 	@GetMapping("laudoM/{solicitacaoId}")
 	public List<Laudo> listarLaudoPorSolicitacao(@PathVariable("solicitacaoId") Integer solicitacaoId) {
