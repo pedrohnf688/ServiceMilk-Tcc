@@ -75,16 +75,6 @@ public class LaudoMediaController {
 		List<LaudoMedia> lm = this.laudoMediaService.laudoMediaPeloIddaSolicitacao(solicitacaoId);
 		return lm.size();
 	}
-	
-	@GetMapping("laudo/batchId")
-	public List<Laudo> batchIdLaudoMediaPorSolicitacao() {
-		List<LaudoMedia> lm = this.laudoMediaService.listarTodasMedias();
-		List<Laudo> l = this.laudoService.listarLaudos();
-		
-		return l;
-		
-		
-	}
 
 	
 	@GetMapping("laudoM/{solicitacaoId}")
