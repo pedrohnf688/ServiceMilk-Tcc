@@ -76,6 +76,7 @@ public class AmostraController {
 	@Autowired
 	private AnaliseRepository analiseRepository;
 
+	
 	@Autowired
 	private SolicitacaoRepository solicitacaoRepository;
 
