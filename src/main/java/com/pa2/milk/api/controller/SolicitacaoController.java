@@ -305,13 +305,12 @@ public class SolicitacaoController {
 
 		Optional<OrdemServico> os = this.ordemServicoRepository.findById(solicitacao.get().getId());
 
-		os.get().setEmissaoLaudo(statusSolicitacaoDTO.getEmissaoLaudo() == null ? os.get().getEmissaoLaudo()
-				: statusSolicitacaoDTO.getEmissaoLaudo());
-		os.get().setAnaliseLaboratorial(
-				statusSolicitacaoDTO.getAnaliseLaboratorial() == null ? os.get().getAnaliseLaboratorial()
-						: statusSolicitacaoDTO.getAnaliseLaboratorial());
-		os.get().setEntregaAmostras(statusSolicitacaoDTO.getEntregaAmostras() == null ? os.get().getEntregaAmostras()
-				: statusSolicitacaoDTO.getEntregaAmostras());
+		os.get().setEmissaoLaudo(statusSolicitacaoDTO.getEmissaoLaudo() == null ? os.get().getEmissaoLaudo() : statusSolicitacaoDTO.getEmissaoLaudo());
+		os.get().setAnaliseLaboratorial(statusSolicitacaoDTO.getAnaliseLaboratorial() == null ? os.get().getAnaliseLaboratorial() : statusSolicitacaoDTO.getAnaliseLaboratorial());
+		os.get().setEntregaAmostras(statusSolicitacaoDTO.getEntregaAmostras() == null ? os.get().getEntregaAmostras() : statusSolicitacaoDTO.getEntregaAmostras());
+
+		
+		
 		os.get().setValorPreco(statusSolicitacaoDTO.getValorPreco() == 0 ? os.get().getValorPreco()
 				: statusSolicitacaoDTO.getValorPreco());
 
@@ -319,6 +318,7 @@ public class SolicitacaoController {
 			os.get().setOrdem(os.get().getOrdem().replace("A", String.valueOf(solicitacao.get().getId())));
 		}
 
+		
 		os.get().setDataAnalise(statusSolicitacaoDTO.getDataAnalise() == null ? os.get().getDataAnalise()
 				: statusSolicitacaoDTO.getDataAnalise());
 		os.get().setDataProcessamento(
