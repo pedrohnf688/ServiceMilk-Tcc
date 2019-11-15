@@ -55,7 +55,7 @@ public class SolicitacaoService {
 	}
 
 	public List<Solicitacao> buscarSolicitacaoClienteId(Integer clienteId) {
-		return this.solicitacaoRepository.findByClienteId(clienteId);
+		return this.solicitacaoRepository.findByClienteIdAndAtivoTrue(clienteId);
 	}
 	
 	public void deletarSolicitacaoPorId(Integer id) {
