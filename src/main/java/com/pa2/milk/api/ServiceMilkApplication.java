@@ -196,7 +196,6 @@ public class ServiceMilkApplication {
 
 			Collection<EnumProdutos> teste2 = new ArrayList<>();
 			teste2.add(EnumProdutos.SORO);
-			teste2.add(EnumProdutos.CREME_30_GORDURA);
 
 			Collection<EnumOrigemLeite> teste3 = new ArrayList<>();
 			teste3.add(EnumOrigemLeite.TANQUE_COLETIVO);
