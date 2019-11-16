@@ -73,7 +73,6 @@ public class ServiceMilkApplication {
 	@Autowired
 	private SolicitacaoRepository solicitacaoRepository;
 
-	
 	@Autowired
 	private OrdemServicoRepository ordemServicoRepository;
 
@@ -211,13 +210,12 @@ public class ServiceMilkApplication {
 			analise.setProdutos(teste2);
 			analise.setOrigemLeite(EnumOrigemLeite.TETEIRA);
 			analise.setAnalisesSolicitadas(teste4);
-			analise.setQuantidadeAmostras(100);
+			analise.setQuantidadeAmostras(96);
 			analise.setDescricao("analise 1");
 			analise.setSolicitacao(s);
 			this.analiseRepository.save(analise);
 
-		
-			for (int i = 0; i < 100; i++) {
+			for (int i = 0; i < 96; i++) {
 
 				// Amostra 2
 				Amostra amostra2 = new Amostra();
@@ -229,10 +227,6 @@ public class ServiceMilkApplication {
 				this.amostraRepository.save(amostra2);
 			}
 
-		
-
-			
-			
 //			// Adicionar id de solicitação em uma analise
 //			Optional<Solicitacao> solicitacao = this.solicitacaoRepository.findById(1);
 //			List<Analise> listaAnalises = new ArrayList<>();

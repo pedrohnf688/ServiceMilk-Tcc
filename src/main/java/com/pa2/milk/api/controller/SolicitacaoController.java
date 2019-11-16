@@ -226,6 +226,7 @@ public class SolicitacaoController {
 		sgt.setObservacao(sol.getObservacao());
 		sgt.setStatus(sol.getStatus());
 		sgt.setTemperatura(sol.getTemperatura());
+		sgt.setInicioColeta(sol.getInicioColeta());
 
 	}
 

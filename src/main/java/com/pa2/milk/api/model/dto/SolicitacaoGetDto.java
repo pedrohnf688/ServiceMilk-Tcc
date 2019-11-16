@@ -37,6 +37,8 @@ public class SolicitacaoGetDto {
 
 	private double temperatura;
 
+	private String inicioColeta;
+
 	public SolicitacaoGetDto() {
 		super();
 	}
@@ -125,12 +127,20 @@ public class SolicitacaoGetDto {
 		this.amostras = amostras;
 	}
 
+	public String getInicioColeta() {
+		return inicioColeta;
+	}
+
+	public void setInicioColeta(String inicioColeta) {
+		this.inicioColeta = inicioColeta;
+	}
+
 	@Override
 	public String toString() {
 		return "SolicitacaoGetDto [id=" + id + ", cliente=" + cliente + ", fazenda=" + fazenda + ", listaAnalise="
 				+ listaAnalise + ", status=" + status + ", dataCriada=" + dataCriada + ", observacao=" + observacao
 				+ ", listaLaudoMedia=" + listaLaudoMedia + ", amostras=" + amostras + ", temperatura=" + temperatura
-				+ "]";
+				+ ", inicioColeta=" + inicioColeta + "]";
 	}
 
 }

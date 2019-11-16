@@ -42,6 +42,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Image;
+import com.itextpdf.text.pdf.PdfDocument;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -76,7 +77,6 @@ public class AmostraController {
 	@Autowired
 	private AnaliseRepository analiseRepository;
 
-	
 	@Autowired
 	private SolicitacaoRepository solicitacaoRepository;
 
@@ -200,33 +200,33 @@ public class AmostraController {
 		response.setData(am.get());
 		this.amostraService.salvar(am.get());
 
-		
 		Optional<Analise> analise = this.analiseRepository.findById(am.get().getAnalise().getId());
 
-		if(analise.isPresent()) {
-        	
-			Optional<Solicitacao> solicitacao = this.solicitacaoRepository.findById(analise.get().getSolicitacao().getId());
-		
-			if(solicitacao.isPresent()) { 		
-            	
+		if (analise.isPresent()) {
+
+			Optional<Solicitacao> solicitacao = this.solicitacaoRepository
+					.findById(analise.get().getSolicitacao().getId());
+
+			if (solicitacao.isPresent()) {
+
 				int coletadas = 0;
 				int total = 0;
-				
+
 				for (int j = 0; j < solicitacao.get().getListaAnalise().size(); j++) {
-					Optional<Analise> a = this.analiseRepository.findById(solicitacao.get().getListaAnalise().get(j).getId());
-			
+					Optional<Analise> a = this.analiseRepository
+							.findById(solicitacao.get().getListaAnalise().get(j).getId());
+
 					coletadas += this.amostraService.amostrasColetas(a.get().getId()).size();
 					total += coletadas;
-					
+
 					if (total == 1) {
 						solicitacao.get().setInicioColeta(DateFormat.getDateInstance().format(new Date()));
 						this.solicitacaoRepository.save(solicitacao.get());
 					}
 				}
-            }
-        }
-		
-		
+			}
+		}
+
 		return ResponseEntity.ok(response);
 
 	}
@@ -241,8 +241,6 @@ public class AmostraController {
 		} else {
 			am.setObservacao(am.getObservacao());
 		}
-
-
 
 //		if (amostra.getQrCode() != null) {
 //			am.setQrCode(amostra.getQrCode());
@@ -278,6 +276,7 @@ public class AmostraController {
 
 	public ByteArrayInputStream report(List<Amostra> amostras) throws MalformedURLException, IOException {
 
+		// PdfDocument pdfDoc = new PdfDocument();
 		Document document = new Document();
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 
@@ -703,8 +702,83 @@ public class AmostraController {
 					PdfWriter.getInstance(document, out);
 					document.open();
 					document.add(table);
+					// document.newPage();
+
+//					document.add(tableRestante);
+
+					System.out.println("amostra:" + amostra.getId());
 
 				}
+
+//				PdfPTable tableRestante = null;
+//				if(amostras.size() % 8 != 0) {
+//					int resto = amostras.size() % 8;
+//					int ate = amostras.size()-resto;
+//					tableRestante = new PdfPTable(resto);
+//	
+//					if(resto == 1) {
+//						tableRestante.setWidthPercentage(15);
+//						tableRestante.setWidths(new float[] { 1 });
+//					}else if(resto == 2) {
+//						tableRestante.setWidthPercentage(25);
+//						tableRestante.setWidths(new float[] {1, 1});
+//					}else if(resto == 3) {
+//						tableRestante.setWidthPercentage(40);
+//						tableRestante.setWidths(new float[] {1, 1, 1});
+//					}else if(resto == 4) {
+//						tableRestante.setWidthPercentage(50);
+//						tableRestante.setWidths(new float[] { 1, 1, 1, 1 });
+//					}else if(resto == 5) {
+//						tableRestante.setWidthPercentage(60);
+//						tableRestante.setWidths(new float[] { 1, 1, 1, 1, 1 });
+//					}else if(resto == 6) {
+//						tableRestante.setWidthPercentage(70);
+//						tableRestante.setWidths(new float[] { 1, 1, 1, 1, 1, 1 });
+//					}else if(resto == 7) {
+//						tableRestante.setWidthPercentage(85);
+//						tableRestante.setWidths(new float[] { 1, 1, 1, 1, 1, 1, 1 });
+//					}
+//					
+//				for (int i = amostras.size()-1; i > ate-1; i--) {
+//					
+//						ByteArrayOutputStream bout2 = QRCode.from(amostras.get(i).getIdentificadorAmostra()).withSize(250, 250)
+//								.to(ImageType.PNG).stream();
+//						
+//						
+//						try {
+//							File file2 = new File("qr_code.png");
+//							OutputStream out3 = new FileOutputStream(file2);
+//							bout2.writeTo(out3);
+//
+//							out.flush();
+//							out.close();
+//
+//						} catch (FileNotFoundException e) {
+//							e.printStackTrace();
+//						} catch (IOException e) {
+//							e.printStackTrace();
+//						}
+//
+//						byte[] pngData2 = bout2.toByteArray();
+//
+//						PdfPCell cell3;
+//
+//						Image img3 = Image.getInstance(pngData2);
+//						img3.scaleAbsolute(55f, 55f);
+//
+//						cell3 = new PdfPCell(img3);
+//						cell3.setVerticalAlignment(Element.ALIGN_MIDDLE);
+//						cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
+//						cell3.setPaddingRight(5);
+//						cell3.setFixedHeight(60);
+//						tableRestante.addCell(cell3);
+//						
+//						System.out.println("amostra deu certo:"+amostras.get(i).getId());
+//
+//					}
+//				}
+//
+//				  document.add(tableRestante);
 
 				document.close();
 

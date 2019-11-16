@@ -67,6 +67,7 @@ public class Solicitacao extends AbstractModel<Integer> {
 	@Column(name = "temperatura")
 	private double temperatura;
 
+
 	private String inicioColeta;
 
 	public Solicitacao() {
