@@ -210,12 +210,12 @@ public class ServiceMilkApplication {
 			analise.setProdutos(teste2);
 			analise.setOrigemLeite(EnumOrigemLeite.TETEIRA);
 			analise.setAnalisesSolicitadas(teste4);
-			analise.setQuantidadeAmostras(96);
+			analise.setQuantidadeAmostras(484);
 			analise.setDescricao("analise 1");
 			analise.setSolicitacao(s);
 			this.analiseRepository.save(analise);
 
-			for (int i = 0; i < 96; i++) {
+			for (int i = 0; i < 484; i++) {
 
 				// Amostra 2
 				Amostra amostra2 = new Amostra();
