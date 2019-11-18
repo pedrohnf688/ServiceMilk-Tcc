@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report2" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2bfe2fbb-4459-4998-a786-f98d8e6cba54">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="1144"/>
+	<property name="ireport.y" value="511"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -270,7 +270,7 @@
 		<queryString>
 			<![CDATA[SELECT * FROM solicitacao
 INNER JOIN analise ON $P{Id_lista} = analise.solicitacao_id
-INNER JOIN enum_analises_solicitadas ON analise.id = enum_analises_solicitadas.id
+INNER JOIN enum_analises_solicitadas ON  enum_analises_solicitadas.id = analise.id
 GROUP BY enum_analises_solicitadas.enum_analises_solicitadas]]>
 		</queryString>
 		<field name="id" class="java.lang.Integer">
@@ -279,7 +279,9 @@ GROUP BY enum_analises_solicitadas.enum_analises_solicitadas]]>
 		<field name="ativo" class="java.lang.Boolean">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
-		<field name="data_criada" class="java.sql.Timestamp"/>
+		<field name="data_criada" class="java.sql.Timestamp">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
 		<field name="inicio_coleta" class="java.lang.String">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
@@ -419,7 +421,7 @@ and laudo_media.solicitacao_id = $P{solicitacaoId} GROUP BY sequence HAVING COUN
 		</parameter>
 		<queryString>
 			<![CDATA[SELECT * FROM solicitacao
-INNER JOIN analise ON $P{Id_lista} = analise.solicitacao_id]]>
+INNER JOIN analise ON analise.solicitacao_id = $P{Id_lista} where solicitacao.id = $P{Id_lista}]]>
 		</queryString>
 		<field name="id" class="java.lang.Integer">
 			<fieldDescription><![CDATA[]]></fieldDescription>
@@ -439,9 +441,7 @@ INNER JOIN analise ON $P{Id_lista} = analise.solicitacao_id]]>
 		<field name="status" class="java.lang.String">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
-		<field name="temperatura" class="java.lang.Double">
-			<fieldDescription><![CDATA[]]></fieldDescription>
-		</field>
+		<field name="temperatura" class="java.lang.Double"/>
 		<field name="cliente_id" class="java.lang.Integer">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
@@ -511,12 +511,10 @@ INNER JOIN analise ON $P{Id_lista} = analise.solicitacao_id]]>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT * FROM solicitacao
-INNER JOIN usuario ON solicitacao.cliente_id = usuario.id
 INNER JOIN ordem_servico ON $P{Id_LaudoMedia} = ordem_servico.solicitacao_id
-INNER JOIN fazenda ON solicitacao.fazenda_id = fazenda.id
-INNER JOIN (SELECT * FROM laudo,laudo_media,laudo_media_lista_laudos
-where laudo_media_lista_laudos.lista_laudos_laudo_id = laudo.laudo_id
-and laudo_media_lista_laudos.laudo_media_id_media = laudo_media.id_media and laudo_media.solicitacao_id = $P{Id_LaudoMedia}) as resultado GROUP BY solicitacao.id]]>
+INNER JOIN fazenda ON $P{Id_LaudoMedia} = fazenda.id
+INNER JOIN usuario ON solicitacao.cliente_id = usuario.id
+WHERE solicitacao.id = $P{Id_LaudoMedia}]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -543,27 +541,6 @@ and laudo_media_lista_laudos.laudo_media_id_media = laudo_media.id_media and lau
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="fazenda_id" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="dtype" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="perfil" class="java.lang.Integer">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="cpf" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="email" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="nome" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="telefone1" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="telefone2" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="amostras_nao_analisadas" class="java.lang.Integer">
@@ -629,44 +606,27 @@ and laudo_media_lista_laudos.laudo_media_id_media = laudo_media.id_media and lau
 	<field name="numero" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="laudo_id" class="java.lang.Integer"/>
-	<field name="batch_id" class="java.lang.String"/>
-	<field name="casein" class="java.lang.String"/>
-	<field name="cbt" class="java.lang.String"/>
-	<field name="ccs" class="java.lang.String"/>
-	<field name="cel" class="java.lang.String"/>
-	<field name="date" class="java.lang.String"/>
-	<field name="den" class="java.lang.String"/>
-	<field name="fat" class="java.lang.String"/>
-	<field name="fpd" class="java.lang.String"/>
-	<field name="identificador_laudo" class="java.lang.String"/>
-	<field name="lact" class="java.lang.String"/>
-	<field name="ph" class="java.lang.String"/>
-	<field name="sampleid" class="java.lang.String"/>
-	<field name="sequence" class="java.lang.String"/>
-	<field name="snf" class="java.lang.String"/>
-	<field name="solids" class="java.lang.String"/>
-	<field name="totpro" class="java.lang.String"/>
-	<field name="trupro" class="java.lang.String"/>
-	<field name="urea" class="java.lang.String"/>
-	<field name="id_media" class="java.lang.Integer"/>
-	<field name="batch_id_media" class="java.lang.String"/>
-	<field name="casein_media" class="java.lang.String"/>
-	<field name="cbt_media" class="java.lang.String"/>
-	<field name="ccs_media" class="java.lang.String"/>
-	<field name="cel_media" class="java.lang.String"/>
-	<field name="den_media" class="java.lang.String"/>
-	<field name="fat_media" class="java.lang.String"/>
-	<field name="fpd_media" class="java.lang.String"/>
-	<field name="lact_media" class="java.lang.String"/>
-	<field name="ph_media" class="java.lang.String"/>
-	<field name="snf_media" class="java.lang.String"/>
-	<field name="solids_media" class="java.lang.String"/>
-	<field name="totpro_media" class="java.lang.String"/>
-	<field name="trupro_media" class="java.lang.String"/>
-	<field name="urea_media" class="java.lang.String"/>
-	<field name="laudo_media_id_media" class="java.lang.Integer"/>
-	<field name="lista_laudos_laudo_id" class="java.lang.Integer"/>
+	<field name="dtype" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="perfil" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cpf" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="email" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telefone1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telefone2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<background>
 		<band height="802" splitType="Stretch">
 			<staticText>
