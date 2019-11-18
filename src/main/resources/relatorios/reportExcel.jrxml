@@ -54,7 +54,7 @@
 (sum(trupro)/Count(sequence)),(sum(urea)/Count(sequence)), laudo_id, batch_id, sequence, identificador_laudo FROM laudo,laudo_media,laudo_media_lista_laudos
 where laudo_media_lista_laudos.lista_laudos_laudo_id = laudo.laudo_id
 and laudo_media_lista_laudos.laudo_media_id_media = laudo_media.id_media
-and laudo_media.solicitacao_id = $P{solicitacaoId} GROUP BY sequence HAVING COUNT(sequence) >= 2 ORDER BY laudo.laudo_id]]>
+and $P{solicitacaoId} = laudo_media.solicitacao_id GROUP BY sequence HAVING COUNT(sequence) >= 2 ORDER BY laudo.laudo_id]]>
 		</queryString>
 		<field name="(sum(cbt)/Count(sequence))" class="java.lang.Double"/>
 		<field name="(sum(ccs)/Count(sequence))" class="java.lang.Double"/>
