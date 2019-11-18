@@ -93,6 +93,7 @@ public class ServiceMilkApplication {
 	public CommandLineRunner commandLineRunner() {
 		return args -> {
 
+			
 			// Administrador
 
 			Usuario a = new Administrador();
@@ -241,6 +242,9 @@ public class ServiceMilkApplication {
 		};
 	}
 
+	
+	
+	
 //-------------------------------------------------------------(NAO FUNCIONA)---------------------------------------------
 	// Cadastro de uma amostra em um analise de uma solicitação
 //			Optional<Solicitacao> testeSoli = this.solicitacaoRepository.findById(1);
